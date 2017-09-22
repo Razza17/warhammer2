@@ -1,0 +1,389 @@
+{
+    "personnage": [
+        {
+            "nom": "Wolfgang",
+            "race": "Humain",
+            "carriereA": "Moine (dieu Ulrich)",
+            "Acarriere": "Fanatique"
+        }
+    ],
+    "details" : [
+        {
+            "age": "23",
+            "sexe": "Masculin",
+            "yeux": "Marron",
+            "taille": "1m63",
+            "cheveux": "Châtain",
+            "poids": "74 kg",
+            "signeAstral": "Vobiste le pâle",
+            "fraterie": "2",
+            "naissance": "Talabecland",
+            "distinction": "Pas de sourcil"
+        }
+    ],
+    "base" : [
+        {
+            "cc": 39,
+            "ct": 28,
+            "f": 43,
+            "e": 42,
+            "ag": 37,
+            "int": 29,
+            "fm": 28,
+            "soc": 37,
+            "a": 1,
+            "b": 12,
+            "bf": 4,
+            "be": 4,
+            "m": 4,
+            "mag": 0,
+            "pf": 1,
+            "pd": 4
+        }
+    ],
+    "avance" : [
+        {
+            "cc": 0,
+            "ct": 0,
+            "f": 0,
+            "e": 0,
+            "ag": 0,
+            "int": 0,
+            "fm": 0,
+            "soc": 0,
+            "a": 0,
+            "b": 0,
+            "bf": 0,
+            "be": 0,
+            "m": 0,
+            "mag": 0,
+            "pf": 0,
+            "pd": 0
+        }
+    ],
+    "actuel" : [
+        {
+            "cc": 39,
+            "ct": 28,
+            "f": 43,
+            "e": 42,
+            "ag": 37,
+            "int": 44,
+            "fm": 43,
+            "soc": 52,
+            "a": 1,
+            "b": 14,
+            "bf": 4,
+            "be": 4,
+            "m": 4,
+            "mag": 0,
+            "pf": 1,
+            "pd": 4
+        }
+    ],
+    "pointFortune" : 4,
+    "maxPointFortune" : 4,
+    "pointBlessure" : 6,
+    "maxPointBlessure" : 14,
+    "munition" : 15,
+    "competenceB" : [
+        {
+            "nom" : "Canotage",
+            "carac" : "(F)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Charisme",
+            "carac" : "(Soc)",
+            "acquis" : true,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Comandement",
+            "carac" : "(Soc)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Commérage",
+            "carac" : "(Soc)",
+            "acquis" : true,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Conduite d\"attelage",
+            "carac" : "(F)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Déguisement",
+            "carac" : "(Soc)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 10
+        },
+        {
+            "nom" : "Déplacements silencieux",
+            "carac" : "(Ag)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Dissimulation",
+            "carac" : "(Ag)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Equitation",
+            "carac" : "(Ag)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Escalade",
+            "carac" : "(F)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Evaluation",
+            "carac" : "(Int)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Fouille",
+            "carac" : "(Int)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Intimidation",
+            "carac" : "(F)",
+            "acquis" : true,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Jeu",
+            "carac" : "(Int)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Marchandage",
+            "carac" : "(Soc)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Natation",
+            "carac" : "(F)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Perception",
+            "carac" : "(Int)",
+            "acquis" : true,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Résistance à l\"alcool",
+            "carac" : "(E)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Soins des animaux",
+            "carac" : "(Int)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Survie",
+            "carac" : "(Int)",
+            "acquis" : false,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        }
+    ],
+    "competenceA" : [
+        {
+            "nom" : "Connaissance Générale (Empire)",
+            "carac" : "(Int)",
+            "acquis" : true,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 10
+        },
+        {
+            "nom" : "Théologie",
+            "carac" : "(Int)",
+            "acquis" : true,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Langue (Reikspiel)",
+            "carac" : "(Int)",
+            "acquis" : true,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Lire / Ecrire",
+            "carac" : "(Int)",
+            "acquis" : true,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        },
+        {
+            "nom" : "Soins",
+            "carac" : "(Int)",
+            "acquis" : true,
+            "dix" : 0,
+            "vingt" : 0,
+            "bonus" : 0
+        }
+    ],
+    "talents" : [
+        {
+            "nom" : "Imitation",
+            "desc" : "+10 déguisement",
+            "competence" : "Déguisement",
+            "bonus" : 10
+        },
+        {
+            "nom" : "Sociable",
+            "desc" : "+5 sociabilité",
+            "competence" : "Soc",
+            "bonus" : 5
+        },
+        {
+            "nom" : "Eloquence",
+            "desc" : "Charisme x10",
+            "competence" : "Charisme",
+            "bonus" : 0
+        },
+        {
+            "nom" : "Force accrue",
+            "desc" : "+5 force",
+            "competence" : "F",
+            "bonus" : 5
+        },
+        {
+            "nom" : "Robuste",
+            "desc" : "Pas de malus en plaque complète",
+            "competence" : "Ag",
+            "bonus" : 0
+        },
+        {
+            "nom" : "Maîtrise fléaux et morgenstern",
+            "desc" : "Pas de malus pour ces armes",
+            "competence" : "F",
+            "bonus" : 0
+        }
+    ],
+    "arme" : [
+        {
+            "nom" : "Fléau d\"arme",
+            "encombrement" : 95,
+            "degats" : 5,
+            "portee" : "0",
+            "recharge" : "",
+            "attribut" : "Epuisante + percutante"
+        },
+        {
+            "nom" : "Hache",
+            "encombrement" : 50,
+            "degats" : 4,
+            "portee" : "0",
+            "recharge" : "",
+            "attribut" : ""
+        },
+        {
+            "nom" : "Dague",
+            "encombrement" : 20,
+            "degats" : -3,
+            "portee" : "6/12",
+            "recharge" : "",
+            "attribut" : ""
+        }
+    ],
+    "armure" : [
+        {
+            "nom" : "Calotte de cuir",
+            "encombrement" : 10,
+            "couverture" : "Tête",
+            "points" : 1
+        },
+        {
+            "nom" : "Veste de cuir",
+            "encombrement" : 50,
+            "couverture" : "Corps + Bras",
+            "points" : 1
+        },
+        {
+            "nom" : "Jambières de cuir",
+            "encombrement" : 20,
+            "couverture" : "Jambes",
+            "points" : 1
+        }
+    ],
+    "money" : [
+        {
+            "couronnes" : 29,
+            "pistoles" : 31,
+            "sous" : 11
+        }
+    ],
+    "folie" : [
+        {
+            "nom": "Paranoïaque"
+        }
+    ]
+}
