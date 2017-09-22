@@ -82,7 +82,7 @@
         }
     ],
     "pointFortune" : 4,
-    "maxPointFortune" : 4,
+    "maxPointFortune" : "actuel.pd",
     "pointBlessure" : 6,
     "maxPointBlessure" : 14,
     "munition" : 15,

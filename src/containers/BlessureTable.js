@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Button, Col } from 'react-bootstrap';
+
 import Wolfgang from '../data/Wolfgang.json';
 
 
@@ -9,7 +10,7 @@ export class BlessureTable extends Component {
 
         this.state = {
             blessure: Wolfgang.pointBlessure,
-            maxBlessure: Wolfgang.maxPointBlessure
+            maxBlessure: Wolfgang.actuel
         };
 
         this.decrementBlessure = this.decrementBlessure.bind(this);
@@ -28,7 +29,7 @@ export class BlessureTable extends Component {
 
     incrementBlessure(e) {
         e.preventDefault();
-        (this.state.blessure + 1 <= this.state.maxBlessure &&
+        (this.state.blessure + 1 <= this.state.maxBlessure[0].b &&
                 this.setState({
                     blessure: this.state.blessure + 1
                 })
@@ -42,7 +43,7 @@ export class BlessureTable extends Component {
                 <Table striped condensed hover className="text-center">
                     <tbody>
                         <tr>
-                            <td>Bléssures : <strong>{this.state.blessure} points</strong> sur {this.state.maxBlessure}</td>
+                            <td>Bléssures : <strong>{this.state.blessure} points</strong> sur {this.state.maxBlessure[0].b}</td>
                             <td><Button bsStyle="primary" onClick={this.decrementBlessure}>-</Button></td>
                             <td><Button bsStyle="primary" onClick={this.incrementBlessure}>+</Button></td>
                         </tr>

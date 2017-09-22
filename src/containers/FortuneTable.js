@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Button, Col } from 'react-bootstrap';
+
 import Wolfgang from '../data/Wolfgang.json';
 
 
@@ -9,7 +10,7 @@ export class FortuneTable extends Component {
 
         this.state = {
             points: Wolfgang.pointFortune,
-            maxPoints: Wolfgang.maxPointFortune
+            maxPoints: Wolfgang.actuel
         };
 
         this.decrementPoint = this.decrementPoint.bind(this);
@@ -28,21 +29,20 @@ export class FortuneTable extends Component {
 
     incrementPoint(e) {
         e.preventDefault();
-        (this.state.points + 1 <= this.state.maxPoints &&
-                this.setState({
-                    points: this.state.points + 1
-                })
+        (this.state.points + 1 <= this.state.maxPoints[0].pd &&
+            this.setState({
+                points: this.state.points + 1
+            })
         );
     }
 
     render() {
-
         return (
             <Col xs={12} md={4}>
                 <Table striped condensed hover className="text-center">
                     <tbody>
                         <tr>
-                            <td>Fortune : <strong>{this.state.points} points</strong> sur {this.state.maxPoints}</td>
+                            <td>Fortune : <strong>{this.state.points} points</strong> sur {this.state.maxPoints[0].pd}</td>
                             <td><Button bsStyle="primary" onClick={this.decrementPoint}>-</Button></td>
                             <td><Button bsStyle="primary" onClick={this.incrementPoint}>+</Button></td>
                         </tr>
