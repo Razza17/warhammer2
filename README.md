@@ -3,9 +3,6 @@ Warhammer jeu de rôle web app : La web app afin de gérer les personages de vot
 Les joueurs pouront aussi gérer dynamiquement leur personnage pendant le jeu.
 
 # Installation avant de run l'app
-* npm install -g babel
-* npm install -g babel-cli
-* npm install -g webpack-dev-server
 * npm install
 
 # Lancer le server de  l'app
