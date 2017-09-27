@@ -7,9 +7,10 @@ import {CaracTable} from "../containers/CaracTable";
 import {FortuneTable} from "../containers/FortuneTable";
 import {BlessureTable} from "../containers/BlessureTable";
 import {MunitionTable} from "../containers/MunitionTable";
-import {TalentTable} from "../containers/TalentTable";
 import {CompetenceBase} from "../containers/CompetenceBase";
 import {CompetenceAvance} from "../containers/CompetenceAvance";
+import {TalentTable} from "../containers/TalentTable";
+
 import WarhammerLogo from "../img/WarhammerLogo.png";
 
 export class Personnage extends Component {
@@ -19,7 +20,7 @@ export class Personnage extends Component {
                 <Row>
                     <ProfilTable />
                     <DetailsTable />
-                    <Col md={4} xsHidden>
+                    <Col lg={4} xsHidden mdHidden>
                         <img src={WarhammerLogo} alt="WarhammerLogo" />
                     </Col>
                 </Row>
@@ -32,7 +33,7 @@ export class Personnage extends Component {
                 <Row>
                     <CompetenceBase />
                     <CompetenceAvance />
-                    <TalentTable />
+                    <TalentTable/>
                 </Row>
             </Grid>
         )

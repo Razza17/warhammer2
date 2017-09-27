@@ -1,54 +1,11 @@
-import React, { Component } from 'react';
-import { Table, Button, Col } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-import Wolfgang from '../data/Wolfgang.json';
+import { Fortune } from '../components/Fortune';
+import { fortuneSelector } from "../selectors/index";
 
 
-export class FortuneTable extends Component {
-    constructor(props) {
-        super(props);
+const mapStateToProps = (state) => ({
+   points: fortuneSelector(state).points
+});
 
-        this.state = {
-            points: Wolfgang.pointFortune,
-            maxPoints: Wolfgang.actuel
-        };
-
-        this.decrementPoint = this.decrementPoint.bind(this);
-        this.incrementPoint = this.incrementPoint.bind(this);
-
-    };
-
-    decrementPoint(e) {
-        e.preventDefault();
-        (this.state.points - 1 >= 0 &&
-            this.setState({
-                points: this.state.points - 1
-            })
-        );
-    }
-
-    incrementPoint(e) {
-        e.preventDefault();
-        (this.state.points + 1 <= this.state.maxPoints[0].pd &&
-            this.setState({
-                points: this.state.points + 1
-            })
-        );
-    }
-
-    render() {
-        return (
-            <Col xs={12} md={4}>
-                <Table striped condensed hover className="text-center">
-                    <tbody>
-                        <tr>
-                            <td>Fortune : <strong>{this.state.points} points</strong> sur {this.state.maxPoints[0].pd}</td>
-                            <td><Button bsStyle="primary" onClick={this.decrementPoint}>-</Button></td>
-                            <td><Button bsStyle="primary" onClick={this.incrementPoint}>+</Button></td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </Col>
-        );
-    }
-}
+export const FortuneTable = connect(mapStateToProps) (Fortune);

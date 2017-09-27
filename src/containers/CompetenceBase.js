@@ -7,7 +7,7 @@ import Wolfgang from '../data/Wolfgang.json';
 export class CompetenceBase extends Component {
     render() {
         return (
-            <Col xs={12} md={4}>
+            <Col xs={12} md={6} lg={4}>
                 <Table condensed hover className="border">
                     <thead>
                         <tr>
