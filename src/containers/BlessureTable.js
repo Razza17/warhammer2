@@ -43,7 +43,7 @@ export class BlessureTable extends Component {
                 <Table striped condensed hover className="text-center">
                     <tbody>
                         <tr>
-                            <td>Bléssures : <strong>{this.state.blessure} points</strong> sur {this.state.maxBlessure[0].b}</td>
+                            <td>Blessures : <strong>{this.state.blessure} points</strong> sur {this.state.maxBlessure[0].b}</td>
                             <td><Button bsStyle="primary" onClick={this.decrementBlessure}>-</Button></td>
                             <td><Button bsStyle="primary" onClick={this.incrementBlessure}>+</Button></td>
                         </tr>
