@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { Well } from 'react-bootstrap';
 
 export class Profil extends Component {
     render() {
         return (
-            <tbody>
-            <tr><td>Nom : {this.props.nom}</td></tr>
-            <tr><td>Race : {this.props.race}</td></tr>
-            <tr><td>Carrière Actuelle : {this.props.carriereA}</td></tr>
-            <tr><td>Ancienne Carrière : {this.props.Acarriere}</td></tr>
-            </tbody>
+            <Well>
+                Nom : {this.props.nom}<br/>
+                Race : {this.props.race}<br/>
+                Carrière Actuelle : {this.props.carriereA}<br/>
+                Ancienne Carrière : {this.props.Acarriere}<br/>
+            </Well>
         )
     }
 }

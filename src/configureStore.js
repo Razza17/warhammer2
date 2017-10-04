@@ -1,9 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { fortune } from './reducers/Fortune';
+import { fortuneReducer } from './reducers/FortuneReducer';
 
 export const configureStore = () => {
     return createStore(combineReducers({
-        fortune
+        points: fortuneReducer,
+        maxPoints: fortuneReducer
     }), composeWithDevTools());
 };
