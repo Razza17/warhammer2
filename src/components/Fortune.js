@@ -8,7 +8,7 @@ import { fortuneIncrement, fortuneDecrement } from "../actions/FortuneAction";
 class Fortune extends Component {
 
     decrementPoint(points, unit) {
-        (this.props.points > 0 && 
+        (this.props.points > 0 &&
             this.props.fortuneDecrement(this.props.points, 1)
         )
     }

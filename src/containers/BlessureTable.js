@@ -1,55 +1,55 @@
 import React, { Component } from 'react';
-import { Table, Button, Col } from 'react-bootstrap';
+import { Col, Row, Button, ButtonGroup, Well } from 'react-bootstrap';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-import Wolfgang from '../data/Wolfgang.json';
+import { blessureIncrement, blessureDecrement } from "../actions/BlessureAction";
 
 
-export class BlessureTable extends Component {
-    constructor(props) {
-        super(props);
+class BlessureTable extends Component {
 
-        this.state = {
-            blessure: Wolfgang.pointBlessure,
-            maxBlessure: Wolfgang.actuel
-        };
-
-        this.decrementBlessure = this.decrementBlessure.bind(this);
-        this.incrementBlessure = this.incrementBlessure.bind(this);
-
-    };
-
-    decrementBlessure(e) {
-        e.preventDefault();
-        (this.state.blessure - 1 >= 0 &&
-            this.setState({
-                blessure: this.state.blessure - 1
-            })
-        );
+    decrementBlessure() {
+      (this.props.blessure > -10 &&
+        this.props.blessureDecrement(this.props.blessure, 1)
+      )
     }
 
-    incrementBlessure(e) {
-        e.preventDefault();
-        (this.state.blessure + 1 <= this.state.maxBlessure[0].b &&
-                this.setState({
-                    blessure: this.state.blessure + 1
-                })
-        );
+    incrementBlessure() {
+      (this.props.blessure !== this.props.maxBlessure[0].b &&
+        this.props.blessureIncrement(this.props.blessure, 1)
+      );
     }
 
     render() {
 
         return (
-            <Col xs={12} md={4}>
-                <Table striped condensed hover className="text-center">
-                    <tbody>
-                        <tr>
-                            <td>Blessures : <strong>{this.state.blessure} points</strong> sur {this.state.maxBlessure[0].b}</td>
-                            <td><Button bsStyle="primary" onClick={this.decrementBlessure}>-</Button></td>
-                            <td><Button bsStyle="primary" onClick={this.incrementBlessure}>+</Button></td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </Col>
+          <Col xs={12} md={4}>
+              <Row className="text-center">
+                  <Well>
+                      <span>Blessures : <strong>{this.props.blessure} {this.props.blessure > 1 ? 'points' : 'point'}</strong> sur {this.props.maxBlessure[0].b}</span>
+                      <ButtonGroup style={{marginLeft: "20px"}}>
+                          <Button bsStyle='danger' onClick={this.decrementBlessure.bind(this)}>-</Button>
+                          <Button bsStyle="success" onClick={this.incrementBlessure.bind(this)}>+</Button>
+                      </ButtonGroup>
+                  </Well>
+              </Row>
+          </Col>
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        blessure: state.blessure.blessure,
+        maxBlessure: state.maxBlessure.maxBlessure
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({
+        blessureIncrement,
+        blessureDecrement
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlessureTable);

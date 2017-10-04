@@ -5,7 +5,7 @@ import {DetailsTable} from "../containers/DetailsTable";
 import {ProfilTable} from "../containers/ProfilTable";
 import {CaracTable} from "../containers/CaracTable";
 import Fortune from "../components/Fortune";
-import {BlessureTable} from "../containers/BlessureTable";
+import BlessureTable from "../containers/BlessureTable";
 import {MunitionTable} from "../containers/MunitionTable";
 import {CompetenceBase} from "../containers/CompetenceBase";
 import {CompetenceAvance} from "../containers/CompetenceAvance";
