@@ -1,54 +1,51 @@
 import React, { Component } from 'react';
-import { Col, Table, Button } from 'react-bootstrap';
+import { Col, Row, Button, ButtonGroup, Well } from 'react-bootstrap';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-import Wolfgang from '../data/Wolfgang.json';
-import { fortuneIncrement, fortuneDecrement } from "../actions/fortune";
+import { fortuneIncrement, fortuneDecrement } from "../actions/FortuneAction";
 
-export class Fortune extends Component {
-    constructor(props) {
-        super(props);
+class Fortune extends Component {
 
-        this.state = {
-            points: props.points || Wolfgang.pointFortune,
-            maxPoints: Wolfgang.actuel
-        };
-
-        this.decrementPoint = this.decrementPoint.bind(this);
-        this.incrementPoint = this.incrementPoint.bind(this);
-
-    };
-
-    decrementPoint(e) {
-        e.preventDefault();
-        this.setState({
-            points: this.state.points - 1
-        });
-        this.props.dispatch(fortuneDecrement(this.state.points));
+    decrementPoint(points, unit) {
+        (this.props.points > 0 && 
+            this.props.fortuneDecrement(this.props.points, 1)
+        )
     }
 
-    incrementPoint(e) {
-        e.preventDefault();
-        (this.state.points + 1 <= this.state.maxPoints[0].pd &&
-            this.setState({
-                points: this.state.points + 1
-            })
-        );
-        this.props.dispatch(fortuneIncrement(this.state.points));
+    incrementPoint(points, unit) {
+        (this.props.points !== this.props.maxPoints[0].pd && this.props.fortuneIncrement(this.props.points, 1))
     }
 
     render() {
         return (
             <Col xs={12} md={4}>
-                <Table striped condensed hover className="text-center">
-                    <tbody>
-                    <tr>
-                        <td>Fortune : <strong>{this.state.points} {this.state.points > 1 ? 'points' : 'point'}</strong> sur {this.state.maxPoints[0].pd}</td>
-                        <td><Button bsStyle="primary" onClick={this.decrementPoint}>-</Button></td>
-                        <td><Button bsStyle="primary" onClick={this.incrementPoint}>+</Button></td>
-                    </tr>
-                    </tbody>
-                </Table>
+                <Row className="text-center">
+                    <Well>
+                        <span>Fortune : <strong>{this.props.points} {this.props.points > 1 ? 'points' : 'point'}</strong> sur {this.props.maxPoints[0].pd}</span>
+                        <ButtonGroup style={{marginLeft: "20px"}}>
+                            <Button bsStyle='danger' onClick={this.decrementPoint.bind(this)}>-</Button>
+                            <Button bsStyle="success" onClick={this.incrementPoint.bind(this)}>+</Button>
+                        </ButtonGroup>
+                    </Well>
+                </Row>
             </Col>
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        points: state.points.points,
+        maxPoints: state.maxPoints.maxPoints
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({
+        fortuneIncrement,
+        fortuneDecrement
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Fortune);

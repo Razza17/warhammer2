@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import {DetailsTable} from "../containers/DetailsTable";
 import {ProfilTable} from "../containers/ProfilTable";
 import {CaracTable} from "../containers/CaracTable";
-import {FortuneTable} from "../containers/FortuneTable";
+import Fortune from "../components/Fortune";
 import {BlessureTable} from "../containers/BlessureTable";
 import {MunitionTable} from "../containers/MunitionTable";
 import {CompetenceBase} from "../containers/CompetenceBase";
@@ -26,7 +26,7 @@ export class Personnage extends Component {
                 </Row>
                 <Row>
                     <CaracTable />
-                    <FortuneTable />
+                    <Fortune />
                     <BlessureTable />
                     <MunitionTable />
                 </Row>
