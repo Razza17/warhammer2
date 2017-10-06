@@ -5,10 +5,12 @@ export class Profil extends Component {
     render() {
         return (
             <Well>
-                Nom : {this.props.nom}<br/>
-                Race : {this.props.race}<br/>
-                Carrière Actuelle : {this.props.carriereA}<br/>
-                Ancienne Carrière : {this.props.Acarriere}<br/>
+              <ul>
+                <li>Nom : {this.props.nom}</li>
+                <li>Race : {this.props.race}</li>
+                <li>Carrière Actuelle : {this.props.carriereA}</li>
+                <li>Ancienne Carrière : {this.props.Acarriere}</li>
+              </ul>
             </Well>
         )
     }

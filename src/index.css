@@ -4,6 +4,10 @@ body {
     font-family: sans-serif;
 }
 
+ul li {
+  list-style-type: none;
+}
+
 .border {
     border: 1px solid #ddd;
 }
