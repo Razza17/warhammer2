@@ -5,6 +5,7 @@ export class Details extends Component {
     render() {
         return (
             <Well>
+              <h3 className="text-center">Détails du personnage</h3>
               <ul>
                 <li>Age : {this.props.age} ans</li>
                 <li>Sexe : {this.props.sexe}</li>

@@ -8,7 +8,6 @@ export class DetailsTable extends Component {
         return (
             <Col xs={12} md={4}>
                 <Panel>
-                    <h3 className="text-center">Détails du personnage</h3>
                     {
                         Wolfgang.details.map((details, i) => <Details key={i} {...details} />)
                     }
