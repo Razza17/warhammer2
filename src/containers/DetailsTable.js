@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Table } from 'react-bootstrap';
+import { Col, Panel } from 'react-bootstrap';
 import {Details} from "../components/Details";
 import Wolfgang from "../data/Wolfgang.json";
 
@@ -7,16 +7,12 @@ export class DetailsTable extends Component {
     render() {
         return (
             <Col xs={12} md={4}>
-                <Table condensed bordered hover>
-                    <thead>
-                        <tr><th colSpan="2" className="text-center">Détails Personnels</th></tr>
-                    </thead>
+                <Panel>
+                    <h3 className="text-center">Détails du personnage</h3>
                     {
-                        Wolfgang.details.map((details, i) =>
-                        <Details key={i} {...details} />
-                        )
+                        Wolfgang.details.map((details, i) => <Details key={i} {...details} />)
                     }
-                </Table>
+                </Panel>
             </Col>
         )
     }

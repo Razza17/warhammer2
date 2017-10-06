@@ -8,7 +8,7 @@ export class ProfilTable extends Component {
         return (
             <Col xs={12} md={4}>
                 <Panel>
-                    <h2 className="text-center">Personnage</h2>
+                    <h3 className="text-center">Personnage</h3>
                     {
                         Wolfgang.personnage.map((perso, i) => <Profil key={i} {...perso} />)
                     }
