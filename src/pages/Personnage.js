@@ -20,7 +20,7 @@ export class Personnage extends Component {
                 <Row>
                     <ProfilTable />
                     <DetailsTable />
-                    <Col lg={4} xsHidden mdHidden>
+                    <Col lg={4} xsHidden smHidden mdHidden>
                         <img src={WarhammerLogo} alt="WarhammerLogo" />
                     </Col>
                 </Row>
