@@ -23,7 +23,7 @@ class BlessureTable extends Component {
     render() {
 
         return (
-          <Col xs={12} md={4}>
+          <Col xs={12} sm={4}>
               <Row className="text-center">
                   <Well>
                       <span>Blessures : <strong>{this.props.blessure} {this.props.blessure > 1 ? 'points' : 'point'}</strong> sur {this.props.maxBlessure[0].b}</span>
