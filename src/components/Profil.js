@@ -5,6 +5,7 @@ export class Profil extends Component {
     render() {
         return (
             <Well>
+              <h3 className="text-center">Personnage</h3>
               <ul>
                 <li>Nom : {this.props.nom}</li>
                 <li>Race : {this.props.race}</li>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Col } from 'react-bootstrap';
+import { Col, Row, Button, ButtonGroup, Well } from 'react-bootstrap';
 
 import Wolfgang from '../data/Wolfgang.json';
 
@@ -14,7 +14,6 @@ export class MunitionTable extends Component {
 
         this.decrementMunition = this.decrementMunition.bind(this);
         this.incrementMunition = this.incrementMunition.bind(this);
-        this.handleMunition = this.handleMunition.bind(this);
 
     };
 
@@ -34,29 +33,19 @@ export class MunitionTable extends Component {
         });
     }
 
-    handleMunition(e) {
-        e.preventDefault();
-        this.setState({
-            munition: e.target.value
-        })
-    }
-
     render() {
 
         return (
             <Col xs={12} md={4}>
-                <form>
-                    <Table striped condensed hover className="text-center">
-                        <tbody>
-                            <tr>
-                                <td>Munitions : <strong>{this.state.munition} flèches</strong></td>
-                                <input value={this.state.munition} maxLength="3" size="2" onChange={this.handleMunition} />
-                                <td><Button bsStyle="primary" onClick={this.decrementMunition}>-</Button></td>
-                                <td><Button bsStyle="primary" onClick={this.incrementMunition}>+</Button></td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </form>
+              <Row className="text-center">
+                  <Well>
+                    <span>Munitions : <strong>{this.state.munition} flèches</strong></span>
+                    <ButtonGroup style={{marginLeft: "20px"}}>
+                      <Button bsStyle="danger" onClick={this.decrementMunition}>-</Button>
+                      <Button bsStyle="success" onClick={this.incrementMunition}>+</Button>
+                    </ButtonGroup>
+                  </Well>
+              </Row>
             </Col>
         );
     }
