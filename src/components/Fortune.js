@@ -19,7 +19,7 @@ class Fortune extends Component {
 
     render() {
         return (
-            <Col xs={12} sm={4}>
+            <Col xs={12} md={4}>
                 <Row className="text-center">
                     <Well>
                         <span>Fortune : <strong>{this.props.points} {this.props.points > 1 ? 'points' : 'point'}</strong> sur {this.props.maxPoints[0].pd}</span>

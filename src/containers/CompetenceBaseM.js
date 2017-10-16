@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
+
 import { Competence } from "../components/Competence";
 import Wolfgang from '../data/Wolfgang.json';
 
-export class CompetenceAvance extends Component {
+export class CompetenceBaseM extends Component {
     render() {
         return (
             <Table condensed hover className="border">
                 <thead>
                     <tr>
-                        <th className="text-center">Compétences avancées</th>
+                        <th className="text-center">Compétences de base</th>
                         <th className="text-center">Carac.</th>
-                        <th className="text-center">Acquis</th>
-                        <th className="text-center">+10%</th>
-                        <th className="text-center">+20%</th>
-                        <th className="text-center">Bonus</th>
-                        <th className="text-center">Total</th>
+                        <th className="text-center">Ac.</th>
+                        <th className="text-center">+10</th>
+                        <th className="text-center">+20</th>
+                        <th className="text-center">Bon.</th>
+                        <th className="text-center">Tot.</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        Wolfgang.competenceA.map((competenceA, i) =>
-                            <Competence key={i} {...competenceA}/>
+                        Wolfgang.competenceB.map((competenceB, i) =>
+                            <Competence key={i} {...competenceB}/>
                         )
                     }
                 </tbody>

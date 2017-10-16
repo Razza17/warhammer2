@@ -36,7 +36,7 @@ export class MunitionTable extends Component {
     render() {
 
         return (
-            <Col xs={12} sm={4}>
+            <Col xs={12} md={4}>
               <Row className="text-center">
                   <Well>
                     <span>Munitions : <strong>{this.state.munition} flèches</strong></span>
