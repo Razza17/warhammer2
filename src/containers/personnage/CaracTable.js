@@ -9,7 +9,7 @@ import {CaracActuel} from "../../components/personnage/CaracActuel";
 export class CaracTable extends Component {
     render() {
         return (
-            <Table condensed bordered hover>
+            <Table condensed bordered hover striped>
                 <thead>
                     <tr><th colSpan="17" className="text-center">Profil du Personnage</th></tr>
                 </thead>
@@ -38,21 +38,9 @@ export class CaracTable extends Component {
                         <td>PF</td>
                         <td>PD</td>
                     </tr>
-                    {
-                        Wolfgang.base.map((caracBase, i) =>
-                            <CaracBase key={i} {...caracBase}/>
-                        )
-                    }
-                    {
-                        Wolfgang.avance.map((caracAvance, i) =>
-                            <CaracAvance key={i} {...caracAvance}/>
-                        )
-                    }
-                    {
-                        Wolfgang.actuel.map((caracActuel, i) =>
-                            <CaracActuel key={i} {...caracActuel}/>
-                        )
-                    }
+                    { Wolfgang.base.map((caracBase, i) => <CaracBase key={i} {...caracBase}/>) }
+                    { Wolfgang.base.map((caracAvance, i) => <CaracAvance key={i} {...caracAvance}/>) }
+                    { Wolfgang.base.map((caracActuel, i) => <CaracActuel key={i} {...caracActuel}/>) }
                 </tbody>
             </Table>
         )

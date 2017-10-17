@@ -6,7 +6,7 @@ import Wolfgang from '../../data/Wolfgang.json';
 export class TalentTable extends Component {
     render () {
         return (
-            <Table condensed hover className="border">
+            <Table condensed hover striped className="border">
                 <thead>
                     <tr>
                         <th className="text-center">Talents</th>

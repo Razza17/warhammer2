@@ -12,7 +12,7 @@ import {CaracActuelS} from "../../components/personnage/CaracActuelS";
 export class CaracTableM extends Component {
     render() {
         return (
-            <Table condensed bordered hover>
+            <Table condensed bordered hover striped>
                 <thead>
                     <tr><th colSpan="9" className="text-center">Profil du Personnage</th></tr>
                 </thead>

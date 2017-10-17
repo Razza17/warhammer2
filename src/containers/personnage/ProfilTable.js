@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Panel } from 'react-bootstrap';
-import {Profil} from "../../components/personnage/Profil";
+import { Profil } from "../../components/personnage/Profil";
 import Wolfgang from "../../data/Wolfgang.json";
 
 export class ProfilTable extends Component {
