@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import Wolfgang from "../data/Wolfgang.json";
-import {CaracBase} from "../components/CaracBase";
-import {CaracAvance} from "../components/CaracAvance";
-import {CaracActuel} from "../components/CaracActuel";
+import {CaracBaseP} from "../components/CaracBaseP";
+import {CaracBaseS} from "../components/CaracBaseS";
+import {CaracAvanceP} from "../components/CaracAvanceP";
+import {CaracAvanceS} from "../components/CaracAvanceS";
+import {CaracActuelP} from "../components/CaracActuelP";
+import {CaracActuelS} from "../components/CaracActuelS";
 
 
-export class CaracTable extends Component {
+export class CaracTableM extends Component {
     render() {
         return (
             <Table condensed bordered hover>
                 <thead>
-                    <tr><th colSpan="17" className="text-center">Profil du Personnage</th></tr>
+                    <tr><th colSpan="9" className="text-center">Profil du Personnage</th></tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>&nbsp;</td>
                         <td colSpan="8">Profil Principal</td>
-                        <td colSpan="8">Profil Secondaire</td>
                     </tr>
                     <tr className="text-center profilHeader">
                         <td>&nbsp;</td>
@@ -29,6 +31,28 @@ export class CaracTable extends Component {
                         <td>Int</td>
                         <td>FM</td>
                         <td>Soc</td>
+                    </tr>
+                    {
+                        Wolfgang.base.map((caracBase, i) =>
+                            <CaracBaseP key={i} {...caracBase}/>
+                        )
+                    }
+                    {
+                        Wolfgang.avance.map((caracAvance, i) =>
+                            <CaracAvanceP key={i} {...caracAvance}/>
+                        )
+                    }
+                    {
+                        Wolfgang.actuel.map((caracActuel, i) =>
+                            <CaracActuelP key={i} {...caracActuel}/>
+                        )
+                    }
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colSpan="8">Profil Secondaire</td>
+                    </tr>
+                    <tr className="text-center profilHeader">
+                        <td>&nbsp;</td>
                         <td>A</td>
                         <td>B</td>
                         <td>BF</td>
@@ -40,17 +64,17 @@ export class CaracTable extends Component {
                     </tr>
                     {
                         Wolfgang.base.map((caracBase, i) =>
-                            <CaracBase key={i} {...caracBase}/>
+                            <CaracBaseS key={i} {...caracBase}/>
                         )
                     }
                     {
                         Wolfgang.avance.map((caracAvance, i) =>
-                            <CaracAvance key={i} {...caracAvance}/>
+                            <CaracAvanceS key={i} {...caracAvance}/>
                         )
                     }
                     {
                         Wolfgang.actuel.map((caracActuel, i) =>
-                            <CaracActuel key={i} {...caracActuel}/>
+                            <CaracActuelS key={i} {...caracActuel}/>
                         )
                     }
                 </tbody>

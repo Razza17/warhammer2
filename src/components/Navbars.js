@@ -1,29 +1,23 @@
 import React, { Component }  from 'react';
 import { NavLink } from 'react-router-dom';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
 export class Navbars extends Component {
     render() {
         return (
-            <nav data-reactroot="" className="navbar navbar-inverse">
-                <div className="navbar-header">
-                    <NavLink to="/" className="navbar-brand">WARHAMMER 2.0</NavLink>
-                    <button type="button" className="navbar-toggle collapsed"><span className="sr-only">Toggle navigation</span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                    </button>
-                </div>
-                <div className="navbar-collapse collapse">
-                    <ul className="nav navbar-nav">
-                        <li role="presentation" className="">
-                            <NavLink to="/personnage">Personnage</NavLink>
-                        </li>
-                    </ul>
-                    <ul className="nav navbar-nav navbar-right">
-                        <p className="navbar-text">Hello Razza !</p>
-                    </ul>
-                </div>
-            </nav>
+            <Navbar inverse collapseOnSelect>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        <NavLink to="/" className="navbar-brand">WARHAMMER 2.0</NavLink>
+                    </Navbar.Brand>
+                    <Navbar.Toggle />
+                </Navbar.Header>
+                <Navbar.Collapse>
+                    <Nav>
+                        <NavItem><NavLink to="/personnage">Personnage</NavLink></NavItem>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
         )
     }
 
