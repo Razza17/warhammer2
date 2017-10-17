@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import Wolfgang from "../data/Wolfgang.json";
-import {CaracBase} from "../components/CaracBase";
-import {CaracAvance} from "../components/CaracAvance";
-import {CaracActuel} from "../components/CaracActuel";
+import Wolfgang from "../../data/Wolfgang.json";
+import {CaracBase} from "../../components/personnage/CaracBase";
+import {CaracAvance} from "../../components/personnage/CaracAvance";
+import {CaracActuel} from "../../components/personnage/CaracActuel";
 
 
 export class CaracTable extends Component {

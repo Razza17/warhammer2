@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 
-import { Competence } from "../components/Competence";
-import Wolfgang from '../data/Wolfgang.json';
+import { Competence } from "../../components/personnage/Competence";
+import Wolfgang from '../../data/Wolfgang.json';
 
-export class CompetenceBase extends Component {
+export class CompetenceBaseM extends Component {
     render() {
         return (
             <Table condensed hover className="border">
@@ -12,11 +12,11 @@ export class CompetenceBase extends Component {
                     <tr>
                         <th className="text-center">Compétences de base</th>
                         <th className="text-center">Carac.</th>
-                        <th className="text-center">Acquis</th>
-                        <th className="text-center">+10%</th>
-                        <th className="text-center">+20%</th>
-                        <th className="text-center">Bonus</th>
-                        <th className="text-center">Total</th>
+                        <th className="text-center">Ac.</th>
+                        <th className="text-center">+10</th>
+                        <th className="text-center">+20</th>
+                        <th className="text-center">Bon.</th>
+                        <th className="text-center">Tot.</th>
                     </tr>
                 </thead>
                 <tbody>

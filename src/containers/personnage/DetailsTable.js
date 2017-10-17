@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Panel } from 'react-bootstrap';
-import {Details} from "../components/Details";
-import Wolfgang from "../data/Wolfgang.json";
+import {Details} from "../../components/personnage/Details";
+import Wolfgang from "../../data/Wolfgang.json";
 
 export class DetailsTable extends Component {
     render() {

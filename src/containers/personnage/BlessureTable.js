@@ -3,7 +3,7 @@ import { Col, Row, Button, ButtonGroup, Well } from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import { blessureIncrement, blessureDecrement } from "../actions/BlessureAction";
+import { blessureIncrement, blessureDecrement } from "../../actions/BlessureAction";
 
 
 class BlessureTable extends Component {

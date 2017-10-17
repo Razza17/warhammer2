@@ -3,7 +3,7 @@ import { Col, Row, Button, ButtonGroup, Well } from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import { fortuneIncrement, fortuneDecrement } from "../actions/FortuneAction";
+import { fortuneIncrement, fortuneDecrement } from "../../actions/FortuneAction";
 
 class Fortune extends Component {
 

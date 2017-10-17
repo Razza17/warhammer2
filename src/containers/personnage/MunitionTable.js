@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row, Button, ButtonGroup, Well } from 'react-bootstrap';
 
-import Wolfgang from '../data/Wolfgang.json';
+import Wolfgang from '../../data/Wolfgang.json';
 
 
 export class MunitionTable extends Component {

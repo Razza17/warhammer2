@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import { Talent } from "../components/Talent";
-import Wolfgang from '../data/Wolfgang.json';
+import { Talent } from "../../components/personnage/Talent";
+import Wolfgang from '../../data/Wolfgang.json';
 
 export class TalentTable extends Component {
     render () {

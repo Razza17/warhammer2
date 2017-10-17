@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import { Competence } from "../components/Competence";
-import Wolfgang from '../data/Wolfgang.json';
+import { Competence } from "../../components/personnage/Competence";
+import Wolfgang from '../../data/Wolfgang.json';
 
 export class CompetenceAvanceM extends Component {
     render() {

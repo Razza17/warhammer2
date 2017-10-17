@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import Wolfgang from "../data/Wolfgang.json";
-import {CaracBaseP} from "../components/CaracBaseP";
-import {CaracBaseS} from "../components/CaracBaseS";
-import {CaracAvanceP} from "../components/CaracAvanceP";
-import {CaracAvanceS} from "../components/CaracAvanceS";
-import {CaracActuelP} from "../components/CaracActuelP";
-import {CaracActuelS} from "../components/CaracActuelS";
+import Wolfgang from "../../data/Wolfgang.json";
+import {CaracBaseP} from "../../components/personnage/CaracBaseP";
+import {CaracBaseS} from "../../components/personnage/CaracBaseS";
+import {CaracAvanceP} from "../../components/personnage/CaracAvanceP";
+import {CaracAvanceS} from "../../components/personnage/CaracAvanceS";
+import {CaracActuelP} from "../../components/personnage/CaracActuelP";
+import {CaracActuelS} from "../../components/personnage/CaracActuelS";
 
 
 export class CaracTableM extends Component {

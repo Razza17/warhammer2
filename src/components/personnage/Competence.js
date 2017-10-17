@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Wolfgang from '../data/Wolfgang.json';
-import imgChecked from '../img/checked.png';
+import Wolfgang from '../../data/Wolfgang.json';
+import imgChecked from '../../img/checked.png';
 
 export class Competence extends Component {
     render() {
