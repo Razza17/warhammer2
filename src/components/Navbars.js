@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import { NavLink } from 'react-router-dom';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 
 export class Navbars extends Component {
     render() {
@@ -14,7 +14,8 @@ export class Navbars extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <NavItem><NavLink to="/personnage">Personnage</NavLink></NavItem>
+                        <li><NavLink to="/personnage">Personnage</NavLink></li>
+                        <li><NavLink to="/equipement">Equipement</NavLink></li>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
