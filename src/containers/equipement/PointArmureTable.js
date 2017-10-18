@@ -27,11 +27,11 @@ export class PointArmureTable extends Component {
        let total = 0;
 
        for (let i = 0; i < bras.length; i++) {
-           if (bras[i].couverture == "Bras") {
+           if (bras[i].couverture === "Bras") {
                total += bras[i].points;
            }
 
-           if (i == bras.length - 1) {
+           if (i === bras.length - 1) {
                return Math.round(total);
            }
        }
@@ -42,11 +42,11 @@ export class PointArmureTable extends Component {
         let total = 0;
 
         for (let i = 0; i < corps.length; i++) {
-            if (corps[i].couverture == "Corps") {
+            if (corps[i].couverture === "Corps") {
                 total += corps[i].points;
             }
 
-            if (i == corps.length - 1) {
+            if (i === corps.length - 1) {
                 return Math.round(total);
             }
         }
@@ -72,11 +72,11 @@ export class PointArmureTable extends Component {
        let total = 0;
 
        for (let i = 0; i < jambes.length; i++) {
-           if (jambes[i].couverture == "Jambes") {
+           if (jambes[i].couverture === "Jambes") {
                total += jambes[i].points;
            }
 
-           if (i == jambes.length - 1) {
+           if (i === jambes.length - 1) {
                return Math.round(total);
            }
        }
