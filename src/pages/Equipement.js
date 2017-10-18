@@ -3,6 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import { ArmesTable } from '../containers/equipement/ArmesTable';
 import { ArmureTable } from '../containers/equipement/ArmureTable';
+import { PointArmureTable } from '../containers/equipement/PointArmureTable';
 
 export class Equipement extends Component {
     render() {
@@ -16,6 +17,7 @@ export class Equipement extends Component {
                 <Row>
                     <Col xs={12} md={6}>
                         <ArmureTable />
+                        <PointArmureTable />
                     </Col>
                 </Row>
             </Grid>
