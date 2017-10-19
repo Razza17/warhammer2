@@ -21,6 +21,8 @@ export class Equipement extends Component {
                 <Row>
                     <Col xs={12} md={6}>
                         <ArmureTable />
+                    </Col>
+                    <Col xs={12} md={6}>
                         <PointArmureTable />
                     </Col>
                 </Row>

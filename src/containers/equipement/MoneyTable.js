@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Well } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { coIncrement, coDecrement, paIncrement, paDecrement } from "../../actions/MoneyAction";
+import { coIncrement, coDecrement, paIncrement, paDecrement, removeCo, addCo } from "../../actions/MoneyAction";
 
 class MoneyTable extends Component {
 
@@ -31,21 +31,39 @@ class MoneyTable extends Component {
         )
     }
 
+    removeCouronne(couronne) {
+        (this.props.couronne > 0 && this.props.removeCo(this.props.couronne))
+    }
+
+    addCouronne(couronne) {
+        this.props.addCo(this.props.couronne)
+    }
+
     render() {
         return (
             <Well>
                 <div>
-                    <span>{this.props.couronne > 1 ? "Couronnes d'or" : "Couronne d'or"} : <strong>{this.props.couronne}</strong></span>
+                    <span>
+                        <strong>{this.props.couronne > 1 ? "Couronnes d'or" : "Couronne d'or"} : {this.props.couronne}</strong>
+                    </span>
                     <ButtonGroup style={{marginLeft: "20px"}}>
-                        <Button onClick={this.pistoleToCouronne.bind(this)}>+ 1</Button>
-                        <Button onClick={this.couronneToPistole.bind(this)}>+ 20</Button>
+                        <Button bsStyle="danger" onClick={this.removeCouronne.bind(this)}>-</Button>
+                        <Button bsStyle="success" onClick={this.addCouronne.bind(this)}>+</Button>
                     </ButtonGroup>
-                    <span style={{marginLeft: "20px"}}>{this.props.pistole > 1 ? "Pistoles d'argent" : "Pistole d'argent"} : <strong>{this.props.pistole}</strong></span>
+                    <span style={{marginLeft: "20px"}}>
+                        <strong>{this.props.pistole > 1 ? "Pistoles d'argent" : "Pistole d'argent"} : {this.props.pistole}</strong>
+                    </span>
                     <ButtonGroup style={{marginLeft: "20px"}}>
-                        <Button onClick={this.sousToPistole.bind(this)}>+ 1</Button>
-                        <Button onClick={this.pistoleToSous.bind(this)}>+ 12</Button>
+                        <Button bsStyle="danger" onClick={this.removeCouronne.bind(this)}>-</Button>
+                        <Button bsStyle="success" onClick={this.addCouronne.bind(this)}>+</Button>
                     </ButtonGroup>
-                    <span style={{marginLeft: "20px"}}>Sous de cuivre : <strong>{this.props.sous}</strong></span>
+                    <span style={{marginLeft: "20px"}}>
+                        <strong>Sous de cuivre : {this.props.sous}</strong>
+                    </span>
+                    <ButtonGroup style={{marginLeft: "20px"}}>
+                        <Button bsStyle="danger" onClick={this.removeCouronne.bind(this)}>-</Button>
+                        <Button bsStyle="success" onClick={this.addCouronne.bind(this)}>+</Button>
+                    </ButtonGroup>
                 </div>
                 <div style={{marginTop: "20px"}}>
                     <ButtonGroup style={{margin: "auto"}}>
@@ -54,7 +72,6 @@ class MoneyTable extends Component {
                         <Button onClick={this.sousToPistole.bind(this)}>12 sous pour 1 pistoles</Button>
                         <Button onClick={this.pistoleToSous.bind(this)}>1 pisotle pour 12 sous</Button>
                     </ButtonGroup>
-
                 </div>
             </Well>
         );
@@ -74,7 +91,9 @@ function mapDispatchToProps(dispatch){
         coIncrement,
         coDecrement,
         paIncrement,
-        paDecrement
+        paDecrement,
+        removeCo,
+        addCo
     }, dispatch)
 }
 

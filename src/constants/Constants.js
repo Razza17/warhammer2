@@ -6,3 +6,5 @@ export const CO_INCREMENT = 'CO_INCREMENT';
 export const CO_DECREMENT = 'CO_DECREMENT';
 export const PA_INCREMENT = 'PA_INCREMENT';
 export const PA_DECREMENT = 'PA_DECREMENT';
+export const REMOVE_CO = 'REMOVE_CO';
+export const ADD_CO = 'ADD_CO';
