@@ -2,7 +2,7 @@ import { FORTUNE_INCREMENT, FORTUNE_DECREMENT } from "../constants/Constants";
 import Wolfgang from '../data/Wolfgang';
 
 export const fortuneReducer = (state = {
-  points:Wolfgang.pointFortune,
+  points: Wolfgang.pointFortune,
   maxPoints: Wolfgang.actuel
 }, action) => {
   switch (action.type) {

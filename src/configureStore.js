@@ -2,12 +2,16 @@ import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { fortuneReducer } from './reducers/FortuneReducer';
 import { blessureReducer } from './reducers/BlessureReducer';
+import { moneyReducer } from './reducers/MoneyReducer';
 
 export const configureStore = () => {
     return createStore(combineReducers({
         points: fortuneReducer,
         maxPoints: fortuneReducer,
         blessure: blessureReducer,
-        maxBlessure: blessureReducer
+        maxBlessure: blessureReducer,
+        couronne: moneyReducer,
+        pistole: moneyReducer,
+        sous: moneyReducer
     }), composeWithDevTools());
 };
