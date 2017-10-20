@@ -1,4 +1,16 @@
-import { CO_INCREMENT, CO_DECREMENT, PA_INCREMENT, PA_DECREMENT, REMOVE_CO, ADD_CO } from "../constants/Constants";
+import {
+    CO_INCREMENT,
+    CO_DECREMENT,
+    PA_INCREMENT,
+    PA_DECREMENT,
+    REMOVE_CO,
+    ADD_CO,
+    REMOVE_PA,
+    ADD_PA,
+    REMOVE_SO,
+    ADD_SO
+} from "../constants/Constants";
+
 import Wolfgang from '../data/Wolfgang';
 
 export const moneyReducer = (state = {
@@ -40,6 +52,26 @@ export const moneyReducer = (state = {
           return {
               ...state,
               couronne: action.couronne
+          };
+      case REMOVE_PA:
+          return {
+              ...state,
+              pistole: action.pistole
+          };
+      case ADD_PA:
+          return {
+              ...state,
+              pistole: action.pistole
+          };
+      case REMOVE_SO:
+          return {
+              ...state,
+              sous: action.sous
+          };
+      case ADD_SO:
+          return {
+              ...state,
+              sous: action.sous
           };
       default:
           return state;

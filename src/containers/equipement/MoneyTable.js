@@ -3,7 +3,18 @@ import { Button, ButtonGroup, Well } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { coIncrement, coDecrement, paIncrement, paDecrement, removeCo, addCo } from "../../actions/MoneyAction";
+import {
+    coIncrement,
+    coDecrement,
+    paIncrement,
+    paDecrement,
+    removeCo,
+    addCo,
+    removePa,
+    addPa,
+    removeSo,
+    addSo
+} from "../../actions/MoneyAction";
 
 class MoneyTable extends Component {
 
@@ -39,6 +50,22 @@ class MoneyTable extends Component {
         this.props.addCo(this.props.couronne)
     }
 
+    removePistole(pistole) {
+        (this.props.pistole > 0 && this.props.removePa(this.props.pistole))
+    }
+
+    addPistole(pistole) {
+        this.props.addPa(this.props.pistole)
+    }
+
+    removeSous(sous) {
+        (this.props.sous > 0 && this.props.removeSo(this.props.sous))
+    }
+
+    addSous(sous) {
+        this.props.addSo(this.props.sous)
+    }
+
     render() {
         return (
             <Well>
@@ -54,15 +81,15 @@ class MoneyTable extends Component {
                         <strong>{this.props.pistole > 1 ? "Pistoles d'argent" : "Pistole d'argent"} : {this.props.pistole}</strong>
                     </span>
                     <ButtonGroup style={{marginLeft: "20px"}}>
-                        <Button bsStyle="danger" onClick={this.removeCouronne.bind(this)}>-</Button>
-                        <Button bsStyle="success" onClick={this.addCouronne.bind(this)}>+</Button>
+                        <Button bsStyle="danger" onClick={this.removePistole.bind(this)}>-</Button>
+                        <Button bsStyle="success" onClick={this.addPistole.bind(this)}>+</Button>
                     </ButtonGroup>
                     <span style={{marginLeft: "20px"}}>
                         <strong>Sous de cuivre : {this.props.sous}</strong>
                     </span>
                     <ButtonGroup style={{marginLeft: "20px"}}>
-                        <Button bsStyle="danger" onClick={this.removeCouronne.bind(this)}>-</Button>
-                        <Button bsStyle="success" onClick={this.addCouronne.bind(this)}>+</Button>
+                        <Button bsStyle="danger" onClick={this.removeSous.bind(this)}>-</Button>
+                        <Button bsStyle="success" onClick={this.addSous.bind(this)}>+</Button>
                     </ButtonGroup>
                 </div>
                 <div style={{marginTop: "20px"}}>
@@ -93,7 +120,11 @@ function mapDispatchToProps(dispatch){
         paIncrement,
         paDecrement,
         removeCo,
-        addCo
+        addCo,
+        removePa,
+        addPa,
+        removeSo,
+        addSo
     }, dispatch)
 }
 
