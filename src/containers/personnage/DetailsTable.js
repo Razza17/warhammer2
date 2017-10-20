@@ -1,0 +1,18 @@
+import React, { Component } from 'react';
+import { Col, Panel } from 'react-bootstrap';
+import {Details} from "../../components/personnage/Details";
+import Wolfgang from "../../data/Wolfgang.json";
+
+export class DetailsTable extends Component {
+    render() {
+        return (
+            <Col xs={12} sm={6} md={8} lg={4}>
+                <Panel>
+                    {
+                        Wolfgang.details.map((details, i) => <Details key={i} {...details} />)
+                    }
+                </Panel>
+            </Col>
+        )
+    }
+}
