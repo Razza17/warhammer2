@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Col, Panel } from 'react-bootstrap';
 import {Details} from "../../components/personnage/Details";
-import Wolfgang from "../../data/Wolfgang.json";
+import { getDetails } from '../../actions/DetailAction';
 
-export class DetailsTable extends Component {
+class DetailsTable extends Component {
+    componentDidMount() {
+        this.props.getDetails();
+    }
+
     render() {
         return (
             <Col xs={12} sm={6} md={8} lg={4}>
                 <Panel>
                     {
-                        Wolfgang.details.map((details, i) => <Details key={i} {...details} />)
+                        this.props.details.map((details, i) => <Details key={i} {...details} />)
                     }
                 </Panel>
             </Col>
         )
     }
 }
+
+function mapStateToProps(state){
+    return {
+        details: state.details.details
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({getDetails:getDetails}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailsTable);

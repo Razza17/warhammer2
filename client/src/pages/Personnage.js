@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import {DetailsTable} from "../containers/personnage/DetailsTable";
-import {ProfilTable} from "../containers/personnage/ProfilTable";
-import {CaracTable} from "../containers/personnage/CaracTable";
-import {CaracTableM} from "../containers/personnage/CaracTableM";
+import ProfilTable from "../containers/personnage/ProfilTable";
+import DetailsTable from "../containers/personnage/DetailsTable";
+import { CaracTable } from "../containers/personnage/CaracTable";
+import { CaracTableM } from "../containers/personnage/CaracTableM";
 import Fortune from "../components/personnage/Fortune";
 import BlessureTable from "../containers/personnage/BlessureTable";
-import {MunitionTable} from "../containers/personnage/MunitionTable";
-import {CompetenceBase} from "../containers/personnage/CompetenceBase";
-import {CompetenceBaseM} from "../containers/personnage/CompetenceBaseM";
-import {CompetenceAvance} from "../containers/personnage/CompetenceAvance";
-import {CompetenceAvanceM} from "../containers/personnage/CompetenceAvanceM";
-import {TalentTable} from "../containers/personnage/TalentTable";
+import { MunitionTable } from "../containers/personnage/MunitionTable";
+import { CompetenceBase } from "../containers/personnage/CompetenceBase";
+import { CompetenceBaseM } from "../containers/personnage/CompetenceBaseM";
+import { CompetenceAvance } from "../containers/personnage/CompetenceAvance";
+import { CompetenceAvanceM } from "../containers/personnage/CompetenceAvanceM";
+import { TalentTable } from "../containers/personnage/TalentTable";
 
 import WarhammerLogo from "../img/WarhammerLogo.png";
 

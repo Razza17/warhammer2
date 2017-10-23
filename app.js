@@ -22,6 +22,59 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// API
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/wolfgang');
+
+var Profile = require('./models/profile.js');
+var Details = require('./models/details.js');
+
+//---->>>> POST CHARACTER PROFILE <<<<----
+app.post('/profil', function(req, res) {
+    var profil = req.body
+
+    Profile.create(profil, function(err, profile) {
+        if(err) {
+            throw err;
+        }
+        res.json(profile);
+    })
+});
+
+//---->>>> GET CHARACTER PROFILE <<<<----
+app.get('/profil', function(req, res) {
+    Profile.find(function(err, profile) {
+        if(err) {
+            throw err;
+        }
+        res.json(profile);
+    })
+});
+
+//---->>>> POST CHARACTER DETAILS <<<<----
+app.post('/details', function(req, res) {
+    var detail = req.body
+
+    Details.create(detail, function(err, detail) {
+        if(err) {
+            throw err;
+        }
+        res.json(detail);
+    })
+});
+
+//---->>>> GET CHARACTER DETAILS <<<<----
+app.get('/details', function(req, res) {
+    Details.find(function(err, detail) {
+        if(err) {
+            throw err;
+        }
+        res.json(detail);
+    })
+});
+
+// END API
+
 app.use('/', index);
 app.use('/users', users);
 
