@@ -26,3 +26,16 @@ export function postCaracBase(caracBase) {
             })
     }
 }
+
+// UPDATE CHARACTER CARACBASE
+export function updateCaracBase(caracBase, id) {
+    return function(dispatch) {
+        axios.put('/caracbase/' + id)
+            .then(function(response) {
+                dispatch({type:"UPADTE_CARACBASE", payload:id})
+            })
+            .catch(function(err) {
+                dispatch({type:"UPADTE_CARACBASE_REJECTED", payload:err})
+            })
+    }
+}

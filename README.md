@@ -23,6 +23,7 @@ Les joueurs pouront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] Page Caractéristiques
 - Page Equipement (en cours)
 - Page Inventaire
+- Page Combat
 - Page Mise à jour des caratéristiques
 - Ajout des données dans la BDD (en cours)
 - Page Création de personnage

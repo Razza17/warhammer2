@@ -126,11 +126,11 @@ app.put('/caracbase/:_id', function(req, res) {
 
    var options = {new: false};
 
-   CaracBase.findOneAndUpdate(query, update, options, function(err, caracBse) {
+   CaracBase.findOneAndUpdate(query, update, options, function(err, caracBase) {
        if(err) {
            throw err;
        }
-       res.json(cracBase);
+       res.json(caracBase);
    })
 });
 
