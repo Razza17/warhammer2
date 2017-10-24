@@ -28,10 +28,13 @@ mongoose.connect('mongodb://localhost:27017/wolfgang');
 
 var Profile = require('./models/profile.js');
 var Details = require('./models/details.js');
+var CaracBase = require('./models/caracBase.js');
+var CaracAvance = require('./models/caracAvance.js');
+var CaracActuel = require('./models/caracActuel.js');
 
-//---->>>> POST CHARACTER PROFILE <<<<----
+//---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
-    var profil = req.body
+    var profil = req.body;
 
     Profile.create(profil, function(err, profile) {
         if(err) {
@@ -41,7 +44,7 @@ app.post('/profil', function(req, res) {
     })
 });
 
-//---->>>> GET CHARACTER PROFILE <<<<----
+//---->>>> GET PROFILE <<<<----
 app.get('/profil', function(req, res) {
     Profile.find(function(err, profile) {
         if(err) {
@@ -51,9 +54,9 @@ app.get('/profil', function(req, res) {
     })
 });
 
-//---->>>> POST CHARACTER DETAILS <<<<----
+//---->>>> POST DETAILS <<<<----
 app.post('/details', function(req, res) {
-    var detail = req.body
+    var detail = req.body;
 
     Details.create(detail, function(err, detail) {
         if(err) {
@@ -63,13 +66,79 @@ app.post('/details', function(req, res) {
     })
 });
 
-//---->>>> GET CHARACTER DETAILS <<<<----
+//---->>>> GET DETAILS <<<<----
 app.get('/details', function(req, res) {
     Details.find(function(err, detail) {
         if(err) {
             throw err;
         }
         res.json(detail);
+    })
+});
+
+//---->>>> POST CARACTERISTIQUES DE BASE <<<<----
+app.post('/caracbase', function(req, res) {
+    var caracBase = req.body;
+
+    CaracBase.create(caracBase, function(err, caracBase) {
+        if(err) {
+            throw err;
+        }
+        res.json(caracBase);
+    })
+});
+
+//---->>>> GET CARACTERISTIQUES DE BASE <<<<----
+app.get('/caracbase', function(req, res) {
+    CaracBase.find(function(err, caracBase) {
+        if(err) {
+            throw err;
+        }
+        res.json(caracBase);
+    })
+});
+
+//---->>>> POST CARACTERISTIQUES AVANCE <<<<----
+app.post('/caracavance', function(req, res) {
+    var caracAvance = req.body;
+
+    CaracAvance.create(caracAvance, function(err, caracAvance) {
+        if(err) {
+            throw err;
+        }
+        res.json(caracAvance);
+    })
+});
+
+//---->>>> GET CARACTERISTIQUES AVANCE <<<<----
+app.get('/caracavance', function(req, res) {
+    CaracAvance.find(function(err, caracAvance) {
+        if(err) {
+            throw err;
+        }
+        res.json(caracAvance);
+    })
+});
+
+//---->>>> POST CARACTERISTIQUES ACTUEL <<<<----
+app.post('/caracactuel', function(req, res) {
+    var caracActuel = req.body;
+
+    CaracActuel.create(caracActuel, function(err, caracActuel) {
+        if(err) {
+            throw err;
+        }
+        res.json(caracActuel);
+    })
+});
+
+//---->>>> GET CARACTERISTIQUES ACTUEL <<<<----
+app.get('/caracactuel', function(req, res) {
+    CaracActuel.find(function(err, caracActuel) {
+        if(err) {
+            throw err;
+        }
+        res.json(caracActuel);
     })
 });
 

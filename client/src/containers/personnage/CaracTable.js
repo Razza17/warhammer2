@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import Wolfgang from "../../data/Wolfgang.json";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { getCaracActuel } from "../../actions/CaracActuelAction";
+import { getCaracAvance } from "../../actions/CaracAvanceAction";
+import { getCaracBase } from "../../actions/CaracBaseAction";
 import {CaracBase} from "../../components/personnage/CaracBase";
 import {CaracAvance} from "../../components/personnage/CaracAvance";
 import {CaracActuel} from "../../components/personnage/CaracActuel";
 
 
-export class CaracTable extends Component {
+class CaracTable extends Component {
+    componentDidMount() {
+        this.props.getCaracActuel();
+        this.props.getCaracAvance();
+        this.props.getCaracBase();
+    }
+
     render() {
         return (
             <Table condensed bordered hover striped>
@@ -38,11 +49,29 @@ export class CaracTable extends Component {
                         <td>PF</td>
                         <td>PD</td>
                     </tr>
-                    { Wolfgang.base.map((caracBase, i) => <CaracBase key={i} {...caracBase}/>) }
-                    { Wolfgang.base.map((caracAvance, i) => <CaracAvance key={i} {...caracAvance}/>) }
-                    { Wolfgang.base.map((caracActuel, i) => <CaracActuel key={i} {...caracActuel}/>) }
+                    { this.props.caracBase.map((caracBase, i) => <CaracBase key={i} {...caracBase}/>) }
+                    { this.props.caracAvance.map((caracAvance, i) => <CaracAvance key={i} {...caracAvance}/>) }
+                    { this.props.caracActuel.map((caracActuel, i) => <CaracActuel key={i} {...caracActuel}/>) }
                 </tbody>
             </Table>
         )
     }
 }
+
+function mapStateToProps(state){
+    return {
+        caracBase: state.caracBase.caracBase,
+        caracAvance: state.caracAvance.caracAvance,
+        caracActuel: state.caracActuel.caracActuel
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getCaracActuel:getCaracActuel,
+        getCaracAvance:getCaracAvance,
+        getCaracBase:getCaracBase
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CaracTable);

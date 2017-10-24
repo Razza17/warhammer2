@@ -4,6 +4,9 @@ import { blessureReducer } from './BlessureReducer';
 import { moneyReducer } from './MoneyReducer';
 import { profilReducer } from './ProfilReducer';
 import { detailReducer } from './DetailReducer';
+import {caracBaseReducer} from "./CaracBaseReducer";
+import {caracAvanceReducer} from "./CaracAvanceReducer";
+import {caracActuelReducer} from "./CaracActuelReducer";
 
 export default combineReducers({
     points: fortuneReducer,
@@ -14,5 +17,8 @@ export default combineReducers({
     pistole: moneyReducer,
     sous: moneyReducer,
     profile: profilReducer,
-    details: detailReducer
+    details: detailReducer,
+    caracBase: caracBaseReducer,
+    caracAvance: caracAvanceReducer,
+    caracActuel: caracActuelReducer
 })

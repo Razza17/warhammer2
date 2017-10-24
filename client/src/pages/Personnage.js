@@ -3,8 +3,8 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import ProfilTable from "../containers/personnage/ProfilTable";
 import DetailsTable from "../containers/personnage/DetailsTable";
-import { CaracTable } from "../containers/personnage/CaracTable";
-import { CaracTableM } from "../containers/personnage/CaracTableM";
+import CaracTable from "../containers/personnage/CaracTable";
+import CaracTableM from "../containers/personnage/CaracTableM";
 import Fortune from "../components/personnage/Fortune";
 import BlessureTable from "../containers/personnage/BlessureTable";
 import { MunitionTable } from "../containers/personnage/MunitionTable";
