@@ -98,6 +98,42 @@ app.get('/caracbase', function(req, res) {
     })
 });
 
+//---->>>> UPDATE CARACTERISTIQUES DE BASE <<<<----
+app.put('/caracbase/:_id', function(req, res) {
+   var caracBase = req.body;
+   var query = req.params._id;
+
+   var update = {
+       '$set': {
+           cc: caracBase.cc,
+           ct: caracBase.ct,
+           f: caracBase.f,
+           e: caracBase.e,
+           ag: caracBase.ag,
+           int: caracBase.int,
+           fm: caracBase.fm,
+           soc: caracBase.soc,
+           a: caracBase.a,
+           b: caracBase.b,
+           bf: caracBase.bf,
+           be: caracBase.be,
+           m: caracBase.m,
+           mag: caracBase.mag,
+           pf: caracBase.pf,
+           pd: caracBase.pd
+       }
+   };
+
+   var options = {new: false};
+
+   CaracBase.findOneAndUpdate(query, update, options, function(err, caracBse) {
+       if(err) {
+           throw err;
+       }
+       res.json(cracBase);
+   })
+});
+
 //---->>>> POST CARACTERISTIQUES AVANCE <<<<----
 app.post('/caracavance', function(req, res) {
     var caracAvance = req.body;

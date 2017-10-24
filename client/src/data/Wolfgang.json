@@ -83,7 +83,6 @@
     ],
     "pointFortune" : 4,
     "pointBlessure" : 6,
-    "maxPointBlessure" : 14,
     "munition" : 15,
     "competenceB" : [
         {

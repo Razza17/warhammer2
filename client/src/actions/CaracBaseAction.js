@@ -15,7 +15,7 @@ export function getCaracBase() {
 
 
 // POST CHARACTER CARACBASE
-export function postCaracBase() {
+export function postCaracBase(caracBase) {
     return function(dispatch) {
         axios.post('/caracbase')
             .then(function(response) {

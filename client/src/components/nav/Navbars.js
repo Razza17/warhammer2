@@ -16,6 +16,7 @@ export class Navbars extends Component {
                     <Nav>
                         <li><NavLink to="/personnage">Personnage</NavLink></li>
                         <li><NavLink to="/equipement">Equipement</NavLink></li>
+                        <li><NavLink to="/update">Update your Character</NavLink></li>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
