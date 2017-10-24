@@ -10,8 +10,7 @@
 /build
 
 # database
-/dbs/WiredTiger.lock
-/dbs/mongod.lock
+/dbs
 
 # misc
 .DS_Store
