@@ -7,8 +7,10 @@ import { findDOMNode } from 'react-dom';
 import { updateCaracBase } from "../../actions/CaracBaseAction";
 
 class CaracBaseUpdate extends Component {
-    handleSubmit(_id) {
-        const caracBase = [{
+    handleSubmit() {
+        let id = this.props._id;
+        const newCarac = {
+            _id: id,
             cc: findDOMNode(this.refs.cc).value,
             ct: findDOMNode(this.refs.ct).value,
             f: findDOMNode(this.refs.f).value,
@@ -25,8 +27,8 @@ class CaracBaseUpdate extends Component {
             mag: findDOMNode(this.refs.mag).value,
             pf: findDOMNode(this.refs.pf).value,
             pd: findDOMNode(this.refs.pd).value
-        }];
-        this.props.updateCaracBase(caracBase, _id);
+        };
+        this.props.updateCaracBase(id, this.props.caracBase, newCarac);
     }
 
     render() {
@@ -37,7 +39,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="cc">
                         <FormControl
                             type='number'
-                            placeholder={this.props.cc}
+                            defaultValue={this.props.cc}
                             ref='cc' />
                     </FormGroup>
                 </td>
@@ -45,7 +47,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="ct">
                         <FormControl
                             type='number'
-                            placeholder={this.props.ct}
+                            defaultValue={this.props.ct}
                             ref='ct' />
                     </FormGroup>
                 </td>
@@ -53,7 +55,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="f">
                         <FormControl
                             type='number'
-                            placeholder={this.props.f}
+                            defaultValue={this.props.f}
                             ref='f' />
                     </FormGroup>
                 </td>
@@ -61,7 +63,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="e">
                         <FormControl
                             type='number'
-                            placeholder={this.props.e}
+                            defaultValue={this.props.e}
                             ref='e' />
                     </FormGroup>
                 </td>
@@ -69,7 +71,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="ag">
                         <FormControl
                             type='number'
-                            placeholder={this.props.ag}
+                            defaultValue={this.props.ag}
                             ref='ag' />
                     </FormGroup>
                 </td>
@@ -77,7 +79,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="int">
                         <FormControl
                             type='number'
-                            placeholder={this.props.int}
+                            defaultValue={this.props.int}
                             ref='int' />
                     </FormGroup>
                 </td>
@@ -85,7 +87,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="fm">
                         <FormControl
                             type='number'
-                            placeholder={this.props.fm}
+                            defaultValue={this.props.fm}
                             ref='fm' />
                     </FormGroup>
                 </td>
@@ -93,7 +95,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="soc">
                         <FormControl
                             type='number'
-                            placeholder={this.props.soc}
+                            defaultValue={this.props.soc}
                             ref='soc' />
                     </FormGroup>
                 </td>
@@ -101,7 +103,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="a">
                         <FormControl
                             type='number'
-                            placeholder={this.props.a}
+                            defaultValue={this.props.a}
                             ref='a' />
                     </FormGroup>
                 </td>
@@ -109,7 +111,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="b">
                         <FormControl
                             type='number'
-                            placeholder={this.props.b}
+                            defaultValue={this.props.b}
                             ref='b' />
                     </FormGroup>
                 </td>
@@ -117,7 +119,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="bf">
                         <FormControl
                             type='number'
-                            placeholder={this.props.bf}
+                            defaultValue={this.props.bf}
                             ref='bf' />
                     </FormGroup>
                 </td>
@@ -125,7 +127,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="be">
                         <FormControl
                             type='number'
-                            placeholder={this.props.be}
+                            defaultValue={this.props.be}
                             ref='be' />
                     </FormGroup>
                 </td>
@@ -133,7 +135,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="m">
                         <FormControl
                             type='number'
-                            placeholder={this.props.m}
+                            defaultValue={this.props.m}
                             ref='m' />
                     </FormGroup>
                 </td>
@@ -141,7 +143,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="mag">
                         <FormControl
                             type='number'
-                            placeholder={this.props.mag}
+                            defaultValue={this.props.mag}
                             ref='mag' />
                     </FormGroup>
                 </td>
@@ -149,7 +151,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="pf">
                         <FormControl
                             type='number'
-                            placeholder={this.props.pf}
+                            defaultValue={this.props.pf}
                             ref='pf' />
                     </FormGroup>
                 </td>
@@ -157,7 +159,7 @@ class CaracBaseUpdate extends Component {
                     <FormGroup controlId="pd">
                         <FormControl
                             type='number'
-                            placeholder={this.props.pd}
+                            defaultValue={this.props.pd}
                             ref='pd' />
                     </FormGroup>
                 </td>
@@ -167,8 +169,14 @@ class CaracBaseUpdate extends Component {
     }
 }
 
+function mapStateToProps(state){
+    return {
+        caracBase: state.caracBase.caracBase
+    }
+}
+
 function mapDispatchToProps(dispatch){
     return bindActionCreators({updateCaracBase:updateCaracBase}, dispatch);
 }
 
-export default connect(mapDispatchToProps)(CaracBaseUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(CaracBaseUpdate);

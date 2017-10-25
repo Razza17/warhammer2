@@ -4,11 +4,20 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var httpProxy = require('http-proxy');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+//PROXY TO API
+const apiProxy = httpProxy.createProxyServer({
+    target:'http://localhost:3001'
+});
+app.use('/api', function(req, res) {
+    apiProxy.web(req, res);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

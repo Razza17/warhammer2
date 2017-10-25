@@ -3,7 +3,7 @@ import axios from 'axios';
 // GET CHARACTER PROFILE
 export function getDetails() {
     return function(dispatch) {
-        axios.get('/details')
+        axios.get('/api/details')
             .then(function(response) {
                 dispatch({type:"GET_DETAILS", payload:response.data})
             })
@@ -17,7 +17,7 @@ export function getDetails() {
 // POST CHARACTER PROFILE
 export function postDetails() {
     return function(dispatch) {
-        axios.post('/details')
+        axios.post('/api/details')
             .then(function(response) {
                 dispatch({type:"POST_DETAILS", payload:response.data})
             })

@@ -3,7 +3,7 @@ import axios from 'axios';
 // GET CHARACTER CARACBASE
 export function getCaracBase() {
     return function(dispatch) {
-        axios.get('/caracbase')
+        axios.get('/api/caracbase')
             .then(function(response) {
                 dispatch({type:"GET_CARACBASE", payload:response.data})
             })
@@ -17,7 +17,7 @@ export function getCaracBase() {
 // POST CHARACTER CARACBASE
 export function postCaracBase(caracBase) {
     return function(dispatch) {
-        axios.post('/caracbase')
+        axios.post('/api/caracbase')
             .then(function(response) {
                 dispatch({type:"POST_CARACBASE", payload:response.data})
             })
@@ -28,14 +28,26 @@ export function postCaracBase(caracBase) {
 }
 
 // UPDATE CHARACTER CARACBASE
-export function updateCaracBase(caracBase, id) {
+export function updateCaracBase(id, oldCarac, newCarac) {
+
+    const currentCaracToUpdate = oldCarac;
+
+    const indexToUpdate = currentCaracToUpdate.findIndex(
+        function(carac){
+            return carac._id === id;
+        }
+    );
+
+    let caracUpdate =[...currentCaracToUpdate.slice(0, indexToUpdate), newCarac,
+        ...currentCaracToUpdate.slice(indexToUpdate + 1)];
+
     return function(dispatch) {
-        axios.put('/caracbase/' + id)
+        axios.post('/api/caracbase', caracUpdate)
             .then(function(response) {
-                dispatch({type:"UPADTE_CARACBASE", payload:id})
+                dispatch({type:'UPDATE_CART', payload:response.data})
             })
             .catch(function(err) {
-                dispatch({type:"UPADTE_CARACBASE_REJECTED", payload:err})
+                dispatch({type:'UPDATE_CART_REJECTED', payload:err})
             })
-    }
+    };
 }

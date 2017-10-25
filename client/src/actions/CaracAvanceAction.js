@@ -3,7 +3,7 @@ import axios from 'axios';
 // GET CHARACTER CARACAVANCE
 export function getCaracAvance() {
     return function(dispatch) {
-        axios.get('/caracavance')
+        axios.get('/api/caracavance')
             .then(function(response) {
                 dispatch({type:"GET_CARACAVANCE", payload:response.data})
             })
@@ -17,7 +17,7 @@ export function getCaracAvance() {
 // POST CHARACTER CARACAVANCE
 export function postCaracAvance() {
     return function(dispatch) {
-        axios.post('/caracavance')
+        axios.post('/api/caracavance')
             .then(function(response) {
                 dispatch({type:"POST_CARACAVANCE", payload:response.data})
             })
