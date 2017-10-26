@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var httpProxy = require('http-proxy');
+//var httpProxy = require('http-proxy');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -12,12 +12,12 @@ var users = require('./routes/users');
 var app = express();
 
 //PROXY TO API
-const apiProxy = httpProxy.createProxyServer({
+/*const apiProxy = httpProxy.createProxyServer({
     target:'http://localhost:3001'
 });
 app.use('/api', function(req, res) {
     apiProxy.web(req, res);
-});
+});*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -60,6 +60,30 @@ app.get('/profil', function(req, res) {
             throw err;
         }
         res.json(profile);
+    })
+});
+
+//---->>>> UPDATE PROFILE <<<<----
+app.put('/profil/:_id', function(req, res) {
+    var newData = req.body;
+    var query = req.params._id;
+
+    var update = {
+        '$set': {
+            nom: newData.nom,
+            race: newData.race,
+            carriereA: newData.carriereA,
+            Acarriere: newData.Acarriere
+        }
+    };
+
+    var options = {new: false};
+
+    Profile.findOneAndUpdate(query, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
     })
 });
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 // GET CHARACTER CARACBASE
 export function getCaracBase() {
     return function(dispatch) {
-        axios.get('/api/caracbase')
+        axios.get('/caracbase')
             .then(function(response) {
                 dispatch({type:"GET_CARACBASE", payload:response.data})
             })
@@ -17,7 +17,7 @@ export function getCaracBase() {
 // POST CHARACTER CARACBASE
 export function postCaracBase(caracBase) {
     return function(dispatch) {
-        axios.post('/api/caracbase')
+        axios.post('/caracbase')
             .then(function(response) {
                 dispatch({type:"POST_CARACBASE", payload:response.data})
             })
@@ -42,7 +42,7 @@ export function updateCaracBase(id, oldCarac, newCarac) {
         ...currentCaracToUpdate.slice(indexToUpdate + 1)];
 
     return function(dispatch) {
-        axios.post('/api/caracbase', caracUpdate)
+        axios.post('/caracbase', caracUpdate)
             .then(function(response) {
                 dispatch({type:'UPDATE_CART', payload:response.data})
             })

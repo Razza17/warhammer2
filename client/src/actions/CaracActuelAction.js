@@ -3,7 +3,7 @@ import axios from 'axios';
 // GET CHARACTER CARACACTUEL
 export function getCaracActuel() {
     return function(dispatch) {
-        axios.get('/api/caracactuel')
+        axios.get('/caracactuel')
             .then(function(response) {
                 dispatch({type:"GET_CARACACTUEL", payload:response.data})
             })
@@ -17,7 +17,7 @@ export function getCaracActuel() {
 // POST CHARACTER CARACACTUEL
 export function postCaracActuel() {
     return function(dispatch) {
-        axios.post('/api/caracactuel')
+        axios.post('/caracactuel')
             .then(function(response) {
                 dispatch({type:"POST_CARACACTUEL", payload:response.data})
             })

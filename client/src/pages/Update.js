@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import CaracTableUpdate from '../containers/update/CaracTableUpdate';
+//import CaracTableUpdate from '../containers/update/CaracTableUpdate';
+import ProfilTableUpdate from '../containers/update/ProfilTableUpdate';
 
 export class Update extends Component {
     render() {
@@ -9,7 +10,7 @@ export class Update extends Component {
             <Grid fluid>
                 <Row>
                     <Col xs={12}>
-                        <CaracTableUpdate />
+                        <ProfilTableUpdate />
                     </Col>
                 </Row>
             </Grid>
