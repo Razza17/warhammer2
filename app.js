@@ -133,37 +133,37 @@ app.get('/caracbase', function(req, res) {
 
 //---->>>> UPDATE CARACTERISTIQUES DE BASE <<<<----
 app.put('/caracbase/:_id', function(req, res) {
-   var caracBase = req.body;
+   var newData = req.body;
    var query = req.params._id;
 
    var update = {
        '$set': {
-           cc: caracBase.cc,
-           ct: caracBase.ct,
-           f: caracBase.f,
-           e: caracBase.e,
-           ag: caracBase.ag,
-           int: caracBase.int,
-           fm: caracBase.fm,
-           soc: caracBase.soc,
-           a: caracBase.a,
-           b: caracBase.b,
-           bf: caracBase.bf,
-           be: caracBase.be,
-           m: caracBase.m,
-           mag: caracBase.mag,
-           pf: caracBase.pf,
-           pd: caracBase.pd
+           cc: newData.cc,
+           ct: newData.ct,
+           f: newData.f,
+           e: newData.e,
+           ag: newData.ag,
+           int: newData.int,
+           fm: newData.fm,
+           soc: newData.soc,
+           a: newData.a,
+           b: newData.b,
+           bf: newData.bf,
+           be: newData.be,
+           m: newData.m,
+           mag: newData.mag,
+           pf: newData.pf,
+           pd: newData.pd
        }
    };
 
    var options = {new: false};
 
-   CaracBase.findOneAndUpdate(query, update, options, function(err, caracBase) {
+   CaracBase.findOneAndUpdate(query, update, options, function(err, data) {
        if(err) {
            throw err;
        }
-       res.json(caracBase);
+       res.json(data);
    })
 });
 
@@ -186,6 +186,42 @@ app.get('/caracavance', function(req, res) {
             throw err;
         }
         res.json(caracAvance);
+    })
+});
+
+//---->>>> UPDATE CARACTERISTIQUES AVANCE <<<<----
+app.put('/caracavance/:_id', function(req, res) {
+    var newData = req.body;
+    var query = req.params._id;
+
+    var update = {
+        '$set': {
+            cc: newData.cc,
+            ct: newData.ct,
+            f: newData.f,
+            e: newData.e,
+            ag: newData.ag,
+            int: newData.int,
+            fm: newData.fm,
+            soc: newData.soc,
+            a: newData.a,
+            b: newData.b,
+            bf: newData.bf,
+            be: newData.be,
+            m: newData.m,
+            mag: newData.mag,
+            pf: newData.pf,
+            pd: newData.pd
+        }
+    };
+
+    var options = {new: false};
+
+    CaracBase.findOneAndUpdate(query, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
     })
 });
 

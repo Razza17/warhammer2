@@ -28,26 +28,14 @@ export function postCaracBase(caracBase) {
 }
 
 // UPDATE CHARACTER CARACBASE
-export function updateCaracBase(id, oldCarac, newCarac) {
-
-    const currentCaracToUpdate = oldCarac;
-
-    const indexToUpdate = currentCaracToUpdate.findIndex(
-        function(carac){
-            return carac._id === id;
-        }
-    );
-
-    let caracUpdate =[...currentCaracToUpdate.slice(0, indexToUpdate), newCarac,
-        ...currentCaracToUpdate.slice(indexToUpdate + 1)];
-
+export function updateCaracBase(id, newCarac) {
     return function(dispatch) {
-        axios.post('/caracbase', caracUpdate)
+        axios.put('/caracbase/' + id, newCarac)
             .then(function(response) {
-                dispatch({type:'UPDATE_CART', payload:response.data})
+                dispatch({type:'UPDATE_CARACBASE', payload:response.data})
             })
             .catch(function(err) {
-                dispatch({type:'UPDATE_CART_REJECTED', payload:err})
+                dispatch({type:'UPDATE_CARACBASE_REJECTED', payload:err})
             })
     };
 }

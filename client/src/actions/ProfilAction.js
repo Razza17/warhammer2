@@ -27,7 +27,7 @@ export function postProfile() {
     }
 }
 
-// POST CHARACTER PROFILE
+// UPDATE CHARACTER PROFILE
 export function updateProfile(id, newProfile) {
     return function(dispatch) {
         axios.put('/profil/' + id, newProfile)

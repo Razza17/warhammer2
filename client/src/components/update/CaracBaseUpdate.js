@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { FormControl, FormGroup, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { updateCaracBase } from "../../actions/CaracBaseAction";
-
-class CaracBaseUpdate extends Component {
-    handleSubmit() {
+export class CaracBaseUpdate extends Component {
+    handleUpdate() {
         let id = this.props._id;
         const newCarac = {
-            _id: id,
             cc: findDOMNode(this.refs.cc).value,
             ct: findDOMNode(this.refs.ct).value,
             f: findDOMNode(this.refs.f).value,
@@ -28,7 +23,7 @@ class CaracBaseUpdate extends Component {
             pf: findDOMNode(this.refs.pf).value,
             pd: findDOMNode(this.refs.pd).value
         };
-        this.props.updateCaracBase(id, this.props.caracBase, newCarac);
+        this.props.updateCaracBase(id, newCarac);
     }
 
     render() {
@@ -163,20 +158,8 @@ class CaracBaseUpdate extends Component {
                             ref='pd' />
                     </FormGroup>
                 </td>
-                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Save</Button></td>
+                <td><Button bsStyle='primary' onClick={this.handleUpdate.bind(this)}>Update</Button></td>
             </tr>
         )
     }
 }
-
-function mapStateToProps(state){
-    return {
-        caracBase: state.caracBase.caracBase
-    }
-}
-
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({updateCaracBase:updateCaracBase}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CaracBaseUpdate);

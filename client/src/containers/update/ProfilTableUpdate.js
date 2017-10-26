@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Panel } from 'react-bootstrap';
+
 import { ProfilUpdate } from "../../components/update/ProfilUpdate";
 import { getProfile, updateProfile } from '../../actions/ProfilAction';
 
@@ -12,15 +13,12 @@ class ProfilTableUpdate extends Component {
 
     render() {
         return (
-            <Col xs={12} sm={6} md={4}>
+            <Col xs={12} sm={6} md={4} mdOffset={2}>
                 <Panel>
-                    {
-                        this.props.profile.map((perso, i) => <ProfilUpdate
-                            key={i}
-                            getProfile={this.props.getProfile}
-                            updateProfile={this.props.updateProfile}
-                            {...perso} />)
-                    }
+                    {this.props.profile.map((perso, i) => <ProfilUpdate key={i}
+                    getProfile={this.props.getProfile}
+                    updateProfile={this.props.updateProfile}
+                    {...perso} />)}
                 </Panel>
             </Col>
         )

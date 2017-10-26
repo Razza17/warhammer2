@@ -65,7 +65,7 @@ export class ProfilUpdate extends Component {
                         </FormGroup>
                     </li>
                     <li>
-                        <Button bsStyle="primary" onClick={this.handleUpdate.bind(this)}>Save</Button>
+                        <Button bsStyle="primary" onClick={this.handleUpdate.bind(this)}>Update</Button>
                     </li>
                 </ul>
             </Well>

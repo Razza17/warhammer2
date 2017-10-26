@@ -3,8 +3,8 @@ import { Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getCaracBase } from "../../actions/CaracBaseAction";
-import CaracBaseUpdate from "../../components/update/CaracBaseUpdate";
+import { getCaracBase, updateCaracBase } from "../../actions/CaracBaseAction";
+import { CaracBaseUpdate } from "../../components/update/CaracBaseUpdate";
 
 
 class CaracTableUpdate extends Component {
@@ -43,7 +43,10 @@ class CaracTableUpdate extends Component {
                         <td>PF</td>
                         <td>PD</td>
                     </tr>
-                    { this.props.caracBase.map((caracBase, i) => <CaracBaseUpdate key={i} {...caracBase}/>) }
+                    { this.props.caracBase.map((caracBase, i) => <CaracBaseUpdate key={i}
+                    getCaracBase={this.props.getCaracBase}
+                    updateCaracBase={this.props.updateCaracBase}
+                    {...caracBase}/>)}
                 </tbody>
             </Table>
         )
@@ -58,7 +61,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getCaracBase:getCaracBase
+        getCaracBase:getCaracBase,
+        updateCaracBase:updateCaracBase
     }, dispatch);
 }
 
