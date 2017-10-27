@@ -1,22 +1,25 @@
-import { FORTUNE_INCREMENT, FORTUNE_DECREMENT } from "../constants/Constants";
-import Wolfgang from '../data/Wolfgang';
+export function fortuneReducer(state={fortune:[]}, action) {
+    switch(action.type) {
+        // GET
+        case "GET_FORTUNE":
+            return {...state, fortune:[...action.payload]};
+        case "GET_FORTUNE_REJECTED":
+            return action.payload;
 
-export const fortuneReducer = (state = {
-  points: Wolfgang.pointFortune,
-  maxPoints: Wolfgang.actuel
-}, action) => {
-  switch (action.type) {
-      case FORTUNE_INCREMENT:
-          return {
-              ...state,
-              points: action.points,
-          };
-      case FORTUNE_DECREMENT:
-          return {
-              ...state,
-              points: action.points
-          };
-      default:
-          return state;
-  }
+        // POST
+        case "POST_FORTUNE":
+            return {fortune:[...state.fortune, ...action.payload]};
+        case "POST_FORTUNE_REJECTED":
+            return action.payload;
+
+        // UPDATE
+        case "UPDATE_FORTUNE":
+            return {...state, fortune:[...action.payload]};
+        case "UPDATE_FORTUNE_REJECTED":
+            return action.payload;
+
+        // DEFAULT
+        default:
+            return state;
+    }
 };

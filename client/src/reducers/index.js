@@ -9,8 +9,6 @@ import {caracAvanceReducer} from "./CaracAvanceReducer";
 import {caracActuelReducer} from "./CaracActuelReducer";
 
 export default combineReducers({
-    points: fortuneReducer,
-    maxPoints: fortuneReducer,
     blessure: blessureReducer,
     maxBlessure: blessureReducer,
     couronne: moneyReducer,
@@ -20,5 +18,6 @@ export default combineReducers({
     details: detailReducer,
     caracBase: caracBaseReducer,
     caracAvance: caracAvanceReducer,
-    caracActuel: caracActuelReducer
+    caracActuel: caracActuelReducer,
+    fortune: fortuneReducer
 })

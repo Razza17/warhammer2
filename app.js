@@ -40,6 +40,7 @@ var Details = require('./models/details.js');
 var CaracBase = require('./models/caracBase.js');
 var CaracAvance = require('./models/caracAvance.js');
 var CaracActuel = require('./models/caracActuel.js');
+var Count = require('./models/count.js');
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -276,6 +277,50 @@ app.put('/caracactuel/:_id', function(req, res) {
     var options = {new: false};
 
     CaracActuel.findOneAndUpdate(query, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+//---->>>> POST COUNT <<<<----
+app.post('/count', function(req, res) {
+    var count = req.body;
+
+    Count.create(count, function(err, counting) {
+        if(err) {
+            throw err;
+        }
+        res.json(counting);
+    })
+});
+
+//---->>>> GET COUNT <<<<----
+app.get('/count', function(req, res) {
+    Count.find(function(err, counting) {
+        if(err) {
+            throw err;
+        }
+        res.json(counting);
+    })
+});
+
+//---->>>> UPDATE COUNT <<<<----
+app.put('/count/:_id', function(req, res) {
+    var newData = req.body;
+    var query = req.params._id;
+
+    var update = {
+        '$set': {
+            name: newData.name,
+            value: newData.value
+        }
+    };
+
+    var options = {new: false};
+
+    Count.findOneAndUpdate(query, update, options, function(err, data) {
         if(err) {
             throw err;
         }
