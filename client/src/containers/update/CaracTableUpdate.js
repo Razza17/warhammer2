@@ -4,12 +4,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { getCaracBase, updateCaracBase } from "../../actions/CaracBaseAction";
+import { getCaracAvance, updateCaracAvance } from "../../actions/CaracAvanceAction";
+import { getCaracActuel, updateCaracActuel } from "../../actions/CaracActuelAction";
 import { CaracBaseUpdate } from "../../components/update/CaracBaseUpdate";
+import { CaracAvanceUpdate } from "../../components/update/CaracAvanceUpdate";
+import { CaracActuelUpdate } from "../../components/update/CaracActuelUpdate";
 
 
 class CaracTableUpdate extends Component {
     componentDidMount() {
         this.props.getCaracBase();
+        this.props.getCaracAvance();
+        this.props.getCaracActuel();
     }
 
     render() {
@@ -43,10 +49,18 @@ class CaracTableUpdate extends Component {
                         <td>PF</td>
                         <td>PD</td>
                     </tr>
-                    { this.props.caracBase.map((caracBase, i) => <CaracBaseUpdate key={i}
-                    getCaracBase={this.props.getCaracBase}
-                    updateCaracBase={this.props.updateCaracBase}
-                    {...caracBase}/>)}
+                    {this.props.caracBase.map((caracBase, i) => <CaracBaseUpdate key={i}
+                                                                                 getCaracBase={this.props.getCaracBase}
+                                                                                 updateCaracBase={this.props.updateCaracBase}
+                                                                                 {...caracBase}/>)}
+                    {this.props.caracAvance.map((caracAvance, i) => <CaracAvanceUpdate key={i}
+                                                                                       getCaracAvance={this.props.getCaracAvance}
+                                                                                       updateCaracAvance={this.props.updateCaracAvance}
+                                                                                       {...caracAvance}/>)}
+                    {this.props.caracActuel.map((caracActuel, i) => <CaracActuelUpdate key={i}
+                                                                                       getCaracActuel={this.props.getCaracActuel}
+                                                                                       updateCaracActuel={this.props.updateCaracActuel}
+                                                                                       {...caracActuel}/>)}
                 </tbody>
             </Table>
         )
@@ -55,14 +69,20 @@ class CaracTableUpdate extends Component {
 
 function mapStateToProps(state){
     return {
-        caracBase: state.caracBase.caracBase
+        caracBase: state.caracBase.caracBase,
+        caracAvance: state.caracAvance.caracAvance,
+        caracActuel: state.caracActuel.caracActuel
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getCaracBase:getCaracBase,
-        updateCaracBase:updateCaracBase
+        updateCaracBase:updateCaracBase,
+        getCaracAvance:getCaracAvance,
+        updateCaracAvance:updateCaracAvance,
+        getCaracActuel:getCaracActuel,
+        updateCaracActuel:updateCaracActuel
     }, dispatch);
 }
 

@@ -26,3 +26,16 @@ export function postCaracActuel() {
             })
     }
 }
+
+// UPDATE CHARACTER CARACACTUEL
+export function updateCaracActuel(id, newData) {
+    return function(dispatch) {
+        axios.put('/caracactuel/' + id, newData)
+            .then(function(response) {
+                dispatch({type:"UPDATE_CARACACTUEL", payload:response.data})
+            })
+            .catch(function(err) {
+                dispatch({type:"UPDATE_CARACACTUEL_REJECTED", payload:err})
+            })
+    }
+}

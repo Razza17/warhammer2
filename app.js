@@ -217,7 +217,7 @@ app.put('/caracavance/:_id', function(req, res) {
 
     var options = {new: false};
 
-    CaracBase.findOneAndUpdate(query, update, options, function(err, data) {
+    CaracAvance.findOneAndUpdate(query, update, options, function(err, data) {
         if(err) {
             throw err;
         }
@@ -244,6 +244,42 @@ app.get('/caracactuel', function(req, res) {
             throw err;
         }
         res.json(caracActuel);
+    })
+});
+
+//---->>>> UPDATE CARACTERISTIQUES ACTUEL <<<<----
+app.put('/caracactuel/:_id', function(req, res) {
+    var newData = req.body;
+    var query = req.params._id;
+
+    var update = {
+        '$set': {
+            cc: newData.cc,
+            ct: newData.ct,
+            f: newData.f,
+            e: newData.e,
+            ag: newData.ag,
+            int: newData.int,
+            fm: newData.fm,
+            soc: newData.soc,
+            a: newData.a,
+            b: newData.b,
+            bf: newData.bf,
+            be: newData.be,
+            m: newData.m,
+            mag: newData.mag,
+            pf: newData.pf,
+            pd: newData.pd
+        }
+    };
+
+    var options = {new: false};
+
+    CaracActuel.findOneAndUpdate(query, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
     })
 });
 
