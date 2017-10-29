@@ -6,8 +6,6 @@ import DetailsTable from "../containers/personnage/DetailsTable";
 import CaracTable from "../containers/personnage/CaracTable";
 import CaracTableM from "../containers/personnage/CaracTableM";
 import FortuneContainer from "../containers/personnage/FortuneContainer";
-import BlessureTable from "../containers/personnage/BlessureTable";
-import { MunitionTable } from "../containers/personnage/MunitionTable";
 import { CompetenceBase } from "../containers/personnage/CompetenceBase";
 import { CompetenceBaseM } from "../containers/personnage/CompetenceBaseM";
 import { CompetenceAvance } from "../containers/personnage/CompetenceAvance";
@@ -35,8 +33,6 @@ export class Personnage extends Component {
                         <CaracTableM />
                     </Col>
                     <FortuneContainer />
-                    <BlessureTable />
-                    <MunitionTable />
                 </Row>
                 <Row>
                     <Col xsHidden smHidden md={6} lg={4}>

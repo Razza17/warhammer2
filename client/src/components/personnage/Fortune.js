@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Well } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 
-export class Fortune extends Component {
+class Fortune extends Component {
     render() {
         return (
             <Well>
-                <span>Fortune : <strong>{this.props.value} {this.props.value > 1 ? 'points' : 'point'}</strong> sur  </span>
+                <span>{this.props.name} : <strong>{this.props.value}
+                    {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}</strong>
+                    {this.props.name === "Fortune" && "sur " + this.props.carac[0].pd}
+                    {this.props.name === "Blessure" && "sur " + this.props.carac[0].b}
+                </span>
                 <ButtonGroup style={{marginLeft: "20px"}}>
                     <Button bsStyle="danger">-</Button>
                     <Button bsStyle="success">+</Button>
@@ -15,3 +20,11 @@ export class Fortune extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        carac: state.caracActuel.caracActuel
+    }
+}
+
+export default connect(mapStateToProps)(Fortune);

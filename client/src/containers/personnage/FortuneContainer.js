@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Fortune } from "../../components/personnage/Fortune";
+import Fortune from "../../components/personnage/Fortune";
 import { getFortune } from "../../actions/FortuneAction";
 
 class FortuneContainer extends Component {

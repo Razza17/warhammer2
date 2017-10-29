@@ -313,7 +313,6 @@ app.put('/count/:_id', function(req, res) {
 
     var update = {
         '$set': {
-            name: newData.name,
             value: newData.value
         }
     };
