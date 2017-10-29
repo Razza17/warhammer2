@@ -4,6 +4,23 @@ import { connect } from 'react-redux';
 
 
 class Fortune extends Component {
+
+    onIncrement(){
+        if(this.props.name === "Fortune") {
+            console.log('Fortune id : ', this.props._id);
+        } else if(this.props.name === "Blessure") {
+            console.log('Blessure id : ', this.props._id);
+        } else {
+            console.log('Munitions id : ', this.props._id);
+        }
+    }
+
+    /*onDecrement(_id, quantity){
+        if(quantity > 1) {
+            this.props.updateCart(_id, -1);
+        }
+    }*/
+
     render() {
         return (
             <Well>
@@ -14,7 +31,7 @@ class Fortune extends Component {
                 </span>
                 <ButtonGroup style={{marginLeft: "20px"}}>
                     <Button bsStyle="danger">-</Button>
-                    <Button bsStyle="success">+</Button>
+                    <Button bsStyle="success" onClick={this.onIncrement.bind(this)}>+</Button>
                 </ButtonGroup>
             </Well>
         );
