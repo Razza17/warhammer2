@@ -309,7 +309,6 @@ app.get('/count', function(req, res) {
 //---->>>> UPDATE COUNT <<<<----
 app.put('/count/:_id', function(req, res) {
     var newData = req.body;
-    var query = req.params._id;
 
     var update = {
         '$set': {
@@ -319,7 +318,7 @@ app.put('/count/:_id', function(req, res) {
 
     var options = {new: false};
 
-    Count.findOneAndUpdate(query, update, options, function(err, data) {
+    Count.updateOne({name: newData.name}, update, options, function(err, data) {
         if(err) {
             throw err;
         }

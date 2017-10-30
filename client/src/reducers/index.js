@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
-import { fortuneReducer } from './FortuneReducer';
-import { blessureReducer } from './BlessureReducer';
+import { countReducer } from './CountReducer';
 import { moneyReducer } from './MoneyReducer';
 import { profilReducer } from './ProfilReducer';
 import { detailReducer } from './DetailReducer';
@@ -9,8 +8,6 @@ import {caracAvanceReducer} from "./CaracAvanceReducer";
 import {caracActuelReducer} from "./CaracActuelReducer";
 
 export default combineReducers({
-    blessure: blessureReducer,
-    maxBlessure: blessureReducer,
     couronne: moneyReducer,
     pistole: moneyReducer,
     sous: moneyReducer,
@@ -19,5 +16,5 @@ export default combineReducers({
     caracBase: caracBaseReducer,
     caracAvance: caracAvanceReducer,
     caracActuel: caracActuelReducer,
-    fortune: fortuneReducer
+    count: countReducer
 })

@@ -14,7 +14,7 @@ export function caracActuelReducer(state={caracActuel:[]}, action) {
 
         // UPDATE
         case "UPDATE_CARACACTUEL":
-            return {...state, caracActuel:[...action.payload]};
+            return {...state};
         case "UPDATE_CARACACTUEL_REJECTED":
             return action.payload;
 

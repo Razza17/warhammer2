@@ -5,7 +5,7 @@ import ProfilTable from "../containers/personnage/ProfilTable";
 import DetailsTable from "../containers/personnage/DetailsTable";
 import CaracTable from "../containers/personnage/CaracTable";
 import CaracTableM from "../containers/personnage/CaracTableM";
-import FortuneContainer from "../containers/personnage/FortuneContainer";
+import FortuneContainer from "../containers/personnage/CountContainer";
 import { CompetenceBase } from "../containers/personnage/CompetenceBase";
 import { CompetenceBaseM } from "../containers/personnage/CompetenceBaseM";
 import { CompetenceAvance } from "../containers/personnage/CompetenceAvance";

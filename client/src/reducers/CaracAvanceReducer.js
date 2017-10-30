@@ -14,7 +14,7 @@ export function caracAvanceReducer(state={caracAvance:[]}, action) {
 
         // UPDATE
         case "UPDATE_CARACAVANCE":
-            return {...state, caracAvance:[...action.payload]};
+            return {...state};
         case "UPDATE_CARACAVANCE_REJECTED":
             return action.payload;
 

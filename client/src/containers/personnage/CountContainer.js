@@ -3,19 +3,19 @@ import { Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Fortune from "../../components/personnage/Fortune";
-import { getFortune } from "../../actions/FortuneAction";
+import Count from "../../components/personnage/Count";
+import { getCount, updateCount } from "../../actions/CountAction";
 
-class FortuneContainer extends Component {
+class CountContainer extends Component {
     componentDidMount() {
-        this.props.getFortune();
+        this.props.getCount();
     }
 
     render() {
         return (
             <Col xs={12} md={4}>
                 <Row className="text-center">
-                    { this.props.fortune.map((fortune, i) => <Fortune key={i} {...fortune} />) }
+                    { this.props.count.map((count, i) => <Count key={i} {...count} get={this.props.getCount} update={this.props.updateCount} />) }
                 </Row>
             </Col>
         )
@@ -24,14 +24,15 @@ class FortuneContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        fortune: state.fortune.fortune
+        count: state.count.count
     }
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        getFortune:getFortune
+        getCount:getCount,
+        updateCount:updateCount
     }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FortuneContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CountContainer);
