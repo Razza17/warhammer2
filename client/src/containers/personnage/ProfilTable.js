@@ -30,7 +30,9 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getProfile:getProfile}, dispatch);
+    return bindActionCreators({
+        getProfile:getProfile
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilTable);

@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import { Talent } from "../../components/personnage/Talent";
-import Wolfgang from '../../data/Wolfgang.json';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export class TalentTable extends Component {
+import { Talent } from "../../components/personnage/Talent";
+import { getTalent } from "../../actions/TalentAction";
+
+class TalentTable extends Component {
+    componentDidMount() {
+        this.props.getTalent();
+    }
+
     render () {
         return (
             <Table condensed hover striped className="border">
@@ -17,7 +24,7 @@ export class TalentTable extends Component {
                 </thead>
                 <tbody>
                 {
-                    Wolfgang.talents.map((talents, i) =>
+                    this.props.talent.map((talents, i) =>
                         <Talent key={i} {...talents}/>
                     )
                 }
@@ -26,3 +33,17 @@ export class TalentTable extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        talent: state.talent.talent
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators ({
+        getTalent:getTalent
+    }, dispatch)
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (TalentTable)

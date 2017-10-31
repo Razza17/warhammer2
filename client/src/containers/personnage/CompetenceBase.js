@@ -14,7 +14,7 @@ class CompetenceBase extends Component {
     render() {
         return (
             <Col xs={12} md={6} lg={4}>
-                <Table condensed hover striped className="border table_desktop">
+                <Table condensed hover striped className="border table-desktop">
                     <thead>
                         <tr>
                             <th className="text-center">Compétences de base</th>
@@ -34,7 +34,7 @@ class CompetenceBase extends Component {
                         }
                     </tbody>
                 </Table>
-                <Table condensed hover striped className="border table_mobile">
+                <Table condensed hover striped className="border table-mobile">
                     <thead>
                         <tr>
                             <th className="text-center">Compétences de base</th>

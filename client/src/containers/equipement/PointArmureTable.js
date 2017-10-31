@@ -89,7 +89,7 @@ export class PointArmureTable extends Component {
                     <tr><th colSpan="4" className="text-center">Points d'armure</th></tr>
                     <tr>
                         <th className="text-center">Nom</th>
-                        <th className="text-center">Points</th>
+                        <th className="text-center">Points (Amure + BE)</th>
                         <th className="text-center">Valeur</th>
                     </tr>
                 </thead>

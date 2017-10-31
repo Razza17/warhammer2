@@ -4,11 +4,10 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import ProfilTable from "../containers/personnage/ProfilTable";
 import DetailsTable from "../containers/personnage/DetailsTable";
 import CaracTable from "../containers/personnage/CaracTable";
-import CaracTableM from "../containers/personnage/CaracTableM";
 import CountContainer from "../containers/personnage/CountContainer";
 import CompetenceBase from "../containers/personnage/CompetenceBase";
 import CompetenceAvance from "../containers/personnage/CompetenceAvance";
-import { TalentTable } from "../containers/personnage/TalentTable";
+import TalentTable from "../containers/personnage/TalentTable";
 
 import WarhammerLogo from "../img/WarhammerLogo.png";
 
@@ -24,12 +23,7 @@ export class Personnage extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xsHidden smHidden md={7}>
-                        <CaracTable />
-                    </Col>
-                    <Col xs={12} mdHidden lgHidden>
-                        <CaracTableM />
-                    </Col>
+                    <CaracTable />
                     <CountContainer />
                 </Row>
                 <Row>

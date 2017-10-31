@@ -4,20 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//var httpProxy = require('http-proxy');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-
-//PROXY TO API
-/*const apiProxy = httpProxy.createProxyServer({
-    target:'http://localhost:3001'
-});
-app.use('/api', function(req, res) {
-    apiProxy.web(req, res);
-});*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,6 +34,7 @@ var CaracActuel = require('./models/caracActuel.js');
 var Count = require('./models/count.js');
 var CompetenceBase = require('./models/competenceBase.js');
 var CompetenceAvance = require('./models/competenceAvance.js');
+var Talent = require('./models/talent');
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -351,7 +343,10 @@ app.get('/competencebase', function(req, res) {
 });
 
 //---->>>> UPDATE COMPETENCE BASE <<<<----
-app.put('/competencebase/:_id', function(req, res) {
+
+// TO SETUP
+
+/*app.put('/competencebase/:_id', function(req, res) {
     var newData = req.body;
 
     var update = {
@@ -368,7 +363,7 @@ app.put('/competencebase/:_id', function(req, res) {
         }
         res.json(data);
     })
-});
+});*/
 
 //---->>>> POST COMPETENCE AVANCE <<<<----
 app.post('/competenceavance', function(req, res) {
@@ -393,7 +388,10 @@ app.get('/competenceavance', function(req, res) {
 });
 
 //---->>>> UPDATE COMPETENCE AVANCE <<<<----
-app.put('/competenceavance/:_id', function(req, res) {
+
+// TO SETUP
+
+/*app.put('/competenceavance/:_id', function(req, res) {
     var newData = req.body;
 
     var update = {
@@ -409,6 +407,28 @@ app.put('/competenceavance/:_id', function(req, res) {
             throw err;
         }
         res.json(data);
+    })
+});*/
+
+//---->>>> POST TALENT <<<<----
+app.post('/talent', function(req, res) {
+    var count = req.body;
+
+    Talent.create(count, function(err, talents) {
+        if(err) {
+            throw err;
+        }
+        res.json(talents);
+    })
+});
+
+//---->>>> GET TALENT <<<<----
+app.get('/talent', function(req, res) {
+    Talent.find(function(err, talents) {
+        if(err) {
+            throw err;
+        }
+        res.json(talents);
     })
 });
 
