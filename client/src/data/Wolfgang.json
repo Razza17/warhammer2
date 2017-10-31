@@ -89,160 +89,160 @@
             "nom" : "Canotage",
             "carac" : "(F)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Charisme",
             "carac" : "(Soc)",
             "acquis" : true,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Comandement",
             "carac" : "(Soc)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Commérage",
             "carac" : "(Soc)",
             "acquis" : true,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Conduite d\"attelage",
             "carac" : "(F)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Déguisement",
             "carac" : "(Soc)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 10
         },
         {
             "nom" : "Déplacements silencieux",
             "carac" : "(Ag)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Dissimulation",
             "carac" : "(Ag)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Equitation",
             "carac" : "(Ag)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Escalade",
             "carac" : "(F)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Evaluation",
             "carac" : "(Int)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Fouille",
             "carac" : "(Int)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Intimidation",
             "carac" : "(F)",
             "acquis" : true,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Jeu",
             "carac" : "(Int)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Marchandage",
             "carac" : "(Soc)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Natation",
             "carac" : "(F)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Perception",
             "carac" : "(Int)",
             "acquis" : true,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Résistance à l\"alcool",
             "carac" : "(E)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Soins des animaux",
             "carac" : "(Int)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Survie",
             "carac" : "(Int)",
             "acquis" : false,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         }
     ],
@@ -251,40 +251,40 @@
             "nom" : "Connaissance Générale (Empire)",
             "carac" : "(Int)",
             "acquis" : true,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 10
         },
         {
             "nom" : "Théologie",
             "carac" : "(Int)",
             "acquis" : true,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Langue (Reikspiel)",
             "carac" : "(Int)",
             "acquis" : true,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Lire / Ecrire",
             "carac" : "(Int)",
             "acquis" : true,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         },
         {
             "nom" : "Soins",
             "carac" : "(Int)",
             "acquis" : true,
-            "dix" : 0,
-            "vingt" : 0,
+            "dix" : false,
+            "vingt" : false,
             "bonus" : 0
         }
     ],

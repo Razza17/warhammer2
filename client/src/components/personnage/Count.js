@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Well } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 
-class Fortune extends Component {
+class Count extends Component {
 
     onIncrement(){
         if(this.props.name === "Fortune" && this.props.value < this.props.carac[0].pd) {
@@ -78,9 +78,8 @@ class Fortune extends Component {
 
 function mapStateToProps(state) {
     return {
-        carac: state.caracActuel.caracActuel,
-        count: state.count.count
+        carac: state.caracActuel.caracActuel
     }
 }
 
-export default connect(mapStateToProps)(Fortune);
+export default connect(mapStateToProps)(Count);

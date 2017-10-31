@@ -29,26 +29,6 @@ export function postCount() {
 
 // UPDATE COUNT POINT
 export function updateCount(id, newData) {
-
-    /*const currentCountToUpdate = count;
-
-    const indexToUpdate = currentCountToUpdate.findIndex(
-        function(item){
-            return item._id === _id;
-        }
-    );
-
-    const newCountToUpdate = {
-        ...currentCountToUpdate[indexToUpdate],
-        value: currentCountToUpdate[indexToUpdate].value + unit
-    };
-
-    let countUpdate = [
-        ...currentCountToUpdate.slice(0, indexToUpdate),
-        newCountToUpdate,
-        ...currentCountToUpdate.slice(indexToUpdate + 1)
-    ];*/
-
     return function(dispatch) {
         axios.put('/count/' + id, newData)
             .then(function(response) {

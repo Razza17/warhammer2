@@ -41,6 +41,8 @@ var CaracBase = require('./models/caracBase.js');
 var CaracAvance = require('./models/caracAvance.js');
 var CaracActuel = require('./models/caracActuel.js');
 var Count = require('./models/count.js');
+var CompetenceBase = require('./models/competenceBase.js');
+var CompetenceAvance = require('./models/competenceAvance.js');
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -319,6 +321,90 @@ app.put('/count/:_id', function(req, res) {
     var options = {new: false};
 
     Count.updateOne({name: newData.name}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+//---->>>> POST COMPETENCE BASE <<<<----
+app.post('/competencebase', function(req, res) {
+    var count = req.body;
+
+    CompetenceBase.create(count, function(err, competence) {
+        if(err) {
+            throw err;
+        }
+        res.json(competence);
+    })
+});
+
+//---->>>> GET COMPETENCE BASE <<<<----
+app.get('/competencebase', function(req, res) {
+    CompetenceBase.find(function(err, competence) {
+        if(err) {
+            throw err;
+        }
+        res.json(competence);
+    })
+});
+
+//---->>>> UPDATE COMPETENCE BASE <<<<----
+app.put('/competencebase/:_id', function(req, res) {
+    var newData = req.body;
+
+    var update = {
+        '$set': {
+            //value: newData.value
+        }
+    };
+
+    var options = {new: false};
+
+    CompetenceBase.updateOne({name: newData.name}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+//---->>>> POST COMPETENCE AVANCE <<<<----
+app.post('/competenceavance', function(req, res) {
+    var count = req.body;
+
+    CompetenceAvance.create(count, function(err, competence) {
+        if(err) {
+            throw err;
+        }
+        res.json(competence);
+    })
+});
+
+//---->>>> GET COMPETENCE AVANCE <<<<----
+app.get('/competenceavance', function(req, res) {
+    CompetenceAvance.find(function(err, competence) {
+        if(err) {
+            throw err;
+        }
+        res.json(competence);
+    })
+});
+
+//---->>>> UPDATE COMPETENCE AVANCE <<<<----
+app.put('/competenceavance/:_id', function(req, res) {
+    var newData = req.body;
+
+    var update = {
+        '$set': {
+            //value: newData.value
+        }
+    };
+
+    var options = {new: false};
+
+    CompetenceAvance.updateOne({name: newData.name}, update, options, function(err, data) {
         if(err) {
             throw err;
         }
