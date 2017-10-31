@@ -11,3 +11,28 @@ ul li {
 .border {
     border: 1px solid #ddd;
 }
+
+.table_desktop {
+    display: table;
+}
+
+.table_mobile {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 500px) {
+
+    .table_desktop {
+        display: none;
+    }
+
+    .table_mobile {
+        display: table;
+    }
+
+}
