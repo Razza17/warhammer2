@@ -1,23 +1,25 @@
 {
   "name": "warhammer2",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "prop-types": "^15.6.0",
-    "react": "^15.6.1",
-    "react-bootstrap": "^0.31.3",
-    "react-dom": "^15.6.1",
-    "react-redux": "^5.0.6",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.13",
-    "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.2"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^0.17.0",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "http-proxy": "^1.16.2",
+    "jade": "~1.11.0",
+    "mongoose": "^4.12.4",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
   }
 }

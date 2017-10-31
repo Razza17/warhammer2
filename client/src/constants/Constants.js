@@ -1,0 +1,10 @@
+export const CO_INCREMENT = 'CO_INCREMENT';
+export const CO_DECREMENT = 'CO_DECREMENT';
+export const PA_INCREMENT = 'PA_INCREMENT';
+export const PA_DECREMENT = 'PA_DECREMENT';
+export const REMOVE_CO = 'REMOVE_CO';
+export const ADD_CO = 'ADD_CO';
+export const REMOVE_PA = 'REMOVE_PA';
+export const ADD_PA = 'ADD_PA';
+export const REMOVE_SO = 'REMOVE_SO';
+export const ADD_SO = 'ADD_SO';
