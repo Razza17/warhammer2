@@ -86,11 +86,11 @@ export class PointArmureTable extends Component {
         return (
             <Table condensed bordered hover striped>
                 <thead>
-                    <tr><th colSpan="4" className="text-center">Points d'armure</th></tr>
+                    <tr><th colSpan="4">Points d'armure</th></tr>
                     <tr>
-                        <th className="text-center">Nom</th>
-                        <th className="text-center">Points (Amure + BE)</th>
-                        <th className="text-center">Valeur</th>
+                        <th>Nom</th>
+                        <th>Points (Amure + BE)</th>
+                        <th>Valeur</th>
                     </tr>
                 </thead>
                 {

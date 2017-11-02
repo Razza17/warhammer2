@@ -22,7 +22,7 @@ class CaracTableUpdate extends Component {
         return (
             <Table condensed bordered hover striped>
                 <thead>
-                    <tr><th colSpan="17" className="text-center">Profil du Personnage</th></tr>
+                    <tr><th colSpan="17">Profil du Personnage</th></tr>
                 </thead>
                 <tbody>
                     <tr>

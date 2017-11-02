@@ -8,12 +8,12 @@ class Competence extends Component {
         return (
             <tr>
                 <td>{this.props.nom}</td>
-                <td className="text-center">{this.props.carac}</td>
-                <td className="text-center">{this.props.acquis && <img src={imgChecked} alt="Checked" />}</td>
-                <td className="text-center">{this.props.dix}</td>
-                <td className="text-center">{this.props.vingt}</td>
-                <td className="text-center">{this.props.bonus}</td>
-                <td className="text-center">
+                <td>{this.props.carac}</td>
+                <td>{this.props.acquis && <img src={imgChecked} alt="Checked" />}</td>
+                <td>{this.props.dix}</td>
+                <td>{this.props.vingt}</td>
+                <td>{this.props.bonus}</td>
+                <td>
                     {this.props.carac === '(F)' && this.props.acquis && this.props.caracActuel[0].f + this.props.dix + this.props.vingt + this.props.bonus}
                     {this.props.carac === '(F)' && !this.props.acquis && Math.round(this.props.caracActuel[0].f / 2 + this.props.dix + this.props.vingt + this.props.bonus)}
                     {this.props.carac === '(Soc)' && this.props.acquis && this.props.caracActuel[0].soc + this.props.dix + this.props.vingt + this.props.bonus}

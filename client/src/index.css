@@ -12,6 +12,11 @@ ul li {
     border: 1px solid #ddd;
 }
 
+.table tbody tr td, .table thead tr th, .count {
+    text-align: center;
+    vertical-align: middle;
+}
+
 .table-desktop {
     display: table;
 }
@@ -33,6 +38,14 @@ ul li {
     vertical-align: middle;
 }
 
+.show-desktop {
+    display: block;
+}
+
+.show-mobile {
+    display: none;
+}
+
 .showMsg {
     position: fixed;
     bottom: 10px;
@@ -51,6 +64,10 @@ ul li {
     z-index: 1000;
 }
 
+.badge {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 500px) {
 
     .table-desktop {
@@ -59,6 +76,14 @@ ul li {
 
     .table-mobile {
         display: table;
+    }
+
+    .show-desktop {
+        display: none;
+    }
+
+    .show-mobile {
+        display: block;
     }
 
 }

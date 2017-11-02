@@ -9,6 +9,8 @@ import { caracActuelReducer } from "./CaracActuelReducer";
 import { compBaseReducer } from "./CompBaseReducer";
 import { compAvanceReducer } from "./CompAvanceReducer";
 import { talentReducer } from "./TalentReducer";
+import { armeReducer } from "./ArmeReducer";
+import { armureReducer } from "./ArmureReducer";
 
 export default combineReducers({
     couronne: moneyReducer,
@@ -22,5 +24,7 @@ export default combineReducers({
     count: countReducer,
     compBase: compBaseReducer,
     compAvance: compAvanceReducer,
-    talent: talentReducer
+    talent: talentReducer,
+    arme: armeReducer,
+    armure: armureReducer
 })

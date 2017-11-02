@@ -29,7 +29,7 @@ export class CaracActuelUpdate extends Component {
 
     render() {
         return (
-            <tr className="text-center">
+            <tr>
                 <td className="black">Actuel</td>
                 <td>
                     <FormGroup controlId="cc">

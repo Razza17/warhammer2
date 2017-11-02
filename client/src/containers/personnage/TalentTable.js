@@ -16,10 +16,10 @@ class TalentTable extends Component {
             <Table condensed hover striped className="border">
                 <thead>
                     <tr>
-                        <th className="text-center">Talents</th>
-                        <th className="text-center">Description</th>
-                        <th className="text-center">Compétences</th>
-                        <th className="text-center">Bonus</th>
+                        <th>Talents</th>
+                        <th>Description</th>
+                        <th>Compétences</th>
+                        <th>Bonus</th>
                     </tr>
                 </thead>
                 <tbody>

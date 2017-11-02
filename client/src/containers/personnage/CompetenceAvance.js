@@ -17,13 +17,13 @@ class CompetenceAvance extends Component {
                 <Table condensed hover striped className="border table-desktop">
                     <thead>
                         <tr>
-                            <th className="text-center">Compétences avancées</th>
-                            <th className="text-center">Carac.</th>
-                            <th className="text-center">Acquis</th>
-                            <th className="text-center">+10%</th>
-                            <th className="text-center">+20%</th>
-                            <th className="text-center">Bonus</th>
-                            <th className="text-center">Total</th>
+                            <th>Compétences avancées</th>
+                            <th>Carac.</th>
+                            <th>Acquis</th>
+                            <th>+10%</th>
+                            <th>+20%</th>
+                            <th>Bonus</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,13 +37,13 @@ class CompetenceAvance extends Component {
                 <Table condensed hover striped className="border table-mobile">
                     <thead>
                         <tr>
-                            <th className="text-center">Compétences avancées</th>
-                            <th className="text-center">Carac.</th>
-                            <th className="text-center">Ac.</th>
-                            <th className="text-center">+10</th>
-                            <th className="text-center">+20</th>
-                            <th className="text-center">Bon.</th>
-                            <th className="text-center">Tot.</th>
+                            <th>Compétences avancées</th>
+                            <th>Carac.</th>
+                            <th>Ac.</th>
+                            <th>+10</th>
+                            <th>+20</th>
+                            <th>Bon.</th>
+                            <th>Tot.</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -37,7 +37,7 @@ export class MunitionTable extends Component {
 
         return (
             <Col xs={12} md={4}>
-              <Row className="text-center">
+              <Row>
                   <Well>
                     <span>Munitions : <strong>{this.state.munition} flèches</strong></span>
                     <ButtonGroup style={{marginLeft: "20px"}}>

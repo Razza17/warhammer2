@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Well } from 'react-bootstrap';
+import { Button, ButtonGroup, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 
@@ -61,8 +61,8 @@ class Count extends Component {
 
     render() {
         return (
-            <Well>
-                <span>{this.props.name} : <strong>{this.props.value}
+            <Panel className="count" header={this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? "Points de Fortune" : "Blessures") : "Munitions"} bsStyle="info">
+                <span><strong>{this.props.value}
                     {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}</strong>
                     {this.props.name === "Fortune" && "sur " + this.props.carac[0].pd}
                     {this.props.name === "Blessure" && "sur " + this.props.carac[0].b}
@@ -71,7 +71,7 @@ class Count extends Component {
                     <Button bsStyle="danger" onClick={this.onDecrement.bind(this)}>-</Button>
                     <Button bsStyle="success" onClick={this.onIncrement.bind(this)}>+</Button>
                 </ButtonGroup>
-            </Well>
+            </Panel>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Well, Table } from 'react-bootstrap';
+import { Button, ButtonGroup, Well, Table, Badge } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -72,44 +72,48 @@ class MoneyTable extends Component {
                 <Table>
                     <thead>
                         <tr>
-                            <th className="text-center">{this.props.couronne > 1 ? "Couronnes d'or" : "Couronne d'or"}</th>
-                            <th className="text-center">{this.props.pistole > 1 ? "Pistoles d'argent" : "Pistole d'argent"}</th>
-                            <th className="text-center">Sous de cuivre</th>
+                            <th>{this.props.couronne > 1 ? "Couronnes d'or" : "Couronne d'or"}</th>
+                            <th>&nbsp;</th>
+                            <th>{this.props.pistole > 1 ? "Pistoles d'argent" : "Pistole d'argent"}</th>
+                            <th>&nbsp;</th>
+                            <th>Sous de cuivre</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td className="text-center"><strong>{this.props.couronne}</strong></td>
-                            <td className="text-center"><strong>{this.props.pistole}</strong></td>
-                            <td className="text-center"><strong>{this.props.sous}</strong></td>
+                            <td><strong>{this.props.couronne}</strong></td>
+                            <td>
+                                <strong>
+                                    <Badge onClick={this.pistoleToCouronne.bind(this)}>&lt;=</Badge> 20 <Badge onClick={this.couronneToPistole.bind(this)}>=&gt;</Badge>
+                                </strong>
+                            </td>
+                            <td><strong>{this.props.pistole}</strong></td>
+                            <td>
+                                <strong>
+                                    <Badge onClick={this.sousToPistole.bind(this)}>&lt;=</Badge> 12 <Badge onClick={this.pistoleToSous.bind(this)}>=&gt;</Badge>
+                                </strong>
+                            </td>
+                            <td><strong>{this.props.sous}</strong></td>
                         </tr>
                         <tr>
-                            <td className="text-center">
+                            <td>
                                 <ButtonGroup>
                                     <Button bsStyle="danger" onClick={this.removeCouronne.bind(this)}>-</Button>
                                     <Button bsStyle="success" onClick={this.addCouronne.bind(this)}>+</Button>
                                 </ButtonGroup>
                             </td>
-                            <td className="text-center">
+                            <td>&nbsp;</td>
+                            <td>
                                 <ButtonGroup>
                                     <Button bsStyle="danger" onClick={this.removePistole.bind(this)}>-</Button>
                                     <Button bsStyle="success" onClick={this.addPistole.bind(this)}>+</Button>
                                 </ButtonGroup>
                             </td>
-                            <td className="text-center">
+                            <td>&nbsp;</td>
+                            <td>
                                 <ButtonGroup>
                                     <Button bsStyle="danger" onClick={this.removeSous.bind(this)}>-</Button>
                                     <Button bsStyle="success" onClick={this.addSous.bind(this)}>+</Button>
-                                </ButtonGroup>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan="3" className="text-center">
-                                <ButtonGroup>
-                                    <Button onClick={this.pistoleToCouronne.bind(this)}>+ 1 couronne</Button>
-                                    <Button onClick={this.couronneToPistole.bind(this)}>+ 20 pistoles </Button>
-                                    <Button onClick={this.sousToPistole.bind(this)}>+ 1 pisotle</Button>
-                                    <Button onClick={this.pistoleToSous.bind(this)}>+ 12 sous</Button>
                                 </ButtonGroup>
                             </td>
                         </tr>

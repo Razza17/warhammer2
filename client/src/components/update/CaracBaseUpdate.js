@@ -28,7 +28,7 @@ export class CaracBaseUpdate extends Component {
 
     render() {
         return (
-            <tr className="text-center">
+            <tr>
                 <td className="black">Base</td>
                 <td>
                     <FormGroup controlId="cc">

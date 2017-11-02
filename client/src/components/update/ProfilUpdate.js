@@ -35,7 +35,7 @@ export class ProfilUpdate extends Component {
     render() {
         return (
             <Well>
-                <h3 className="text-center">Personnage</h3>
+                <h3>Personnage</h3>
                 <ul>
                     <li>
                         <FormGroup controlId="nom">

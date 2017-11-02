@@ -13,7 +13,7 @@ class ProfilTable extends Component {
     render() {
         return (
             <Col xs={12} sm={6} md={4}>
-                <Panel>
+                <Panel header="Personnage" bsStyle="info">
                     {
                         this.props.profile.map((perso, i) => <Profil key={i} {...perso} />)
                     }
