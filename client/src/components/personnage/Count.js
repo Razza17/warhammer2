@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-
 class Count extends Component {
 
     onIncrement(){

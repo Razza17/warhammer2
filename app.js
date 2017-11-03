@@ -37,6 +37,7 @@ let CompetenceAvance = require('./models/competenceAvance.js');
 let Talent = require('./models/talent');
 let Arme = require('./models/arme');
 let Armure = require('./models/armure');
+let Money = require('./models/money');
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -547,6 +548,48 @@ app.delete('/armure/:_id', function(req, res) {
         res.json(data);
     })
 });*/
+
+//---->>>> POST MONEY <<<<----
+app.post('/money', function(req, res) {
+    let money = req.body;
+
+    Money.create(money, function(err, money) {
+        if(err) {
+            throw err;
+        }
+        res.json(money);
+    })
+});
+
+//---->>>> GET MONEY <<<<----
+app.get('/money', function(req, res) {
+    Money.find(function(err, money) {
+        if(err) {
+            throw err;
+        }
+        res.json(money);
+    })
+});
+
+//---->>>> UPDATE MONEY <<<<----
+app.put('/money/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            value: newData.value
+        }
+    };
+
+    let options = {new: false};
+
+    Money.updateOne({nom: newData.nom}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
 
 // END API
 

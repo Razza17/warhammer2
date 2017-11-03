@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Table } from 'react-bootstrap';
+import { Col, Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -14,46 +14,48 @@ class CompetenceBase extends Component {
     render() {
         return (
             <Col xs={12} md={6} lg={4}>
-                <Table condensed hover striped className="border table-desktop">
-                    <thead>
-                        <tr>
-                            <th>Compétences de base</th>
-                            <th>Carac.</th>
-                            <th>Acquis</th>
-                            <th>+10%</th>
-                            <th>+20%</th>
-                            <th>Bonus</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <Panel header="Compétence de base" bsStyle="info">
+                    <Table condensed hover striped className="border table-desktop">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Carac.</th>
+                                <th>Acquis</th>
+                                <th>+10%</th>
+                                <th>+20%</th>
+                                <th>Bonus</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.props.compBase.map((competenceB, i) =>
+                                    <Competence key={i} {...competenceB}/>
+                                )
+                            }
+                        </tbody>
+                    </Table>
+                    <Table condensed hover striped className="border table-mobile">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Carac.</th>
+                                <th>Ac.</th>
+                                <th>+10</th>
+                                <th>+20</th>
+                                <th>Bon.</th>
+                                <th>Tot.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         {
                             this.props.compBase.map((competenceB, i) =>
                                 <Competence key={i} {...competenceB}/>
                             )
                         }
-                    </tbody>
-                </Table>
-                <Table condensed hover striped className="border table-mobile">
-                    <thead>
-                        <tr>
-                            <th>Compétences de base</th>
-                            <th>Carac.</th>
-                            <th>Ac.</th>
-                            <th>+10</th>
-                            <th>+20</th>
-                            <th>Bon.</th>
-                            <th>Tot.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        this.props.compBase.map((competenceB, i) =>
-                            <Competence key={i} {...competenceB}/>
-                        )
-                    }
-                    </tbody>
-                </Table>
+                        </tbody>
+                    </Table>
+                </Panel>
             </Col>
         )
     }

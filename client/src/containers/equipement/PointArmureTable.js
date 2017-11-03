@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { PointArmure } from '../../components/equipement/PointArmure';
+import { PointArmure } from "../../components/equipement/PointArmure";
+import { getCaracActuel } from "../../actions/CaracActuelAction";
 
-import Wolfgang from '../../data/Wolfgang.json';
-
-export class PointArmureTable extends Component {
+class PointArmureTable extends Component {
+    componentDidMount() {
+        this.props.getCaracActuel();
+    }
 
     ptsTete() {
-        const tete = Wolfgang.armure;
+        const tete = this.props.armure;
         let total = 0;
 
         for (let i = 0; i < tete.length; i++) {
@@ -23,7 +27,7 @@ export class PointArmureTable extends Component {
     }
 
     ptsBras() {
-       const bras = Wolfgang.armure;
+       const bras = this.props.armure;
        let total = 0;
 
        for (let i = 0; i < bras.length; i++) {
@@ -38,7 +42,7 @@ export class PointArmureTable extends Component {
    }
 
     ptsCorps() {
-        const corps = Wolfgang.armure;
+        const corps = this.props.armure;
         let total = 0;
 
         for (let i = 0; i < corps.length; i++) {
@@ -53,7 +57,7 @@ export class PointArmureTable extends Component {
     }
 
     ptsTorse() {
-        const torse = Wolfgang.armure;
+        const torse = this.props.armure;
         let total = 0;
 
         for (let i = 0; i < torse.length; i++) {
@@ -68,7 +72,7 @@ export class PointArmureTable extends Component {
     }
 
     ptsJambes(){
-       const jambes = Wolfgang.armure;
+       const jambes = this.props.armure;
        let total = 0;
 
        for (let i = 0; i < jambes.length; i++) {
@@ -93,18 +97,29 @@ export class PointArmureTable extends Component {
                         <th>Valeur</th>
                     </tr>
                 </thead>
-                {
-                    Wolfgang.actuel.map((be, i) =>
-                    <PointArmure
-                        key={i} {...be}
-                        ptsTete = {this.ptsTete()}
-                        ptsBras = {this.ptsBras()}
-                        ptsCorps = {this.ptsCorps()}
-                        ptsTorse = {this.ptsTorse()}
-                        ptsJambes = {this.ptsJambes()}
-                    />)
+                { this.props.caracActuel.map((caracActuel, i) => <PointArmure key={i} {...caracActuel}
+                                                                                ptsTete={this.ptsTete()}
+                                                                                ptsBras={this.ptsBras()}
+                                                                                ptsCorps={this.ptsCorps()}
+                                                                                ptsTorse={this.ptsTorse()}
+                                                                                ptsJambes={this.ptsJambes()}/>)
                 }
             </Table>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        armure: state.armure.armure,
+        caracActuel: state.caracActuel.caracActuel
+    }
+}
+
+function mapDispatchtoProps(dispatch) {
+    return bindActionCreators({
+        getCaracActuel:getCaracActuel
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchtoProps)(PointArmureTable);

@@ -13,9 +13,6 @@ import { armeReducer } from "./ArmeReducer";
 import { armureReducer } from "./ArmureReducer";
 
 export default combineReducers({
-    couronne: moneyReducer,
-    pistole: moneyReducer,
-    sous: moneyReducer,
     profile: profilReducer,
     details: detailReducer,
     caracBase: caracBaseReducer,
@@ -26,5 +23,6 @@ export default combineReducers({
     compAvance: compAvanceReducer,
     talent: talentReducer,
     arme: armeReducer,
-    armure: armureReducer
+    armure: armureReducer,
+    money: moneyReducer
 })

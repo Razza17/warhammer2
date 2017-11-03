@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -13,23 +13,25 @@ class TalentTable extends Component {
 
     render () {
         return (
-            <Table condensed hover striped className="border">
-                <thead>
-                    <tr>
-                        <th>Talents</th>
-                        <th>Description</th>
-                        <th>Compétences</th>
-                        <th>Bonus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {
-                    this.props.talent.map((talents, i) =>
-                        <Talent key={i} {...talents}/>
-                    )
-                }
-                </tbody>
-            </Table>
+            <Panel header="Talents" bsStyle="info">
+                <Table condensed hover striped className="border">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Compétences</th>
+                            <th>Bonus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        this.props.talent.map((talents, i) =>
+                            <Talent key={i} {...talents}/>
+                        )
+                    }
+                    </tbody>
+                </Table>
+            </Panel>
         )
     }
 }

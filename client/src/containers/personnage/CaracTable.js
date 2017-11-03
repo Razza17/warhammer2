@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Table } from 'react-bootstrap';
+import { Col, Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -27,87 +27,87 @@ class CaracTable extends Component {
     render() {
         return (
             <Col xs={12} md={8}>
-                <Table condensed bordered hover striped className="carac-table-desktop">
-                    <thead>
-                        <tr><th colSpan="17">Profil du Personnage</th></tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th colSpan="8">Profil Principal</th>
-                            <th colSpan="8">Profil Secondaire</th>
-                        </tr>
-                        <tr className="text-center profilHeader">
-                            <th>&nbsp;</th>
-                            <th>CC</th>
-                            <th>CT</th>
-                            <th>F</th>
-                            <th>E</th>
-                            <th>Ag</th>
-                            <th>Int</th>
-                            <th>FM</th>
-                            <th>Soc</th>
-                            <th>A</th>
-                            <th>B</th>
-                            <th>BF</th>
-                            <th>BE</th>
-                            <th>M</th>
-                            <th>Mag</th>
-                            <th>PF</th>
-                            <th>PD</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.props.caracBase.map((caracBase, i) => <CaracBase key={i} {...caracBase}/>) }
-                        { this.props.caracAvance.map((caracAvance, i) => <CaracAvance key={i} {...caracAvance}/>) }
-                        { this.props.caracActuel.map((caracActuel, i) => <CaracActuel key={i} {...caracActuel}/>) }
-                    </tbody>
-                </Table>
-                <Table condensed bordered hover striped className="carac-table-mobile">
-                    <thead>
-                        <tr><th colSpan="9">Profil du Personnage</th></tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th colSpan="8">Profil Principal</th>
-                        </tr>
-                        <tr className="text-center profilHeader">
-                            <th>&nbsp;</th>
-                            <th>CC</th>
-                            <th>CT</th>
-                            <th>F</th>
-                            <th>E</th>
-                            <th>Ag</th>
-                            <th>Int</th>
-                            <th>FM</th>
-                            <th>Soc</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.props.caracBase.map((caracBase, i) => <CaracBaseP key={i} {...caracBase}/>) }
-                        { this.props.caracAvance.map((caracAvance, i) => <CaracAvanceP key={i} {...caracAvance}/>) }
-                        { this.props.caracActuel.map((caracActuel, i) => <CaracActuelP key={i} {...caracActuel}/>) }
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th colSpan="8">Profil Secondaire</th>
-                        </tr>
-                        <tr className="text-center profilHeader">
-                            <th>&nbsp;</th>
-                            <th>A</th>
-                            <th>B</th>
-                            <th>BF</th>
-                            <th>BE</th>
-                            <th>M</th>
-                            <th>Mag</th>
-                            <th>PF</th>
-                            <th>PD</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.props.caracBase.map((caracBase, i) => <CaracBaseS key={i} {...caracBase}/>) }
-                        { this.props.caracAvance.map((caracAvance, i) => <CaracAvanceS key={i} {...caracAvance}/>) }
-                        { this.props.caracActuel.map((caracActuel, i) => <CaracActuelS key={i} {...caracActuel}/>) }
-                    </tbody>
-                </Table>
+                <Panel header="Profil du personnage" bsStyle="info">
+                    <Table condensed bordered hover striped className="carac-table-desktop">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th colSpan="8">Profil Principal</th>
+                                <th colSpan="8">Profil Secondaire</th>
+                            </tr>
+                            <tr className="text-center profilHeader">
+                                <th>&nbsp;</th>
+                                <th>CC</th>
+                                <th>CT</th>
+                                <th>F</th>
+                                <th>E</th>
+                                <th>Ag</th>
+                                <th>Int</th>
+                                <th>FM</th>
+                                <th>Soc</th>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>BF</th>
+                                <th>BE</th>
+                                <th>M</th>
+                                <th>Mag</th>
+                                <th>PF</th>
+                                <th>PD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { this.props.caracBase.map((caracBase, i) => <CaracBase key={i} {...caracBase}/>) }
+                            { this.props.caracAvance.map((caracAvance, i) => <CaracAvance key={i} {...caracAvance}/>) }
+                            { this.props.caracActuel.map((caracActuel, i) => <CaracActuel key={i} {...caracActuel}/>) }
+                        </tbody>
+                    </Table>
+                    <Table condensed bordered hover striped className="carac-table-mobile">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th colSpan="8">Profil Principal</th>
+                            </tr>
+                            <tr className="text-center profilHeader">
+                                <th>&nbsp;</th>
+                                <th>CC</th>
+                                <th>CT</th>
+                                <th>F</th>
+                                <th>E</th>
+                                <th>Ag</th>
+                                <th>Int</th>
+                                <th>FM</th>
+                                <th>Soc</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { this.props.caracBase.map((caracBase, i) => <CaracBaseP key={i} {...caracBase}/>) }
+                            { this.props.caracAvance.map((caracAvance, i) => <CaracAvanceP key={i} {...caracAvance}/>) }
+                            { this.props.caracActuel.map((caracActuel, i) => <CaracActuelP key={i} {...caracActuel}/>) }
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th colSpan="8">Profil Secondaire</th>
+                            </tr>
+                            <tr className="text-center profilHeader">
+                                <th>&nbsp;</th>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>BF</th>
+                                <th>BE</th>
+                                <th>M</th>
+                                <th>Mag</th>
+                                <th>PF</th>
+                                <th>PD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { this.props.caracBase.map((caracBase, i) => <CaracBaseS key={i} {...caracBase}/>) }
+                            { this.props.caracAvance.map((caracAvance, i) => <CaracAvanceS key={i} {...caracAvance}/>) }
+                            { this.props.caracActuel.map((caracActuel, i) => <CaracActuelS key={i} {...caracActuel}/>) }
+                        </tbody>
+                    </Table>
+                </Panel>
             </Col>
         )
     }
