@@ -15,9 +15,7 @@ class MoneyTable extends Component {
         return (
             <Well>
                 <Table>
-                    <tbody>
-                        { this.props.money.map((money, i) => <Money key={i} {...money} get={this.props.getMoney}  update={this.props.updateMoney} />) }
-                    </tbody>
+                    { this.props.money.map((money, i) => <Money key={i} {...money} get={this.props.getMoney}  update={this.props.updateMoney} />) }
                 </Table>
             </Well>
         );

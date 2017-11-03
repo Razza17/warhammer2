@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 
 var moneySchema = mongoose.Schema({
-    nom: String,
-    value: Number
+    couronnes: Number,
+    pistoles: Number,
+    sous: Number
 });
 
 var Money = mongoose.model('Money', moneySchema);

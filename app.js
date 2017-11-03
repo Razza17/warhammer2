@@ -574,16 +574,22 @@ app.get('/money', function(req, res) {
 //---->>>> UPDATE MONEY <<<<----
 app.put('/money/:_id', function(req, res) {
     let newData = req.body;
+    let query = req.params._id;
+
+    console.log('newData : ', newData.couronnes);
+    console.log('query : ', query);
 
     let update = {
         '$set': {
-            value: newData.value
+            couronnes: newData.couronnes,
+            pistoles: newData.pistoles,
+            sous: newData.sous
         }
     };
 
     let options = {new: false};
 
-    Money.updateOne({nom: newData.nom}, update, options, function(err, data) {
+    Money.findOneAndUpdate(query, update, options, function(err, data) {
         if(err) {
             throw err;
         }
