@@ -9,8 +9,12 @@ body {
     font-size: 18px;
 }
 
-.glyphicon {
+#update .glyphicon, #update .panel-title>a {
     cursor: pointer;
+}
+
+#update .table tbody tbody tr td {
+    border: 1px solid #ddd;
 }
 /* END BOOTSTRAP SURCOUCHE */
 

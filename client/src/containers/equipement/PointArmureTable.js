@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -88,23 +88,24 @@ class PointArmureTable extends Component {
 
     render() {
         return (
-            <Table condensed bordered hover striped>
-                <thead>
-                    <tr><th colSpan="4">Points d'armure</th></tr>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Points (Amure + BE)</th>
-                        <th>Valeur</th>
-                    </tr>
-                </thead>
-                { this.props.caracActuel.map((caracActuel, i) => <PointArmure key={i} {...caracActuel}
-                                                                                ptsTete={this.ptsTete()}
-                                                                                ptsBras={this.ptsBras()}
-                                                                                ptsCorps={this.ptsCorps()}
-                                                                                ptsTorse={this.ptsTorse()}
-                                                                                ptsJambes={this.ptsJambes()}/>)
-                }
-            </Table>
+            <Panel header="Points d'armure" bsStyle="info">
+                <Table condensed bordered hover striped fill>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Points (Amure + BE)</th>
+                            <th>Valeur</th>
+                        </tr>
+                    </thead>
+                    { this.props.caracActuel.map((caracActuel, i) => <PointArmure key={i} {...caracActuel}
+                                                                                    ptsTete={this.ptsTete()}
+                                                                                    ptsBras={this.ptsBras()}
+                                                                                    ptsCorps={this.ptsCorps()}
+                                                                                    ptsTorse={this.ptsTorse()}
+                                                                                    ptsJambes={this.ptsJambes()}/>)
+                    }
+                </Table>
+            </Panel>
         )
     }
 }

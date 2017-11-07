@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Well, FormGroup, FormControl, InputGroup, Button, Alert } from 'react-bootstrap';
+import { Panel, FormGroup, FormControl, InputGroup, Button, Alert } from 'react-bootstrap';
 import { findDOMNode } from 'react-dom';
 
 export class ProfilUpdate extends Component {
@@ -34,8 +34,7 @@ export class ProfilUpdate extends Component {
 
     render() {
         return (
-            <Well>
-                <h3>Personnage</h3>
+            <Panel collapsible header="Personnage">
                 <ul>
                     <li>
                         <FormGroup controlId="nom">
@@ -86,7 +85,7 @@ export class ProfilUpdate extends Component {
                     </li>
                 </ul>
                 <Alert className={this.state.class} bsStyle="success">Your Profile has been successfully updated</Alert>
-            </Well>
+            </Panel>
         )
     }
 }

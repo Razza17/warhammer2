@@ -10,7 +10,7 @@ import EncContainer from '../containers/equipement/EncContainer';
 export class Equipement extends Component {
     render() {
         return (
-            <Grid fluid>
+            <Grid id="equipement" fluid>
                 <Row>
                     <EncContainer />
                 </Row>

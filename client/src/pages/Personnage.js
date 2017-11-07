@@ -14,7 +14,7 @@ import WarhammerLogo from "../img/WarhammerLogo.png";
 export class Personnage extends Component {
     render() {
         return (
-            <Grid fluid>
+            <Grid id="personnage" fluid>
                 <Row>
                     <ProfilTable />
                     <DetailsTable />

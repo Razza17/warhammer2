@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Well, Table } from 'react-bootstrap';
+import { Panel, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -13,11 +13,11 @@ class MoneyTable extends Component {
 
     render() {
         return (
-            <Well>
-                <Table>
+            <Panel header="Monnaies" bsStyle="info">
+                <Table fill>
                     { this.props.money.map((money, i) => <Money key={i} {...money} get={this.props.getMoney}  update={this.props.updateMoney} />) }
                 </Table>
-            </Well>
+            </Panel>
         );
     }
 }

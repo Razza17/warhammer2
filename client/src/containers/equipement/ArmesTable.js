@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Table } from 'react-bootstrap';
+import { Col, Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -14,22 +14,23 @@ class ArmesTable extends Component {
     render() {
         return (
             <Col xs={12} md={6}>
-                <Table condensed bordered hover striped>
-                    <thead>
-                        <tr><th colSpan="7">Armes</th></tr>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Enc</th>
-                            <th><span className="show-desktop">Dégâts</span><span className="show-mobile">Dég</span></th>
-                            <th>Portée</th>
-                            <th><span className="show-desktop">Rechargement</span><span className="show-mobile">Recharg</span></th>
-                            <th>Attributs</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.props.arme.map((armes, i) => <Armes key={i} {...armes} />) }
-                    </tbody>
-                </Table>
+                <Panel header="Armes" bsStyle="info">
+                    <Table condensed bordered hover striped fill>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Enc</th>
+                                <th><span className="show-desktop">Dégâts</span><span className="show-mobile">Dég</span></th>
+                                <th>Portée</th>
+                                <th><span className="show-desktop">Rechargement</span><span className="show-mobile">Recharg</span></th>
+                                <th>Attributs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { this.props.arme.map((armes, i) => <Armes key={i} {...armes} />) }
+                        </tbody>
+                    </Table>
+                </Panel>
             </Col>
         )
     }

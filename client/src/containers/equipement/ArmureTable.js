@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -13,20 +13,21 @@ class ArmureTable extends Component {
 
     render() {
         return (
-            <Table condensed bordered hover striped>
-                <thead>
-                    <tr><th colSpan="4">Armure</th></tr>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Enc</th>
-                        <th>Couverture</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { this.props.armure.map((armure, i) => <Armure key={i} {...armure} />) }
-                </tbody>
-            </Table>
+            <Panel header="Armures" bsStyle="info">
+                <Table condensed bordered hover striped fill>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Enc</th>
+                            <th>Couverture</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.props.armure.map((armure, i) => <Armure key={i} {...armure} />) }
+                    </tbody>
+                </Table>
+            </Panel>
         )
     }
 }

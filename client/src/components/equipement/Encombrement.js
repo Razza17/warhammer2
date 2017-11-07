@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Label } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 
 export class Encombrement extends Component {
 
@@ -7,13 +7,10 @@ export class Encombrement extends Component {
         
         let total = this.props.arme + this.props.armure;
         let max = this.props.f * 10;
-        
+        let encombrement = "Encombrement : " + total + " sur " + max;
+
         return (
-            <strong>
-                <h2>
-                    <Label bsStyle={total < max ? "info" : "danger"}>Encombrement : {total} sur {max}</Label>
-                </h2>
-            </strong>
+            <Panel header={encombrement} bsStyle={total < max ? "default" : "danger"}></Panel>
         )
     }
 }

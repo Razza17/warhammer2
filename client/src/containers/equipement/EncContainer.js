@@ -34,7 +34,7 @@ class EncContainer extends Component {
 
     render() {
         return (
-            <Col xs={6} md={4} mdOffset={1}>
+            <Col xs={8}>
                 {
                     this.props.carac.map((carac, i) => <Encombrement key={i} {...carac} arme={this.encArme()} armure={this.encArmure()} />)
                 }
