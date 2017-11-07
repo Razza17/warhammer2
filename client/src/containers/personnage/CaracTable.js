@@ -26,9 +26,9 @@ class CaracTable extends Component {
 
     render() {
         return (
-            <Col xs={12} md={8}>
+            <Col xs={12} lg={8}>
                 <Panel header="Profil du personnage" bsStyle="info">
-                    <Table condensed bordered hover striped className="carac-table-desktop">
+                    <Table condensed bordered hover striped className="carac-table-desktop" fill>
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -61,7 +61,7 @@ class CaracTable extends Component {
                             { this.props.caracActuel.map((caracActuel, i) => <CaracActuel key={i} {...caracActuel}/>) }
                         </tbody>
                     </Table>
-                    <Table condensed bordered hover striped className="carac-table-mobile">
+                    <Table condensed bordered hover striped className="carac-table-mobile" fill>
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>

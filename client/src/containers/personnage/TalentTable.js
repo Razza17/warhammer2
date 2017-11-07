@@ -14,7 +14,7 @@ class TalentTable extends Component {
     render () {
         return (
             <Panel header="Talents" bsStyle="info">
-                <Table condensed hover striped className="border">
+                <Table condensed hover striped className="border" fill>
                     <thead>
                         <tr>
                             <th>Nom</th>

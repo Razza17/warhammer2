@@ -5,11 +5,15 @@ import ArmesTable from '../containers/equipement/ArmesTable';
 import MoneyTable from '../containers/equipement/MoneyTable';
 import ArmureTable from '../containers/equipement/ArmureTable';
 import PointArmureTable from '../containers/equipement/PointArmureTable';
+import EncContainer from '../containers/equipement/EncContainer';
 
 export class Equipement extends Component {
     render() {
         return (
             <Grid fluid>
+                <Row>
+                    <EncContainer />
+                </Row>
                 <Row>
                     <ArmesTable />
                     <Col xs={12} md={6}>

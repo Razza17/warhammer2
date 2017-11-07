@@ -22,33 +22,33 @@ class CaracTableUpdate extends Component {
         return (
             <Table condensed bordered hover striped>
                 <thead>
-                    <tr><th colSpan="17">Profil du Personnage</th></tr>
-                </thead>
-                <tbody>
+                    <tr><th colSpan="18">Profil du Personnage</th></tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td colSpan="8">Profil Principal</td>
-                        <td colSpan="8">Profil Secondaire</td>
+                        <th colSpan="9">Profil Principal</th>
+                        <th colSpan="9">Profil Secondaire</th>
                     </tr>
                     <tr className="text-center profilHeader">
-                        <td>&nbsp;</td>
-                        <td>CC</td>
-                        <td>CT</td>
-                        <td>F</td>
-                        <td>E</td>
-                        <td>Ag</td>
-                        <td>Int</td>
-                        <td>FM</td>
-                        <td>Soc</td>
-                        <td>A</td>
-                        <td>B</td>
-                        <td>BF</td>
-                        <td>BE</td>
-                        <td>M</td>
-                        <td>Mag</td>
-                        <td>PF</td>
-                        <td>PD</td>
+                        <th>&nbsp;</th>
+                        <th>CC</th>
+                        <th>CT</th>
+                        <th>F</th>
+                        <th>E</th>
+                        <th>Ag</th>
+                        <th>Int</th>
+                        <th>FM</th>
+                        <th>Soc</th>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>BF</th>
+                        <th>BE</th>
+                        <th>M</th>
+                        <th>Mag</th>
+                        <th>PF</th>
+                        <th>PD</th>
+                        <th>Actions</th>
                     </tr>
+                </thead>
+                <tbody>
                     {this.props.caracBase.map((caracBase, i) => <CaracBaseUpdate key={i}
                                                                                  getCaracBase={this.props.getCaracBase}
                                                                                  updateCaracBase={this.props.updateCaracBase}

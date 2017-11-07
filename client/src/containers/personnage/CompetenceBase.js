@@ -15,7 +15,7 @@ class CompetenceBase extends Component {
         return (
             <Col xs={12} md={6} lg={4}>
                 <Panel header="Compétence de base" bsStyle="info">
-                    <Table condensed hover striped className="border table-desktop">
+                    <Table condensed hover striped className="border table-desktop" fill>
                         <thead>
                             <tr>
                                 <th>Nom</th>
@@ -35,7 +35,7 @@ class CompetenceBase extends Component {
                             }
                         </tbody>
                     </Table>
-                    <Table condensed hover striped className="border table-mobile">
+                    <Table condensed hover striped className="border table-mobile" fill>
                         <thead>
                             <tr>
                                 <th>Nom</th>

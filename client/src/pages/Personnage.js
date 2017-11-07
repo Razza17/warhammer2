@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Image } from 'react-bootstrap';
 
 import ProfilTable from "../containers/personnage/ProfilTable";
 import DetailsTable from "../containers/personnage/DetailsTable";
@@ -19,7 +19,7 @@ export class Personnage extends Component {
                     <ProfilTable />
                     <DetailsTable />
                     <Col xsHidden smHidden mdHidden lg={4}>
-                        <img src={WarhammerLogo} alt="WarhammerLogo" />
+                        <Image src={WarhammerLogo} alt="WarhammerLogo" />
                     </Col>
                 </Row>
                 <Row>

@@ -9,8 +9,8 @@ body {
     font-size: 18px;
 }
 
-.panel-body {
-    padding: 15px 0;
+.glyphicon {
+    cursor: pointer;
 }
 /* END BOOTSTRAP SURCOUCHE */
 
@@ -18,9 +18,9 @@ ul li {
   list-style-type: none;
 }
 
-.border {
+/*.border {
     border: 1px solid #ddd;
-}
+}*/
 
 .table tbody tr td, .table thead tr th, .count {
     text-align: center;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -13,10 +13,8 @@ class CountContainer extends Component {
 
     render() {
         return (
-            <Col xs={12} md={3}>
-                <Row>
-                    { this.props.count.map((count, i) => <Count key={i} {...count} get={this.props.getCount} update={this.props.updateCount} />) }
-                </Row>
+            <Col xs={12} lg={4}>
+                { this.props.count.map((count, i) => <Count key={i} {...count} get={this.props.getCount} update={this.props.updateCount} />) }
             </Col>
         )
     }

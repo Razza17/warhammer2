@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
+import { Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
-
-import imgChecked from '../../img/checked.png';
 
 class Competence extends Component {
     render() {
@@ -9,7 +8,7 @@ class Competence extends Component {
             <tr>
                 <td>{this.props.nom}</td>
                 <td>{this.props.carac}</td>
-                <td>{this.props.acquis && <img src={imgChecked} alt="Checked" />}</td>
+                <td>{this.props.acquis && <Glyphicon glyph="ok" />}</td>
                 <td>{this.props.dix}</td>
                 <td>{this.props.vingt}</td>
                 <td>{this.props.bonus}</td>
