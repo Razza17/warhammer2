@@ -7,6 +7,7 @@ import ProfilTableUpdate from '../containers/update/ProfilTableUpdate';
 import ArmesTableUpdate from '../containers/update/ArmesTableUpdate';
 import ArmureTableUpdate from '../containers/update/ArmureTableUpdate';
 import EncContainer from '../containers/equipement/EncContainer';
+import CompetenceTableBaseUpdate from '../containers/update/CompetenceTableBaseUpdate';
 
 export class Update extends Component {
     render() {
@@ -29,6 +30,9 @@ export class Update extends Component {
                 <Row>
                     <ArmesTableUpdate />
                     <ArmureTableUpdate />
+                </Row>
+                <Row>
+                    <CompetenceTableBaseUpdate />
                 </Row>
             </Grid>
         )
