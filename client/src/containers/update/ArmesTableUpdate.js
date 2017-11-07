@@ -41,7 +41,7 @@ class ArmesTableUpdate extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            { this.props.arme.map((armes, i) => <ArmesUpdate key={i} {...armes} />) }
+                            { this.props.arme.map((armes, i) => <ArmesUpdate key={i} {...armes} getArme={this.props.getArme} />) }
                             <tr>
                                 <td>
                                     <FormGroup controlId="nomArme">

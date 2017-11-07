@@ -29,7 +29,6 @@ class ArmureTableUpdate extends Component {
                 <Panel collapsible header="Armures">
                     <Table condensed bordered hover striped fill>
                         <thead>
-                            <tr><th colSpan="5">Armure</th></tr>
                             <tr>
                                 <th>Nom</th>
                                 <th>Enc</th>
@@ -39,7 +38,7 @@ class ArmureTableUpdate extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            { this.props.armure.map((armure, i) => <ArmureUpdate key={i} {...armure} />) }
+                            { this.props.armure.map((armure, i) => <ArmureUpdate key={i} {...armure} getArmure={this.props.getArmure} />) }
                             <tr>
                                 <td>
                                     <FormGroup controlId="nomArmure">

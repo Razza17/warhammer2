@@ -471,26 +471,29 @@ app.delete('/arme/:_id', function(req, res) {
 
 //---->>>> UPDATE ARMES <<<<----
 
-// TO SETUP
-
-/*app.put('/arme/:_id', function(req, res) {
+app.put('/arme/:_id', function(req, res) {
     let newData = req.body;
 
     let update = {
         '$set': {
-            //value: newData.value
+            nom: newData.nom,
+            encombrement: newData.encombrement,
+            degats: newData.degats,
+            portee: newData.portee,
+            rechargement: newData.rechargement,
+            attributs: newData.attributs
         }
     };
 
     let options = {new: false};
 
-    Arme.updateOne({name: newData.name}, update, options, function(err, data) {
+    Arme.updateOne({_id: newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }
         res.json(data);
     })
-});*/
+});
 
 //---->>>> POST ARMURES <<<<----
 app.post('/armure', function(req, res) {
@@ -528,26 +531,27 @@ app.delete('/armure/:_id', function(req, res) {
 
 //---->>>> UPDATE ARMURES <<<<----
 
-// TO SETUP
-
-/*app.put('/armure/:_id', function(req, res) {
+app.put('/armure/:_id', function(req, res) {
     let newData = req.body;
 
     let update = {
         '$set': {
-            //value: newData.value
+            nom: newData.nom,
+            encombrement: newData.encombrement,
+            couverture: newData.couverture,
+            points: newData.points
         }
     };
 
     let options = {new: false};
 
-    Armure.updateOne({name: newData.name}, update, options, function(err, data) {
+    Armure.updateOne({_id:newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }
         res.json(data);
     })
-});*/
+});
 
 //---->>>> POST MONEY <<<<----
 app.post('/money', function(req, res) {
