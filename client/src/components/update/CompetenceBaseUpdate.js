@@ -8,15 +8,43 @@ import { updateCompBase } from "../../actions/CompBaseAction";
 
 class CompetenceBaseUpdate extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            acquisCheck: this.props.acquis,
+            dixCheck: this.props.dix,
+            vingtCheck: this.props.vingt
+        }
+    }
+
+    changeAcquis() {
+        this.setState({
+            acquisCheck: !this.props.acquis
+        })
+    }
+
+    changeDix() {
+        this.setState({
+            dixCheck: !this.props.dix
+        })
+    }
+
+    changeVingt() {
+        this.setState({
+            vingtCheck: !this.props.vingt
+        })
+    }
+
     handleUpdate() {
         let _id = this.props._id;
         let compBase = {
             _id:_id,
             nom: findDOMNode(this.refs.nomCompBase).value,
             carac: findDOMNode(this.refs.caracCompBase).value,
-            acquis: findDOMNode(this.refs.acquisCompBase),
-            dix: findDOMNode(this.refs.dixCompBase),
-            vingt: findDOMNode(this.refs.vingtCompBase),
+            acquis: this.state.acquisCheck,
+            dix: this.state.dixCheck,
+            vingt: this.state.vingtCheck,
             bonus: findDOMNode(this.refs.bonusCompBase).value
         };
         console.log(compBase);
@@ -44,13 +72,13 @@ class CompetenceBaseUpdate extends Component {
                     </FormGroup>
                 </td>
                 <td>
-                    {this.props.acquis ? <Glyphicon glyph="ok" /> : <Checkbox ref='acquisCompBase' />}
+                    {this.props.acquis ? <Glyphicon glyph="ok" /> : <Checkbox onClick={this.changeAcquis.bind(this)} />}
                 </td>
                 <td>
-                    {this.props.dix ? <Glyphicon glyph="ok" /> : <Checkbox ref='dixCompBase' />}
+                    {this.props.dix ? <Glyphicon glyph="ok" /> : <Checkbox onClick={this.changeDix.bind(this)} />}
                 </td>
                 <td>
-                    {this.props.vingt ? <Glyphicon glyph="ok" /> : <Checkbox ref='vingtCompBase' />}
+                    {this.props.vingt ? <Glyphicon glyph="ok" /> : <Checkbox onClick={this.changeVingt.bind(this)} />}
                 </td>
                 <td>
                     <FormGroup controlId="bonusCompBase">
