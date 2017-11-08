@@ -437,6 +437,29 @@ app.get('/talent', function(req, res) {
     })
 });
 
+//---->>>> UPDATE TALENT <<<<----
+app.put('/talent/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            nom: newData.nom,
+            desc: newData.desc,
+            competence: newData.competence,
+            bonus: newData.bonus
+        }
+    };
+
+    let options = {new: false};
+
+    Talent.updateOne({_id: newData._id}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
 //---->>>> POST ARMES <<<<----
 app.post('/arme', function(req, res) {
     let arme = req.body;

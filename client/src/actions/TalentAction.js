@@ -15,9 +15,9 @@ export function getTalent() {
 
 
 // POST TALENT
-export function postTalent() {
+export function postTalent(newTalent) {
     return function(dispatch) {
-        axios.post('/talent')
+        axios.post('/talent', newTalent)
             .then(function(response) {
                 dispatch({type:"POST_TALENT", payload:response.data})
             })
