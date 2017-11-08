@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { updateCompBase } from "../../actions/CompBaseAction";
+import { updateCompAvance } from "../../actions/CompAvanceAction";
 
-class CompetenceBaseUpdate extends Component {
+class CompetenceAvanceUpdate extends Component {
 
     constructor(props) {
         super(props);
@@ -38,25 +38,37 @@ class CompetenceBaseUpdate extends Component {
 
     handleUpdate() {
         let _id = this.props._id;
-        let compBase = {
+        let compAvance = {
             _id:_id,
+            nom: findDOMNode(this.refs.nomCompAvance).value,
+            carac: findDOMNode(this.refs.caracCompAvance).value,
             acquis: this.state.acquisCheck,
             dix: this.state.dixCheck,
             vingt: this.state.vingtCheck,
-            bonus: findDOMNode(this.refs.bonusCompBase).value
+            bonus: findDOMNode(this.refs.bonusCompAvance).value
         };
-        this.props.updateCompBase(_id, compBase);
-        this.props.getCompBase();
+        this.props.updateCompAvance(_id, compAvance);
+        this.props.getCompAvance();
     }
 
     render() {
         return (
             <tr>
                 <td>
-                    {this.props.nom}
+                    <FormGroup controlId="nomCompAvance">
+                        <FormControl
+                            type='text'
+                            defaultValue={this.props.nom}
+                            ref='nomCompAvance' />
+                    </FormGroup>
                 </td>
                 <td>
-                    {this.props.carac}
+                    <FormGroup controlId="caracCompAvance">
+                        <FormControl
+                            type='text'
+                            defaultValue={this.props.carac}
+                            ref='caracCompAvance' />
+                    </FormGroup>
                 </td>
                 <td>
                     <Checkbox checked={this.state.acquisCheck} onChange={this.changeAcquis.bind(this)} />
@@ -68,11 +80,11 @@ class CompetenceBaseUpdate extends Component {
                     <Checkbox checked={this.state.vingtCheck} onChange={this.changeVingt.bind(this)} />
                 </td>
                 <td>
-                    <FormGroup controlId="bonusCompBase">
+                    <FormGroup controlId="bonusCompAvance">
                         <FormControl
                             type='text'
                             defaultValue={this.props.bonus}
-                            ref='bonusCompBase' />
+                            ref='bonusCompAvance' />
                     </FormGroup>
                 </td>
                 <td>
@@ -98,8 +110,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        updateCompBase:updateCompBase
+        updateCompAvance:updateCompAvance
     }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompetenceBaseUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(CompetenceAvanceUpdate);

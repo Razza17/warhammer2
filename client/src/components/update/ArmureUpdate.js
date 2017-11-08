@@ -48,11 +48,12 @@ class ArmureUpdate extends Component {
                 <td>
                     <FormGroup controlId="formControlsSelect">
                         <FormControl componentClass='select' placeholder='Couverture' ref='couvertureArmure'>
-                            <option value='Tête' selected={this.props.couverture === "Tête"}>Tête</option>
-                            <option value='Bras' selected={this.props.couverture === "Bras"}>Bras</option>
-                            <option value='Corps' selected={this.props.couverture === "Corps"}>Corps</option>
-                            <option value='Corps + Bras' selected={this.props.couverture === "Corps + Bras"}>Corps + Bras</option>
-                            <option value='Jambes' selected={this.props.couverture === "Jambes"}>Jambes</option>
+                            <option defaultValue={this.props.couverture}>{this.props.couverture}</option>
+                            <option value="Tête">Tête</option>
+                            <option value="Bras">Bras</option>
+                            <option value="Corps">Corps</option>
+                            <option value="Corps + Bras">Corps + Bras</option>
+                            <option value="Jambes">Jambes</option>
                         </FormControl>
                     </FormGroup>
                 </td>

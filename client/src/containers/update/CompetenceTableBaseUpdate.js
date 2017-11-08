@@ -15,7 +15,7 @@ class CompetenceTableBaseUpdate extends Component {
         return (
             <Col xs={12}>
                 <Panel collapsible header="Compétence de base">
-                    <Table condensed hover striped className="border table-desktop" fill>
+                    <Table condensed hover striped className="border" fill>
                         <thead>
                             <tr>
                                 <th>Nom</th>
@@ -33,26 +33,6 @@ class CompetenceTableBaseUpdate extends Component {
                                     <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} />
                                 )
                             }
-                        </tbody>
-                    </Table>
-                    <Table condensed hover striped className="border table-mobile" fill>
-                        <thead>
-                            <tr>
-                                <th>Nom</th>
-                                <th>Carac.</th>
-                                <th>Ac.</th>
-                                <th>+10</th>
-                                <th>+20</th>
-                                <th>Bon.</th>
-                                <th>Tot.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            this.props.compBase.map((competenceB, i) =>
-                                <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} />
-                            )
-                        }
                         </tbody>
                     </Table>
                 </Panel>

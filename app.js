@@ -68,8 +68,6 @@ app.put('/profil/:_id', function(req, res) {
 
     let update = {
         '$set': {
-            nom: newData.nom,
-            race: newData.race,
             carriereA: newData.carriereA,
             Acarriere: newData.Acarriere
         }
@@ -347,26 +345,27 @@ app.get('/competencebase', function(req, res) {
 
 //---->>>> UPDATE COMPETENCE BASE <<<<----
 
-// TO SETUP
-
-/*app.put('/competencebase/:_id', function(req, res) {
+app.put('/competencebase/:_id', function(req, res) {
     let newData = req.body;
 
     let update = {
         '$set': {
-            //value: newData.value
+            acquis: newData.acquis,
+            dix: newData.dix,
+            vingt: newData.vingt,
+            bonus: newData.bonus
         }
     };
 
     let options = {new: false};
 
-    CompetenceBase.updateOne({name: newData.name}, update, options, function(err, data) {
+    CompetenceBase.updateOne({_id: newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }
         res.json(data);
     })
-});*/
+});
 
 //---->>>> POST COMPETENCE AVANCE <<<<----
 app.post('/competenceavance', function(req, res) {
@@ -392,26 +391,29 @@ app.get('/competenceavance', function(req, res) {
 
 //---->>>> UPDATE COMPETENCE AVANCE <<<<----
 
-// TO SETUP
-
-/*app.put('/competenceavance/:_id', function(req, res) {
+app.put('/competenceavance/:_id', function(req, res) {
     let newData = req.body;
 
     let update = {
         '$set': {
-            //value: newData.value
+            nom: newData.nom,
+            carac: newData.carac,
+            acquis: newData.acquis,
+            dix: newData.dix,
+            vingt: newData.vingt,
+            bonus: newData.bonus
         }
     };
 
     let options = {new: false};
 
-    CompetenceAvance.updateOne({name: newData.name}, update, options, function(err, data) {
+    CompetenceAvance.updateOne({_id: newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }
         res.json(data);
     })
-});*/
+});
 
 //---->>>> POST TALENT <<<<----
 app.post('/talent', function(req, res) {

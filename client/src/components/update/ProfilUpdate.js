@@ -37,28 +37,6 @@ export class ProfilUpdate extends Component {
             <Panel collapsible header="Personnage">
                 <ul>
                     <li>
-                        <FormGroup controlId="nom">
-                            <InputGroup>
-                                <InputGroup.Addon>Nom</InputGroup.Addon>
-                                <FormControl
-                                    type='text'
-                                    value={this.props.nom}
-                                    ref='nom' />
-                            </InputGroup>
-                        </FormGroup>
-                    </li>
-                    <li>
-                        <FormGroup controlId="race">
-                            <InputGroup>
-                                <InputGroup.Addon>Race</InputGroup.Addon>
-                                <FormControl
-                                    type='text'
-                                    value={this.props.race}
-                                    ref='race' />
-                            </InputGroup>
-                        </FormGroup>
-                    </li>
-                    <li>
                         <FormGroup controlId="carriereA">
                             <InputGroup>
                                 <InputGroup.Addon>Carrière Actuelle</InputGroup.Addon>
