@@ -23,7 +23,10 @@ export function inventaireReducer(state={inventaire:[]}, action) {
                     }
                 );
 
-            return {inventaire:[...currentInventaireToDelete.splice(0, indexToDelete), ...currentInventaireToDelete.splice(indexToDelete, 1)]};
+            return {inventaire:[
+                ...currentInventaireToDelete.slice(0, indexToDelete),
+                ...currentInventaireToDelete.slice(indexToDelete + 1)
+            ]};
         case "DELETE_INVENTAIRE_REJECTED":
             return action.payload;
 

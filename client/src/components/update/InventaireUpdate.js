@@ -8,12 +8,31 @@ import { deleteInventaire, updateInventaire } from "../../actions/InventaireActi
 
 class InventaireUpdate extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            nom: this.props.nom,
+            quantite: this.props.quantite,
+            encombrement: this.props.encombrement
+        }
+    }
+
     handleDelete(){
         let _id = this.props._id;
         this.props.deleteInventaire(_id);
         this.props.getInventaire();
-        this.forceUpdate();
     }
+
+    /*handleRemove (i) {
+        let that = this;
+        console.log('removing row:',i);
+        _.forEach(this.state, function (val, colName) {
+            that.state[colName].splice(i,1);
+        });
+        console.log(this.state);
+        this.setState(this.state);
+    }*/
 
     handleUpdate() {
         let _id = this.props._id;
@@ -35,7 +54,7 @@ class InventaireUpdate extends Component {
                     <FormGroup controlId="nomInventaire">
                         <FormControl
                             type='text'
-                            defaultValue={this.props.nom}
+                            defaultValue={this.state.nom}
                             ref='nomInventaire' />
                     </FormGroup>
                 </td>
@@ -43,7 +62,7 @@ class InventaireUpdate extends Component {
                     <FormGroup controlId="quantiteInventaire">
                         <FormControl
                             type='text'
-                            defaultValue={this.props.quantite}
+                            defaultValue={this.state.quantite}
                             ref='quantiteInventaire' />
                     </FormGroup>
                 </td>
@@ -51,7 +70,7 @@ class InventaireUpdate extends Component {
                     <FormGroup controlId="encombrementInventaire">
                         <FormControl
                             type='text'
-                            defaultValue={this.props.encombrement}
+                            defaultValue={this.state.encombrement}
                             ref='encombrementInventaire' />
                     </FormGroup>
                 </td>
