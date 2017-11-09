@@ -11,6 +11,7 @@ import { compAvanceReducer } from "./CompAvanceReducer";
 import { talentReducer } from "./TalentReducer";
 import { armeReducer } from "./ArmeReducer";
 import { armureReducer } from "./ArmureReducer";
+import { inventaireReducer } from "./InventaireReducer";
 
 export default combineReducers({
     profile: profilReducer,
@@ -24,5 +25,6 @@ export default combineReducers({
     talent: talentReducer,
     arme: armeReducer,
     armure: armureReducer,
-    money: moneyReducer
+    money: moneyReducer,
+    inventaire: inventaireReducer
 })

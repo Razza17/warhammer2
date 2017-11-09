@@ -32,11 +32,24 @@ class EncContainer extends Component {
         }
     }
 
+    encInventaire() {
+        const inventaire = this.props.inventaire;
+        let total = 0;
+
+        for (let i = 0; i < inventaire.length; i++) {
+            total += inventaire[i].encombrement;
+
+            if (i === inventaire.length - 1) {
+                return total;
+            }
+        }
+    }
+
     render() {
         return (
             <Col xs={8} md={4}>
                 {
-                    this.props.carac.map((carac, i) => <Encombrement key={i} {...carac} arme={this.encArme()} armure={this.encArmure()} />)
+                    this.props.carac.map((carac, i) => <Encombrement key={i} {...carac} arme={this.encArme()} armure={this.encArmure()} inventaire={this.encInventaire()} />)
                 }
             </Col>
         )
@@ -47,7 +60,8 @@ function mapStateToProps(state){
     return {
         carac: state.caracActuel.caracActuel,
         arme: state.arme.arme,
-        armure: state.armure.armure
+        armure: state.armure.armure,
+        inventaire: state.inventaire.inventaire
     }
 }
 

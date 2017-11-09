@@ -5,7 +5,7 @@ export class Encombrement extends Component {
 
     render() {
         
-        let total = this.props.arme + this.props.armure;
+        let total = this.props.arme + this.props.armure + this.props.inventaire;
         let max = this.props.f * 10;
         let encombrement = "Encombrement : " + total + " sur " + max;
 

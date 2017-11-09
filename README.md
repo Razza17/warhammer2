@@ -21,10 +21,11 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] Mettre en place la BDD MongoDB
 - [x] Mettre en place les fichiers du serveur
 - [x] GET les données de la BDD dans la page personnage
-- GET les données de la BDD dans la page équipement (en cours)
-- GET les données de la BDD dans la page Inventaire
-- UPDATE les données du personnage
-- POST, UPDATE and DELETE les données de l'équipement et de l'inventaire
+- [x] GET les données de la BDD dans la page équipement
+- [x] GET les données de la BDD de l'inventaire
+- [x] UPDATE les données du personnage
+- [x] POST, UPDATE and DELETE les données de l'équipement
+- [x] POST, UPDATE and DELETE les données de l'inventaire
 - Page Combat (Regroupement des composants utiles à la phase de combat)
 - Page Création de personnage et POST dans la BDD
 - DELETE Personnage(s)

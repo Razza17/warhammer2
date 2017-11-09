@@ -13,13 +13,12 @@ class ArmureTableUpdate extends Component {
     }
 
     handleSubmit() {
-        const armure = [{
+        const armure = {
             nom: findDOMNode(this.refs.nomArmure).value,
             encombrement: findDOMNode(this.refs.encArmure).value,
             couverture: findDOMNode(this.refs.couvArmure).value,
             points: findDOMNode(this.refs.pointsArmure).value
-        }];
-        console.log(armure);
+        };
         this.props.postArmure(armure);
     }
 

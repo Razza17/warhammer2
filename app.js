@@ -38,6 +38,7 @@ let Talent = require('./models/talent');
 let Arme = require('./models/arme');
 let Armure = require('./models/armure');
 let Money = require('./models/money');
+let Inventaire = require('./models/inventaire');
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -619,6 +620,63 @@ app.put('/money/:_id', function(req, res) {
     let options = {new: false};
 
     Money.findOneAndUpdate(query, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+//---->>>> POST INVENTAIRE <<<<----
+app.post('/inventaire', function(req, res) {
+    let inv = req.body;
+
+    Inventaire.create(inv, function(err, inventaire) {
+        if(err) {
+            throw err;
+        }
+        res.json(inventaire);
+    })
+});
+
+//---->>>> GET INVENTAIRE <<<<----
+app.get('/inventaire', function(req, res) {
+    Inventaire.find(function(err, inventaire) {
+        if(err) {
+            throw err;
+        }
+        res.json(inventaire);
+    })
+});
+
+//---->>>> DELETE INVENTAIRE <<<<----
+app.delete('/inventaire/:_id', function(req, res) {
+    let query = {_id: req.params._id};
+
+    Inventaire.remove(query, function(err, inventaire) {
+        if(err) {
+            throw err;
+        }
+        res.json(inventaire);
+    })
+});
+
+//---->>>> UPDATE INVENTAIRE <<<<----
+
+app.put('/inventaire/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            nom: newData.nom,
+            quantite: newData.quantite,
+            encombrement: newData.encombrement
+        }
+    };
+
+    let options = {new: false};
+
+    Inventaire.updateOne({_id: newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }

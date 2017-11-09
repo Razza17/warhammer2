@@ -25,7 +25,7 @@ class TalentTableUpdate extends Component {
 
     render () {
         return (
-            <Col xs={12} md={8} mdOffset={2}>
+            <Col xs={12} md={6}>
                 <Panel collapsible header="Talents">
                     <Table condensed hover striped className="border" fill>
                         <thead>

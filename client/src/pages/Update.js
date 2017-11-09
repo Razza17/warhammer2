@@ -10,6 +10,7 @@ import EncContainer from '../containers/equipement/EncContainer';
 import CompetenceTableBaseUpdate from '../containers/update/CompetenceTableBaseUpdate';
 import CompetenceTableAvanceUpdate from '../containers/update/CompetenceTableAvanceUpdate';
 import TalentTableUpdate from "../containers/update/TalentTableUpdate";
+import InventaireTableUpdate from "../containers/update/InventaireTableUpdate";
 
 export class Update extends Component {
     render() {
@@ -37,6 +38,7 @@ export class Update extends Component {
                 </Row>
                 <Row>
                     <TalentTableUpdate />
+                    <InventaireTableUpdate />
                 </Row>
             </Grid>
         )
