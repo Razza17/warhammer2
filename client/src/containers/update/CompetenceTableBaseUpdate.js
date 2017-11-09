@@ -13,7 +13,7 @@ class CompetenceTableBaseUpdate extends Component {
 
     render() {
         return (
-            <Col xs={12}>
+            <Col xs={12} md={6}>
                 <Panel collapsible header="Compétence de base">
                     <Table condensed hover striped className="border" fill>
                         <thead>
@@ -25,6 +25,7 @@ class CompetenceTableBaseUpdate extends Component {
                                 <th>+20%</th>
                                 <th>Bonus</th>
                                 <th>Total</th>
+                                <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>

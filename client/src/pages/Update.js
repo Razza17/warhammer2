@@ -17,6 +17,7 @@ export class Update extends Component {
             <Grid id="update" fluid>
                 <Row>
                     <ProfilTableUpdate />
+                    <EncContainer />
                 </Row>
                 <Row>
                     <Col xsHidden smHidden md={12}>
@@ -25,9 +26,6 @@ export class Update extends Component {
                     <Col xs={12} mdHidden lgHidden>
                         <CaracTableUpdateMobile />
                     </Col>
-                </Row>
-                <Row>
-                    <EncContainer />
                 </Row>
                 <Row>
                     <ArmesTableUpdate />

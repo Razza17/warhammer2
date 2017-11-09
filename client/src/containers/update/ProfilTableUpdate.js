@@ -13,7 +13,7 @@ class ProfilTableUpdate extends Component {
 
     render() {
         return (
-            <Col xs={8} md={8}>
+            <Col xs={8} md={4}>
                 {this.props.profile.map((perso, i) => <ProfilUpdate key={i}
                                                                     getProfile={this.props.getProfile}
                                                                     updateProfile={this.props.updateProfile}

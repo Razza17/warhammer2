@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Table, Panel, FormGroup, FormControl, Glyphicon, Checkbox } from 'react-bootstrap';
+import { Col, Table, Panel, FormGroup, FormControl, Button, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
@@ -54,7 +54,7 @@ class CompetenceTableAvanceUpdate extends Component {
 
     render() {
         return (
-            <Col xs={12}>
+            <Col xs={12} md={6}>
                 <Panel collapsible header="Compétences avancées">
                     <Table condensed hover striped bordered fill>
                         <thead>
@@ -66,6 +66,7 @@ class CompetenceTableAvanceUpdate extends Component {
                                 <th>+20%</th>
                                 <th>Bonus</th>
                                 <th>Total</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,9 +113,8 @@ class CompetenceTableAvanceUpdate extends Component {
                                             ref='bonusPostCompAvance' />
                                     </FormGroup>
                                 </td>
-                                <td>&nbsp;</td>
-                                <td>
-                                    <Glyphicon glyph="ok" onClick={this.handlePost.bind(this)} />
+                                <td colSpan="2">
+                                    <Button onClick={this.handlePost.bind(this)}>Add</Button>
                                 </td>
                             </tr>
                         </tbody>
