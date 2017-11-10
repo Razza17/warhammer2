@@ -5,9 +5,9 @@ export class Talent extends Component {
         return (
             <tr>
                 <td>{this.props.nom}</td>
-                <td className="text-center">{this.props.desc}</td>
-                <td className="text-center">{this.props.competence}</td>
-                <td className="text-center">{this.props.bonus}</td>
+                <td>{this.props.desc}</td>
+                <td>{this.props.competence}</td>
+                <td>{this.props.bonus}</td>
             </tr>
         );
     }

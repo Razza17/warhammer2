@@ -1,67 +1,41 @@
-import {
-    CO_INCREMENT,
-    CO_DECREMENT,
-    PA_INCREMENT,
-    PA_DECREMENT,
-    REMOVE_CO,
-    ADD_CO,
-    REMOVE_PA,
-    ADD_PA,
-    REMOVE_SO,
-    ADD_SO
-} from "../constants/Constants";
+import axios from 'axios';
 
-export const coIncrement = (couronne, pistole) => ({
-    type: CO_INCREMENT,
-    couronne: couronne + 1,
-    pistole: pistole - 20
-});
+// GET MONEY
+export function getMoney() {
+    return function(dispatch) {
+        axios.get('/money')
+            .then(function(response) {
+                dispatch({type:"GET_MONEY", payload:response.data})
+            })
+            .catch(function(err) {
+                dispatch({type:"GET_MONEY_REJECTED", payload:err})
+            })
+    }
+}
 
-export const coDecrement = (couronne, pistole) => ({
-    type: CO_DECREMENT,
-    couronne: couronne - 1,
-    pistole: pistole + 20
-});
 
-export const paIncrement = (pistole, sous) => ({
-    type: PA_INCREMENT,
-    pistole: pistole + 1,
-    sous: sous - 12
+// POST MONEY
+export function postMoney() {
+    return function(dispatch) {
+        axios.post('/money')
+            .then(function(response) {
+                dispatch({type:"POST_MONEY", payload:response.data})
+            })
+            .catch(function(err) {
+                dispatch({type:"POST_MONEY_REJECTED", payload:err})
+            })
+    }
+}
 
-});
-
-export const paDecrement = (pistole, sous) => ({
-    type: PA_DECREMENT,
-    pistole: pistole - 1,
-    sous: sous + 12
-});
-
-export const removeCo = (couronne) => ({
-    type: REMOVE_CO,
-    couronne: couronne - 1
-});
-
-export const addCo = (couronne) => ({
-    type: ADD_CO,
-    couronne: couronne + 1
-});
-
-export const removePa = (pistole) => ({
-    type: REMOVE_PA,
-    pistole: pistole - 1
-});
-
-export const addPa = (pistole) => ({
-    type: ADD_PA,
-    pistole: pistole + 1
-});
-
-export const removeSo = (sous) => ({
-    type: REMOVE_SO,
-    sous: sous - 1
-});
-
-export const addSo = (sous) => ({
-    type: ADD_SO,
-    sous: sous + 1
-});
+// UPDATE MONEY
+export function updateMoney(id, newData) {
+    return function(dispatch) {
+        axios.put('/money/' + id, newData)
+            .then(function(response) {
+                dispatch({type:"UPDATE_MONEY", payload:response.data})
+            })
+            .catch(function(err) {
+                dispatch({type:"UPDATE_MONEY_REJECTED", payload:err})
+            })
+    }
+}
