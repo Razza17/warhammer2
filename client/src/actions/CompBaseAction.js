@@ -15,9 +15,9 @@ export function getCompBase() {
 
 
 // POST COMPETENCE DE BASE
-export function postCompBase() {
+export function postCompBase(newComp) {
     return function(dispatch) {
-        axios.post('/competencebase')
+        axios.post('/competencebase', newComp)
             .then(function(response) {
                 dispatch({type:"POST_COMPBASE", payload:response.data})
             })

@@ -328,12 +328,12 @@
     ],
     "arme" : [
         {
-            "nom" : "Fléau d\"arme",
+            "nom" : "Fléau d'arme",
             "encombrement" : 95,
             "degats" : 5,
             "portee" : "0",
             "recharge" : "",
-            "attribut" : "Epuisante + percutante"
+            "attributs" : "Epuisante + percutante"
         },
         {
             "nom" : "Hache",
@@ -341,7 +341,7 @@
             "degats" : 4,
             "portee" : "0",
             "recharge" : "",
-            "attribut" : ""
+            "attributs" : ""
         },
         {
             "nom" : "Dague",
@@ -349,7 +349,7 @@
             "degats" : -3,
             "portee" : "6/12",
             "recharge" : "",
-            "attribut" : ""
+            "attributs" : ""
         }
     ],
     "armure" : [
@@ -370,18 +370,6 @@
             "encombrement" : 20,
             "couverture" : "Jambes",
             "points" : 1
-        },
-        {
-            "nom" : "Casque de fer",
-            "encombrement" : 30,
-            "couverture" : "Tête",
-            "points" : 2
-        },
-        {
-            "nom" : "Cotte de maille",
-            "encombrement" : 30,
-            "couverture" : "Corps",
-            "points" : 2
         }
     ],
     "money" : [
