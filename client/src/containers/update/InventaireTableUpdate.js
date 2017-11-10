@@ -36,7 +36,7 @@ class InventaireTableUpdate extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            { this.props.inventaire.map((inventaire, i) => <InventaireUpdate key={i} {...inventaire} getInventaire={this.props.getInventaire} />) }
+                            { this.props.inventaire.map((inventaire) => <InventaireUpdate key={inventaire._id} {...inventaire} getInventaire={this.props.getInventaire} />) }
                             <tr>
                                 <td>
                                     <FormGroup controlId="nomPostInventaire">

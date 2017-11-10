@@ -21,18 +21,19 @@ class InventaireUpdate extends Component {
     handleDelete(){
         let _id = this.props._id;
         this.props.deleteInventaire(_id);
-        this.props.getInventaire();
+        this.handleChangeValue();
     }
 
-    /*handleRemove (i) {
-        let that = this;
-        console.log('removing row:',i);
-        _.forEach(this.state, function (val, colName) {
-            that.state[colName].splice(i,1);
-        });
-        console.log(this.state);
-        this.setState(this.state);
-    }*/
+    handleChangeValue() {
+        let invData = this.props.inventaire.map((inv) => {return {...inv}});
+        for (let i = 0; i < invData.length; i++) {
+            this.setState({
+                nom: invData[i].nom,
+                quantite: invData[i].quantite,
+                encombrement: invData[i].encombrement
+            })
+        }
+    }
 
     handleUpdate() {
         let _id = this.props._id;
@@ -82,6 +83,12 @@ class InventaireUpdate extends Component {
     }
 }
 
+function mapStateToProps(state){
+    return {
+        inventaire: state.inventaire.inventaire
+    }
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         deleteInventaire: deleteInventaire,
@@ -89,4 +96,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 
-export default connect("", mapDispatchToProps)(InventaireUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(InventaireUpdate);
