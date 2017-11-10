@@ -14,17 +14,20 @@ export function armeReducer(state={arme:[]}, action) {
 
         // DELETE
         case "DELETE_ARME":
-            // Create a copy of the current array of books
+
             const currentArmeToDelete = [...state.arme];
-            // Determine at which index in books array is the book to be deleted
+
             const indexToDelete =
                 currentArmeToDelete.findIndex(
                     function(arme){
                         return arme._id === action.payload;
                     }
                 );
-            //use slice to remove the book at the specified index
-            return {arme:[...currentArmeToDelete.slice(0, indexToDelete), ...currentArmeToDelete.slice(indexToDelete + 1)]};
+
+            return {arme:[
+                ...currentArmeToDelete.slice(0, indexToDelete),
+                ...currentArmeToDelete.slice(indexToDelete + 1)
+            ]};
         case "DELETE_ARME_REJECTED":
             return action.payload;
 

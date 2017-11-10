@@ -17,6 +17,12 @@ class EncContainer extends Component {
                 return total;
             }
         }
+
+        if (total === "unfedfined") {
+            return 0;
+        } else {
+            return total;
+        }
     }
 
     encArmure() {
@@ -30,6 +36,12 @@ class EncContainer extends Component {
                 return total;
             }
         }
+
+        if (total === "unfedfined") {
+            return 0;
+        } else {
+            return total;
+        }
     }
 
     encInventaire() {
@@ -42,6 +54,12 @@ class EncContainer extends Component {
             if (i === inventaire.length - 1) {
                 return total;
             }
+        }
+
+        if (total === "unfedfined") {
+            return 0;
+        } else {
+            return total;
         }
     }
 
