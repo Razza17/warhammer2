@@ -20,6 +20,7 @@ class ArmureTableUpdate extends Component {
             points: findDOMNode(this.refs.pointsArmure).value
         };
         this.props.postArmure(armure);
+        this.props.getArmure();
     }
 
     render() {
@@ -37,7 +38,7 @@ class ArmureTableUpdate extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            { this.props.armure.map((armure, i) => <ArmureUpdate key={i} {...armure} getArmure={this.props.getArmure} />) }
+                            { this.props.armure.map((armure) => <ArmureUpdate key={armure._id} {...armure} getArmure={this.props.getArmure} />) }
                             <tr>
                                 <td>
                                     <FormGroup controlId="nomArmure">
