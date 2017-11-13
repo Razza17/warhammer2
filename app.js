@@ -39,6 +39,7 @@ let Arme = require('./models/arme');
 let Armure = require('./models/armure');
 let Money = require('./models/money');
 let Inventaire = require('./models/inventaire');
+let Folie = require('./models/folie');
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -677,6 +678,63 @@ app.put('/inventaire/:_id', function(req, res) {
     let options = {new: false};
 
     Inventaire.updateOne({_id: newData._id}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+//---->>>> POST FOLIE <<<<----
+app.post('/folie', function(req, res) {
+    let inv = req.body;
+
+    Folie.create(inv, function(err, folie) {
+        if(err) {
+            throw err;
+        }
+        res.json(folie);
+    })
+});
+
+//---->>>> GET FOLIE <<<<----
+app.get('/folie', function(req, res) {
+    Folie.find(function(err, folie) {
+        if(err) {
+            throw err;
+        }
+        res.json(folie);
+    })
+});
+
+//---->>>> DELETE FOLIE <<<<----
+app.delete('/folie/:_id', function(req, res) {
+    let query = {_id: req.params._id};
+
+    Folie.remove(query, function(err, folie) {
+        if(err) {
+            throw err;
+        }
+        res.json(folie);
+    })
+});
+
+//---->>>> UPDATE FOLIE <<<<----
+
+app.put('/folie/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            nom: newData.nom,
+            quantite: newData.quantite,
+            encombrement: newData.encombrement
+        }
+    };
+
+    let options = {new: false};
+
+    Folie.updateOne({_id: newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }

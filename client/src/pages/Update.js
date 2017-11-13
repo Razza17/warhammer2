@@ -11,6 +11,7 @@ import CompetenceTableBaseUpdate from '../containers/update/CompetenceTableBaseU
 import CompetenceTableAvanceUpdate from '../containers/update/CompetenceTableAvanceUpdate';
 import TalentTableUpdate from "../containers/update/TalentTableUpdate";
 import InventaireTableUpdate from "../containers/update/InventaireTableUpdate";
+import FolieTableUpdate from "../containers/update/FolieTableUpdate";
 
 export class Update extends Component {
     render() {
@@ -39,6 +40,9 @@ export class Update extends Component {
                 <Row>
                     <TalentTableUpdate />
                     <InventaireTableUpdate />
+                </Row>
+                <Row>
+                    <FolieTableUpdate />
                 </Row>
             </Grid>
         )

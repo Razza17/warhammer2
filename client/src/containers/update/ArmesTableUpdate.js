@@ -22,6 +22,7 @@ class ArmesTableUpdate extends Component {
             attributs: findDOMNode(this.refs.attributsArme).value
         }];
         this.props.postArme(arme);
+        this.props.getArme();
     }
 
     render() {
@@ -41,7 +42,7 @@ class ArmesTableUpdate extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            { this.props.arme.map((armes, i) => <ArmesUpdate key={i} {...armes} getArme={this.props.getArme} />) }
+                            { this.props.arme.map((armes) => <ArmesUpdate key={armes._id} {...armes} getArme={this.props.getArme} />) }
                             <tr>
                                 <td>
                                     <FormGroup controlId="nomArme">

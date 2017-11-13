@@ -7,6 +7,7 @@ import ArmureTable from '../containers/equipement/ArmureTable';
 import PointArmureTable from '../containers/equipement/PointArmureTable';
 import EncContainer from '../containers/equipement/EncContainer';
 import InventaireTable from '../containers/equipement/InventaireTable';
+import FolieTable from '../containers/equipement/FolieTable';
 
 export class Equipement extends Component {
     render() {
@@ -30,8 +31,11 @@ export class Equipement extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12} md={8} mdOffset={2}>
+                    <Col xs={6} md={4} mdOffset={2}>
                         <InventaireTable />
+                    </Col>
+                    <Col xs={6} md={4}>
+                        <FolieTable />
                     </Col>
                 </Row>
             </Grid>
