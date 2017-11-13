@@ -34,6 +34,7 @@ class TalentTableUpdate extends Component {
                                 <th>Description</th>
                                 <th>Compétences</th>
                                 <th>Bonus</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>

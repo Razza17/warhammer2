@@ -45,7 +45,7 @@ class CaracTableUpdate extends Component {
                             <th>Mag</th>
                             <th>PF</th>
                             <th>PD</th>
-                            <th>Action</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
