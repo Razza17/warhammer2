@@ -7,7 +7,7 @@ import { PointArmure } from "../../components/equipement/PointArmure";
 import { getCaracActuel } from "../../actions/CaracActuelAction";
 
 class PointArmureTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCaracActuel();
     }
 

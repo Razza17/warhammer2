@@ -1,4 +1,4 @@
-export function compAvanceReducer(state={compAvance:[]}, action) {
+export function compAvanceReducer(state={compAvance:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_COMPAVANCE":
@@ -14,7 +14,7 @@ export function compAvanceReducer(state={compAvance:[]}, action) {
 
         // UPDATE
         case "UPDATE_COMPAVANCE":
-            return {...state};
+            return {...state, status:action.response};
         case "UPDATE_COMPAVANCE_REJECTED":
             return action.payload;
 

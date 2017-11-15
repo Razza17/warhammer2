@@ -7,7 +7,7 @@ import Count from "../../components/personnage/Count";
 import { getCount, updateCount } from "../../actions/CountAction";
 
 class CountContainer extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCount();
     }
 

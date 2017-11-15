@@ -18,7 +18,7 @@ import { CaracActuelS } from "../../components/personnage/CaracActuelS";
 
 
 class CaracTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCaracActuel();
         this.props.getCaracAvance();
         this.props.getCaracBase();

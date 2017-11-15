@@ -7,7 +7,7 @@ import { Talent } from "../../components/personnage/Talent";
 import { getTalent } from "../../actions/TalentAction";
 
 class TalentTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getTalent();
     }
 

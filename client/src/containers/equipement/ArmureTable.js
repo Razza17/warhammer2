@@ -7,7 +7,7 @@ import { getArmure } from "../../actions/ArmureAction";
 import { Armure } from '../../components/equipement/Armure';
 
 class ArmureTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getArmure();
     }
 

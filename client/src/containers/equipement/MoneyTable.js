@@ -7,7 +7,7 @@ import { getMoney, updateMoney } from "../../actions/MoneyAction";
 import { Money } from "../../components/equipement/Money";
 
 class MoneyTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getMoney();
     }
 

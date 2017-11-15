@@ -8,7 +8,7 @@ import { postInventaire, getInventaire } from "../../actions/InventaireAction";
 import InventaireUpdate from '../../components/update/InventaireUpdate';
 
 class InventaireTableUpdate extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getInventaire();
     }
 

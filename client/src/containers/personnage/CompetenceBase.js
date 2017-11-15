@@ -7,7 +7,7 @@ import Competence from "../../components/personnage/Competence";
 import { getCompBase } from "../../actions/CompBaseAction";
 
 class CompetenceBase extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCompBase();
     }
 

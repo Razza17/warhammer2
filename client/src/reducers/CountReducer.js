@@ -1,4 +1,4 @@
-export function countReducer(state={count:[]}, action) {
+export function countReducer(state={count:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_COUNT":
@@ -14,7 +14,7 @@ export function countReducer(state={count:[]}, action) {
 
         // UPDATE
         case "UPDATE_COUNT":
-            return {...state};
+            return {...state, status:action.response};
         case "UPDATE_COUNT_REJECTED":
             return action.payload;
 

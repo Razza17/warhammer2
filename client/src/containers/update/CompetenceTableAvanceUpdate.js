@@ -8,7 +8,7 @@ import { getCompAvance, postCompAvance } from "../../actions/CompAvanceAction";
 import CompetenceAvanceUpdate from "../../components/update/CompetenceAvanceUpdate";
 
 class CompetenceTableAvanceUpdate extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCompAvance();
     }
 

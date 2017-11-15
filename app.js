@@ -40,6 +40,7 @@ let Armure = require('./models/armure');
 let Money = require('./models/money');
 let Inventaire = require('./models/inventaire');
 let Folie = require('./models/folie');
+let Experience = require('./models/experience');
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -735,6 +736,50 @@ app.put('/folie/:_id', function(req, res) {
     let options = {new: false};
 
     Folie.updateOne({_id: newData._id}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+//---->>>> POST EXPERIENCE <<<<----
+app.post('/experience', function(req, res) {
+    let inv = req.body;
+
+    Experience.create(inv, function(err, experience) {
+        if(err) {
+            throw err;
+        }
+        res.json(experience);
+    })
+});
+
+//---->>>> GET EXPERIENCE <<<<----
+app.get('/experience', function(req, res) {
+    Experience.find(function(err, experience) {
+        if(err) {
+            throw err;
+        }
+        res.json(experience);
+    })
+});
+
+//---->>>> UPDATE EXPERIENCE <<<<----
+
+app.put('/experience/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            actuel: newData.actuel,
+            total: newData.total
+        }
+    };
+
+    let options = {new: false};
+
+    Experience.updateOne({_id: newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }

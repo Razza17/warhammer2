@@ -1,4 +1,4 @@
-export function caracBaseReducer(state={caracBase:[]}, action) {
+export function caracBaseReducer(state={caracBase:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_CARACBASE":
@@ -14,7 +14,7 @@ export function caracBaseReducer(state={caracBase:[]}, action) {
 
         // UPDATE
         case "UPDATE_CARACBASE":
-            return {...state};
+            return {...state, status:action.response};
         case "UPDATE_CARACBASE_REJECTED":
             return action.payload;
 

@@ -1,4 +1,4 @@
-export function folieReducer(state={folie:[]}, action) {
+export function folieReducer(state={folie:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_FOLIE":
@@ -32,7 +32,7 @@ export function folieReducer(state={folie:[]}, action) {
 
         // UPDATE
         case "UPDATE_FOLIE":
-            return {...state, ...action.payload};
+            return {...state, ...action.payload, status:action.response};
         case "UPDATE_FOLIE_REJECTED":
             return action.payload;
 

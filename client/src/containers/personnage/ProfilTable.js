@@ -6,7 +6,7 @@ import { Profil } from "../../components/personnage/Profil";
 import { getProfile } from '../../actions/ProfilAction';
 
 class ProfilTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getProfile();
     }
 

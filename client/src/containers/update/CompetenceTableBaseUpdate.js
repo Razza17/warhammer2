@@ -7,7 +7,7 @@ import CompetenceBaseUpdate from "../../components/update/CompetenceBaseUpdate";
 import { getCompBase } from "../../actions/CompBaseAction";
 
 class CompetenceTableBaseUpdate extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCompBase();
     }
 

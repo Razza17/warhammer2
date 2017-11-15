@@ -31,7 +31,7 @@ export class CaracAvanceUpdate extends Component {
         let tooltip = <Tooltip id={this.props._id}>Click here to update</Tooltip>;
         return (
             <tr>
-                <td>Base</td>
+                <td>Avancé</td>
                 <td>
                     <FormGroup controlId="cc">
                         <FormControl

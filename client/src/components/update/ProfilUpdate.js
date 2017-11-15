@@ -1,35 +1,55 @@
 import React, { Component } from 'react';
 import { Panel, FormGroup, FormControl, InputGroup, Button, Alert } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 
-export class ProfilUpdate extends Component {
+class ProfilUpdate extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            class : "hideMsg"
-        };
+            status: false,
+            msg: "",
+            style: "success"
+        }
     }
 
     handleUpdate() {
         let id = this.props._id;
         let newData = {
-            nom: findDOMNode(this.refs.nom).value,
-            race: findDOMNode(this.refs.race).value,
             carriereA: findDOMNode(this.refs.carriereA).value,
-            Acarriere: findDOMNode(this.refs.Acarriere).value,
+            Acarriere: findDOMNode(this.refs.Acarriere).value
         };
 
         this.props.updateProfile(id, newData);
+        this.props.getProfile();
+    }
 
-        this.setState({
-            class : "showMsg"
-        });
+    componentWillReceiveProps(nextProps) {
+        let nextStatus = nextProps.status;
+        if(nextStatus === 200) {
+            this.setState({
+                status: !this.state.status,
+                msg: "Your Profile has been successfully updated",
+                style: "success"
+            });
+        } else {
+            this.setState({
+                status: !this.state.status,
+                msg: "Oups something went wrong ! Maybe try again",
+                style: "danger"
+            });
+
+        }
 
         setTimeout(() => {
-            this.setState({class: "hideMsg"});
-        }, 4000)
+            this.setState({
+                status: false,
+                msg: "",
+                style: "success"
+            })
+        }, 2000)
     }
 
     render() {
@@ -62,8 +82,18 @@ export class ProfilUpdate extends Component {
                         <Button bsStyle="primary" onClick={this.handleUpdate.bind(this)}>Update</Button>
                     </li>
                 </ul>
-                <Alert className={this.state.class} bsStyle="success">Your Profile has been successfully updated</Alert>
+                <Alert className={this.state.status ? "showMsg" : "hideMsg"} bsStyle={this.state.style}>
+                    {this.state.msg}
+                </Alert>
             </Panel>
         )
     }
 }
+
+function mapStateToProps(state){
+    return {
+        status: state.profile.status
+    }
+}
+
+export default connect(mapStateToProps)(ProfilUpdate);

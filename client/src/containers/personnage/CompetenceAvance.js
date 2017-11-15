@@ -7,7 +7,7 @@ import { getCompAvance } from "../../actions/CompAvanceAction";
 import Competence from "../../components/personnage/Competence";
 
 class CompetenceAvance extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCompAvance();
     }
 

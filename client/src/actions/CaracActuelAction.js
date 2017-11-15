@@ -32,7 +32,7 @@ export function updateCaracActuel(id, newData) {
     return function(dispatch) {
         axios.put('/caracactuel/' + id, newData)
             .then(function(response) {
-                dispatch({type:"UPDATE_CARACACTUEL", payload:response.data})
+                dispatch({type:"UPDATE_CARACACTUEL", payload:response.data, response:response.status})
             })
             .catch(function(err) {
                 dispatch({type:"UPDATE_CARACACTUEL_REJECTED", payload:err})

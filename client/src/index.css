@@ -4,6 +4,11 @@ body {
     font-family: sans-serif;
 }
 
+/* NAV */
+.active {
+    color: #ffffff;
+}
+
 /* BOOTSTRAP SURCOUCHE */
 .panel-info>.panel-heading {
     font-size: 18px;
@@ -21,10 +26,6 @@ body {
 ul li {
   list-style-type: none;
 }
-
-/*.border {
-    border: 1px solid #ddd;
-}*/
 
 .table tbody tr td, .table thead tr th, .count {
     text-align: center;
@@ -60,12 +61,13 @@ ul li {
     display: none;
 }
 
+/* MESSAGE SHOW/HIDE */
 .showMsg {
     position: fixed;
     bottom: 10px;
     right: 5px;
     opacity: 1;
-    transition: all 2s;
+    transition: all 0.5s;
     z-index: 1000;
 }
 

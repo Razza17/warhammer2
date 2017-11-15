@@ -13,6 +13,7 @@ import { armeReducer } from "./ArmeReducer";
 import { armureReducer } from "./ArmureReducer";
 import { inventaireReducer } from "./InventaireReducer";
 import { folieReducer } from "./FolieReducer";
+import { experienceReducer } from "./ExperienceReducer";
 
 export default combineReducers({
     profile: profilReducer,
@@ -28,5 +29,6 @@ export default combineReducers({
     armure: armureReducer,
     money: moneyReducer,
     inventaire: inventaireReducer,
-    folie: folieReducer
+    folie: folieReducer,
+    experience: experienceReducer
 })

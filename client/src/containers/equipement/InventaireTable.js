@@ -7,7 +7,7 @@ import { getInventaire } from "../../actions/InventaireAction";
 import { Inventaire } from "../../components/equipement/Inventaire";
 
 class InventaireTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getInventaire();
     }
 

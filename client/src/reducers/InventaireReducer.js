@@ -1,4 +1,4 @@
-export function inventaireReducer(state={inventaire:[]}, action) {
+export function inventaireReducer(state={inventaire:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_INVENTAIRE":
@@ -32,7 +32,7 @@ export function inventaireReducer(state={inventaire:[]}, action) {
 
         // UPDATE
         case "UPDATE_INVENTAIRE":
-            return {...state, ...action.payload};
+            return {...state, ...action.payload, status:action.response};
         case "UPDATE_INVENTAIRE_REJECTED":
             return action.payload;
 

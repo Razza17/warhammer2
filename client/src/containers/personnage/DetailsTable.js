@@ -6,7 +6,7 @@ import {Details} from "../../components/personnage/Details";
 import { getDetails } from '../../actions/DetailAction';
 
 class DetailsTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getDetails();
     }
 

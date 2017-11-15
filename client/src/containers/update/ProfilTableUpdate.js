@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col } from 'react-bootstrap';
 
-import { ProfilUpdate } from "../../components/update/ProfilUpdate";
+import ProfilUpdate from "../../components/update/ProfilUpdate";
 import { getProfile, updateProfile } from '../../actions/ProfilAction';
 
 class ProfilTableUpdate extends Component {
-    componentDidMount() {
+
+    componentWillMount() {
         this.props.getProfile();
     }
 

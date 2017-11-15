@@ -8,7 +8,7 @@ import { postFolie, getFolie } from "../../actions/FolieAction";
 import FolieUpdate from '../../components/update/FolieUpdate';
 
 class FolieTableUpdate extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getFolie();
     }
 

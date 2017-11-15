@@ -8,7 +8,7 @@ import { getArmure, postArmure } from "../../actions/ArmureAction";
 import ArmureUpdate from '../../components/update/ArmureUpdate';
 
 class ArmureTableUpdate extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getArmure();
     }
 

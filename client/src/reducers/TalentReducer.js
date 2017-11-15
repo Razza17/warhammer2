@@ -1,4 +1,4 @@
-export function talentReducer(state={talent:[]}, action) {
+export function talentReducer(state={talent:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_TALENT":
@@ -14,7 +14,7 @@ export function talentReducer(state={talent:[]}, action) {
 
         // UPDATE
         case "UPDATE_TALENT":
-            return {...state};
+            return {...state, status:action.response};
         case "UPDATE_TALENT_REJECTED":
             return action.payload;
 

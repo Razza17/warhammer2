@@ -7,7 +7,7 @@ import { getFolie } from "../../actions/FolieAction";
 import { Folie } from "../../components/equipement/Folie";
 
 class FolieTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getFolie();
     }
 

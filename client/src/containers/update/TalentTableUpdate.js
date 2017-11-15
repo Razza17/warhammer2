@@ -8,7 +8,7 @@ import { getTalent, postTalent } from "../../actions/TalentAction";
 import TalentUpdate from "../../components/update/TalentUpdate";
 
 class TalentTableUpdate extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getTalent();
     }
 

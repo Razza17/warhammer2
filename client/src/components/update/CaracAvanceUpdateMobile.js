@@ -33,7 +33,7 @@ export class CaracAvanceUpdateMobile extends Component {
             <Table condensed bordered hover striped fill>
                 <tbody>
                     <tr>
-                        <td rowSpan="2" className="black">Avance</td>
+                        <td rowSpan="2" className="black">Avancé</td>
                         <td>
                             <FormGroup controlId="cc">
                                 <ControlLabel>CC</ControlLabel>

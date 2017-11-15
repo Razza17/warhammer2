@@ -1,4 +1,4 @@
-export function moneyReducer(state={money:[]}, action) {
+export function moneyReducer(state={money:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_MONEY":
@@ -14,7 +14,7 @@ export function moneyReducer(state={money:[]}, action) {
 
         // UPDATE
         case "UPDATE_MONEY":
-            return {...state, ...action.payload};
+            return {...state, ...action.payload, status:action.response};
         case "UPDATE_MONEY_REJECTED":
             return action.payload;
 

@@ -1,4 +1,4 @@
-export function compBaseReducer(state={compBase:[]}, action) {
+export function compBaseReducer(state={compBase:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_COMPBASE":
@@ -14,7 +14,7 @@ export function compBaseReducer(state={compBase:[]}, action) {
 
         // UPDATE
         case "UPDATE_COMPBASE":
-            return {...state};
+            return {...state, status:action.response};
         case "UPDATE_COMPBASE_REJECTED":
             return action.payload;
 

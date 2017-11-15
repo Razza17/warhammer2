@@ -12,6 +12,7 @@ import CompetenceTableAvanceUpdate from '../containers/update/CompetenceTableAva
 import TalentTableUpdate from "../containers/update/TalentTableUpdate";
 import InventaireTableUpdate from "../containers/update/InventaireTableUpdate";
 import FolieTableUpdate from "../containers/update/FolieTableUpdate";
+import ExperienceTableUpdate from "../containers/update/ExperienceTableUpdate";
 
 export class Update extends Component {
     render() {
@@ -20,6 +21,7 @@ export class Update extends Component {
                 <Row>
                     <ProfilTableUpdate />
                     <EncContainer />
+                    <ExperienceTableUpdate />
                 </Row>
                 <Row>
                     <Col xsHidden smHidden md={12}>

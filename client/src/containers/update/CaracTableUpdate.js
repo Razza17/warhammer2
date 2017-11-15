@@ -12,7 +12,7 @@ import { CaracActuelUpdate } from "../../components/update/CaracActuelUpdate";
 
 
 class CaracTableUpdate extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCaracBase();
         this.props.getCaracAvance();
         this.props.getCaracActuel();

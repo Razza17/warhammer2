@@ -8,7 +8,7 @@ import { postArme, getArme } from "../../actions/ArmeAction";
 import ArmesUpdate from '../../components/update/ArmesUpdate';
 
 class ArmesTableUpdate extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getArme();
     }
 
