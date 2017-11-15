@@ -6,9 +6,9 @@ import { bindActionCreators } from 'redux';
 import { getCaracBase, updateCaracBase } from "../../actions/CaracBaseAction";
 import { getCaracAvance, updateCaracAvance } from "../../actions/CaracAvanceAction";
 import { getCaracActuel, updateCaracActuel } from "../../actions/CaracActuelAction";
-import { CaracBaseUpdate } from "../../components/update/CaracBaseUpdate";
-import { CaracAvanceUpdate } from "../../components/update/CaracAvanceUpdate";
-import { CaracActuelUpdate } from "../../components/update/CaracActuelUpdate";
+import CaracBaseUpdate from "../../components/update/CaracBaseUpdate";
+import CaracAvanceUpdate from "../../components/update/CaracAvanceUpdate";
+import CaracActuelUpdate from "../../components/update/CaracActuelUpdate";
 
 
 class CaracTableUpdate extends Component {

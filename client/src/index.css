@@ -5,7 +5,7 @@ body {
 }
 
 /* NAV */
-.active {
+a[aria-current="true"] {
     color: #ffffff;
 }
 

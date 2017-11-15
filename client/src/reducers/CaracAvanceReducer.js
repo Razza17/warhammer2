@@ -1,4 +1,4 @@
-export function caracAvanceReducer(state={caracAvance:[]}, action) {
+export function caracAvanceReducer(state={caracAvance:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_CARACAVANCE":
@@ -14,7 +14,7 @@ export function caracAvanceReducer(state={caracAvance:[]}, action) {
 
         // UPDATE
         case "UPDATE_CARACAVANCE":
-            return {...state};
+            return {...state, status:action.response};
         case "UPDATE_CARACAVANCE_REJECTED":
             return action.payload;
 
