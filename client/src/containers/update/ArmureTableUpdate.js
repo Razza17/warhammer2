@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom';
 
 import { getArmure, postArmure } from "../../actions/ArmureAction";
 import ArmureUpdate from '../../components/update/ArmureUpdate';
+import { updateMessage} from "../../hocs/updateMessage";
 
 class ArmureTableUpdate extends Component {
     componentWillMount() {
@@ -88,7 +89,8 @@ class ArmureTableUpdate extends Component {
 
 function mapStateToProps(state) {
     return {
-        armure: state.armure.armure
+        armure: state.armure.armure,
+        status: state.armure.status
     }
 }
 
@@ -99,4 +101,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArmureTableUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(ArmureTableUpdate));

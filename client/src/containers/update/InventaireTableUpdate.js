@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom';
 
 import { postInventaire, getInventaire } from "../../actions/InventaireAction";
 import InventaireUpdate from '../../components/update/InventaireUpdate';
+import { updateMessage } from "../../hocs/updateMessage";
 
 class InventaireTableUpdate extends Component {
     componentWillMount() {
@@ -74,7 +75,8 @@ class InventaireTableUpdate extends Component {
 
 function mapStateToProps(state) {
     return {
-        inventaire: state.inventaire.inventaire
+        inventaire: state.inventaire.inventaire,
+        status: state.inventaire.status,
     }
 }
 
@@ -85,4 +87,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InventaireTableUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(InventaireTableUpdate));

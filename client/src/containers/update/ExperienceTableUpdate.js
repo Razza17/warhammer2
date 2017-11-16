@@ -3,8 +3,9 @@ import { Col, Panel, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getExperience } from "../../actions/ExperienceAction";
-import ExperienceUpdate from '../../components/update/ExperienceUpdate';
+import { getExperience, updateExperience } from "../../actions/ExperienceAction";
+import { ExperienceUpdate } from '../../components/update/ExperienceUpdate';
+import { updateMessage } from "../../hocs/updateMessage";
 
 class ExperienceTableUpdate extends Component {
     componentWillMount() {
@@ -24,7 +25,7 @@ class ExperienceTableUpdate extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            { this.props.experience.map((experience) => <ExperienceUpdate key={experience._id} {...experience} getExperience={this.props.getExperience} />) }
+                            { this.props.experience.map((experience) => <ExperienceUpdate key={experience._id} {...experience} getExperience={this.props.getExperience} updateExperience={this.props.updateExperience} />) }
                         </tbody>
                     </Table>
                 </Panel>
@@ -35,14 +36,16 @@ class ExperienceTableUpdate extends Component {
 
 function mapStateToProps(state) {
     return {
-        experience: state.experience.experience
+        experience: state.experience.experience,
+        status: state.experience.status
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getExperience:getExperience
+        getExperience:getExperience,
+        updateExperience: updateExperience
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExperienceTableUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(ExperienceTableUpdate));

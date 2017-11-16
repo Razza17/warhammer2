@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom';
 
 import { getTalent, postTalent } from "../../actions/TalentAction";
 import TalentUpdate from "../../components/update/TalentUpdate";
+import { updateMessage } from "../../hocs/updateMessage";
 
 class TalentTableUpdate extends Component {
     componentWillMount() {
@@ -88,7 +89,8 @@ class TalentTableUpdate extends Component {
 
 function mapStateToProps(state) {
     return {
-        talent: state.talent.talent
+        talent: state.talent.talent,
+        status: state.talent.status
     }
 }
 
@@ -99,4 +101,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 
-export default connect (mapStateToProps, mapDispatchToProps) (TalentTableUpdate);
+export default connect (mapStateToProps, mapDispatchToProps) (updateMessage(TalentTableUpdate));

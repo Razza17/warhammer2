@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom';
 
 import { getCompAvance, postCompAvance } from "../../actions/CompAvanceAction";
 import CompetenceAvanceUpdate from "../../components/update/CompetenceAvanceUpdate";
+import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceTableAvanceUpdate extends Component {
     componentWillMount() {
@@ -128,7 +129,8 @@ class CompetenceTableAvanceUpdate extends Component {
 
 function mapStateToProps(state) {
     return {
-        compAvance: state.compAvance.compAvance
+        compAvance: state.compAvance.compAvance,
+        status: state.compAvance.status
     }
 }
 
@@ -139,4 +141,4 @@ function mapDispatchToProps(dispatch){
     }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompetenceTableAvanceUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompetenceTableAvanceUpdate));

@@ -1,4 +1,4 @@
-export function armureReducer(state={armure:[]}, action) {
+export function armureReducer(state={armure:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_ARMURE":
@@ -33,7 +33,7 @@ export function armureReducer(state={armure:[]}, action) {
 
         // UPDATE
         case "UPDATE_ARMURE":
-            return {...state, ...action.payload};
+            return {...state, ...action.payload, status:action.response};
         case "UPDATE_ARMURE_REJECTED":
             return action.payload;
 

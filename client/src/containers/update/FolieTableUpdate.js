@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom';
 
 import { postFolie, getFolie } from "../../actions/FolieAction";
 import FolieUpdate from '../../components/update/FolieUpdate';
+import { updateMessage } from "../../hocs/updateMessage";
 
 class FolieTableUpdate extends Component {
     componentWillMount() {
@@ -54,7 +55,8 @@ class FolieTableUpdate extends Component {
 
 function mapStateToProps(state) {
     return {
-        folie: state.folie.folie
+        folie: state.folie.folie,
+        status: state.folie.status
     }
 }
 
@@ -65,4 +67,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FolieTableUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(FolieTableUpdate));

@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
-import { Table, FormControl, FormGroup, ControlLabel, Glyphicon, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
+import { Table, FormControl, FormGroup, ControlLabel, Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { findDOMNode } from 'react-dom';
-import { connect } from 'react-redux';
 
-class CaracAvanceUpdateMobile extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            status: false,
-            msg: "",
-            style: "success"
-        }
-    }
+export class CaracAvanceUpdateMobile extends Component {
 
     handleUpdate() {
         let id = this.props._id;
@@ -37,33 +26,6 @@ class CaracAvanceUpdateMobile extends Component {
         };
         this.props.updateCaracAvance(id, newCarac);
         this.props.getCaracAvance();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        let nextStatus = nextProps.status;
-        console.log(nextStatus);
-        if(nextStatus === 200) {
-            this.setState({
-                status: !this.state.status,
-                msg: "Your advanced carac has been successfully updated",
-                style: "success"
-            });
-        } else {
-            this.setState({
-                status: !this.state.status,
-                msg: "Oups something went wrong ! Maybe try again",
-                style: "danger"
-            });
-
-        }
-
-        setTimeout(() => {
-            this.setState({
-                status: false,
-                msg: "",
-                style: "success"
-            })
-        }, 2000)
     }
 
     render() {
@@ -149,9 +111,6 @@ class CaracAvanceUpdateMobile extends Component {
                             <OverlayTrigger placement="bottom" overlay={tooltip} delayShow={300} delayHide={150}>
                                 <Glyphicon glyph="pencil" onClick={this.handleUpdate.bind(this)} />
                             </OverlayTrigger>
-                            <Alert className={this.state.status ? "showMsg" : "hideMsg"} bsStyle={this.state.style}>
-                                {this.state.msg}
-                            </Alert>
                         </td>
                     </tr>
                     <tr>
@@ -233,13 +192,3 @@ class CaracAvanceUpdateMobile extends Component {
         )
     }
 }
-
-
-
-function mapStateToProps(state){
-    return {
-        status: state.caracAvance.status
-    }
-}
-
-export default connect(mapStateToProps)(CaracAvanceUpdateMobile);

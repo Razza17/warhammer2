@@ -1,4 +1,4 @@
-export function armeReducer(state={arme:[]}, action) {
+export function armeReducer(state={arme:[], status:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_ARME":
@@ -33,7 +33,7 @@ export function armeReducer(state={arme:[]}, action) {
 
         // UPDATE
         case "UPDATE_ARME":
-            return {...state, ...action.payload};
+            return {...state, ...action.payload, status:action.response};
         case "UPDATE_ARME_REJECTED":
             return action.payload;
 

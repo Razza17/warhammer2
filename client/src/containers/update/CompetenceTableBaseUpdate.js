@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import CompetenceBaseUpdate from "../../components/update/CompetenceBaseUpdate";
 import { getCompBase } from "../../actions/CompBaseAction";
+import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceTableBaseUpdate extends Component {
     componentWillMount() {
@@ -44,7 +45,8 @@ class CompetenceTableBaseUpdate extends Component {
 
 function mapStateToProps(state) {
     return {
-        compBase: state.compBase.compBase
+        compBase: state.compBase.compBase,
+        status: state.compBase.status
     }
 }
 
@@ -54,4 +56,4 @@ function mapDispatchToProps(dispatch){
     }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompetenceTableBaseUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompetenceTableBaseUpdate));

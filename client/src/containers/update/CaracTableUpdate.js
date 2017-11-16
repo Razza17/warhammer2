@@ -6,9 +6,10 @@ import { bindActionCreators } from 'redux';
 import { getCaracBase, updateCaracBase } from "../../actions/CaracBaseAction";
 import { getCaracAvance, updateCaracAvance } from "../../actions/CaracAvanceAction";
 import { getCaracActuel, updateCaracActuel } from "../../actions/CaracActuelAction";
-import CaracBaseUpdate from "../../components/update/CaracBaseUpdate";
-import CaracAvanceUpdate from "../../components/update/CaracAvanceUpdate";
-import CaracActuelUpdate from "../../components/update/CaracActuelUpdate";
+import { CaracBaseUpdate } from "../../components/update/CaracBaseUpdate";
+import { CaracAvanceUpdate } from "../../components/update/CaracAvanceUpdate";
+import { CaracActuelUpdate } from "../../components/update/CaracActuelUpdate";
+import { updateMessage } from "../../hocs/updateMessage";
 
 
 class CaracTableUpdate extends Component {
@@ -75,7 +76,8 @@ function mapStateToProps(state){
     return {
         caracBase: state.caracBase.caracBase,
         caracAvance: state.caracAvance.caracAvance,
-        caracActuel: state.caracActuel.caracActuel
+        caracActuel: state.caracActuel.caracActuel,
+        status: state.caracBase.status
     }
 }
 
@@ -90,4 +92,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CaracTableUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CaracTableUpdate));

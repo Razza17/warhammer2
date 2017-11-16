@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom';
 
 import { postArme, getArme } from "../../actions/ArmeAction";
 import ArmesUpdate from '../../components/update/ArmesUpdate';
+import { updateMessage } from "../../hocs/updateMessage";
 
 class ArmesTableUpdate extends Component {
     componentWillMount() {
@@ -104,7 +105,8 @@ class ArmesTableUpdate extends Component {
 
 function mapStateToProps(state) {
     return {
-        arme: state.arme.arme
+        arme: state.arme.arme,
+        status: state.arme.status
     }
 }
 
@@ -115,4 +117,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArmesTableUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(ArmesTableUpdate));
