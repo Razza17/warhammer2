@@ -21,7 +21,7 @@ class Count extends Component {
             this.props.update(this.props._id, data);
             this.props.get();
         }
-        else {
+        else if(this.props.name === "Munitions") {
             let data = {
                 "name":this.props.name,
                 "value":this.props.value + 1
