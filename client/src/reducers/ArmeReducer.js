@@ -1,4 +1,4 @@
-export function armeReducer(state={arme:[], status:[]}, action) {
+export function armeReducer(state={arme:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_ARME":
@@ -8,7 +8,7 @@ export function armeReducer(state={arme:[], status:[]}, action) {
 
         // POST
         case "POST_ARME":
-            return {arme:[...state.arme, ...action.payload]};
+            return {...state, arme:[...state.arme, ...action.payload]};
         case "POST_ARME_REJECTED":
             return action.payload;
 
@@ -33,9 +33,9 @@ export function armeReducer(state={arme:[], status:[]}, action) {
 
         // UPDATE
         case "UPDATE_ARME":
-            return {...state, ...action.payload, status:action.response};
+            return {...state, ...action.payload, msg:'Your Weapons has been successfully updated', style:'success'};
         case "UPDATE_ARME_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

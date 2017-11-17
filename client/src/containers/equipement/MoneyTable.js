@@ -30,8 +30,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        getMoney:getMoney,
-        updateMoney:updateMoney
+        getMoney,
+        updateMoney
     }, dispatch)
 }
 

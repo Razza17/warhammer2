@@ -1,4 +1,4 @@
-export function experienceReducer(state={experience:[], status:[]}, action) {
+export function experienceReducer(state={experience:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_EXPERIENCE":
@@ -14,9 +14,9 @@ export function experienceReducer(state={experience:[], status:[]}, action) {
 
         // UPDATE
         case "UPDATE_EXPERIENCE":
-            return {...state, ...action.payload, status:action.response};
+            return {...state, ...action.payload, msg:'Your experience has been successfully updated', style:'success'};
         case "UPDATE_EXPERIENCE_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

@@ -31,7 +31,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getProfile:getProfile
+        getProfile
     }, dispatch);
 }
 

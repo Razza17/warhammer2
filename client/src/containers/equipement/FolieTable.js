@@ -37,7 +37,7 @@ function mapStateToProps(state) {
 
 function mapDispatchtoProps(dispatch) {
     return bindActionCreators({
-        getFolie:getFolie
+        getFolie
     }, dispatch)
 }
 

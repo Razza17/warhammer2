@@ -45,7 +45,7 @@ export function updateArmure(id, newData) {
     return function(dispatch) {
         axios.put('/armure/' + id, newData)
             .then(function(response) {
-                dispatch({type:"UPDATE_ARMURE", payload:response.data, response:response.status})
+                dispatch({type:"UPDATE_ARMURE", payload:response.data})
             })
             .catch(function(err) {
                 dispatch({type:"UPDATE_ARMURE_REJECTED", payload:err})

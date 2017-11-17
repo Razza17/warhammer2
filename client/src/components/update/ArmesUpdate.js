@@ -124,8 +124,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        deleteArme: deleteArme,
-        updateArme:updateArme
+        deleteArme,
+        updateArme
     }, dispatch)
 }
 

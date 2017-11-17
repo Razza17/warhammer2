@@ -22,6 +22,14 @@ class ArmureTableUpdate extends Component {
         };
         this.props.postArmure(armure);
         this.props.getArmure();
+        this.resetForm();
+    }
+
+    resetForm(){
+        findDOMNode(this.refs.nomArmure).value = "";
+        findDOMNode(this.refs.encArmure).value = "";
+        findDOMNode(this.refs.couvArmure).value = "Couverture";
+        findDOMNode(this.refs.pointsArmure).value = "";
     }
 
     render() {
@@ -90,14 +98,15 @@ class ArmureTableUpdate extends Component {
 function mapStateToProps(state) {
     return {
         armure: state.armure.armure,
-        status: state.armure.status
+        msg: state.armure.msg,
+        style: state.armure.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getArmure:getArmure,
-        postArmure:postArmure
+        getArmure,
+        postArmure
     }, dispatch)
 }
 

@@ -22,6 +22,14 @@ class TalentTableUpdate extends Component {
         };
         this.props.postTalent(newTalent);
         this.props.getTalent();
+        this.resetForm();
+    }
+
+    resetForm(){
+        findDOMNode(this.refs.nomPostTalent).value = "";
+        findDOMNode(this.refs.descPostTalent).value = "";
+        findDOMNode(this.refs.compPostTalent).value = "";
+        findDOMNode(this.refs.bonusPostTalent).value = "";
     }
 
     render () {
@@ -90,14 +98,15 @@ class TalentTableUpdate extends Component {
 function mapStateToProps(state) {
     return {
         talent: state.talent.talent,
-        status: state.talent.status
+        msg: state.talent.msg,
+        style: state.talent.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators ({
-        getTalent:getTalent,
-        postTalent:postTalent
+        getTalent,
+        postTalent
     }, dispatch)
 }
 

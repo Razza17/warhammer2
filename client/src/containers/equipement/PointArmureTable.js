@@ -119,7 +119,7 @@ function mapStateToProps(state) {
 
 function mapDispatchtoProps(dispatch) {
     return bindActionCreators({
-        getCaracActuel:getCaracActuel
+        getCaracActuel
     }, dispatch)
 }
 

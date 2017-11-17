@@ -23,7 +23,16 @@ class ArmesTableUpdate extends Component {
             attributs: findDOMNode(this.refs.attributsArme).value
         }];
         this.props.postArme(arme);
-        this.props.getArme();
+        this.resetForm();
+    }
+
+    resetForm() {
+        findDOMNode(this.refs.nomArme).value = "";
+        findDOMNode(this.refs.encArme).value = "";
+        findDOMNode(this.refs.degatsArme).value = "";
+        findDOMNode(this.refs.porteeArme).value = "";
+        findDOMNode(this.refs.rechargementArme).value = "";
+        findDOMNode(this.refs.attributsArme).value = "";
     }
 
     render() {
@@ -106,14 +115,15 @@ class ArmesTableUpdate extends Component {
 function mapStateToProps(state) {
     return {
         arme: state.arme.arme,
-        status: state.arme.status
+        msg: state.arme.msg,
+        style: state.arme.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getArme:getArme,
-        postArme:postArme
+        getArme,
+        postArme
     }, dispatch);
 }
 

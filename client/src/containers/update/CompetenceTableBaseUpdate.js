@@ -46,13 +46,14 @@ class CompetenceTableBaseUpdate extends Component {
 function mapStateToProps(state) {
     return {
         compBase: state.compBase.compBase,
-        status: state.compBase.status
+        msg: state.compBase.msg,
+        style: state.compBase.style
     }
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        getCompBase:getCompBase
+        getCompBase
     }, dispatch)
 }
 

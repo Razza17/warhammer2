@@ -27,7 +27,6 @@ class ArmureUpdate extends Component {
 
     handleChangeArmure() {
         let armureData = this.props.armure.map((newArmures) => {return {...newArmures}});
-        console.log('Armure data : ', armureData);
         for (let i = 0; i < armureData.length; i++) {
             this.setState({
                 nom: armureData[i].nom,
@@ -106,8 +105,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        deleteArmure: deleteArmure,
-        updateArmure: updateArmure
+        deleteArmure,
+        updateArmure
     }, dispatch)
 }
 

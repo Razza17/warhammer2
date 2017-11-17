@@ -67,17 +67,13 @@ ul li {
     bottom: 10px;
     right: -100%;
     opacity: 0;
-    transition: all 0.5s;
+    transition: right, opacity 1s;
     z-index: 1000;
 }
 
-.showMsg {
-    position: fixed;
-    bottom: 10px;
+.hideMsg.showMsg {
     right: 5px;
     opacity: 1;
-    transition: all 0.5s;
-    z-index: 1000;
 }
 
 .badge {

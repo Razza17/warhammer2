@@ -47,18 +47,19 @@ function mapStateToProps(state){
         caracBase: state.caracBase.caracBase,
         caracAvance: state.caracAvance.caracAvance,
         caracActuel: state.caracActuel.caracActuel,
-        status: state.caracBase.status
+        msg: state.caracBase.msg,
+        style: state.caracBase.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getCaracBase:getCaracBase,
-        updateCaracBase:updateCaracBase,
-        getCaracAvance:getCaracAvance,
-        updateCaracAvance:updateCaracAvance,
-        getCaracActuel:getCaracActuel,
-        updateCaracActuel:updateCaracActuel
+        getCaracBase,
+        updateCaracBase,
+        getCaracAvance,
+        updateCaracAvance,
+        getCaracActuel,
+        updateCaracActuel
     }, dispatch);
 }
 

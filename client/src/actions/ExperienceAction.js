@@ -32,7 +32,7 @@ export function updateExperience(id, newData) {
     return function(dispatch) {
         axios.put('/experience/' + id, newData)
             .then(function(response) {
-                dispatch({type:"UPDATE_EXPERIENCE", payload:response.data, response:response.status})
+                dispatch({type:"UPDATE_EXPERIENCE", payload:response.data})
             })
             .catch(function(err) {
                 dispatch({type:"UPDATE_EXPERIENCE_REJECTED", payload:err})

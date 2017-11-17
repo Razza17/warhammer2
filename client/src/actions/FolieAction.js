@@ -45,7 +45,7 @@ export function updateFolie(id, newData) {
     return function(dispatch) {
         axios.put('/folie/' + id, newData)
             .then(function(response) {
-                dispatch({type:"UPDATE_FOLIE", payload:response.data, response:response.status})
+                dispatch({type:"UPDATE_FOLIE", payload:response.data})
             })
             .catch(function(err) {
                 dispatch({type:"UPDATE_FOLIE_REJECTED", payload:err})

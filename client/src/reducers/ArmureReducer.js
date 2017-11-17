@@ -1,4 +1,4 @@
-export function armureReducer(state={armure:[], status:[]}, action) {
+export function armureReducer(state={armure:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_ARMURE":
@@ -8,7 +8,7 @@ export function armureReducer(state={armure:[], status:[]}, action) {
 
         // POST
         case "POST_ARMURE":
-            return {armure:[...state.armure, ...action.payload]};
+            return {...state, armure:[...state.armure, ...action.payload]};
         case "POST_ARMURE_REJECTED":
             return action.payload;
 
@@ -33,9 +33,9 @@ export function armureReducer(state={armure:[], status:[]}, action) {
 
         // UPDATE
         case "UPDATE_ARMURE":
-            return {...state, ...action.payload, status:action.response};
+            return {...state, ...action.payload, msg:'Your Armors has been successfully updated', style:'success'};
         case "UPDATE_ARMURE_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

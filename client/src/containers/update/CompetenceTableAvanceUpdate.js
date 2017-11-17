@@ -51,6 +51,18 @@ class CompetenceTableAvanceUpdate extends Component {
             bonus: findDOMNode(this.refs.bonusPostCompAvance).value
         }];
         this.props.postCompAvance(postCompAvance);
+        this.resetForm();
+    }
+
+    resetForm() {
+        findDOMNode(this.refs.nomPostCompAvance).value = "";
+        findDOMNode(this.refs.caracPostCompAvance).value = "";
+        findDOMNode(this.refs.bonusPostCompAvance).value = "";
+        this.setState({
+            acquisCheck: false,
+            dixCheck: false,
+            vingtCheck: false
+        })
     }
 
     render() {
@@ -67,7 +79,7 @@ class CompetenceTableAvanceUpdate extends Component {
                                 <th>+20%</th>
                                 <th>Bonus</th>
                                 <th>Total</th>
-                                <th>Actions</th>
+                                <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,14 +142,15 @@ class CompetenceTableAvanceUpdate extends Component {
 function mapStateToProps(state) {
     return {
         compAvance: state.compAvance.compAvance,
-        status: state.compAvance.status
+        msg: state.compAvance.msg,
+        style: state.compAvance.style
     }
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        getCompAvance:getCompAvance,
-        postCompAvance:postCompAvance
+        getCompAvance,
+        postCompAvance
     }, dispatch)
 }
 

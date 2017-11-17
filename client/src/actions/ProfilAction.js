@@ -32,7 +32,7 @@ export function updateProfile(id, newProfile) {
     return function(dispatch) {
         axios.put('/profil/' + id, newProfile)
             .then(function(response) {
-                dispatch({type:"UPDATE_PROFILE", payload:response.data, response:response.status})
+                dispatch({type:"UPDATE_PROFILE", payload:response.data})
             })
             .catch(function(err) {
                 dispatch({type:"UPDATE_PROFILE_REJECTED", payload:err})

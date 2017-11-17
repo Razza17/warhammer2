@@ -32,7 +32,7 @@ export function updateCaracBase(id, newCarac) {
     return function(dispatch) {
         axios.put('/caracbase/' + id, newCarac)
             .then(function(response) {
-                dispatch({type:'UPDATE_CARACBASE', payload:response.data, response:response.status})
+                dispatch({type:'UPDATE_CARACBASE', payload:response.data})
             })
             .catch(function(err) {
                 dispatch({type:'UPDATE_CARACBASE_REJECTED', payload:err})

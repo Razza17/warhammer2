@@ -26,7 +26,7 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] UPDATE les données du personnage
 - [x] POST, UPDATE and DELETE les données de l'équipement
 - [x] POST, UPDATE and DELETE les données de l'inventaire
-- Page Combat (Regroupement des composants utiles à la phase de combat)
+- [x] Page Combat (Regroupement des composants utiles à la phase de combat)
 - Page Création de personnage et POST dans la BDD
 - DELETE Personnage(s)
-- Page Login et mot de passe
+- Page Login et mot de passe (en cours)

@@ -28,8 +28,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        getCount:getCount,
-        updateCount:updateCount
+        getCount,
+        updateCount
     }, dispatch)
 }
 

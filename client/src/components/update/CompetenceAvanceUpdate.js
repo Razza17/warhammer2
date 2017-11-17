@@ -110,7 +110,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        updateCompAvance:updateCompAvance
+        updateCompAvance
     }, dispatch)
 }
 

@@ -1,4 +1,4 @@
-export function caracActuelReducer(state={caracActuel:[], status:[]}, action) {
+export function caracActuelReducer(state={caracActuel:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_CARACACTUEL":
@@ -14,9 +14,9 @@ export function caracActuelReducer(state={caracActuel:[], status:[]}, action) {
 
         // UPDATE
         case "UPDATE_CARACACTUEL":
-            return {...state, status:action.response};
+            return {...state, ...action.payload, msg:'Your Actual carac has been successfully updated', style:'success'};
         case "UPDATE_CARACACTUEL_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

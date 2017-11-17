@@ -66,7 +66,7 @@ class TalentUpdate extends Component {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        updateTalent:updateTalent
+        updateTalent
     }, dispatch)
 }
 

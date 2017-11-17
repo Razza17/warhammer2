@@ -30,7 +30,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getDetails:getDetails}, dispatch);
+    return bindActionCreators({getDetails}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsTable);

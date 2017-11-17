@@ -1,4 +1,4 @@
-export function compAvanceReducer(state={compAvance:[], status:[]}, action) {
+export function compAvanceReducer(state={compAvance:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_COMPAVANCE":
@@ -8,15 +8,15 @@ export function compAvanceReducer(state={compAvance:[], status:[]}, action) {
 
         // POST
         case "POST_COMPAVANCE":
-            return {compAvance:[...state.compAvance, ...action.payload]};
+            return {...state, compAvance:[...state.compAvance, ...action.payload]};
         case "POST_COMPAVANCE_REJECTED":
             return action.payload;
 
         // UPDATE
         case "UPDATE_COMPAVANCE":
-            return {...state, status:action.response};
+            return {...state, ...action.payload, msg:'Your advanced skills has been successfully updated', style:'success'};
         case "UPDATE_COMPAVANCE_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

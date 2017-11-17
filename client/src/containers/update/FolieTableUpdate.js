@@ -19,6 +19,11 @@ class FolieTableUpdate extends Component {
         };
         this.props.postFolie(folie);
         this.props.getFolie();
+        this.resetForm();
+    }
+
+    resetForm(){
+        findDOMNode(this.refs.nomPostFolie).value = "";
     }
 
     render() {
@@ -56,14 +61,15 @@ class FolieTableUpdate extends Component {
 function mapStateToProps(state) {
     return {
         folie: state.folie.folie,
-        status: state.folie.status
+        msg: state.folie.msg,
+        style: state.folie.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getFolie:getFolie,
-        postFolie:postFolie
+        getFolie,
+        postFolie
     }, dispatch);
 }
 

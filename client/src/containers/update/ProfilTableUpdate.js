@@ -42,14 +42,15 @@ class ProfilTableUpdate extends Component {
 function mapStateToProps(state){
     return {
         profile: state.profile.profile,
-        status: state.profile.status
+        msg: state.profile.msg,
+        style: state.profile.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getProfile:getProfile,
-        updateProfile:updateProfile
+        getProfile,
+        updateProfile
     }, dispatch);
 }
 

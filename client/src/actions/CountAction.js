@@ -32,7 +32,7 @@ export function updateCount(id, newData) {
     return function(dispatch) {
         axios.put('/count/' + id, newData)
             .then(function(response) {
-                dispatch({type:"UPDATE_COUNT", payload:response.data, response:response.status})
+                dispatch({type:"UPDATE_COUNT", payload:response.data})
             })
             .catch(function(err) {
                 dispatch({type:"UPDATE_COUNT_REJECTED", payload:err})

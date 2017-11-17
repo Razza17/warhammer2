@@ -123,9 +123,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getCaracActuel:getCaracActuel,
-        getCaracAvance:getCaracAvance,
-        getCaracBase:getCaracBase
+        getCaracActuel,
+        getCaracAvance,
+        getCaracBase
     }, dispatch);
 }
 

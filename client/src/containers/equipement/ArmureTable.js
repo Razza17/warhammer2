@@ -40,7 +40,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getArmure:getArmure
+        getArmure
     }, dispatch)
 }
 

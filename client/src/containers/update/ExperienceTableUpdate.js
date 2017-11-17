@@ -37,14 +37,15 @@ class ExperienceTableUpdate extends Component {
 function mapStateToProps(state) {
     return {
         experience: state.experience.experience,
-        status: state.experience.status
+        msg: state.experience.msg,
+        style: state.experience.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getExperience:getExperience,
-        updateExperience: updateExperience
+        getExperience,
+        updateExperience
     }, dispatch);
 }
 

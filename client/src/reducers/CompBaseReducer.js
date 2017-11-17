@@ -1,4 +1,4 @@
-export function compBaseReducer(state={compBase:[], status:[]}, action) {
+export function compBaseReducer(state={compBase:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_COMPBASE":
@@ -14,9 +14,9 @@ export function compBaseReducer(state={compBase:[], status:[]}, action) {
 
         // UPDATE
         case "UPDATE_COMPBASE":
-            return {...state, status:action.response};
+            return {...state, ...action.payload, msg:'Your based skills has been successfully updated', style:'success'};
         case "UPDATE_COMPBASE_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

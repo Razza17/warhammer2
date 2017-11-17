@@ -21,6 +21,13 @@ class InventaireTableUpdate extends Component {
         };
         this.props.postInventaire(inventaire);
         this.props.getInventaire();
+        this.resetForm();
+    }
+
+    resetForm() {
+        findDOMNode(this.refs.nomPostInventaire).value = "";
+        findDOMNode(this.refs.quantitePostInventaire).value = "";
+        findDOMNode(this.refs.encPostInventaire).value = "";
     }
 
     render() {
@@ -76,14 +83,15 @@ class InventaireTableUpdate extends Component {
 function mapStateToProps(state) {
     return {
         inventaire: state.inventaire.inventaire,
-        status: state.inventaire.status,
+        msg: state.inventaire.msg,
+        style: state.inventaire.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getInventaire:getInventaire,
-        postInventaire:postInventaire
+        getInventaire,
+        postInventaire
     }, dispatch);
 }
 

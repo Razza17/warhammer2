@@ -98,7 +98,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        updateCompBase:updateCompBase
+        updateCompBase
     }, dispatch)
 }
 

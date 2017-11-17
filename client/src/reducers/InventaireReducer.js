@@ -1,4 +1,4 @@
-export function inventaireReducer(state={inventaire:[], status:[]}, action) {
+export function inventaireReducer(state={inventaire:[]}, action) {
     switch(action.type) {
         // GET
         case "GET_INVENTAIRE":
@@ -8,7 +8,7 @@ export function inventaireReducer(state={inventaire:[], status:[]}, action) {
 
         // POST
         case "POST_INVENTAIRE":
-            return {inventaire:[...state.inventaire, ...action.payload]};
+            return {...state, inventaire:[...state.inventaire, ...action.payload]};
         case "POST_INVENTAIRE_REJECTED":
             return action.payload;
 
@@ -32,9 +32,9 @@ export function inventaireReducer(state={inventaire:[], status:[]}, action) {
 
         // UPDATE
         case "UPDATE_INVENTAIRE":
-            return {...state, ...action.payload, status:action.response};
+            return {...state, ...action.payload, msg:'Your inventory has been successfully updated', style:'success'};
         case "UPDATE_INVENTAIRE_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

@@ -39,7 +39,7 @@ function mapStateToProps(state) {
 
 function mapDispatchtoProps(dispatch) {
     return bindActionCreators({
-        getInventaire:getInventaire
+        getInventaire
     }, dispatch)
 }
 
