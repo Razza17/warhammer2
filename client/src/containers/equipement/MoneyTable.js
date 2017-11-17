@@ -13,7 +13,7 @@ class MoneyTable extends Component {
 
     render() {
         return (
-            <Panel header="Monnaies" bsStyle="info">
+            <Panel header="Monnaies">
                 <Table fill>
                     { this.props.money.map((money, i) => <Money key={i} {...money} get={this.props.getMoney}  update={this.props.updateMoney} />) }
                 </Table>

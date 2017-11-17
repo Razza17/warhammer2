@@ -14,7 +14,7 @@ class ArmesTable extends Component {
     render() {
         return (
             <Col xs={12} md={6}>
-                <Panel header="Armes" bsStyle="info">
+                <Panel header="Armes">
                     <Table condensed bordered hover striped fill>
                         <thead>
                             <tr>

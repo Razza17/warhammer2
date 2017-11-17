@@ -88,7 +88,7 @@ class PointArmureTable extends Component {
 
     render() {
         return (
-            <Panel header="Points d'armure" bsStyle="info">
+            <Panel header="Points d'armure">
                 <Table condensed bordered hover striped fill>
                     <thead>
                         <tr>

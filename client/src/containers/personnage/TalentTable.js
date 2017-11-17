@@ -13,7 +13,7 @@ class TalentTable extends Component {
 
     render () {
         return (
-            <Panel header="Talents" bsStyle="info">
+            <Panel header="Talents">
                 <Table condensed hover striped className="border" fill>
                     <thead>
                         <tr>

@@ -13,7 +13,7 @@ class FolieTable extends Component {
 
     render() {
         return (
-            <Panel header="Folies" bsStyle="info">
+            <Panel header="Folies">
                 <Table condensed bordered hover striped fill>
                     <thead>
                         <tr>

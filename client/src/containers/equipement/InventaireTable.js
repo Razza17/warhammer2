@@ -13,7 +13,7 @@ class InventaireTable extends Component {
 
     render() {
         return (
-            <Panel header="Inventaire" bsStyle="info">
+            <Panel header="Inventaire">
                 <Table condensed bordered hover striped fill>
                     <thead>
                         <tr>

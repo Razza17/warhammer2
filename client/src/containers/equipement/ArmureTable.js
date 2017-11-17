@@ -13,7 +13,7 @@ class ArmureTable extends Component {
 
     render() {
         return (
-            <Panel header="Armures" bsStyle="info">
+            <Panel header="Armures">
                 <Table condensed bordered hover striped fill>
                     <thead>
                         <tr>

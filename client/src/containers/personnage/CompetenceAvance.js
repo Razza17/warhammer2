@@ -14,7 +14,7 @@ class CompetenceAvance extends Component {
     render() {
         return (
             <Col xs={12} md={6} lg={4}>
-                <Panel header="Compétences avancées" bsStyle="info">
+                <Panel header="Compétences avancées">
                     <Table condensed hover striped className="border table-desktop" fill>
                         <thead>
                             <tr>

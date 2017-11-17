@@ -27,7 +27,7 @@ class CaracTable extends Component {
     render() {
         return (
             <Col xs={12} lg={8}>
-                <Panel header="Profil du personnage" bsStyle="info">
+                <Panel header="Profil du personnage">
                     <Table condensed bordered hover striped className="carac-table-desktop" fill>
                         <thead>
                             <tr>

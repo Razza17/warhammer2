@@ -10,7 +10,7 @@ a[aria-current="true"] {
 }
 
 /* BOOTSTRAP SURCOUCHE */
-.panel-info>.panel-heading {
+.panel-info>.panel-heading, .panel-default>.panel-heading {
     font-size: 18px;
 }
 
