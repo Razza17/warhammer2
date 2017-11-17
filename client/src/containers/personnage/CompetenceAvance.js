@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
-import { Col, Table, Panel } from 'react-bootstrap';
+import { Col, Table, Panel, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { getCompAvance } from "../../actions/CompAvanceAction";
 import Competence from "../../components/personnage/Competence";
+import CompetenceAvanceUpdate from '../../components/update/CompetenceAvanceUpdate';
 
 class CompetenceAvance extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            update: false
+        }
+    }
+
+    showUpdate() {
+        this.setState({
+            update: !this.state.update
+        })
+    }
+
     componentWillMount() {
         this.props.getCompAvance();
     }
@@ -14,45 +30,27 @@ class CompetenceAvance extends Component {
     render() {
         return (
             <Col xs={12} md={6} lg={4}>
-                <Panel header="Compétences avancées">
+                <Panel header="Compétences de Avancées" className="noPadding">
+                    <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
                     <Table condensed hover striped className="border table-desktop" fill>
                         <thead>
-                            <tr>
-                                <th>Nom</th>
-                                <th>Carac.</th>
-                                <th>Acquis</th>
-                                <th>+10%</th>
-                                <th>+20%</th>
-                                <th>Bonus</th>
-                                <th>Total</th>
-                            </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Carac.</th>
+                            <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
+                            <th>+10%</th>
+                            <th>+20%</th>
+                            <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
+                            <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
+                            {this.state.update && <th>Update</th>}
+                        </tr>
                         </thead>
                         <tbody>
                             {
                                 this.props.compAvance.map((competenceA, i) =>
-                                    <Competence key={i} {...competenceA}/>
+                                    this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} getCompAvance={this.props.getCompAvance}/> : <Competence key={i} {...competenceA}/>
                                 )
                             }
-                        </tbody>
-                    </Table>
-                    <Table condensed hover striped className="border table-mobile" fill>
-                        <thead>
-                            <tr>
-                                <th>Nom</th>
-                                <th>Carac.</th>
-                                <th>Ac.</th>
-                                <th>+10</th>
-                                <th>+20</th>
-                                <th>Bon.</th>
-                                <th>Tot.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            this.props.compAvance.map((competenceA, i) =>
-                                <Competence key={i} {...competenceA}/>
-                            )
-                        }
                         </tbody>
                     </Table>
                 </Panel>

@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
-import { Col, Table, Panel } from 'react-bootstrap';
+import { Col, Table, Panel, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Competence from "../../components/personnage/Competence";
+import CompetenceBaseUpdate from '../../components/update/CompetenceBaseUpdate';
 import { getCompBase } from "../../actions/CompBaseAction";
 
 class CompetenceBase extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            update: false
+        }
+    }
+
+    showUpdate() {
+        this.setState({
+            update: !this.state.update
+        })
+    }
+
     componentWillMount() {
         this.props.getCompBase();
     }
@@ -14,45 +30,27 @@ class CompetenceBase extends Component {
     render() {
         return (
             <Col xs={12} md={6} lg={4}>
-                <Panel header="Compétence de base">
+                <Panel header="Compétences de base" className="noPadding">
+                    <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
                     <Table condensed hover striped className="border table-desktop" fill>
                         <thead>
                             <tr>
                                 <th>Nom</th>
                                 <th>Carac.</th>
-                                <th>Acquis</th>
+                                <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
                                 <th>+10%</th>
                                 <th>+20%</th>
-                                <th>Bonus</th>
-                                <th>Total</th>
+                                <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
+                                <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
+                                {this.state.update && <th>Update</th>}
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 this.props.compBase.map((competenceB, i) =>
-                                    <Competence key={i} {...competenceB}/>
+                                    this.state.update ? <CompetenceBaseUpdate key={i} {...competenceB}/> : <Competence key={i} {...competenceB}/>
                                 )
                             }
-                        </tbody>
-                    </Table>
-                    <Table condensed hover striped className="border table-mobile" fill>
-                        <thead>
-                            <tr>
-                                <th>Nom</th>
-                                <th>Carac.</th>
-                                <th>Ac.</th>
-                                <th>+10</th>
-                                <th>+20</th>
-                                <th>Bon.</th>
-                                <th>Tot.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            this.props.compBase.map((competenceB, i) =>
-                                <Competence key={i} {...competenceB}/>
-                            )
-                        }
                         </tbody>
                     </Table>
                 </Panel>

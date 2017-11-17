@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
-import { Col, Table, Panel } from 'react-bootstrap';
+import { Col, Table, Panel, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { getArme } from "../../actions/ArmeAction";
 import { Armes } from '../../components/equipement/Armes';
+import ArmesUpdate from '../../components/update/ArmesUpdate';
 
 class ArmesTable extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            update: false
+        }
+    }
+
+    showUpdate() {
+        this.setState({
+            update: !this.state.update
+        })
+    }
+
     componentWillMount() {
         this.props.getArme();
     }
@@ -14,7 +30,8 @@ class ArmesTable extends Component {
     render() {
         return (
             <Col xs={12} md={6}>
-                <Panel header="Armes">
+                <Panel header="Armes" className="noPadding">
+                    <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
                     <Table condensed bordered hover striped fill>
                         <thead>
                             <tr>
@@ -24,10 +41,11 @@ class ArmesTable extends Component {
                                 <th>Portée</th>
                                 <th><span className="show-desktop">Rechargement</span><span className="show-mobile">Recharg</span></th>
                                 <th>Attributs</th>
+                                {this.state.update && <th>Actions</th>}
                             </tr>
                         </thead>
                         <tbody>
-                            { this.props.arme.map((armes, i) => <Armes key={i} {...armes} />) }
+                            { this.props.arme.map((armes, i) => this.state.update ? <ArmesUpdate key={i} {...armes} /> : <Armes key={i} {...armes} />) }
                         </tbody>
                     </Table>
                 </Panel>

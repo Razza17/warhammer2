@@ -9,7 +9,7 @@ import CompetenceBase from "../containers/personnage/CompetenceBase";
 import CompetenceAvance from "../containers/personnage/CompetenceAvance";
 import TalentTable from "../containers/personnage/TalentTable";
 
-import WarhammerLogo from "../img/WarhammerLogo.png";
+import WarhammerLogo from "../img/Warhammer-Logo.jpg";
 
 export class Personnage extends Component {
     render() {
@@ -19,7 +19,7 @@ export class Personnage extends Component {
                     <ProfilTable />
                     <DetailsTable />
                     <Col xsHidden smHidden mdHidden lg={4}>
-                        <Image src={WarhammerLogo} alt="WarhammerLogo" />
+                        <Image src={WarhammerLogo} alt="WarhammerLogo" width="100%" />
                     </Col>
                 </Row>
                 <Row>
