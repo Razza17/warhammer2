@@ -3,9 +3,10 @@ import { Col, Table, Panel, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getCompAvance } from "../../actions/CompAvanceAction";
+import { getCompAvance, updateCompAvance } from "../../actions/CompAvanceAction";
 import Competence from "../../components/personnage/Competence";
 import CompetenceAvanceUpdate from '../../components/update/CompetenceAvanceUpdate';
+import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceAvance extends Component {
 
@@ -48,7 +49,7 @@ class CompetenceAvance extends Component {
                         <tbody>
                             {
                                 this.props.compAvance.map((competenceA, i) =>
-                                    this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} getCompAvance={this.props.getCompAvance}/> : <Competence key={i} {...competenceA}/>
+                                    this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} getCompAvance={this.props.getCompAvance}  updateCompAvance={this.props.updateCompAvance}/> : <Competence key={i} {...competenceA}/>
                                 )
                             }
                         </tbody>
@@ -62,14 +63,18 @@ class CompetenceAvance extends Component {
 
 function mapStateToProps(state) {
     return {
-        compAvance: state.compAvance.compAvance
+        compAvance: state.compAvance.compAvance,
+        modified: state.compAvance.payload,
+        msg: state.compAvance.msg,
+        style: state.compAvance.style
     }
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        getCompAvance
+        getCompAvance,
+        updateCompAvance
     }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompetenceAvance);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompetenceAvance));

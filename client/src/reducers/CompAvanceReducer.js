@@ -14,9 +14,9 @@ export function compAvanceReducer(state={compAvance:[]}, action) {
 
         // UPDATE
         case "UPDATE_COMPAVANCE":
-            return {...state, ...action.payload, msg:'Your advanced skills has been successfully updated', style:'success'};
+            return {...state, payload:action.payload, msg:'Your advanced skills has been successfully updated', style:'success'};
         case "UPDATE_COMPAVANCE_REJECTED":
-            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
+            return {...state, payload:action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

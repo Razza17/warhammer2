@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, Glyphicon } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { updateTalent } from "../../actions/TalentAction";
-
-class TalentUpdate extends Component {
+export class TalentUpdate extends Component {
 
     handleUpdate() {
         let _id = this.props._id;
@@ -63,11 +59,3 @@ class TalentUpdate extends Component {
         );
     }
 }
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        updateTalent
-    }, dispatch)
-}
-
-export default connect("", mapDispatchToProps)(TalentUpdate)

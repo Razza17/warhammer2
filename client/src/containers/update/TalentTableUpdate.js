@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { getTalent, postTalent } from "../../actions/TalentAction";
-import TalentUpdate from "../../components/update/TalentUpdate";
+import { getTalent, postTalent, updateTalent } from "../../actions/TalentAction";
+import { TalentUpdate } from "../../components/update/TalentUpdate";
 import { updateMessage } from "../../hocs/updateMessage";
 
 class TalentTableUpdate extends Component {
@@ -49,7 +49,7 @@ class TalentTableUpdate extends Component {
                         <tbody>
                         {
                             this.props.talent.map((talents, i) =>
-                                <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} />
+                                <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} updateTalent={this.props.updateTalent} />
                             )
                         }
                         <tr>
@@ -106,7 +106,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators ({
         getTalent,
-        postTalent
+        postTalent,
+        updateTalent
     }, dispatch)
 }
 

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Glyphicon, FormGroup, FormControl, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
-
-import { updateCompAvance } from "../../actions/CompAvanceAction";
 
 class CompetenceAvanceUpdate extends Component {
 
@@ -108,10 +105,4 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        updateCompAvance
-    }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CompetenceAvanceUpdate);
+export default connect(mapStateToProps)(CompetenceAvanceUpdate);

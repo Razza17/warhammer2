@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Talent } from "../../components/personnage/Talent";
-import TalentUpdate from '../../components/update/TalentUpdate';
-import { getTalent } from "../../actions/TalentAction";
+import { TalentUpdate } from '../../components/update/TalentUpdate';
+import { getTalent, updateTalent } from "../../actions/TalentAction";
+import { updateMessage } from "../../hocs/updateMessage";
 
 class TalentTable extends Component {
 
@@ -44,7 +45,9 @@ class TalentTable extends Component {
                     <tbody>
                         {
                             this.props.talent.map((talents, i) =>
-                                this.state.update ? <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} /> : <Talent key={i} {...talents} />
+                                this.state.update ?
+                                    <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} updateTalent={this.props.updateTalent} /> :
+                                    <Talent key={i} {...talents} />
                             )
                         }
                     </tbody>
@@ -56,14 +59,18 @@ class TalentTable extends Component {
 
 function mapStateToProps(state) {
     return {
-        talent: state.talent.talent
+        talent: state.talent.talent,
+        modified: state.talent.payload,
+        msg: state.talent.msg,
+        style: state.talent.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators ({
-        getTalent
+        getTalent,
+        updateTalent
     }, dispatch)
 }
 
-export default connect (mapStateToProps, mapDispatchToProps) (TalentTable)
+export default connect (mapStateToProps, mapDispatchToProps)(updateMessage(TalentTable));
