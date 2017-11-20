@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Home } from "../components/home/Home";
 import { Personnage } from "../pages/Personnage";
 import { Equipement } from "../pages/Equipement";
+import { Combat } from "../pages/Combat";
 import { Update } from "../pages/Update";
 
 const Main = () => (
@@ -12,6 +13,7 @@ const Main = () => (
             <Route exact path='/' component={Home}/>
             <Route path='/personnage' component={Personnage}/>
             <Route path='/equipement' component={Equipement}/>
+            <Route path='/combat' component={Combat}/>
             <Route path='/update' component={Update}/>
         </Switch>
     </main>

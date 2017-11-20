@@ -2,21 +2,59 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    background: url('../src/img/back.jpg') no-repeat;
+    background-size: cover;
 }
+
+/* NAV */
+a[aria-current="true"] {
+    color: #ffffff;
+}
+
+/* BOOTSTRAP SURCOUCHE */
+.panel, table {
+    background-color: rgba(46, 51, 56, 0.8);
+}
+
+.panel-primary>.panel-heading, .panel-default>.panel-heading {
+    font-size: 18px;
+}
+
+.noPadding .panel-body {
+    padding: 0;
+}
+
+.glyphicon, #update .panel-title>a {
+    cursor: pointer;
+}
+
+#update .table tbody tbody tr td {
+    border: 1px solid #ddd;
+}
+/* END BOOTSTRAP SURCOUCHE */
 
 ul li {
   list-style-type: none;
 }
 
-.border {
-    border: 1px solid #ddd;
+.table tbody tr td, .table thead tr th, .count {
+    text-align: center;
+    vertical-align: middle;
 }
 
-.table_desktop {
+.table-desktop {
     display: table;
 }
 
-.table_mobile {
+.table-mobile {
+    display: none;
+}
+
+.carac-table-desktop {
+    display: table;
+}
+
+.carac-table-mobile {
     display: none;
 }
 
@@ -25,13 +63,66 @@ ul li {
     vertical-align: middle;
 }
 
+.show-desktop {
+    display: block;
+}
+
+.show-mobile {
+    display: none;
+}
+
+/* MESSAGE SHOW/HIDE */
+.hideMsg {
+    position: fixed;
+    bottom: 10px;
+    right: -100%;
+    opacity: 0;
+    transition: right, opacity 1s;
+    z-index: 1000;
+}
+
+.hideMsg.showMsg {
+    right: 5px;
+    opacity: 1;
+}
+
+.badge {
+    cursor: pointer;
+}
+
+.showUpdateButton {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+
 @media screen and (max-width: 500px) {
 
-    .table_desktop {
+    .table-desktop {
         display: none;
     }
 
-    .table_mobile {
+    .table-mobile {
+        display: table;
+    }
+
+    .show-desktop {
+        display: none;
+    }
+
+    .show-mobile {
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .carac-table-desktop {
+        display: none;
+    }
+
+    .carac-table-mobile {
         display: table;
     }
 

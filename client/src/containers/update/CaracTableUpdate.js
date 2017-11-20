@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
+import { Panel, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -9,10 +9,11 @@ import { getCaracActuel, updateCaracActuel } from "../../actions/CaracActuelActi
 import { CaracBaseUpdate } from "../../components/update/CaracBaseUpdate";
 import { CaracAvanceUpdate } from "../../components/update/CaracAvanceUpdate";
 import { CaracActuelUpdate } from "../../components/update/CaracActuelUpdate";
+import { updateMessage } from "../../hocs/updateMessage";
 
 
 class CaracTableUpdate extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCaracBase();
         this.props.getCaracAvance();
         this.props.getCaracActuel();
@@ -20,49 +21,53 @@ class CaracTableUpdate extends Component {
 
     render() {
         return (
-            <Table condensed bordered hover striped>
-                <thead>
-                    <tr><th colSpan="17" className="text-center">Profil du Personnage</th></tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td colSpan="8">Profil Principal</td>
-                        <td colSpan="8">Profil Secondaire</td>
-                    </tr>
-                    <tr className="text-center profilHeader">
-                        <td>&nbsp;</td>
-                        <td>CC</td>
-                        <td>CT</td>
-                        <td>F</td>
-                        <td>E</td>
-                        <td>Ag</td>
-                        <td>Int</td>
-                        <td>FM</td>
-                        <td>Soc</td>
-                        <td>A</td>
-                        <td>B</td>
-                        <td>BF</td>
-                        <td>BE</td>
-                        <td>M</td>
-                        <td>Mag</td>
-                        <td>PF</td>
-                        <td>PD</td>
-                    </tr>
-                    {this.props.caracBase.map((caracBase, i) => <CaracBaseUpdate key={i}
-                                                                                 getCaracBase={this.props.getCaracBase}
-                                                                                 updateCaracBase={this.props.updateCaracBase}
-                                                                                 {...caracBase}/>)}
-                    {this.props.caracAvance.map((caracAvance, i) => <CaracAvanceUpdate key={i}
-                                                                                       getCaracAvance={this.props.getCaracAvance}
-                                                                                       updateCaracAvance={this.props.updateCaracAvance}
-                                                                                       {...caracAvance}/>)}
-                    {this.props.caracActuel.map((caracActuel, i) => <CaracActuelUpdate key={i}
-                                                                                       getCaracActuel={this.props.getCaracActuel}
-                                                                                       updateCaracActuel={this.props.updateCaracActuel}
-                                                                                       {...caracActuel}/>)}
-                </tbody>
-            </Table>
+            <Panel collapsible header="Profil du personnage">
+                <Table condensed bordered hover striped fill>
+                    <thead>
+                        <tr>
+                            <th colSpan="9">Profil Principal</th>
+                            <th colSpan="9">Profil Secondaire</th>
+                        </tr>
+                        <tr className="text-center profilHeader">
+                            <th>Type</th>
+                            <th>CC</th>
+                            <th>CT</th>
+                            <th>F</th>
+                            <th>E</th>
+                            <th>Ag</th>
+                            <th>Int</th>
+                            <th>FM</th>
+                            <th>Soc</th>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>BF</th>
+                            <th>BE</th>
+                            <th>M</th>
+                            <th>Mag</th>
+                            <th>PF</th>
+                            <th>PD</th>
+                            <th>Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.props.caracBase.map((caracBase, i) => <CaracBaseUpdate key={i}
+                                                                                     getCaracBase={this.props.getCaracBase}
+                                                                                     updateCaracBase={this.props.updateCaracBase}
+                                                                                     {...caracBase}/>)
+                        }
+                        {this.props.caracAvance.map((caracAvance, i) => <CaracAvanceUpdate key={i}
+                                                                                           getCaracAvance={this.props.getCaracAvance}
+                                                                                           updateCaracAvance={this.props.updateCaracAvance}
+                                                                                           {...caracAvance}/>)
+                        }
+                        {this.props.caracActuel.map((caracActuel, i) => <CaracActuelUpdate key={i}
+                                                                                           getCaracActuel={this.props.getCaracActuel}
+                                                                                           updateCaracActuel={this.props.updateCaracActuel}
+                                                                                           {...caracActuel}/>)
+                        }
+                    </tbody>
+                </Table>
+            </Panel>
         )
     }
 }
@@ -71,19 +76,21 @@ function mapStateToProps(state){
     return {
         caracBase: state.caracBase.caracBase,
         caracAvance: state.caracAvance.caracAvance,
-        caracActuel: state.caracActuel.caracActuel
+        caracActuel: state.caracActuel.caracActuel,
+        msg: state.caracBase.msg,
+        style: state.caracBase.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getCaracBase:getCaracBase,
-        updateCaracBase:updateCaracBase,
-        getCaracAvance:getCaracAvance,
-        updateCaracAvance:updateCaracAvance,
-        getCaracActuel:getCaracActuel,
-        updateCaracActuel:updateCaracActuel
+        getCaracBase,
+        updateCaracBase,
+        getCaracAvance,
+        updateCaracAvance,
+        getCaracActuel,
+        updateCaracActuel
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CaracTableUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CaracTableUpdate));

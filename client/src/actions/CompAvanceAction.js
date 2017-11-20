@@ -15,9 +15,9 @@ export function getCompAvance() {
 
 
 // POST COMPETENCE AVANCE
-export function postCompAvance() {
+export function postCompAvance(newComp) {
     return function(dispatch) {
-        axios.post('/competenceavance')
+        axios.post('/competenceavance', newComp)
             .then(function(response) {
                 dispatch({type:"POST_COMPAVANCE", payload:response.data})
             })

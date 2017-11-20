@@ -1,35 +1,29 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Image } from 'react-bootstrap';
 
 import ProfilTable from "../containers/personnage/ProfilTable";
 import DetailsTable from "../containers/personnage/DetailsTable";
 import CaracTable from "../containers/personnage/CaracTable";
-import CaracTableM from "../containers/personnage/CaracTableM";
 import CountContainer from "../containers/personnage/CountContainer";
 import CompetenceBase from "../containers/personnage/CompetenceBase";
 import CompetenceAvance from "../containers/personnage/CompetenceAvance";
-import { TalentTable } from "../containers/personnage/TalentTable";
+import TalentTable from "../containers/personnage/TalentTable";
 
-import WarhammerLogo from "../img/WarhammerLogo.png";
+import WarhammerLogo from "../img/Warhammer-Logo.jpg";
 
 export class Personnage extends Component {
     render() {
         return (
-            <Grid fluid>
+            <Grid id="personnage" fluid>
                 <Row>
                     <ProfilTable />
                     <DetailsTable />
                     <Col xsHidden smHidden mdHidden lg={4}>
-                        <img src={WarhammerLogo} alt="WarhammerLogo" />
+                        <Image src={WarhammerLogo} alt="WarhammerLogo" width="100%" />
                     </Col>
                 </Row>
                 <Row>
-                    <Col xsHidden smHidden md={7}>
-                        <CaracTable />
-                    </Col>
-                    <Col xs={12} mdHidden lgHidden>
-                        <CaracTableM />
-                    </Col>
+                    <CaracTable />
                     <CountContainer />
                 </Row>
                 <Row>

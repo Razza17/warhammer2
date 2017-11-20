@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,16 +7,14 @@ import Count from "../../components/personnage/Count";
 import { getCount, updateCount } from "../../actions/CountAction";
 
 class CountContainer extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getCount();
     }
 
     render() {
         return (
-            <Col xs={12} md={4}>
-                <Row className="text-center">
-                    { this.props.count.map((count, i) => <Count key={i} {...count} get={this.props.getCount} update={this.props.updateCount} />) }
-                </Row>
+            <Col xs={12} lg={4}>
+                { this.props.count.map((count, i) => <Count key={i} {...count} get={this.props.getCount} update={this.props.updateCount} />) }
             </Col>
         )
     }
@@ -30,8 +28,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        getCount:getCount,
-        updateCount:updateCount
+        getCount,
+        updateCount
     }, dispatch)
 }
 

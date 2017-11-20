@@ -14,9 +14,9 @@ export function profilReducer(state={profile:[]}, action) {
 
         // UPDATE
         case "UPDATE_PROFILE":
-            return {...state};
+            return {...state, ...action.payload, msg:'Your Profile has been successfully updated', style:'success'};
         case "UPDATE_PROFILE_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

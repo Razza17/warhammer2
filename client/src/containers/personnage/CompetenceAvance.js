@@ -1,59 +1,60 @@
 import React, { Component } from 'react';
-import { Col, Table } from 'react-bootstrap';
+import { Col, Table, Panel, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getCompAvance } from "../../actions/CompAvanceAction";
+import { getCompAvance, updateCompAvance } from "../../actions/CompAvanceAction";
 import Competence from "../../components/personnage/Competence";
+import CompetenceAvanceUpdate from '../../components/update/CompetenceAvanceUpdate';
+import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceAvance extends Component {
-    componentDidMount() {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            update: false
+        }
+    }
+
+    showUpdate() {
+        this.setState({
+            update: !this.state.update
+        })
+    }
+
+    componentWillMount() {
         this.props.getCompAvance();
     }
 
     render() {
         return (
             <Col xs={12} md={6} lg={4}>
-                <Table condensed hover striped className="border table_desktop">
-                    <thead>
+                <Panel header="Compétences de Avancées" className="noPadding">
+                    <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+                    <Table condensed hover striped className="border table-desktop" fill>
+                        <thead>
                         <tr>
-                            <th className="text-center">Compétences avancées</th>
-                            <th className="text-center">Carac.</th>
-                            <th className="text-center">Acquis</th>
-                            <th className="text-center">+10%</th>
-                            <th className="text-center">+20%</th>
-                            <th className="text-center">Bonus</th>
-                            <th className="text-center">Total</th>
+                            <th>Nom</th>
+                            <th>Carac.</th>
+                            <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
+                            <th>+10%</th>
+                            <th>+20%</th>
+                            <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
+                            <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
+                            {this.state.update && <th>Update</th>}
                         </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.props.compAvance.map((competenceA, i) =>
-                                <Competence key={i} {...competenceA}/>
-                            )
-                        }
-                    </tbody>
-                </Table>
-                <Table condensed hover striped className="border table_mobile">
-                    <thead>
-                        <tr>
-                            <th className="text-center">Compétences avancées</th>
-                            <th className="text-center">Carac.</th>
-                            <th className="text-center">Ac.</th>
-                            <th className="text-center">+10</th>
-                            <th className="text-center">+20</th>
-                            <th className="text-center">Bon.</th>
-                            <th className="text-center">Tot.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        this.props.compAvance.map((competenceA, i) =>
-                            <Competence key={i} {...competenceA}/>
-                        )
-                    }
-                    </tbody>
-                </Table>
+                        </thead>
+                        <tbody>
+                            {
+                                this.props.compAvance.map((competenceA, i) =>
+                                    this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} getCompAvance={this.props.getCompAvance}  updateCompAvance={this.props.updateCompAvance}/> : <Competence key={i} {...competenceA}/>
+                                )
+                            }
+                        </tbody>
+                    </Table>
+                </Panel>
             </Col>
         )
     }
@@ -62,14 +63,18 @@ class CompetenceAvance extends Component {
 
 function mapStateToProps(state) {
     return {
-        compAvance: state.compAvance.compAvance
+        compAvance: state.compAvance.compAvance,
+        modified: state.compAvance.payload,
+        msg: state.compAvance.msg,
+        style: state.compAvance.style
     }
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        getCompAvance:getCompAvance
+        getCompAvance,
+        updateCompAvance
     }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompetenceAvance);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompetenceAvance));

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { FormControl, FormGroup, Button } from 'react-bootstrap';
+import { FormControl, FormGroup, Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { findDOMNode } from 'react-dom';
 
 export class CaracActuelUpdate extends Component {
+
     handleUpdate() {
         let id = this.props._id;
         const newCarac = {
@@ -28,13 +29,14 @@ export class CaracActuelUpdate extends Component {
     }
 
     render() {
+        let tooltip = <Tooltip id={this.props._id}>Click here to update</Tooltip>;
         return (
-            <tr className="text-center">
-                <td className="black">Actuel</td>
+            <tr>
+                <td>Actuel</td>
                 <td>
                     <FormGroup controlId="cc">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.cc}
                             ref='cc' />
                     </FormGroup>
@@ -42,7 +44,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="ct">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.ct}
                             ref='ct' />
                     </FormGroup>
@@ -50,7 +52,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="f">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.f}
                             ref='f' />
                     </FormGroup>
@@ -58,7 +60,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="e">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.e}
                             ref='e' />
                     </FormGroup>
@@ -66,7 +68,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="ag">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.ag}
                             ref='ag' />
                     </FormGroup>
@@ -74,7 +76,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="int">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.int}
                             ref='int' />
                     </FormGroup>
@@ -82,7 +84,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="fm">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.fm}
                             ref='fm' />
                     </FormGroup>
@@ -90,7 +92,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="soc">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.soc}
                             ref='soc' />
                     </FormGroup>
@@ -98,7 +100,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="a">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.a}
                             ref='a' />
                     </FormGroup>
@@ -106,7 +108,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="b">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.b}
                             ref='b' />
                     </FormGroup>
@@ -114,7 +116,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="bf">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.bf}
                             ref='bf' />
                     </FormGroup>
@@ -122,7 +124,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="be">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.be}
                             ref='be' />
                     </FormGroup>
@@ -130,7 +132,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="m">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.m}
                             ref='m' />
                     </FormGroup>
@@ -138,7 +140,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="mag">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.mag}
                             ref='mag' />
                     </FormGroup>
@@ -146,7 +148,7 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="pf">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.pf}
                             ref='pf' />
                     </FormGroup>
@@ -154,12 +156,16 @@ export class CaracActuelUpdate extends Component {
                 <td>
                     <FormGroup controlId="pd">
                         <FormControl
-                            type='number'
+                            type='text'
                             defaultValue={this.props.pd}
                             ref='pd' />
                     </FormGroup>
                 </td>
-                <td><Button bsStyle='primary' onClick={this.handleUpdate.bind(this)}>Update</Button></td>
+                <td>
+                    <OverlayTrigger placement="bottom" overlay={tooltip} delayShow={300} delayHide={150}>
+                        <Glyphicon glyph="pencil" onClick={this.handleUpdate.bind(this)} />
+                    </OverlayTrigger>
+                </td>
             </tr>
         )
     }

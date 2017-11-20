@@ -5,7 +5,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 export class Navbars extends Component {
     render() {
         return (
-            <Navbar inverse collapseOnSelect>
+            <Navbar collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <NavLink to="/" className="navbar-brand">WARHAMMER 2.0</NavLink>
@@ -16,6 +16,7 @@ export class Navbars extends Component {
                     <Nav>
                         <li><NavLink to="/personnage">Personnage</NavLink></li>
                         <li><NavLink to="/equipement">Equipement</NavLink></li>
+                        <li><NavLink to="/combat">Combat</NavLink></li>
                         <li><NavLink to="/update">Update your Character</NavLink></li>
                     </Nav>
                 </Navbar.Collapse>

@@ -14,9 +14,9 @@ export function caracActuelReducer(state={caracActuel:[]}, action) {
 
         // UPDATE
         case "UPDATE_CARACACTUEL":
-            return {...state};
+            return {...state, ...action.payload, msg:'Your Actual carac has been successfully updated', style:'success'};
         case "UPDATE_CARACACTUEL_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

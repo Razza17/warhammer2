@@ -6,14 +6,14 @@ import {Details} from "../../components/personnage/Details";
 import { getDetails } from '../../actions/DetailAction';
 
 class DetailsTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getDetails();
     }
 
     render() {
         return (
             <Col xs={12} sm={6} md={8} lg={4}>
-                <Panel>
+                <Panel header="Détails du personnage">
                     {
                         this.props.details.map((details, i) => <Details key={i} {...details} />)
                     }
@@ -30,7 +30,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getDetails:getDetails}, dispatch);
+    return bindActionCreators({getDetails}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsTable);

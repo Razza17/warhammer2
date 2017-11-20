@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export class CaracActuelP extends Component {
     render() {
         return (
-            <tr className="text-center">
+            <tr>
                 <td className="black">Ac</td>
                 <td>{this.props.cc}</td>
                 <td>{this.props.ct}</td>

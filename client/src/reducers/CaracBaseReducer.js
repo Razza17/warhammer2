@@ -14,9 +14,9 @@ export function caracBaseReducer(state={caracBase:[]}, action) {
 
         // UPDATE
         case "UPDATE_CARACBASE":
-            return {...state};
+            return {...state, ...action.payload, msg:'Your Caracteristics has been successfully updated', style:'success'};
         case "UPDATE_CARACBASE_REJECTED":
-            return action.payload;
+            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

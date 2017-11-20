@@ -1,27 +1,47 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Panel } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { getArmure } from "../../actions/ArmureAction";
 import { Armure } from '../../components/equipement/Armure';
 
-import Wolfgang from '../../data/Wolfgang.json';
+class ArmureTable extends Component {
+    componentWillMount() {
+        this.props.getArmure();
+    }
 
-export class ArmureTable extends Component {
     render() {
         return (
-            <Table condensed bordered hover striped>
-                <thead>
-                    <tr><th colSpan="4" className="text-center">Armure</th></tr>
-                    <tr>
-                        <th className="text-center">Nom</th>
-                        <th className="text-center">Enc</th>
-                        <th className="text-center">Couverture</th>
-                        <th className="text-center">Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { Wolfgang.armure.map((armure, i) => <Armure key={i} {...armure} />) }
-                </tbody>
-            </Table>
+            <Panel header="Armures">
+                <Table condensed bordered hover striped fill>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Enc</th>
+                            <th>Couverture</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.props.armure.map((armure, i) => <Armure key={i} {...armure} />) }
+                    </tbody>
+                </Table>
+            </Panel>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        armure: state.armure.armure
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getArmure
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArmureTable);
