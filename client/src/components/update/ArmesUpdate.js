@@ -28,7 +28,7 @@ class ArmesUpdate extends Component {
     }
 
     handleChangeArme() {
-        let armeData = this.props.arme.map((newArmes) => {return {...newArmes}});
+        const armeData = this.props.arme.map((newArmes) => {return {...newArmes}});
         for(let j = 0; j < armeData.length; j++) {
             this.setState({
                 nom: armeData[j].nom,

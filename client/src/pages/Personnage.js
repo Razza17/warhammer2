@@ -27,9 +27,11 @@ export class Personnage extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12} lg={8}>
+                    <Col xs={12} lg={8} lgOffset={2}>
                         <CaracTable />
                     </Col>
+                </Row>
+                <Row>
                     <CountContainer />
                 </Row>
                 <Row>

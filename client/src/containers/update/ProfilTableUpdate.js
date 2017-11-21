@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Col, Panel, Table } from 'react-bootstrap';
+import { Panel, Table } from 'react-bootstrap';
 
 import { ProfilUpdate } from "../../components/update/ProfilUpdate";
 import { getProfile, updateProfile } from '../../actions/ProfilAction';

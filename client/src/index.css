@@ -2,8 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: url('../src/img/back.jpg') no-repeat;
-    background-size: 100% 100%;
+    /*background: url('../src/img/back.jpg') no-repeat;
+    background-size: 100% 100%;*/
 }
 
 /* NAV */
@@ -16,7 +16,7 @@ a[aria-current="true"] {
     background-color: rgba(46, 51, 56, 0.8);
 }
 
-.panel-primary>.panel-heading, .panel-default>.panel-heading {
+.panel-primary>.panel-heading, .panel-default>.panel-heading, .panel-title>a {
     font-size: 18px;
 }
 

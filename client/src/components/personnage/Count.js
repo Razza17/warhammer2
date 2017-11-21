@@ -59,13 +59,17 @@ class Count extends Component {
     }
 
     render() {
+
+        const pointDestin = this.props.caracActuel.length > 0 && this.props.caracActuel[2].pd;
+        const blessure = this.props.caracActuel.length > 0 && this.props.caracActuel[2].b;
+
         return (
-            <Col xs={4} lg={12}>
+            <Col xs={4}>
                 <Panel className="count" header={this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? "Points de Fortune" : "Blessures") : "Munitions"}>
                     <span><strong>{this.props.value}
                         {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}</strong>
-                        {this.props.name === "Fortune" && "sur " + this.props.caracActuel[2].pd}
-                        {this.props.name === "Blessure" && "sur " + this.props.caracActuel[2].b}
+                        {this.props.name === "Fortune" && "sur " + pointDestin}
+                        {this.props.name === "Blessure" && "sur " + blessure}
                     </span>
                     <ButtonGroup style={{marginLeft: "20px"}}>
                         <Button bsStyle="danger" onClick={this.onDecrement.bind(this)}><Glyphicon glyph="minus" /></Button>

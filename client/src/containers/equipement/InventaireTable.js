@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button } from 'react-bootstrap';
+import { Table, Panel, Button, FormControl, FormGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { findDOMNode } from 'react-dom';
 
-import { getInventaire } from "../../actions/InventaireAction";
+import { getInventaire, postInventaire } from "../../actions/InventaireAction";
 import { Inventaire } from "../../components/equipement/Inventaire";
 import InventaireUpdate from '../../components/update/InventaireUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class InventaireTable extends Component {
+
+    componentWillMount() {
+        this.props.getInventaire();
+    }
 
     constructor(props) {
         super(props);
@@ -24,8 +29,21 @@ class InventaireTable extends Component {
         })
     }
 
-    componentWillMount() {
+    handleSubmit() {
+        const inventaire = {
+            nom: findDOMNode(this.refs.nomPostInventaire).value,
+            quantite: findDOMNode(this.refs.quantitePostInventaire).value,
+            encombrement: findDOMNode(this.refs.encPostInventaire).value
+        };
+        this.props.postInventaire(inventaire);
         this.props.getInventaire();
+        this.resetForm();
+    }
+
+    resetForm() {
+        findDOMNode(this.refs.nomPostInventaire).value = "";
+        findDOMNode(this.refs.quantitePostInventaire).value = "";
+        findDOMNode(this.refs.encPostInventaire).value = "";
     }
 
     render() {
@@ -47,6 +65,35 @@ class InventaireTable extends Component {
                                 <InventaireUpdate key={i} {...inventaire} getInventaire={this.props.getInventaire} /> :
                                 <Inventaire key={i} {...inventaire}/>)
                         }
+                        {this.state.update &&
+                        <tr>
+                            <td>
+                                <FormGroup controlId="nomPostInventaire">
+                                    <FormControl
+                                        type='text'
+                                        placeholder='Nom'
+                                        ref='nomPostInventaire' />
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <FormGroup controlId="quantitePostInventaire">
+                                    <FormControl
+                                        type='number'
+                                        placeholder='Quantité'
+                                        ref='quantitePostInventaire' />
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <FormGroup controlId="encPostInventaire">
+                                    <FormControl
+                                        type='number'
+                                        placeholder='Encombrement'
+                                        ref='encPostInventaire' />
+                                </FormGroup>
+                            </td>
+                            <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                        </tr>
+                        }
                     </tbody>
                 </Table>
             </Panel>
@@ -65,7 +112,8 @@ function mapStateToProps(state) {
 
 function mapDispatchtoProps(dispatch) {
     return bindActionCreators({
-        getInventaire
+        getInventaire,
+        postInventaire
     }, dispatch)
 }
 

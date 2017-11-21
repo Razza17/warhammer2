@@ -10,6 +10,10 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class ArmesTable extends Component {
 
+    componentWillMount() {
+        this.props.getArme();
+    }
+
     constructor(props) {
         super(props);
 
@@ -22,10 +26,6 @@ class ArmesTable extends Component {
         this.setState({
             update: !this.state.update
         })
-    }
-
-    componentWillMount() {
-        this.props.getArme();
     }
 
     render() {

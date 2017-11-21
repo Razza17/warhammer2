@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Table, Panel } from 'react-bootstrap';
+import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 

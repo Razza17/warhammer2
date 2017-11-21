@@ -80,7 +80,7 @@ class CompetenceAvanceUpdate extends Component {
                     <FormGroup controlId="bonusCompAvance">
                         <FormControl
                             type='text'
-                            defaultValue={this.props.bonus}
+                            defaultValue={this.props.bonus === null ? 0 : this.props.bonus}
                             ref='bonusCompAvance' />
                     </FormGroup>
                 </td>

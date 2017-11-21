@@ -12,7 +12,7 @@ export class Combat extends Component {
         return (
             <Grid id="equipement" fluid>
                 <Row>
-                    <Col xs={12} lg={8}>
+                    <Col xs={12} lg={8} lgOffset={2}>
                         <CaracTable />
                     </Col>
                     <CountContainer />
