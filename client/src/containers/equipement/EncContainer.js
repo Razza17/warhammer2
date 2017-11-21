@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Col } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { Encombrement } from '../../components/equipement/Encombrement';
+import { getCarac } from "../../actions/CaracAction";
 
 class EncContainer extends Component {
+    componentWillMount() {
+        this.props.getCarac();
+    }
 
     encArme() {
         const arme = this.props.arme;
@@ -64,23 +68,28 @@ class EncContainer extends Component {
     }
 
     render() {
+        let total = this.encArme() + this.encArmure() + this.encInventaire();
+        let max = this.props.carac.length > 0 && this.props.carac[2].f * 10;
+        let encombrement = "Encombrement : " + total + " sur " + max;
         return (
-            <Col xs={8} md={4}>
-                {
-                    this.props.carac.map((carac, i) => <Encombrement key={i} {...carac} arme={this.encArme()} armure={this.encArmure()} inventaire={this.encInventaire()} />)
-                }
-            </Col>
+            <Panel header={encombrement} bsStyle={total < max ? "default" : "danger"}></Panel>
         )
     }
 }
 
 function mapStateToProps(state){
     return {
-        carac: state.caracActuel.caracActuel,
+        carac: state.carac.carac,
         arme: state.arme.arme,
         armure: state.armure.armure,
         inventaire: state.inventaire.inventaire
     }
 }
 
-export default connect(mapStateToProps)(EncContainer);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getCarac
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EncContainer);

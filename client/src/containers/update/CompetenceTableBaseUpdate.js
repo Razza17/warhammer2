@@ -14,31 +14,29 @@ class CompetenceTableBaseUpdate extends Component {
 
     render() {
         return (
-            <Col xs={12} md={6}>
-                <Panel collapsible header="Compétences de base">
-                    <Table condensed hover striped className="border" fill>
-                        <thead>
-                            <tr>
-                                <th>Nom</th>
-                                <th>Carac.</th>
-                                <th>Acquis</th>
-                                <th>+10%</th>
-                                <th>+20%</th>
-                                <th>Bonus</th>
-                                <th>Total</th>
-                                <th>Update</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.props.compBase.map((competenceB, i) =>
-                                    <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} />
-                                )
-                            }
-                        </tbody>
-                    </Table>
-                </Panel>
-            </Col>
+            <Panel collapsible header="Compétences de base">
+                <Table condensed hover striped className="border" fill>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Carac.</th>
+                            <th>Acquis</th>
+                            <th>+10%</th>
+                            <th>+20%</th>
+                            <th>Bonus</th>
+                            <th>Total</th>
+                            <th>Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.props.compBase.map((competenceB, i) =>
+                                <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} />
+                            )
+                        }
+                    </tbody>
+                </Table>
+            </Panel>
         )
     }
 }

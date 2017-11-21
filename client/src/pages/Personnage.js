@@ -16,19 +16,29 @@ export class Personnage extends Component {
         return (
             <Grid id="personnage" fluid>
                 <Row>
-                    <ProfilTable />
-                    <DetailsTable />
+                    <Col xs={12} sm={6} md={4}>
+                        <ProfilTable />
+                    </Col>
+                    <Col xs={12} sm={6} md={8} lg={4}>
+                        <DetailsTable />
+                    </Col>
                     <Col xsHidden smHidden mdHidden lg={4}>
                         <Image src={WarhammerLogo} alt="WarhammerLogo" width="100%" />
                     </Col>
                 </Row>
                 <Row>
-                    <CaracTable />
+                    <Col xs={12} lg={8}>
+                        <CaracTable />
+                    </Col>
                     <CountContainer />
                 </Row>
                 <Row>
-                    <CompetenceBase />
-                    <CompetenceAvance />
+                    <Col xs={12} md={6} lg={4}>
+                        <CompetenceBase />
+                    </Col>
+                    <Col xs={12} md={6} lg={4}>
+                        <CompetenceAvance />
+                    </Col>
                     <Col xs={12} md={6} lg={4}>
                         <TalentTable/>
                     </Col>

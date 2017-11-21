@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export class CaracAvance extends Component {
+export class Carac extends Component {
     render() {
         return (
             <tr>
-                <td className="black">Avancé</td>
+                <td>{this.props.type}</td>
                 <td>{this.props.cc}</td>
                 <td>{this.props.ct}</td>
                 <td>{this.props.f}</td>

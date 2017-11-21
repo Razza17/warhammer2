@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { FormControl, FormGroup, Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { findDOMNode } from 'react-dom';
 
-export class CaracActuelUpdate extends Component {
+export class CaracUpdate extends Component {
 
     handleUpdate() {
         let id = this.props._id;
         const newCarac = {
+            _id: id,
             cc: findDOMNode(this.refs.cc).value,
             ct: findDOMNode(this.refs.ct).value,
             f: findDOMNode(this.refs.f).value,
@@ -24,15 +25,15 @@ export class CaracActuelUpdate extends Component {
             pf: findDOMNode(this.refs.pf).value,
             pd: findDOMNode(this.refs.pd).value
         };
-        this.props.updateCaracActuel(id, newCarac);
-        this.props.getCaracActuel();
+        this.props.updateCarac(id, newCarac);
+        this.props.getCarac();
     }
 
     render() {
         let tooltip = <Tooltip id={this.props._id}>Click here to update</Tooltip>;
         return (
             <tr>
-                <td>Actuel</td>
+                <td>{this.props.type}</td>
                 <td>
                     <FormGroup controlId="cc">
                         <FormControl

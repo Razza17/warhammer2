@@ -3,9 +3,7 @@ import { countReducer } from './CountReducer';
 import { moneyReducer } from './MoneyReducer';
 import { profilReducer } from './ProfilReducer';
 import { detailReducer } from './DetailReducer';
-import { caracBaseReducer } from "./CaracBaseReducer";
-import { caracAvanceReducer } from "./CaracAvanceReducer";
-import { caracActuelReducer } from "./CaracActuelReducer";
+import { caracReducer } from "./CaracReducer";
 import { compBaseReducer } from "./CompBaseReducer";
 import { compAvanceReducer } from "./CompAvanceReducer";
 import { talentReducer } from "./TalentReducer";
@@ -18,9 +16,7 @@ import { experienceReducer } from "./ExperienceReducer";
 export default combineReducers({
     profile: profilReducer,
     details: detailReducer,
-    caracBase: caracBaseReducer,
-    caracAvance: caracAvanceReducer,
-    caracActuel: caracActuelReducer,
+    carac: caracReducer,
     count: countReducer,
     compBase: compBaseReducer,
     compAvance: compAvanceReducer,

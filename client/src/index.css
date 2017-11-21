@@ -3,7 +3,7 @@ body {
     padding: 0;
     font-family: sans-serif;
     background: url('../src/img/back.jpg') no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
 }
 
 /* NAV */
@@ -37,6 +37,7 @@ ul li {
   list-style-type: none;
 }
 
+/* MANAGE TABLE */
 .table tbody tr td, .table thead tr th, .count {
     text-align: center;
     vertical-align: middle;
@@ -71,6 +72,17 @@ ul li {
     display: none;
 }
 
+.badge {
+    cursor: pointer;
+}
+
+.showUpdateButton {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+/* END MANAGE TABLE */
+
 /* MESSAGE SHOW/HIDE */
 .hideMsg {
     position: fixed;
@@ -85,16 +97,9 @@ ul li {
     right: 5px;
     opacity: 1;
 }
+/* END MESSAGE SHOW/HIDE */
 
-.badge {
-    cursor: pointer;
-}
-
-.showUpdateButton {
-    position: absolute;
-    top: 5px;
-    right: 20px;
-}
+/*------------------------------------- MEDIA QUERIES -------------------------------------*/
 
 @media screen and (max-width: 500px) {
 
@@ -116,7 +121,7 @@ ul li {
 
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 999px) {
 
     .carac-table-desktop {
         display: none;

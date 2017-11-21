@@ -12,13 +12,11 @@ class DetailsTable extends Component {
 
     render() {
         return (
-            <Col xs={12} sm={6} md={8} lg={4}>
-                <Panel header="Détails du personnage">
-                    {
-                        this.props.details.map((details, i) => <Details key={i} {...details} />)
-                    }
-                </Panel>
-            </Col>
+            <Panel header="Détails du personnage">
+                {
+                    this.props.details.map((details, i) => <Details key={i} {...details} />)
+                }
+            </Panel>
         )
     }
 }

@@ -26,14 +26,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 let mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/wolfgang');
 
-let Profile = require('./models/profile.js');
-let Details = require('./models/details.js');
-let CaracBase = require('./models/caracBase.js');
-let CaracAvance = require('./models/caracAvance.js');
-let CaracActuel = require('./models/caracActuel.js');
-let Count = require('./models/count.js');
-let CompetenceBase = require('./models/competenceBase.js');
-let CompetenceAvance = require('./models/competenceAvance.js');
+let Profile = require('./models/profile');
+let Details = require('./models/details');
+let CaracBase = require('./models/caracBase');
+let CaracAvance = require('./models/caracAvance');
+let CaracActuel = require('./models/caracActuel');
+let Caracteristique = require('./models/Caracteristique');
+let Count = require('./models/count');
+let CompetenceBase = require('./models/competenceBase');
+let CompetenceAvance = require('./models/competenceAvance');
 let Talent = require('./models/talent');
 let Arme = require('./models/arme');
 let Armure = require('./models/armure');
@@ -105,6 +106,63 @@ app.get('/details', function(req, res) {
             throw err;
         }
         res.json(detail);
+    })
+});
+
+//---->>>> POST CARACTERISTIQUES <<<<----
+app.post('/caracteristique', function(req, res) {
+    let carac = req.body;
+
+    Caracteristique.create(carac, function(err, carac) {
+        if(err) {
+            throw err;
+        }
+        res.json(carac);
+    })
+});
+
+//---->>>> GET CARACTERISTIQUES <<<<----
+app.get('/caracteristique', function(req, res) {
+    Caracteristique.find(function(err, carac) {
+        if(err) {
+            throw err;
+        }
+        res.json(carac);
+    })
+});
+
+//---->>>> UPDATE CARACTERISTIQUES <<<<----
+app.put('/caracteristique/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            cc: newData.cc,
+            ct: newData.ct,
+            f: newData.f,
+            e: newData.e,
+            ag: newData.ag,
+            int: newData.int,
+            fm: newData.fm,
+            soc: newData.soc,
+            a: newData.a,
+            b: newData.b,
+            bf: newData.bf,
+            be: newData.be,
+            m: newData.m,
+            mag: newData.mag,
+            pf: newData.pf,
+            pd: newData.pd
+        }
+    };
+
+    let options = {new: false};
+
+    Caracteristique.updateOne({_id: newData._id}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
     })
 });
 
@@ -274,7 +332,7 @@ app.put('/caracactuel/:_id', function(req, res) {
 
     let options = {new: false};
 
-    CaracActuel.findOneAndUpdate(query, update, options, function(err, data) {
+    CaracActuel.findOneAndUpdate({_id: newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }
