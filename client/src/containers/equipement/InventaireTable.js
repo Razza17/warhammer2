@@ -62,7 +62,7 @@ class InventaireTable extends Component {
                     <tbody>
                         {
                             this.props.inventaire.map((inventaire, i) => this.state.update ?
-                                <InventaireUpdate key={i} {...inventaire} getInventaire={this.props.getInventaire} /> :
+                                <InventaireUpdate key={inventaire._id} {...inventaire} getInventaire={this.props.getInventaire} /> :
                                 <Inventaire key={i} {...inventaire}/>)
                         }
                         {this.state.update &&

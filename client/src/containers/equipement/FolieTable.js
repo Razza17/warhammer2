@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button } from 'react-bootstrap';
+import { Table, Panel, Button, FormControl, FormGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { findDOMNode } from 'react-dom';
 
-import { getFolie } from "../../actions/FolieAction";
+import { getFolie, postFolie } from "../../actions/FolieAction";
 import { Folie } from "../../components/equipement/Folie";
 import FolieUpdate from '../../components/update/FolieUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class FolieTable extends Component {
+
+    componentWillMount() {
+        this.props.getFolie();
+    }
 
     constructor(props) {
         super(props);
@@ -24,8 +29,17 @@ class FolieTable extends Component {
         })
     }
 
-    componentWillMount() {
+    handleSubmit() {
+        const folie = {
+            nom: findDOMNode(this.refs.nomPostFolie).value
+        };
+        this.props.postFolie(folie);
         this.props.getFolie();
+        this.resetForm();
+    }
+
+    resetForm(){
+        findDOMNode(this.refs.nomPostFolie).value = "";
     }
 
     render() {
@@ -42,8 +56,21 @@ class FolieTable extends Component {
                     <tbody>
                         {
                             this.props.folie.map((folie, i) => this.state.update ?
-                                <FolieUpdate key={i} {...folie}  getFolie={this.props.getFolie} /> :
+                                <FolieUpdate key={folie._id} {...folie}  getFolie={this.props.getFolie} /> :
                                 <Folie key={i} {...folie}/>)
+                        }
+                        {this.state.update &&
+                        <tr>
+                            <td>
+                                <FormGroup controlId="nomPostFolie">
+                                    <FormControl
+                                        type='text'
+                                        placeholder='Nom'
+                                        ref='nomPostFolie' />
+                                </FormGroup>
+                            </td>
+                            <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                        </tr>
                         }
                     </tbody>
                 </Table>
@@ -63,7 +90,8 @@ function mapStateToProps(state) {
 
 function mapDispatchtoProps(dispatch) {
     return bindActionCreators({
-        getFolie
+        getFolie,
+        postFolie
     }, dispatch)
 }
 

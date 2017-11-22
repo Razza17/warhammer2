@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button } from 'react-bootstrap';
+import { Table, Panel, Button, FormControl, FormGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { findDOMNode } from 'react-dom';
 
-import { getArmure } from "../../actions/ArmureAction";
+import { getArmure, postArmure } from "../../actions/ArmureAction";
 import { Armure } from '../../components/equipement/Armure';
 import ArmureUpdate from '../../components/update/ArmureUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class ArmureTable extends Component {
+
+    componentWillMount() {
+        this.props.getArmure();
+    }
 
     constructor(props) {
         super(props);
@@ -24,8 +29,23 @@ class ArmureTable extends Component {
         })
     }
 
-    componentWillMount() {
+    handleSubmit() {
+        const armure = {
+            nom: findDOMNode(this.refs.nomArmure).value,
+            encombrement: findDOMNode(this.refs.encArmure).value,
+            couverture: findDOMNode(this.refs.couvArmure).value,
+            points: findDOMNode(this.refs.pointsArmure).value
+        };
+        this.props.postArmure(armure);
         this.props.getArmure();
+        this.resetForm();
+    }
+
+    resetForm(){
+        findDOMNode(this.refs.nomArmure).value = "";
+        findDOMNode(this.refs.encArmure).value = "";
+        findDOMNode(this.refs.couvArmure).value = "Couverture";
+        findDOMNode(this.refs.pointsArmure).value = "";
     }
 
     render() {
@@ -44,8 +64,49 @@ class ArmureTable extends Component {
                     </thead>
                     <tbody>
                         { this.props.armure.map((armure, i) => this.state.update ?
-                            <ArmureUpdate key={i} {...armure} getArmure={this.props.getArmure} /> :
+                            <ArmureUpdate key={armure._id} {...armure} getArmure={this.props.getArmure} /> :
                             <Armure key={i} {...armure} />)
+                        }
+                        {this.state.update &&
+                        <tr>
+                            <td>
+                                <FormGroup controlId="nomArmure">
+                                    <FormControl
+                                        type='text'
+                                        placeholder='Nom'
+                                        ref='nomArmure' />
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <FormGroup controlId="encArmure">
+                                    <FormControl
+                                        type='number'
+                                        placeholder='Encombrement'
+                                        ref='encArmure' />
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <FormGroup controlId="formControlsSelect">
+                                    <FormControl componentClass='select' placeholder='Couverture' ref='couvArmure'>
+                                        <option value='select'>Couverture</option>
+                                        <option value='Tête'>Tête</option>
+                                        <option value='Bras'>Bras</option>
+                                        <option value='Corps'>Corps</option>
+                                        <option value='Corps + Bras'>Corps + Bras</option>
+                                        <option value='Jambes'>Jambes</option>
+                                    </FormControl>
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <FormGroup controlId="pointsArmure">
+                                    <FormControl
+                                        type='number'
+                                        placeholder='Points'
+                                        ref='pointsArmure' />
+                                </FormGroup>
+                            </td>
+                            <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                        </tr>
                         }
                     </tbody>
                 </Table>
@@ -65,7 +126,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getArmure
+        getArmure,
+        postArmure
     }, dispatch)
 }
 
