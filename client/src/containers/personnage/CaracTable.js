@@ -5,11 +5,16 @@ import { bindActionCreators } from 'redux';
 
 import { Carac } from "../../components/personnage/Carac";
 import { CaracUpdate } from "../../components/update/CaracUpdate";
+import { CaracUpdateMobile } from "../../components/update/CaracUpdateMobile";
 import { getCarac, updateCarac } from "../../actions/CaracAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
 
 class CaracTable extends Component {
+
+    componentWillMount() {
+        this.props.getCarac();
+    }
 
     constructor(props) {
         super(props);
@@ -25,8 +30,8 @@ class CaracTable extends Component {
         })
     }
 
-    componentWillMount() {
-        this.props.getCarac();
+    componentWillUnmount() {
+        console.log(this.props.modified);
     }
 
     render() {
@@ -64,15 +69,20 @@ class CaracTable extends Component {
                     <tbody>
                         {
                             this.props.carac.map((carac, i) =>
-                                this.state.update ? <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/> : <Carac key={i} {...carac} />)
+                                this.state.update ? <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/> :
+                                    <Carac key={i} {...carac} />)
                         }
                     </tbody>
                 </Table>
-                <Table condensed bordered hover striped className="carac-table-mobile" fill>
-                    <thead>
+                {this.state.update ?
+                    this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>)
+                :
+                    <Table condensed bordered hover striped className="carac-table-mobile" fill>
+                        <thead>
                         <tr>
                             <th>&nbsp;</th>
                             <th colSpan="8">Profil Principal</th>
+                            <th colSpan="8">Profil Secondaire</th>
                         </tr>
                         <tr className="text-center profilHeader">
                             <th>&nbsp;</th>
@@ -84,18 +94,6 @@ class CaracTable extends Component {
                             <th>Int</th>
                             <th>FM</th>
                             <th>Soc</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th colSpan="8">Profil Secondaire</th>
-                        </tr>
-                        <tr className="text-center profilHeader">
-                            <th>&nbsp;</th>
                             <th>A</th>
                             <th>B</th>
                             <th>BF</th>
@@ -105,11 +103,12 @@ class CaracTable extends Component {
                             <th>PF</th>
                             <th>PD</th>
                         </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </Table>
+                        </thead>
+                        <tbody>
+                        { this.props.carac.map((carac, i) => <Carac key={i} {...carac} />) }
+                        </tbody>
+                    </Table>
+                }
             </Panel>
         )
     }
