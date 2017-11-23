@@ -22,7 +22,7 @@ class CaracTableUpdate extends Component {
                             <th colSpan="9">Profil Principal</th>
                             <th colSpan="9">Profil Secondaire</th>
                         </tr>
-                        <tr className="text-center profilHeader">
+                        <tr className="profilHeader">
                             <th>Type</th>
                             <th>CC</th>
                             <th>CT</th>

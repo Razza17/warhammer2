@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import { NavLink } from 'react-router-dom';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export class Navbars extends Component {
     render() {
@@ -10,14 +11,22 @@ export class Navbars extends Component {
                     <Navbar.Brand>
                         <NavLink to="/" className="navbar-brand">WARHAMMER 2.0</NavLink>
                     </Navbar.Brand>
-                    <Navbar.Toggle />
+                    <Navbar.Toggle id='collapseButton' />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <li><NavLink to="/personnage">Personnage</NavLink></li>
-                        <li><NavLink to="/equipement">Equipement</NavLink></li>
-                        <li><NavLink to="/combat">Combat</NavLink></li>
-                        <li><NavLink to="/update">Update your Character</NavLink></li>
+                        <LinkContainer to="/personnage">
+                            <NavItem eventKey={0}>Personnage</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/equipement">
+                            <NavItem eventKey={1}>Equipement</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/combat">
+                            <NavItem eventKey={2}>Combat</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/update">
+                            <NavItem eventKey={3}>Update your Character</NavItem>
+                        </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -10,6 +10,10 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceBase extends Component {
 
+    componentWillMount() {
+        this.props.getCompBase();
+    }
+
     constructor(props) {
         super(props);
 
@@ -22,10 +26,6 @@ class CompetenceBase extends Component {
         this.setState({
             update: !this.state.update
         })
-    }
-
-    componentWillMount() {
-        this.props.getCompBase();
     }
 
     render() {

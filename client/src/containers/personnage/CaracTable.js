@@ -30,10 +30,6 @@ class CaracTable extends Component {
         })
     }
 
-    componentWillUnmount() {
-        console.log(this.props.modified);
-    }
-
     render() {
         return (
             <Panel header="Profil du personnage" className="noPadding">
@@ -45,7 +41,7 @@ class CaracTable extends Component {
                             <th colSpan="8">Profil Principal</th>
                             <th colSpan="8">Profil Secondaire</th>
                         </tr>
-                        <tr className="text-center profilHeader">
+                        <tr className="profilHeader">
                             <th>&nbsp;</th>
                             <th>CC</th>
                             <th>CT</th>
@@ -84,7 +80,7 @@ class CaracTable extends Component {
                             <th colSpan="8">Profil Principal</th>
                             <th colSpan="8">Profil Secondaire</th>
                         </tr>
-                        <tr className="text-center profilHeader">
+                        <tr className="profilHeader">
                             <th>&nbsp;</th>
                             <th>CC</th>
                             <th>CT</th>

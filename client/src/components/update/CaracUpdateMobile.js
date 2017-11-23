@@ -38,21 +38,23 @@ export class CaracUpdateMobile extends Component {
                         <th colSpan="8" className="uppercase">{this.props.type !== "base" ? "Profil " + this.props.type : "Profil de " + this.props.type}</th>
                         <th>Update</th>
                     </tr>
-                    <tr>
-                        <th colSpan="8">Profil Principal</th>
-                    </tr>
-                    <tr className="text-center profilHeader">
-                        <th>CC</th>
-                        <th>CT</th>
-                        <th>F</th>
-                        <th>E</th>
-                        <th>Ag</th>
-                        <th>Int</th>
-                        <th>FM</th>
-                        <th>Soc</th>
-                    </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>CC</td>
+                        <td>CT</td>
+                        <td>F</td>
+                        <td>E</td>
+                        <td>Ag</td>
+                        <td>Int</td>
+                        <td>FM</td>
+                        <td>Soc</td>
+                        <td rowSpan="4">
+                            <OverlayTrigger placement="bottom" overlay={tooltip} delayShow={300} delayHide={150}>
+                                <Glyphicon glyph="pencil" onClick={this.handleUpdate.bind(this)} />
+                            </OverlayTrigger>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <FormGroup controlId="cc">
@@ -118,29 +120,17 @@ export class CaracUpdateMobile extends Component {
                                     ref='soc' />
                             </FormGroup>
                         </td>
-                        <td>
-                            <OverlayTrigger placement="bottom" overlay={tooltip} delayShow={300} delayHide={150}>
-                                <Glyphicon glyph="pencil" onClick={this.handleUpdate.bind(this)} />
-                            </OverlayTrigger>
-                        </td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colSpan="8">Profil Secondaire</th>
                     </tr>
                     <tr className="text-center profilHeader">
-                        <th>A</th>
-                        <th>B</th>
-                        <th>BF</th>
-                        <th>BE</th>
-                        <th>M</th>
-                        <th>Mag</th>
-                        <th>PF</th>
-                        <th>PD</th>
+                        <td>A</td>
+                        <td>B</td>
+                        <td>BF</td>
+                        <td>BE</td>
+                        <td>M</td>
+                        <td>Mag</td>
+                        <td>PF</td>
+                        <td>PD</td>
                     </tr>
-                </thead>
-                <tbody>
                     <tr>
                         <td>
                             <FormGroup controlId="a">

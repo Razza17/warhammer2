@@ -28,9 +28,6 @@ mongoose.connect('mongodb://localhost:27017/wolfgang');
 
 let Profile = require('./models/profile');
 let Details = require('./models/details');
-let CaracBase = require('./models/caracBase');
-let CaracAvance = require('./models/caracAvance');
-let CaracActuel = require('./models/caracActuel');
 let Caracteristique = require('./models/Caracteristique');
 let Count = require('./models/count');
 let CompetenceBase = require('./models/competenceBase');
