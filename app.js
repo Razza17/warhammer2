@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -230,7 +230,6 @@ app.get('/competencebase', function(req, res) {
 });
 
 //---->>>> UPDATE COMPETENCE BASE <<<<----
-
 app.put('/competencebase/:_id', function(req, res) {
     let newData = req.body;
 
@@ -276,7 +275,6 @@ app.get('/competenceavance', function(req, res) {
 });
 
 //---->>>> UPDATE COMPETENCE AVANCE <<<<----
-
 app.put('/competenceavance/:_id', function(req, res) {
     let newData = req.body;
 
@@ -381,7 +379,6 @@ app.delete('/arme/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE ARMES <<<<----
-
 app.put('/arme/:_id', function(req, res) {
     let newData = req.body;
 
@@ -441,7 +438,6 @@ app.delete('/armure/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE ARMURES <<<<----
-
 app.put('/armure/:_id', function(req, res) {
     let newData = req.body;
 
@@ -547,7 +543,6 @@ app.delete('/inventaire/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE INVENTAIRE <<<<----
-
 app.put('/inventaire/:_id', function(req, res) {
     let newData = req.body;
 
@@ -604,7 +599,6 @@ app.delete('/folie/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE FOLIE <<<<----
-
 app.put('/folie/:_id', function(req, res) {
     let newData = req.body;
 
@@ -649,7 +643,6 @@ app.get('/experience', function(req, res) {
 });
 
 //---->>>> UPDATE EXPERIENCE <<<<----
-
 app.put('/experience/:_id', function(req, res) {
     let newData = req.body;
 
