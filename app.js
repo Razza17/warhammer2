@@ -5,9 +5,6 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
-// ROUTES
-let profil = require('./routes/profil');
-
 let app = express();
 
 // view engine setup
@@ -20,9 +17,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// ROUTES PATH
-app.use('/profil', profil);
 
 // API
 let mongoose = require('mongoose');
