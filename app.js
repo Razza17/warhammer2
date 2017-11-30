@@ -5,8 +5,8 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
-let index = require('./routes/index');
-let users = require('./routes/users');
+// ROUTES
+let profil = require('./routes/profil');
 
 let app = express();
 
@@ -14,7 +14,6 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -22,13 +21,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ROUTES PATH
+app.use('/profil', profil);
+
 // API
 let mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/wolfgang', {
     useMongoClient: true
 });
 
-let Profile = require('./models/profile');
 let Details = require('./models/details');
 let Caracteristique = require('./models/Caracteristique');
 let Count = require('./models/count');
@@ -41,50 +42,6 @@ let Money = require('./models/money');
 let Inventaire = require('./models/inventaire');
 let Folie = require('./models/folie');
 let Experience = require('./models/experience');
-
-//---->>>> POST PROFILE <<<<----
-app.post('/profil', function(req, res) {
-    let profil = req.body;
-
-    Profile.create(profil, function(err, profile) {
-        if(err) {
-            throw err;
-        }
-        res.json(profile);
-    })
-});
-
-//---->>>> GET PROFILE <<<<----
-app.get('/profil', function(req, res) {
-    Profile.find(function(err, profile) {
-        if(err) {
-            throw err;
-        }
-        res.json(profile);
-    })
-});
-
-//---->>>> UPDATE PROFILE <<<<----
-app.put('/profil/:_id', function(req, res) {
-    let newData = req.body;
-    let query = req.params._id;
-
-    let update = {
-        '$set': {
-            carriereA: newData.carriereA,
-            Acarriere: newData.Acarriere
-        }
-    };
-
-    let options = {new: false};
-
-    Profile.findOneAndUpdate(query, update, options, function(err, data) {
-        if(err) {
-            throw err;
-        }
-        res.json(data);
-    })
-});
 
 //---->>>> POST DETAILS <<<<----
 app.post('/details', function(req, res) {
@@ -664,9 +621,6 @@ app.put('/experience/:_id', function(req, res) {
 });
 
 // END API
-
-app.use('/', index);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
