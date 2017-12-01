@@ -24,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/wolfgang', {
     useMongoClient: true
 });
 
+let Profile = require('./models/profile');
 let Details = require('./models/details');
 let Caracteristique = require('./models/Caracteristique');
 let Count = require('./models/count');
@@ -36,6 +37,51 @@ let Money = require('./models/money');
 let Inventaire = require('./models/inventaire');
 let Folie = require('./models/folie');
 let Experience = require('./models/experience');
+let User = require('./models/user');
+
+//---->>>> POST PROFILE <<<<----
+app.post('/profil', function(req, res) {
+    let profil = req.body;
+
+    Profile.create(profil, function(err, profile) {
+        if(err) {
+            throw err;
+        }
+        res.json(profile);
+    })
+});
+
+//---->>>> GET PROFILE <<<<----
+app.get('/profil', function(req, res) {
+    Profile.find(function(err, profile) {
+        if(err) {
+            throw err;
+        }
+        res.json(profile);
+    })
+});
+
+//---->>>> UPDATE PROFILE <<<<----
+app.put('/profil/:_id', function(req, res) {
+    let newData = req.body;
+    let query = req.params._id;
+
+    let update = {
+        '$set': {
+            carriereA: newData.carriereA,
+            Acarriere: newData.Acarriere
+        }
+    };
+
+    let options = {new: false};
+
+    Profile.findOneAndUpdate(query, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
 
 //---->>>> POST DETAILS <<<<----
 app.post('/details', function(req, res) {
@@ -607,6 +653,50 @@ app.put('/experience/:_id', function(req, res) {
     let options = {new: false};
 
     Experience.updateOne({_id: newData._id}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+//---->>>> POST USER <<<<----
+app.post('/user', function(req, res) {
+    let data = req.body;
+
+    User.create(data, function(err, user) {
+        if(err) {
+            throw err;
+        }
+        res.json(user);
+    })
+});
+
+//---->>>> GET USER <<<<----
+app.get('/user', function(req, res) {
+    User.find(function(err, user) {
+        if(err) {
+            throw err;
+        }
+        res.json(user);
+    })
+});
+
+//---->>>> UPDATE USER <<<<----
+app.put('/user/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            password: newData.password,
+            email: newData.email,
+            pseudo: newData.pseudo
+        }
+    };
+
+    let options = {new: false};
+
+    User.updateOne({_id: newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }
