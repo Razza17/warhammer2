@@ -30,7 +30,10 @@ export class Navbars extends Component {
                     </Nav>
                     <Nav pullRight>
                         <LinkContainer to="/login">
-                            <NavItem eventKey={4}>Login</NavItem>
+                            <NavItem eventKey={4}>Se connecter</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/logup">
+                            <NavItem eventKey={4}>Créer un compte</NavItem>
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
