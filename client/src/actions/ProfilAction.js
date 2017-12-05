@@ -15,9 +15,9 @@ export function getProfile() {
 
 
 // POST CHARACTER PROFILE
-export function postProfile() {
+export function postProfile(profil) {
     return function(dispatch) {
-        axios.post('/profil')
+        axios.post('/profil', profil)
             .then(function(response) {
                 dispatch({type:"POST_PROFILE", payload:response.data})
             })

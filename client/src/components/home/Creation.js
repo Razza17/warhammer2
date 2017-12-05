@@ -21,14 +21,16 @@ class Creation extends Component {
         let profileRace = findDOMNode(this.refs.profileRace).value;
         let profileCarriereA = findDOMNode(this.refs.profileCarriereA).value;
         let profileAcarriere = findDOMNode(this.refs.profileAcarriere).value;
+        let recupUser = window.location.search.substring(1).split('=');
+        let user = recupUser[1];
         let profile = {
             nom:profileNom,
             race:profileRace,
             carriereA:profileCarriereA,
-            Acarriere:profileAcarriere
+            Acarriere:profileAcarriere,
+            user:user
         };
         this.props.postProfile(profile);
-        this.setState({ activeKey: this.state.activeKey + 1 })
     }
 
     handleSelect(activeKey) {

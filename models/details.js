@@ -10,7 +10,8 @@ var detailSchema = mongoose.Schema({
     signeAstral: String,
     fraterie: Number,
     naissance: String,
-    distinction: String
+    distinction: String,
+    user: String
 });
 
 var Details = mongoose.model('Details', detailSchema);
