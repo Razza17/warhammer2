@@ -3,8 +3,10 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { fakeAuth } from "../components/home/Login";
 
-import Login from '../components/home/Login';
-import Home from "../components/home/Home";
+import { Home } from "../components/home/Home";
+import Logup from "../components/home/Logup";
+import Login from "../components/home/Login";
+import Creation from "../components/home/Creation";
 import { Personnage } from "../pages/Personnage";
 import { Equipement } from "../pages/Equipement";
 import { Combat } from "../pages/Combat";
@@ -14,7 +16,9 @@ const Main = () => (
     <main>
         <Switch>
             <Route exact path='/' component={Home}/>
+            <Route path='/logup' component={Logup}/>
             <Route path='/login' component={Login}/>
+            <Route path='/creation' component={Creation}/>
             <PrivateRoute authed={fakeAuth.isAuthenticated} path='/personnage' component={Personnage}/>
             <PrivateRoute authed={fakeAuth.isAuthenticated} Route path='/equipement' component={Equipement}/>
             <PrivateRoute authed={fakeAuth.isAuthenticated} Route path='/combat' component={Combat}/>
