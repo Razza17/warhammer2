@@ -12,7 +12,8 @@ class Creation extends Component {
         super(props);
 
         this.state = {
-            activeKey: "1"
+            activeKey: "1",
+            profileNom: ""
         }
     }
 
@@ -31,6 +32,12 @@ class Creation extends Component {
             user:user
         };
         this.props.postProfile(profile);
+
+        // Plier le Panel en court et déplier le Panel suivant
+        let stateActiveKey = parseInt(this.state.activeKey, 10);
+        let newActiveKey = stateActiveKey + 1;
+        let string = newActiveKey.toString();
+        this.setState({ activeKey: string });
     }
 
     handleSelect(activeKey) {
