@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { getUser } from "../../actions/UserAction";
+import { getUser } from "../actions/UserAction";
 
 class Login extends Component {
 

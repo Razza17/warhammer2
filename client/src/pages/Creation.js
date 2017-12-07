@@ -4,16 +4,23 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { postProfile } from "../../actions/ProfilAction";
+import { postProfile } from "../actions/ProfilAction";
 
 class Creation extends Component {
 
     constructor(props) {
         super(props);
+        let recupUser = window.location.search.substring(1).split('=');
+        let user = recupUser[1];
 
         this.state = {
+            user: user,
             activeKey: "1",
-            profileNom: ""
+            profileNom: null,
+            profileRace: null,
+            profileCarriereA: null,
+            profileAcarriere: null,
+            profileFormValidate: false
         }
     }
 
@@ -22,22 +29,34 @@ class Creation extends Component {
         let profileRace = findDOMNode(this.refs.profileRace).value;
         let profileCarriereA = findDOMNode(this.refs.profileCarriereA).value;
         let profileAcarriere = findDOMNode(this.refs.profileAcarriere).value;
-        let recupUser = window.location.search.substring(1).split('=');
-        let user = recupUser[1];
         let profile = {
             nom:profileNom,
             race:profileRace,
             carriereA:profileCarriereA,
             Acarriere:profileAcarriere,
-            user:user
+            user:this.state.user
         };
-        this.props.postProfile(profile);
+        if(this.state.profileNom === "success" && this.state.profileRace === "success" && this.state.profileCarriereA === "success"
+            && this.state.profileAcarriere === "success") {
+            this.props.postProfile(profile);
+            // Plier le Panel en court et déplier le Panel suivant
+            let stateActiveKey = parseInt(this.state.activeKey, 10);
+            let newActiveKey = stateActiveKey + 1;
+            let string = newActiveKey.toString();
+            this.setState({ activeKey: string, profileFormValidate: true });
+        } else {
+            this.state.profileNom === null && this.setState({ profileNom: "error" });
+            this.state.profileRace === null && this.setState({ profileRace: "error" });
+            this.state.profileCarriereA === null && this.setState({ profileCarriereA: "error" });
+            this.state.profileAcarriere === null && this.setState({ profileAcarriere: "error" });
+            alert("Tu dois remplir tous les champs guerrier !");
+        }
+    }
 
-        // Plier le Panel en court et déplier le Panel suivant
-        let stateActiveKey = parseInt(this.state.activeKey, 10);
-        let newActiveKey = stateActiveKey + 1;
-        let string = newActiveKey.toString();
-        this.setState({ activeKey: string });
+    onChange(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+        value !== "" ? this.setState({ [name]: "success" }) : this.setState({ [name]: "error" });
     }
 
     handleSelect(activeKey) {
@@ -49,43 +68,62 @@ class Creation extends Component {
             <Col xs={12}>
                 <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)} accordion>
                     <Panel eventKey="1" header="Profil de ton personnage">
-                        <FormGroup controlId="profileNom">
+                        <FormGroup controlId="profileNom" validationState={this.state.profileNom}>
                             <InputGroup>
                                 <InputGroup.Addon>Nom :</InputGroup.Addon>
                                 <FormControl
                                     type='text'
+                                    name="profileNom"
                                     placeholder="Entre le nom du personnage"
-                                    ref='profileNom' />
+                                    ref='profileNom'
+                                    onChange={this.onChange.bind(this)}
+                                />
+                                <FormControl.Feedback/>
                             </InputGroup>
                         </FormGroup>
-                        <FormGroup controlId="profileRace">
+                        <FormGroup controlId="profileRace" validationState={this.state.profileRace}>
                             <InputGroup>
                                 <InputGroup.Addon>Race :</InputGroup.Addon>
                                 <FormControl
                                     type='text'
+                                    name="profileRace"
                                     placeholder="Entre la race de ton personnage"
-                                    ref='profileRace' />
+                                    ref='profileRace'
+                                    onChange={this.onChange.bind(this)}
+                                />
+                                <FormControl.Feedback/>
                             </InputGroup>
                         </FormGroup>
-                        <FormGroup controlId="profileCarriereA">
+                        <FormGroup controlId="profileCarriereA" validationState={this.state.profileCarriereA}>
                             <InputGroup>
                                 <InputGroup.Addon>Carrière acrtuelle :</InputGroup.Addon>
                                 <FormControl
                                     type='text'
+                                    name="profileCarriereA"
                                     placeholder="Carrière acrtuelle de ton personnage"
-                                    ref='profileCarriereA' />
+                                    ref='profileCarriereA'
+                                    onChange={this.onChange.bind(this)}
+                                />
+                                <FormControl.Feedback/>
                             </InputGroup>
                         </FormGroup>
-                        <FormGroup controlId="profileAcarriere">
+                        <FormGroup controlId="profileAcarriere" validationState={this.state.profileAcarriere}>
                             <InputGroup>
                                 <InputGroup.Addon>Ancienne carrière :</InputGroup.Addon>
                                 <FormControl
                                     type='text'
+                                    name="profileAcarriere"
                                     placeholder="Ancienne carrière de ton personnage"
-                                    ref='profileAcarriere' />
+                                    ref='profileAcarriere'
+                                    onChange={this.onChange.bind(this)}
+                                />
+                                <FormControl.Feedback/>
                             </InputGroup>
                         </FormGroup>
-                        <Button onClick={this.postProfile.bind(this)}>Envoyer</Button>
+                        {this.state.profileFormValidate
+                            ? <Button onClick={this.postProfile.bind(this)} disabled>Enregistrer</Button>
+                            : <Button onClick={this.postProfile.bind(this)}>Enregistrer</Button>
+                        }
                     </Panel>
 
                     <Panel eventKey="2" header="Details de ton personnage">

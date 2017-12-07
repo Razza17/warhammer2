@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { fakeAuth } from "../components/home/Login";
+import { fakeAuth } from "../pages/Login";
 
-import { Home } from "../components/home/Home";
-import Logup from "../components/home/Logup";
-import Login from "../components/home/Login";
-import Creation from "../components/home/Creation";
+import { Home } from "../pages/Home";
+import Logup from "../pages/Logup";
+import Login from "../pages/Login";
+import Creation from "../pages/Creation";
 import { Personnage } from "../pages/Personnage";
 import { Equipement } from "../pages/Equipement";
 import { Combat } from "../pages/Combat";

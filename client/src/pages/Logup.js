@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { postLogup } from "../../actions/LogupAction";
+import { postLogup } from "../actions/LogupAction";
 
 class Logup extends Component {
 
