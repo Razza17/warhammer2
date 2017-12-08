@@ -8,7 +8,7 @@ var detailSchema = mongoose.Schema({
     cheveux: String,
     poids: String,
     signeAstral: String,
-    fraterie: Number,
+    fraterie: String,
     naissance: String,
     distinction: String,
     user: String

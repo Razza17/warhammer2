@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
@@ -15,7 +15,6 @@ class CreaProfil extends Component {
 
         this.state = {
             user: user,
-            activeKey: "1",
             profileNom: null,
             profileRace: null,
             profileCarriereA: null,
@@ -36,14 +35,11 @@ class CreaProfil extends Component {
             Acarriere:profileAcarriere,
             user:this.state.user
         };
+
         if(this.state.profileNom === "success" && this.state.profileRace === "success" && this.state.profileCarriereA === "success"
             && this.state.profileAcarriere === "success") {
             this.props.postProfile(profile);
-            // Plier le Panel en court et déplier le Panel suivant
-            let stateActiveKey = parseInt(this.state.activeKey, 10);
-            let newActiveKey = stateActiveKey + 1;
-            let string = newActiveKey.toString();
-            this.setState({ activeKey: string, profileFormValidate: true });
+            this.setState({ profileFormValidate: true });
         } else {
             this.state.profileNom === null && this.setState({ profileNom: "error" });
             this.state.profileRace === null && this.setState({ profileRace: "error" });
@@ -114,10 +110,6 @@ class CreaProfil extends Component {
                         <FormControl.Feedback/>
                     </InputGroup>
                 </FormGroup>
-                {this.state.profileFormValidate
-                    ? <Button onClick={this.postProfile.bind(this)} disabled>Enregistrer</Button>
-                    : <Button onClick={this.postProfile.bind(this)}>Enregistrer</Button>
-                }
             </Form>
         )
     }

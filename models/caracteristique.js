@@ -17,7 +17,8 @@ var caracteristiqueSchema = mongoose.Schema({
     m: Number,
     mag: Number,
     pf: Number,
-    pd: Number
+    pd: Number,
+    user: String
 });
 
 var Caracteristique = mongoose.model('Caracteristique', caracteristiqueSchema);
