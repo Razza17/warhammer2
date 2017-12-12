@@ -11,7 +11,8 @@ var detailSchema = mongoose.Schema({
     fraterie: String,
     naissance: String,
     distinction: String,
-    user: String
+    user: String,
+    perso : String
 });
 
 var Details = mongoose.model('Details', detailSchema);

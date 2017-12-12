@@ -8,7 +8,7 @@ export function compBaseReducer(state={compBase:[]}, action) {
 
         // POST
         case "POST_COMPBASE":
-            return {compBase:[...state.compBase, ...action.payload]};
+            return {...state, compBase:[...state.compBase, ...action.payload]};
         case "POST_COMPBASE_REJECTED":
             return action.payload;
 

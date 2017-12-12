@@ -100,32 +100,62 @@ class PointArmureTable extends Component {
                     <tbody>
                         <tr>
                             <td>Tête</td>
-                            <td>{this.ptsTete() + be}</td>
+                            <td>{typeof this.ptsTete() !== "number" ? be : this.ptsTete() + be}</td>
                             <td>01 - 15</td>
                         </tr>
                         <tr>
                             <td>Bras droit</td>
-                            <td>{this.ptsBras() + this.ptsTorse() + be}</td>
+                            <td>
+                                {
+                                    typeof this.ptsBras() !== "number"
+                                    ? (typeof this.ptsTorse() !== "number"
+                                        ? be
+                                        : this.ptsTorse() + be)
+                                    : (typeof this.ptsTorse() !== "number"
+                                        ? this.ptsBras() + be
+                                        : this.ptsTorse() + this.ptsBras() + be)
+                                }
+                            </td>
                             <td>16 - 35</td>
                         </tr>
                         <tr>
                             <td>Bras gauche</td>
-                            <td>{this.ptsBras() + this.ptsTorse() + be}</td>
+                            <td>
+                                {
+                                    typeof this.ptsBras() !== "number"
+                                        ? (typeof this.ptsTorse() !== "number"
+                                        ? be
+                                        : this.ptsTorse() + be)
+                                        : (typeof this.ptsTorse() !== "number"
+                                        ? this.ptsBras() + be
+                                        : this.ptsTorse() + this.ptsBras() + be)
+                                }
+                            </td>
                             <td>35 - 55</td>
                         </tr>
                         <tr>
                             <td>Corps</td>
-                            <td>{this.ptsCorps() + this.ptsTorse() + be}</td>
+                            <td>
+                                {
+                                    typeof this.ptsCorps() !== "number"
+                                        ? (typeof this.ptsTorse() !== "number"
+                                        ? be
+                                        : this.ptsTorse() + be)
+                                        : (typeof this.ptsTorse() !== "number"
+                                        ? this.ptsCorps() + be
+                                        : this.ptsTorse() + this.ptsCorps() + be)
+                                }
+                            </td>
                             <td>56 - 80</td>
                         </tr>
                         <tr>
                             <td>Jambe droite</td>
-                            <td>{this.ptsJambes() + be}</td>
+                            <td>{typeof this.ptsJambes() !== "number" ? be : this.ptsJambes() + be}</td>
                             <td>81 - 90</td>
                         </tr>
                         <tr>
                             <td>Jambe gauche</td>
-                            <td>{this.ptsJambes() + be}</td>
+                            <td>{typeof this.ptsJambes() !== "number" ? be : this.ptsJambes() + be}</td>
                             <td>91 - 00</td>
                         </tr>
                     </tbody>

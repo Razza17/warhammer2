@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { postProfile } from "../../actions/ProfilAction";
+import { postProfile, getProfile } from "../../actions/ProfilAction";
 import { postDetails } from "../../actions/DetailAction";
 
 class CreaProfil extends Component {
@@ -57,6 +57,7 @@ class CreaProfil extends Component {
             let newActiveKey = stateActiveKey + 1;
             let string = newActiveKey.toString();
             this.setState({ activeKey: string, profileFormValidate: true });
+            this.props.getProfile();
         } else {
             this.state.profileNom === null && this.setState({ profileNom: "error" });
             this.state.profileRace === null && this.setState({ profileRace: "error" });
@@ -67,6 +68,7 @@ class CreaProfil extends Component {
     }
 
     postDetails() {
+        let perso = this.props.profile.length && this.props.profile[0].nom;
         let detailAge = findDOMNode(this.refs.detailAge).value;
         let detailSexe = findDOMNode(this.refs.detailSexe).value;
         let detailYeux = findDOMNode(this.refs.detailYeux).value;
@@ -88,7 +90,8 @@ class CreaProfil extends Component {
             fraterie: detailFraterie,
             naissance: detailNaissance,
             distinction: detailDistinction,
-            user:this.state.user
+            user:this.state.user,
+            perso: perso
         };
 
         if(this.state.detailAge === "success" && this.state.detailSexe === "success" && this.state.detailYeux === "success"
@@ -332,11 +335,18 @@ class CreaProfil extends Component {
     }
 }
 
+function mapStateToProps(state){
+    return {
+        profile: state.profile.profile
+    }
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         postProfile,
+        getProfile,
         postDetails
     }, dispatch)
 }
 
-export default connect("", mapDispatchToProps)(CreaProfil);
+export default connect(mapStateToProps, mapDispatchToProps)(CreaProfil);

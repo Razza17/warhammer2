@@ -19,6 +19,7 @@ class Logup extends Component {
     handleLogup() {
         let user = {
             nom:findDOMNode(this.refs.nom).value,
+            prenom:findDOMNode(this.refs.prenom).value,
             pseudo:findDOMNode(this.refs.pseudo).value,
             email:findDOMNode(this.refs.email).value,
             password:findDOMNode(this.refs.password).value,
@@ -48,6 +49,15 @@ class Logup extends Component {
                             type='text'
                             placeholder="Entre ton nom"
                             ref='nom' />
+                    </InputGroup>
+                </FormGroup>
+                <FormGroup controlId="prenom">
+                    <InputGroup>
+                        <InputGroup.Addon>Prénom :</InputGroup.Addon>
+                        <FormControl
+                            type='text'
+                            placeholder="Entre ton prénom"
+                            ref='prenom' />
                     </InputGroup>
                 </FormGroup>
                 <FormGroup controlId="pseudo">

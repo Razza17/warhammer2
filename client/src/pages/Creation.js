@@ -3,6 +3,7 @@ import { Grid, Row } from 'react-bootstrap';
 
 import CreaProfil from "../components/creation/CreaProfil";
 import CreaCarac from "../components/creation/CreaCarac";
+import CreaCompTable from '../containers/creation/CreaCompTable';
 
 export class Creation extends Component {
     render() {
@@ -13,6 +14,9 @@ export class Creation extends Component {
                 </Row>
                 <Row>
                     <CreaCarac />
+                </Row>
+                <Row>
+                    <CreaCompTable />
                 </Row>
             </Grid>
         )

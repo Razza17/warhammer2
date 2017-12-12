@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
 import { postCarac } from "../../actions/CaracAction";
+import { getProfile } from "../../actions/ProfilAction";
 
 class CreaCarac extends Component {
 
@@ -12,10 +13,12 @@ class CreaCarac extends Component {
         super(props);
         let recupUser = window.location.search.substring(1).split('=');
         let user = recupUser[1];
+        let perso = this.props.profile.length && this.props.profile[0].nom;
 
         this.state = {
             user: user,
-            activeKey: "1",
+            perso: perso,
+            activeKey: "0",
             nextScreen: "/recap?pseudo="+user,
             basecc: null, basect: null, basef: null, basee: null, baseag: null, baseint: null, basefm: null, basesoc: null,
             basea: null, baseb: null, basebf: null, basebe: null, basem: null, basemag: null, basepf: null, basepd: null,
@@ -48,7 +51,8 @@ class CreaCarac extends Component {
             mag: findDOMNode(this.refs.basemag).value,
             pf: findDOMNode(this.refs.basepf).value,
             pd: findDOMNode(this.refs.basepd).value,
-            user: this.state.user
+            user: this.state.user,
+            perso: this.state.perso
         };
 
         if(this.state.basecc === "success"
@@ -113,7 +117,8 @@ class CreaCarac extends Component {
             mag: findDOMNode(this.refs.avmag).value,
             pf: findDOMNode(this.refs.avpf).value,
             pd: findDOMNode(this.refs.avpd).value,
-            user: this.state.user
+            user: this.state.user,
+            perso: this.state.perso
         };
 
         if(this.state.avcc === "success"
@@ -178,7 +183,8 @@ class CreaCarac extends Component {
             mag: findDOMNode(this.refs.acmag).value,
             pf: findDOMNode(this.refs.acpf).value,
             pd: findDOMNode(this.refs.acpd).value,
-            user: this.state.user
+            user: this.state.user,
+            perso: this.state.perso
         };
 
         if(this.state.accc === "success"
@@ -232,6 +238,7 @@ class CreaCarac extends Component {
 
     handleSelect(activeKey) {
         this.setState({ activeKey });
+        this.props.getProfile();
     }
 
     render() {
@@ -910,10 +917,17 @@ class CreaCarac extends Component {
     }
 }
 
+function mapStateToProps(state){
+    return {
+        profile: state.profile.profile
+    }
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        postCarac
+        postCarac,
+        getProfile
     }, dispatch)
 }
 
-export default connect("", mapDispatchToProps)(CreaCarac);
+export default connect(mapStateToProps, mapDispatchToProps)(CreaCarac);

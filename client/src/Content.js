@@ -1,7 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-
-import { fakeAuth } from "./components/home/Login";
+import { Switch, Route } from 'react-router-dom';
 
 import { Home } from "./pages/Home";
 import Logup from "./components/home/Logup";
@@ -21,22 +19,12 @@ const Main = () => (
             <Route path='/login' component={Login}/>
             <Route path='/creation' component={Creation}/>
             <Route path='/recap' component={Recap}/>
-            <PrivateRoute authed={fakeAuth.isAuthenticated} path='/personnage' component={Personnage}/>
-            <PrivateRoute authed={fakeAuth.isAuthenticated} path='/equipement' component={Equipement}/>
-            <PrivateRoute authed={fakeAuth.isAuthenticated} path='/combat' component={Combat}/>
-            <PrivateRoute authed={fakeAuth.isAuthenticated} path='/update' component={Update}/>
+            <Route path='/personnage' component={Personnage}/>
+            <Route path='/equipement' component={Equipement}/>
+            <Route  path='/combat' component={Combat}/>
+            <Route path='/update' component={Update}/>
         </Switch>
     </main>
 );
-
-const PrivateRoute = ({component: Component, authed, ...rest}) => {
-    return (
-        <Route
-            {...rest}
-            render={(props) => authed === true
-                ? <Component {...props} />
-                : <Redirect to={{pathname: '/login', state: {from: props.location}}} />} />
-    )
-};
 
 export default Main;
