@@ -1,9 +1,11 @@
 import axios from 'axios';
+let recupUser = window.location.search.substring(1).split('=');
+let user = recupUser[1];
 
 // GET CHARACTER PROFILE
 export function getProfile() {
     return function(dispatch) {
-        axios.get('/profil')
+        axios.get('/profil/:'+user)
             .then(function(response) {
                 dispatch({type:"GET_PROFILE", payload:response.data})
             })

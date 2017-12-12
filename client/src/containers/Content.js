@@ -12,6 +12,7 @@ import { Personnage } from "../pages/Personnage";
 import { Equipement } from "../pages/Equipement";
 import { Combat } from "../pages/Combat";
 import { Update } from "../pages/Update";
+import { Recap } from "../pages/Recap";
 
 const Main = () => (
     <main>
@@ -21,6 +22,7 @@ const Main = () => (
             <Route path='/login' component={Login}/>
             <Route path='/creation' component={Creation}/>
             <Route path='/creacarac' component={CreaCarac}/>
+            <Route path='/recap' component={Recap}/>
             <PrivateRoute authed={fakeAuth.isAuthenticated} path='/personnage' component={Personnage}/>
             <PrivateRoute authed={fakeAuth.isAuthenticated} Route path='/equipement' component={Equipement}/>
             <PrivateRoute authed={fakeAuth.isAuthenticated} Route path='/combat' component={Combat}/>

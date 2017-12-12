@@ -51,14 +51,17 @@ app.post('/profil', function(req, res) {
     })
 });
 
+
 //---->>>> GET PROFILE <<<<----
-app.get('/profil', function(req, res) {
-    Profile.find(function(err, profile) {
+app.get('/profil/:user', function(req, res) {
+    let user = req.params.user.substring(1);
+
+    Profile.aggregate({$match: {user: user}}, function (err, data){
         if(err) {
             throw err;
         }
-        res.json(profile);
-    })
+        res.json(data);
+    });
 });
 
 //---->>>> UPDATE PROFILE <<<<----
