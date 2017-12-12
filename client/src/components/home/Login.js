@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { getUser } from "../actions/UserAction";
+import { getUser } from "../../actions/UserAction";
 
 class Login extends Component {
 
@@ -29,9 +29,9 @@ class Login extends Component {
             return formPseudo === user.pseudo && formPassword === user.password
         });
         console.log(users);
-        /*fakeAuth.authenticate(() => {
+        fakeAuth.authenticate(() => {
             this.setState({ redirectToReferrer: true });
-        })*/
+        })
     }
 
     render() {

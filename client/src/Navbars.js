@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import { fakeAuth } from "../../pages/Login";
+import { fakeAuth } from "./components/home/Login";
 
 export class Navbars extends Component {
     render() {
