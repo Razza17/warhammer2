@@ -53,10 +53,11 @@ app.post('/profil', function(req, res) {
 
 
 //---->>>> GET PROFILE <<<<----
-app.get('/profil/:user', function(req, res) {
+app.get('/profil/:user/:perso', function(req, res) {
     let user = req.params.user.substring(1);
+    let perso = req.params.perso.substring(1);
 
-    Profile.aggregate({$match: {user: user}}, function (err, data){
+    Profile.aggregate({$match: {user: user, nom: perso}}, function (err, data){
         if(err) {
             throw err;
         }

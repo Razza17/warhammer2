@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Panel } from 'react-bootstrap';
+
 import { Profil } from "../../components/personnage/Profil";
 import { getProfile } from '../../actions/ProfilAction';
 
