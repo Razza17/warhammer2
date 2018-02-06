@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Glyphicon, FormGroup, FormControl, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
-
-import { updateCompAvance } from "../../actions/CompAvanceAction";
 
 class CompetenceAvanceUpdate extends Component {
 
@@ -83,16 +80,16 @@ class CompetenceAvanceUpdate extends Component {
                     <FormGroup controlId="bonusCompAvance">
                         <FormControl
                             type='text'
-                            defaultValue={this.props.bonus}
+                            defaultValue={this.props.bonus === null ? 0 : this.props.bonus}
                             ref='bonusCompAvance' />
                     </FormGroup>
                 </td>
                 <td>
-                    {this.props.carac === '(F)' && (this.props.acquis ? this.props.caracActuel[0].f : Math.round(this.props.caracActuel[0].f / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
-                    {this.props.carac === '(Soc)' && (this.props.acquis ? this.props.caracActuel[0].soc : Math.round(this.props.caracActuel[0].soc / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
-                    {this.props.carac === '(Ag)' && (this.props.acquis ? this.props.caracActuel[0].ag : Math.round(this.props.caracActuel[0].ag / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
-                    {this.props.carac === '(Int)' && (this.props.acquis ? this.props.caracActuel[0].int : Math.round(this.props.caracActuel[0].int / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
-                    {this.props.carac === '(E)' && (this.props.acquis ? this.props.caracActuel[0].e : Math.round(this.props.caracActuel[0].e / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
+                    {this.props.carac === '(F)' && (this.props.acquis ? this.props.caracActuel[2].f : Math.round(this.props.caracActuel[2].f / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
+                    {this.props.carac === '(Soc)' && (this.props.acquis ? this.props.caracActuel[2].soc : Math.round(this.props.caracActuel[2].soc / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
+                    {this.props.carac === '(Ag)' && (this.props.acquis ? this.props.caracActuel[2].ag : Math.round(this.props.caracActuel[2].ag / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
+                    {this.props.carac === '(Int)' && (this.props.acquis ? this.props.caracActuel[2].int : Math.round(this.props.caracActuel[2].int / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
+                    {this.props.carac === '(E)' && (this.props.acquis ? this.props.caracActuel[2].e : Math.round(this.props.caracActuel[2].e / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
                 </td>
                 <td>
                     <Glyphicon glyph="pencil" onClick={this.handleUpdate.bind(this)} />
@@ -104,14 +101,8 @@ class CompetenceAvanceUpdate extends Component {
 
 function mapStateToProps(state) {
     return {
-        caracActuel: state.caracActuel.caracActuel
+        caracActuel: state.carac.carac
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        updateCompAvance:updateCompAvance
-    }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CompetenceAvanceUpdate);
+export default connect(mapStateToProps)(CompetenceAvanceUpdate);

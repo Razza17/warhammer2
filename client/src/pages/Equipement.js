@@ -14,27 +14,31 @@ export class Equipement extends Component {
         return (
             <Grid id="equipement" fluid>
                 <Row>
-                    <EncContainer />
+                    <Col xs={8} md={4} mdOffset={4}>
+                        <EncContainer />
+                    </Col>
                 </Row>
                 <Row>
-                    <ArmesTable />
-                    <Col xs={12} md={6}>
+                    <Col xs={12} md={5} mdOffset={1}>
+                        <InventaireTable />
+                    </Col>
+                    <Col xs={12} md={5}>
                         <MoneyTable />
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12} md={8}>
-                        <ArmureTable />
+                    <Col xs={12} md={6}>
+                        <ArmesTable />
                     </Col>
-                    <Col xs={12} md={4}>
-                        <PointArmureTable />
+                    <Col xs={12} md={6}>
+                        <ArmureTable />
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={6} md={4} mdOffset={2}>
-                        <InventaireTable />
+                    <Col xs={12} md={4} mdOffset={2}>
+                        <PointArmureTable />
                     </Col>
-                    <Col xs={6} md={4}>
+                    <Col xs={12} md={2}>
                         <FolieTable />
                     </Col>
                 </Row>

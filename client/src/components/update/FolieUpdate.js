@@ -69,8 +69,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        deleteFolie: deleteFolie,
-        updateFolie: updateFolie
+        deleteFolie,
+        updateFolie
     }, dispatch)
 }
 

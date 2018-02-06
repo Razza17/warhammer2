@@ -91,8 +91,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        deleteInventaire: deleteInventaire,
-        updateInventaire: updateInventaire
+        deleteInventaire,
+        updateInventaire
     }, dispatch)
 }
 

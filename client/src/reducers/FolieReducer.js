@@ -8,7 +8,7 @@ export function folieReducer(state={folie:[]}, action) {
 
         // POST
         case "POST_FOLIE":
-            return {folie:[...state.folie, ...action.payload]};
+            return {...state, folie:[...state.folie, ...action.payload]};
         case "POST_FOLIE_REJECTED":
             return action.payload;
 
@@ -32,9 +32,9 @@ export function folieReducer(state={folie:[]}, action) {
 
         // UPDATE
         case "UPDATE_FOLIE":
-            return {...state, ...action.payload};
+            return {...state, payload:action.payload, msg:'Your crazyness has been successfully updated', style:'success'};
         case "UPDATE_FOLIE_REJECTED":
-            return action.payload;
+            return {...state, payload:action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

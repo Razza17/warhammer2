@@ -8,15 +8,15 @@ export function talentReducer(state={talent:[]}, action) {
 
         // POST
         case "POST_TALENT":
-            return {talent:[...state.talent, ...action.payload]};
+            return {...state, talent:[...state.talent, ...action.payload]};
         case "POST_TALENT_REJECTED":
             return action.payload;
 
         // UPDATE
         case "UPDATE_TALENT":
-            return {...state};
+            return {...state, payload:action.payload, msg:'Your talents has been successfully updated', style:'success'};
         case "UPDATE_TALENT_REJECTED":
-            return action.payload;
+            return {...state, payload:action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

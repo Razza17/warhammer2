@@ -8,7 +8,7 @@ export function armeReducer(state={arme:[]}, action) {
 
         // POST
         case "POST_ARME":
-            return {arme:[...state.arme, ...action.payload]};
+            return {...state, arme:[...state.arme, ...action.payload]};
         case "POST_ARME_REJECTED":
             return action.payload;
 
@@ -33,9 +33,9 @@ export function armeReducer(state={arme:[]}, action) {
 
         // UPDATE
         case "UPDATE_ARME":
-            return {...state, ...action.payload};
+            return {...state, payload:action.payload, msg:'Your Weapons has been successfully updated', style:'success'};
         case "UPDATE_ARME_REJECTED":
-            return action.payload;
+            return {...state, payload:action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

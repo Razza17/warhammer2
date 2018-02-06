@@ -3,12 +3,11 @@ import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { PointArmure } from "../../components/equipement/PointArmure";
-import { getCaracActuel } from "../../actions/CaracActuelAction";
+import { getCarac } from "../../actions/CaracAction";
 
 class PointArmureTable extends Component {
-    componentDidMount() {
-        this.props.getCaracActuel();
+    componentWillMount() {
+        this.props.getCarac();
     }
 
     ptsTete() {
@@ -87,8 +86,9 @@ class PointArmureTable extends Component {
    }
 
     render() {
+        let be = this.props.carac.length > 0 && this.props.carac[2].be;
         return (
-            <Panel header="Points d'armure" bsStyle="info">
+            <Panel header="Points d'armure">
                 <Table condensed bordered hover striped fill>
                     <thead>
                         <tr>
@@ -97,13 +97,68 @@ class PointArmureTable extends Component {
                             <th>Valeur</th>
                         </tr>
                     </thead>
-                    { this.props.caracActuel.map((caracActuel, i) => <PointArmure key={i} {...caracActuel}
-                                                                                    ptsTete={this.ptsTete()}
-                                                                                    ptsBras={this.ptsBras()}
-                                                                                    ptsCorps={this.ptsCorps()}
-                                                                                    ptsTorse={this.ptsTorse()}
-                                                                                    ptsJambes={this.ptsJambes()}/>)
-                    }
+                    <tbody>
+                        <tr>
+                            <td>Tête</td>
+                            <td>{typeof this.ptsTete() !== "number" ? be : this.ptsTete() + be}</td>
+                            <td>01 - 15</td>
+                        </tr>
+                        <tr>
+                            <td>Bras droit</td>
+                            <td>
+                                {
+                                    typeof this.ptsBras() !== "number"
+                                    ? (typeof this.ptsTorse() !== "number"
+                                        ? be
+                                        : this.ptsTorse() + be)
+                                    : (typeof this.ptsTorse() !== "number"
+                                        ? this.ptsBras() + be
+                                        : this.ptsTorse() + this.ptsBras() + be)
+                                }
+                            </td>
+                            <td>16 - 35</td>
+                        </tr>
+                        <tr>
+                            <td>Bras gauche</td>
+                            <td>
+                                {
+                                    typeof this.ptsBras() !== "number"
+                                        ? (typeof this.ptsTorse() !== "number"
+                                        ? be
+                                        : this.ptsTorse() + be)
+                                        : (typeof this.ptsTorse() !== "number"
+                                        ? this.ptsBras() + be
+                                        : this.ptsTorse() + this.ptsBras() + be)
+                                }
+                            </td>
+                            <td>35 - 55</td>
+                        </tr>
+                        <tr>
+                            <td>Corps</td>
+                            <td>
+                                {
+                                    typeof this.ptsCorps() !== "number"
+                                        ? (typeof this.ptsTorse() !== "number"
+                                        ? be
+                                        : this.ptsTorse() + be)
+                                        : (typeof this.ptsTorse() !== "number"
+                                        ? this.ptsCorps() + be
+                                        : this.ptsTorse() + this.ptsCorps() + be)
+                                }
+                            </td>
+                            <td>56 - 80</td>
+                        </tr>
+                        <tr>
+                            <td>Jambe droite</td>
+                            <td>{typeof this.ptsJambes() !== "number" ? be : this.ptsJambes() + be}</td>
+                            <td>81 - 90</td>
+                        </tr>
+                        <tr>
+                            <td>Jambe gauche</td>
+                            <td>{typeof this.ptsJambes() !== "number" ? be : this.ptsJambes() + be}</td>
+                            <td>91 - 00</td>
+                        </tr>
+                    </tbody>
                 </Table>
             </Panel>
         )
@@ -113,13 +168,13 @@ class PointArmureTable extends Component {
 function mapStateToProps(state) {
     return {
         armure: state.armure.armure,
-        caracActuel: state.caracActuel.caracActuel
+        carac: state.carac.carac
     }
 }
 
 function mapDispatchtoProps(dispatch) {
     return bindActionCreators({
-        getCaracActuel:getCaracActuel
+        getCarac
     }, dispatch)
 }
 

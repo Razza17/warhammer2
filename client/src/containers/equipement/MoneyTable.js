@@ -7,13 +7,13 @@ import { getMoney, updateMoney } from "../../actions/MoneyAction";
 import { Money } from "../../components/equipement/Money";
 
 class MoneyTable extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getMoney();
     }
 
     render() {
         return (
-            <Panel header="Monnaies" bsStyle="info">
+            <Panel header="Monnaies">
                 <Table fill>
                     { this.props.money.map((money, i) => <Money key={i} {...money} get={this.props.getMoney}  update={this.props.updateMoney} />) }
                 </Table>
@@ -30,8 +30,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        getMoney:getMoney,
-        updateMoney:updateMoney
+        getMoney,
+        updateMoney
     }, dispatch)
 }
 

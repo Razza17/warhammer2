@@ -5,17 +5,13 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
-let index = require('./routes/index');
-let users = require('./routes/users');
-
 let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,22 +20,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/wolfgang');
+mongoose.connect('mongodb://localhost:27017/warhammer', {
+    useMongoClient: true
+});
 
-let Profile = require('./models/profile.js');
-let Details = require('./models/details.js');
-let CaracBase = require('./models/caracBase.js');
-let CaracAvance = require('./models/caracAvance.js');
-let CaracActuel = require('./models/caracActuel.js');
-let Count = require('./models/count.js');
-let CompetenceBase = require('./models/competenceBase.js');
-let CompetenceAvance = require('./models/competenceAvance.js');
+let Profile = require('./models/profile');
+let Details = require('./models/details');
+let Caracteristique = require('./models/Caracteristique');
+let Count = require('./models/count');
+let CompetenceBase = require('./models/competenceBase');
+let CompetenceAvance = require('./models/competenceAvance');
 let Talent = require('./models/talent');
 let Arme = require('./models/arme');
 let Armure = require('./models/armure');
 let Money = require('./models/money');
 let Inventaire = require('./models/inventaire');
 let Folie = require('./models/folie');
+let Experience = require('./models/experience');
+let User = require('./models/user');
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -53,14 +51,18 @@ app.post('/profil', function(req, res) {
     })
 });
 
+
 //---->>>> GET PROFILE <<<<----
-app.get('/profil', function(req, res) {
-    Profile.find(function(err, profile) {
+app.get('/profil/:user/:perso', function(req, res) {
+    let user = req.params.user.substring(1);
+    let perso = req.params.perso.substring(1);
+
+    Profile.aggregate({$match: {user: user, nom: perso}}, function (err, data){
         if(err) {
             throw err;
         }
-        res.json(profile);
-    })
+        res.json(data);
+    });
 });
 
 //---->>>> UPDATE PROFILE <<<<----
@@ -107,90 +109,31 @@ app.get('/details', function(req, res) {
     })
 });
 
-//---->>>> POST CARACTERISTIQUES DE BASE <<<<----
-app.post('/caracbase', function(req, res) {
-    let caracBase = req.body;
+//---->>>> POST CARACTERISTIQUES <<<<----
+app.post('/caracteristique', function(req, res) {
+    let carac = req.body;
 
-    CaracBase.create(caracBase, function(err, caracBase) {
+    Caracteristique.create(carac, function(err, carac) {
         if(err) {
             throw err;
         }
-        res.json(caracBase);
+        res.json(carac);
     })
 });
 
-//---->>>> GET CARACTERISTIQUES DE BASE <<<<----
-app.get('/caracbase', function(req, res) {
-    CaracBase.find(function(err, caracBase) {
+//---->>>> GET CARACTERISTIQUES <<<<----
+app.get('/caracteristique', function(req, res) {
+    Caracteristique.find(function(err, carac) {
         if(err) {
             throw err;
         }
-        res.json(caracBase);
+        res.json(carac);
     })
 });
 
-//---->>>> UPDATE CARACTERISTIQUES DE BASE <<<<----
-app.put('/caracbase/:_id', function(req, res) {
-   let newData = req.body;
-   let query = req.params._id;
-
-   let update = {
-       '$set': {
-           cc: newData.cc,
-           ct: newData.ct,
-           f: newData.f,
-           e: newData.e,
-           ag: newData.ag,
-           int: newData.int,
-           fm: newData.fm,
-           soc: newData.soc,
-           a: newData.a,
-           b: newData.b,
-           bf: newData.bf,
-           be: newData.be,
-           m: newData.m,
-           mag: newData.mag,
-           pf: newData.pf,
-           pd: newData.pd
-       }
-   };
-
-   let options = {new: false};
-
-   CaracBase.findOneAndUpdate(query, update, options, function(err, data) {
-       if(err) {
-           throw err;
-       }
-       res.json(data);
-   })
-});
-
-//---->>>> POST CARACTERISTIQUES AVANCE <<<<----
-app.post('/caracavance', function(req, res) {
-    let caracAvance = req.body;
-
-    CaracAvance.create(caracAvance, function(err, caracAvance) {
-        if(err) {
-            throw err;
-        }
-        res.json(caracAvance);
-    })
-});
-
-//---->>>> GET CARACTERISTIQUES AVANCE <<<<----
-app.get('/caracavance', function(req, res) {
-    CaracAvance.find(function(err, caracAvance) {
-        if(err) {
-            throw err;
-        }
-        res.json(caracAvance);
-    })
-});
-
-//---->>>> UPDATE CARACTERISTIQUES AVANCE <<<<----
-app.put('/caracavance/:_id', function(req, res) {
+//---->>>> UPDATE CARACTERISTIQUES <<<<----
+app.put('/caracteristique/:_id', function(req, res) {
     let newData = req.body;
-    let query = req.params._id;
 
     let update = {
         '$set': {
@@ -215,65 +158,7 @@ app.put('/caracavance/:_id', function(req, res) {
 
     let options = {new: false};
 
-    CaracAvance.findOneAndUpdate(query, update, options, function(err, data) {
-        if(err) {
-            throw err;
-        }
-        res.json(data);
-    })
-});
-
-//---->>>> POST CARACTERISTIQUES ACTUEL <<<<----
-app.post('/caracactuel', function(req, res) {
-    let caracActuel = req.body;
-
-    CaracActuel.create(caracActuel, function(err, caracActuel) {
-        if(err) {
-            throw err;
-        }
-        res.json(caracActuel);
-    })
-});
-
-//---->>>> GET CARACTERISTIQUES ACTUEL <<<<----
-app.get('/caracactuel', function(req, res) {
-    CaracActuel.find(function(err, caracActuel) {
-        if(err) {
-            throw err;
-        }
-        res.json(caracActuel);
-    })
-});
-
-//---->>>> UPDATE CARACTERISTIQUES ACTUEL <<<<----
-app.put('/caracactuel/:_id', function(req, res) {
-    let newData = req.body;
-    let query = req.params._id;
-
-    let update = {
-        '$set': {
-            cc: newData.cc,
-            ct: newData.ct,
-            f: newData.f,
-            e: newData.e,
-            ag: newData.ag,
-            int: newData.int,
-            fm: newData.fm,
-            soc: newData.soc,
-            a: newData.a,
-            b: newData.b,
-            bf: newData.bf,
-            be: newData.be,
-            m: newData.m,
-            mag: newData.mag,
-            pf: newData.pf,
-            pd: newData.pd
-        }
-    };
-
-    let options = {new: false};
-
-    CaracActuel.findOneAndUpdate(query, update, options, function(err, data) {
+    Caracteristique.updateOne({_id: newData._id}, update, options, function(err, data) {
         if(err) {
             throw err;
         }
@@ -346,7 +231,6 @@ app.get('/competencebase', function(req, res) {
 });
 
 //---->>>> UPDATE COMPETENCE BASE <<<<----
-
 app.put('/competencebase/:_id', function(req, res) {
     let newData = req.body;
 
@@ -392,7 +276,6 @@ app.get('/competenceavance', function(req, res) {
 });
 
 //---->>>> UPDATE COMPETENCE AVANCE <<<<----
-
 app.put('/competenceavance/:_id', function(req, res) {
     let newData = req.body;
 
@@ -497,7 +380,6 @@ app.delete('/arme/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE ARMES <<<<----
-
 app.put('/arme/:_id', function(req, res) {
     let newData = req.body;
 
@@ -557,7 +439,6 @@ app.delete('/armure/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE ARMURES <<<<----
-
 app.put('/armure/:_id', function(req, res) {
     let newData = req.body;
 
@@ -663,7 +544,6 @@ app.delete('/inventaire/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE INVENTAIRE <<<<----
-
 app.put('/inventaire/:_id', function(req, res) {
     let newData = req.body;
 
@@ -720,7 +600,6 @@ app.delete('/folie/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE FOLIE <<<<----
-
 app.put('/folie/:_id', function(req, res) {
     let newData = req.body;
 
@@ -742,10 +621,94 @@ app.put('/folie/:_id', function(req, res) {
     })
 });
 
-// END API
+//---->>>> POST EXPERIENCE <<<<----
+app.post('/experience', function(req, res) {
+    let inv = req.body;
 
-app.use('/', index);
-app.use('/users', users);
+    Experience.create(inv, function(err, experience) {
+        if(err) {
+            throw err;
+        }
+        res.json(experience);
+    })
+});
+
+//---->>>> GET EXPERIENCE <<<<----
+app.get('/experience', function(req, res) {
+    Experience.find(function(err, experience) {
+        if(err) {
+            throw err;
+        }
+        res.json(experience);
+    })
+});
+
+//---->>>> UPDATE EXPERIENCE <<<<----
+app.put('/experience/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            actuel: newData.actuel,
+            total: newData.total
+        }
+    };
+
+    let options = {new: false};
+
+    Experience.updateOne({_id: newData._id}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+//---->>>> POST USER <<<<----
+app.post('/user', function(req, res) {
+    let data = req.body;
+
+    User.create(data, function(err, user) {
+        if(err) {
+            throw err;
+        }
+        res.json(user);
+    })
+});
+
+//---->>>> GET USER <<<<----
+app.get('/user', function(req, res) {
+    User.find(function(err, user) {
+        if(err) {
+            throw err;
+        }
+        res.json(user);
+    })
+});
+
+//---->>>> UPDATE USER <<<<----
+app.put('/user/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            password: newData.password,
+            email: newData.email,
+            pseudo: newData.pseudo
+        }
+    };
+
+    let options = {new: false};
+
+    User.updateOne({_id: newData._id}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+// END API
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

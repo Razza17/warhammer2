@@ -3,31 +3,26 @@ import { Panel, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getCaracBase, updateCaracBase } from "../../actions/CaracBaseAction";
-import { getCaracAvance, updateCaracAvance } from "../../actions/CaracAvanceAction";
-import { getCaracActuel, updateCaracActuel } from "../../actions/CaracActuelAction";
-import { CaracBaseUpdate } from "../../components/update/CaracBaseUpdate";
-import { CaracAvanceUpdate } from "../../components/update/CaracAvanceUpdate";
-import { CaracActuelUpdate } from "../../components/update/CaracActuelUpdate";
+import { getCarac, updateCarac } from "../../actions/CaracAction";
+import { CaracUpdate } from "../../components/update/CaracUpdate";
+import { updateMessage } from "../../hocs/updateMessage";
 
 
 class CaracTableUpdate extends Component {
-    componentDidMount() {
-        this.props.getCaracBase();
-        this.props.getCaracAvance();
-        this.props.getCaracActuel();
+    componentWillMount() {
+        this.props.getCarac();
     }
 
     render() {
         return (
             <Panel collapsible header="Profil du personnage">
-                <Table condensed bordered hover striped fill>
+                <Table condensed bordered hover striped className="carac-table-desktop" fill>
                     <thead>
                         <tr>
                             <th colSpan="9">Profil Principal</th>
                             <th colSpan="9">Profil Secondaire</th>
                         </tr>
-                        <tr className="text-center profilHeader">
+                        <tr>
                             <th>Type</th>
                             <th>CC</th>
                             <th>CT</th>
@@ -45,24 +40,14 @@ class CaracTableUpdate extends Component {
                             <th>Mag</th>
                             <th>PF</th>
                             <th>PD</th>
-                            <th>Action</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.caracBase.map((caracBase, i) => <CaracBaseUpdate key={i}
-                                                                                     getCaracBase={this.props.getCaracBase}
-                                                                                     updateCaracBase={this.props.updateCaracBase}
-                                                                                     {...caracBase}/>)
-                        }
-                        {this.props.caracAvance.map((caracAvance, i) => <CaracAvanceUpdate key={i}
-                                                                                           getCaracAvance={this.props.getCaracAvance}
-                                                                                           updateCaracAvance={this.props.updateCaracAvance}
-                                                                                           {...caracAvance}/>)
-                        }
-                        {this.props.caracActuel.map((caracActuel, i) => <CaracActuelUpdate key={i}
-                                                                                           getCaracActuel={this.props.getCaracActuel}
-                                                                                           updateCaracActuel={this.props.updateCaracActuel}
-                                                                                           {...caracActuel}/>)
+                        {this.props.carac.map((carac, i) => <CaracUpdate key={i}
+                                                                         getCarac={this.props.getCarac}
+                                                                         updateCarac={this.props.updateCarac}
+                                                                         {...carac}/>)
                         }
                     </tbody>
                 </Table>
@@ -73,21 +58,18 @@ class CaracTableUpdate extends Component {
 
 function mapStateToProps(state){
     return {
-        caracBase: state.caracBase.caracBase,
-        caracAvance: state.caracAvance.caracAvance,
-        caracActuel: state.caracActuel.caracActuel
+        carac: state.carac.carac,
+        modified: state.carac.payload,
+        msg: state.carac.msg,
+        style: state.carac.style
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getCaracBase:getCaracBase,
-        updateCaracBase:updateCaracBase,
-        getCaracAvance:getCaracAvance,
-        updateCaracAvance:updateCaracAvance,
-        getCaracActuel:getCaracActuel,
-        updateCaracActuel:updateCaracActuel
+        getCarac,
+        updateCarac
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CaracTableUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CaracTableUpdate));
