@@ -12,17 +12,19 @@ export class Combat extends Component {
         return (
             <Grid id="equipement" fluid>
                 <Row>
-                    <CaracTable />
+                    <Col xs={12} lg={8} lgOffset={2}>
+                        <CaracTable />
+                    </Col>
                     <CountContainer />
                 </Row>
                 <Row>
-                    <ArmesTable />
-                    <Col xs={12} md={6}>
+                    <Col xs={12} md={4}>
+                        <ArmesTable />
+                    </Col>
+                    <Col xs={12} md={4}>
                         <ArmureTable />
                     </Col>
-                </Row>
-                <Row>
-                    <Col xs={12} md={8} mdOffset={2}>
+                    <Col xs={12} md={4}>
                         <PointArmureTable />
                     </Col>
                 </Row>

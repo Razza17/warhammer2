@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Col, Panel } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 import { Profil } from "../../components/personnage/Profil";
 import { getProfile } from '../../actions/ProfilAction';
 
@@ -12,13 +12,11 @@ class ProfilTable extends Component {
 
     render() {
         return (
-            <Col xs={12} sm={6} md={4}>
-                <Panel header="Personnage">
-                    {
-                        this.props.profile.map((perso, i) => <Profil key={i} {...perso} />)
-                    }
-                </Panel>
-            </Col>
+            <Panel header="Personnage">
+                {
+                    this.props.profile.map((perso, i) => <Profil key={i} {...perso} />)
+                }
+            </Panel>
         )
     }
 }

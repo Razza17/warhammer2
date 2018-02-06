@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 import CaracTableUpdate from '../containers/update/CaracTableUpdate';
-import CaracTableUpdateMobile from '../containers/update/CaracTableUpdateMobile';
 import ProfilTableUpdate from '../containers/update/ProfilTableUpdate';
 import ArmesTableUpdate from '../containers/update/ArmesTableUpdate';
 import ArmureTableUpdate from '../containers/update/ArmureTableUpdate';
@@ -19,32 +18,49 @@ export class Update extends Component {
         return (
             <Grid id="update" fluid>
                 <Row>
-                    <ProfilTableUpdate />
-                    <EncContainer />
-                    <ExperienceTableUpdate />
+                    <Col xs={8} md={4}>
+                        <ProfilTableUpdate />
+                    </Col>
+                    <Col xs={8} md={4}>
+                        <EncContainer />
+                    </Col>
+                    <Col xs={8} md={4}>
+                        <ExperienceTableUpdate />
+                    </Col>
                 </Row>
                 <Row>
-                    <Col xsHidden smHidden md={12}>
+                    <Col xs={12}>
                         <CaracTableUpdate />
                     </Col>
-                    <Col xs={12} mdHidden lgHidden>
-                        <CaracTableUpdateMobile />
+                </Row>
+                <Row>
+                    <Col xs={12} md={6}>
+                        <ArmesTableUpdate />
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <ArmureTableUpdate />
                     </Col>
                 </Row>
                 <Row>
-                    <ArmesTableUpdate />
-                    <ArmureTableUpdate />
+                    <Col xs={12} md={6}>
+                        <CompetenceTableBaseUpdate />
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <CompetenceTableAvanceUpdate />
+                    </Col>
                 </Row>
                 <Row>
-                    <CompetenceTableBaseUpdate />
-                    <CompetenceTableAvanceUpdate />
+                    <Col xs={12} md={6}>
+                        <TalentTableUpdate />
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <InventaireTableUpdate />
+                    </Col>
                 </Row>
                 <Row>
-                    <TalentTableUpdate />
-                    <InventaireTableUpdate />
-                </Row>
-                <Row>
-                    <FolieTableUpdate />
+                    <Col xs={4}>
+                        <FolieTableUpdate />
+                    </Col>
                 </Row>
             </Grid>
         )

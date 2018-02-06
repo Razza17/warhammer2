@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
 var folieSchema = mongoose.Schema({
-    nom: String
+    nom: String,
+    user : String,
+    perso : String
 });
 
 var Folie = mongoose.model('Folie', folieSchema);

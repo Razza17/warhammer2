@@ -1,0 +1,84 @@
+{
+  "competenceB" : [
+    {
+      "nom" : "Canotage",
+      "carac" : "(F)"
+    },
+    {
+      "nom" : "Charisme",
+      "carac" : "(Soc)"
+    },
+    {
+      "nom" : "Comandement",
+      "carac" : "(Soc)"
+    },
+    {
+      "nom" : "Commérage",
+      "carac" : "(Soc)"
+    },
+    {
+      "nom" : "Conduite d\"attelage",
+      "carac" : "(F)"
+    },
+    {
+      "nom" : "Déguisement",
+      "carac" : "(Soc)"
+    },
+    {
+      "nom" : "Déplacements silencieux",
+      "carac" : "(Ag)"
+    },
+    {
+      "nom" : "Dissimulation",
+      "carac" : "(Ag)"
+    },
+    {
+      "nom" : "Equitation",
+      "carac" : "(Ag)"
+    },
+    {
+      "nom" : "Escalade",
+      "carac" : "(F)"
+    },
+    {
+      "nom" : "Evaluation",
+      "carac" : "(Int)"
+    },
+    {
+      "nom" : "Fouille",
+      "carac" : "(Int)"
+    },
+    {
+      "nom" : "Intimidation",
+      "carac" : "(F)"
+    },
+    {
+      "nom" : "Jeu",
+      "carac" : "(Int)"
+    },
+    {
+      "nom" : "Marchandage",
+      "carac" : "(Soc)"
+    },
+    {
+      "nom" : "Natation",
+      "carac" : "(F)"
+    },
+    {
+      "nom" : "Perception",
+      "carac" : "(Int)"
+    },
+    {
+      "nom" : "Résistance à l\"alcool",
+      "carac" : "(E)"
+    },
+    {
+      "nom" : "Soins des animaux",
+      "carac" : "(Int)"
+    },
+    {
+      "nom" : "Survie",
+      "carac" : "(Int)"
+    }
+  ]
+}

@@ -13,7 +13,7 @@ class CountContainer extends Component {
 
     render() {
         return (
-            <Col xs={12} lg={4}>
+            <Col xs={12}>
                 { this.props.count.map((count, i) => <Count key={i} {...count} get={this.props.getCount} update={this.props.updateCount} />) }
             </Col>
         )

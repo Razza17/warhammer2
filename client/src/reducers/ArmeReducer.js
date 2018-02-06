@@ -33,9 +33,9 @@ export function armeReducer(state={arme:[]}, action) {
 
         // UPDATE
         case "UPDATE_ARME":
-            return {...state, ...action.payload, msg:'Your Weapons has been successfully updated', style:'success'};
+            return {...state, payload:action.payload, msg:'Your Weapons has been successfully updated', style:'success'};
         case "UPDATE_ARME_REJECTED":
-            return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
+            return {...state, payload:action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
         // DEFAULT
         default:

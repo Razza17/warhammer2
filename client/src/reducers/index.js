@@ -3,9 +3,7 @@ import { countReducer } from './CountReducer';
 import { moneyReducer } from './MoneyReducer';
 import { profilReducer } from './ProfilReducer';
 import { detailReducer } from './DetailReducer';
-import { caracBaseReducer } from "./CaracBaseReducer";
-import { caracAvanceReducer } from "./CaracAvanceReducer";
-import { caracActuelReducer } from "./CaracActuelReducer";
+import { caracReducer } from "./CaracReducer";
 import { compBaseReducer } from "./CompBaseReducer";
 import { compAvanceReducer } from "./CompAvanceReducer";
 import { talentReducer } from "./TalentReducer";
@@ -14,13 +12,13 @@ import { armureReducer } from "./ArmureReducer";
 import { inventaireReducer } from "./InventaireReducer";
 import { folieReducer } from "./FolieReducer";
 import { experienceReducer } from "./ExperienceReducer";
+import { userReducer } from "./UserReducer";
+import { logupReducer } from "./LogupReducer";
 
 export default combineReducers({
     profile: profilReducer,
     details: detailReducer,
-    caracBase: caracBaseReducer,
-    caracAvance: caracAvanceReducer,
-    caracActuel: caracActuelReducer,
+    carac: caracReducer,
     count: countReducer,
     compBase: compBaseReducer,
     compAvance: compAvanceReducer,
@@ -30,5 +28,7 @@ export default combineReducers({
     money: moneyReducer,
     inventaire: inventaireReducer,
     folie: folieReducer,
-    experience: experienceReducer
+    experience: experienceReducer,
+    user: userReducer,
+    logup: logupReducer
 })

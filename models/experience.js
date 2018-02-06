@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 
 var experienceSchema = mongoose.Schema({
     actuel: Number,
-    total: Number
+    total: Number,
+    user : String,
+    perso : String
 });
 
 var Experience = mongoose.model('Experience', experienceSchema);

@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
-import { Col, Table, Panel, Button } from 'react-bootstrap';
+import { Table, Panel, Button, FormGroup, FormControl, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { findDOMNode } from 'react-dom';
 
-import { getCompAvance, updateCompAvance } from "../../actions/CompAvanceAction";
+import { getCompAvance, updateCompAvance, postCompAvance } from "../../actions/CompAvanceAction";
 import Competence from "../../components/personnage/Competence";
 import CompetenceAvanceUpdate from '../../components/update/CompetenceAvanceUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceAvance extends Component {
 
+    componentWillMount() {
+        this.props.getCompAvance();
+    }
+
     constructor(props) {
         super(props);
 
         this.state = {
-            update: false
+            update: false,
+            acquisCheck: false,
+            dixCheck: false,
+            vingtCheck: false
         }
     }
 
@@ -24,38 +32,118 @@ class CompetenceAvance extends Component {
         })
     }
 
-    componentWillMount() {
-        this.props.getCompAvance();
+    changeAcquis() {
+        this.setState({
+            acquisCheck: !this.state.acquisCheck
+        })
+    }
+
+    changeDix() {
+        this.setState({
+            dixCheck: !this.state.dixCheck
+        })
+    }
+
+    changeVingt() {
+        this.setState({
+            vingtCheck: !this.state.vingtCheck
+        })
+    }
+
+    handlePost() {
+        let postCompAvance = [{
+            nom: findDOMNode(this.refs.nomPostCompAvance).value,
+            carac: findDOMNode(this.refs.caracPostCompAvance).value,
+            acquis: this.state.acquisCheck,
+            dix: this.state.dixCheck,
+            vingt: this.state.vingtCheck,
+            bonus: findDOMNode(this.refs.bonusPostCompAvance).value
+        }];
+        this.props.postCompAvance(postCompAvance);
+        this.resetForm();
+    }
+
+    resetForm() {
+        findDOMNode(this.refs.nomPostCompAvance).value = "";
+        findDOMNode(this.refs.caracPostCompAvance).value = "";
+        findDOMNode(this.refs.bonusPostCompAvance).value = "";
+        this.setState({
+            acquisCheck: false,
+            dixCheck: false,
+            vingtCheck: false
+        })
     }
 
     render() {
         return (
-            <Col xs={12} md={6} lg={4}>
-                <Panel header="Compétences de Avancées" className="noPadding">
-                    <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
-                    <Table condensed hover striped className="border table-desktop" fill>
-                        <thead>
+            <Panel header="Compétences de Avancées" className="noPadding">
+                <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+                <Table condensed hover striped fill>
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Carac.</th>
+                        <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
+                        <th>+10%</th>
+                        <th>+20%</th>
+                        <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
+                        <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
+                        {this.state.update && <th>Update</th>}
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.props.compAvance.map((competenceA, i) =>
+                                this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} getCompAvance={this.props.getCompAvance}  updateCompAvance={this.props.updateCompAvance}/> : <Competence key={i} {...competenceA}/>
+                            )
+                        }
+                        {this.state.update &&
                         <tr>
-                            <th>Nom</th>
-                            <th>Carac.</th>
-                            <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
-                            <th>+10%</th>
-                            <th>+20%</th>
-                            <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
-                            <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
-                            {this.state.update && <th>Update</th>}
+                            <td>
+                                <FormGroup controlId="nomPostCompAvance">
+                                    <FormControl
+                                        type='text'
+                                        placeholder='Nom'
+                                        ref='nomPostCompAvance' />
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <FormGroup controlId="formControlsSelect">
+                                    <FormControl componentClass='select' placeholder='Caractéristiques' ref='caracPostCompAvance'>
+                                        <option value='select'>Caractéristiques</option>
+                                        <option value='(F)'>Force (F)</option>
+                                        <option value='(Soc)'>Sociabilité (Soc)</option>
+                                        <option value='(Ag)'>Agilité (Ag)</option>
+                                        <option value='(Int)'>Intélligence (Int)</option>
+                                        <option value='(E)'>Endurance (E)</option>
+                                    </FormControl>
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <Checkbox onClick={this.changeAcquis.bind(this)} />
+                            </td>
+                            <td>
+                                <Checkbox onClick={this.changeDix.bind(this)} />
+                            </td>
+                            <td>
+                                <Checkbox onClick={this.changeVingt.bind(this)} />
+                            </td>
+                            <td>
+                                <FormGroup controlId="bonusPostCompAvance">
+                                    <FormControl
+                                        type='text'
+                                        placeholder='Bonus'
+                                        ref='bonusPostCompAvance' />
+                                </FormGroup>
+                            </td>
+                            <td colSpan="2">
+                                <Button onClick={this.handlePost.bind(this)}>Add</Button>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.props.compAvance.map((competenceA, i) =>
-                                    this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} getCompAvance={this.props.getCompAvance}  updateCompAvance={this.props.updateCompAvance}/> : <Competence key={i} {...competenceA}/>
-                                )
-                            }
-                        </tbody>
-                    </Table>
-                </Panel>
-            </Col>
+                        }
+                    </tbody>
+                </Table>
+            </Panel>
         )
     }
 }
@@ -73,7 +161,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
         getCompAvance,
-        updateCompAvance
+        updateCompAvance,
+        postCompAvance
     }, dispatch)
 }
 

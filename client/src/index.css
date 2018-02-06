@@ -2,13 +2,18 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: url('../src/img/back.jpg') no-repeat;
-    background-size: cover;
 }
 
-/* NAV */
-a[aria-current="true"] {
-    color: #ffffff;
+.align-center {
+    text-align: center;
+}
+
+.hideNav {
+    opacity: 0;
+}
+
+.showNav {
+    opacity: 1;
 }
 
 /* BOOTSTRAP SURCOUCHE */
@@ -16,20 +21,16 @@ a[aria-current="true"] {
     background-color: rgba(46, 51, 56, 0.8);
 }
 
-.panel-primary>.panel-heading, .panel-default>.panel-heading {
-    font-size: 18px;
+.panel-heading, .panel-title>a {
+    font-size: 20px;
 }
 
 .noPadding .panel-body {
     padding: 0;
 }
 
-.glyphicon, #update .panel-title>a {
+.glyphicon, .panel-title>a {
     cursor: pointer;
-}
-
-#update .table tbody tbody tr td {
-    border: 1px solid #ddd;
 }
 /* END BOOTSTRAP SURCOUCHE */
 
@@ -37,17 +38,14 @@ ul li {
   list-style-type: none;
 }
 
+/* MANAGE TABLE */
 .table tbody tr td, .table thead tr th, .count {
     text-align: center;
     vertical-align: middle;
 }
 
-.table-desktop {
-    display: table;
-}
-
-.table-mobile {
-    display: none;
+.uppercase {
+    text-transform: uppercase;
 }
 
 .carac-table-desktop {
@@ -58,11 +56,6 @@ ul li {
     display: none;
 }
 
-.text-center {
-    text-align: center;
-    vertical-align: middle;
-}
-
 .show-desktop {
     display: block;
 }
@@ -70,6 +63,17 @@ ul li {
 .show-mobile {
     display: none;
 }
+
+.badge {
+    cursor: pointer;
+}
+
+.showUpdateButton {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+/* END MANAGE TABLE */
 
 /* MESSAGE SHOW/HIDE */
 .hideMsg {
@@ -85,26 +89,11 @@ ul li {
     right: 5px;
     opacity: 1;
 }
+/* END MESSAGE SHOW/HIDE */
 
-.badge {
-    cursor: pointer;
-}
-
-.showUpdateButton {
-    position: absolute;
-    top: 5px;
-    right: 20px;
-}
+/*------------------------------------- MEDIA QUERIES -------------------------------------*/
 
 @media screen and (max-width: 500px) {
-
-    .table-desktop {
-        display: none;
-    }
-
-    .table-mobile {
-        display: table;
-    }
 
     .show-desktop {
         display: none;
@@ -116,7 +105,7 @@ ul li {
 
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 999px) {
 
     .carac-table-desktop {
         display: none;

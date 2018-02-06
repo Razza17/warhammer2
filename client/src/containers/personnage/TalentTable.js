@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button } from 'react-bootstrap';
+import { Table, Panel, Button, FormGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { findDOMNode } from 'react-dom';
 
 import { Talent } from "../../components/personnage/Talent";
 import { TalentUpdate } from '../../components/update/TalentUpdate';
-import { getTalent, updateTalent } from "../../actions/TalentAction";
+import { getTalent, updateTalent, postTalent } from "../../actions/TalentAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
 class TalentTable extends Component {
+
+    componentWillMount() {
+        this.props.getTalent();
+    }
 
     constructor(props) {
         super(props);
@@ -24,8 +29,23 @@ class TalentTable extends Component {
         })
     }
 
-    componentWillMount() {
+    handleSubmit() {
+        let newTalent = {
+            nom: findDOMNode(this.refs.nomPostTalent).value,
+            desc: findDOMNode(this.refs.descPostTalent).value,
+            competence: findDOMNode(this.refs.compPostTalent).value,
+            bonus: findDOMNode(this.refs.bonusPostTalent).value,
+        };
+        this.props.postTalent(newTalent);
         this.props.getTalent();
+        this.resetForm();
+    }
+
+    resetForm(){
+        findDOMNode(this.refs.nomPostTalent).value = "";
+        findDOMNode(this.refs.descPostTalent).value = "";
+        findDOMNode(this.refs.compPostTalent).value = "";
+        findDOMNode(this.refs.bonusPostTalent).value = "";
     }
 
     render () {
@@ -50,6 +70,43 @@ class TalentTable extends Component {
                                     <Talent key={i} {...talents} />
                             )
                         }
+                        {this.state.update &&
+                        <tr>
+                            <td>
+                                <FormGroup controlId="nomPostTalent">
+                                    <FormControl
+                                    type='text'
+                                    placeholder='Nom'
+                                    ref='nomPostTalent' />
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <FormGroup controlId="descPostTalent">
+                                    <FormControl
+                                    type='text'
+                                    placeholder='Description'
+                                    ref='descPostTalent' />
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <FormGroup controlId="compPostTalent">
+                                    <FormControl
+                                    type='text'
+                                    placeholder='Compétence'
+                                    ref='compPostTalent' />
+                                </FormGroup>
+                            </td>
+                            <td>
+                                <FormGroup controlId="bonusPostTalent">
+                                    <FormControl
+                                    type='text'
+                                    placeholder='Bonus'
+                                    ref='bonusPostTalent' />
+                                </FormGroup>
+                            </td>
+                            <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                        </tr>
+                        }
                     </tbody>
                 </Table>
             </Panel>
@@ -69,7 +126,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators ({
         getTalent,
-        updateTalent
+        updateTalent,
+        postTalent
     }, dispatch)
 }
 
