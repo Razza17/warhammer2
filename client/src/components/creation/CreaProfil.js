@@ -51,7 +51,7 @@ class CreaProfil extends Component {
         if(this.state.profileNom === "success" && this.state.profileRace === "success" && this.state.profileCarriereA === "success"
             && this.state.profileAcarriere === "success") {
             this.props.postProfile(profile);
-            // Plier le Panel en court et déplier le Panel suivant
+            // Plier le Panel en cours et déplier le Panel suivant
             let stateActiveKey = parseInt(this.state.activeKey, 10);
             let newActiveKey = stateActiveKey + 1;
             let string = newActiveKey.toString();

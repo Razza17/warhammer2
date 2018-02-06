@@ -30,3 +30,4 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - Choix du personnage à afficher selon l'utilisateur
 - DELETE Personnage(s)
 - Page Login et mot de passe (en cours)
+
