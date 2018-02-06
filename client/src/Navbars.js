@@ -28,14 +28,8 @@ export class Navbars extends Component {
                             <NavItem eventKey={3}>Update your Character</NavItem>
                         </LinkContainer>
                     </Nav>
-                    <Nav pullRight>
-                        <LinkContainer to="/login">
-                            <NavItem eventKey={4}>Login</NavItem>
-                        </LinkContainer>
-                    </Nav>
                 </Navbar.Collapse>
             </Navbar>
         )
     }
-
 }

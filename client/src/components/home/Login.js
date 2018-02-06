@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Col, FormGroup, FormControl, Button, Alert } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
@@ -17,27 +17,27 @@ class Login extends Component {
         super();
 
         this.state = {
-            redirectToReferrer: false
+            redirectToReferrer: false,
+            visible: false
         }
     }
 
     handleLogin() {
         let formPseudo = findDOMNode(this.refs.pseudo).value;
         let formPassword = findDOMNode(this.refs.password).value;
-        let pseudo = this.props.user[0].pseudo;
-        let password = this.props.user[0].password;
-
-        formPseudo === pseudo && formPassword === password ?
-            fakeAuth.authenticate(() => {
-                this.setState({ redirectToReferrer: true });
-            }) :
-            alert("Ton pseudo ou ton mot de passe sont incorrect");
+        let users = this.props.user.length && this.props.user.map((user) => {
+            return formPseudo === user.pseudo && formPassword === user.password
+        });
+        console.log(users);
+        fakeAuth.authenticate(() => {
+            this.setState({ redirectToReferrer: true });
+        })
     }
 
     render() {
 
         const { from } = this.props.location.state || { from: { pathname: '/' } };
-        const { redirectToReferrer } = this.state;
+        const { redirectToReferrer } = this.state.redirectToReferrer;
 
         if (redirectToReferrer) {
             return (
@@ -47,7 +47,7 @@ class Login extends Component {
 
         return (
             <Col xs={6} xsOffset={3}>
-                <h1 className="align-center">Login Page</h1>
+                <h1 className="align-center">Connecte toi</h1>
                 <FormGroup controlId="pseudo">
                     <FormControl
                         type='text'
@@ -61,6 +61,9 @@ class Login extends Component {
                         ref='password' />
                 </FormGroup>
                 <Button onClick={this.handleLogin.bind(this)}>Submit</Button>
+                <Alert className={this.state.visible ? "showNav" : "hideNav"} bsStyle="danger">
+                    Ton pseudo et/ou ton mot de passe ne sont pas correct !!!!
+                </Alert>
             </Col>
         )
     }

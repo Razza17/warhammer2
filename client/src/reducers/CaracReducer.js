@@ -8,7 +8,7 @@ export function caracReducer(state={carac:[]}, action) {
 
         // POST
         case "POST_CARACTERISTIQUE":
-            return {carac:[...state.carac, ...action.payload]};
+            return {...state, carac:[...state.carac, ...action.payload]};
         case "POST_CARACTERISTIQUE_REJECTED":
             return action.payload;
 

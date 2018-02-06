@@ -1,9 +1,12 @@
 import axios from 'axios';
+let recupParams = window.location.search.substring(1).split('&');
+let user = recupParams[0];
+let perso = recupParams[1];
 
 // GET CHARACTER PROFILE
 export function getProfile() {
     return function(dispatch) {
-        axios.get('/profil')
+        axios.get('/profil/:' + user + '/:' + perso)
             .then(function(response) {
                 dispatch({type:"GET_PROFILE", payload:response.data})
             })
@@ -15,9 +18,9 @@ export function getProfile() {
 
 
 // POST CHARACTER PROFILE
-export function postProfile() {
+export function postProfile(profil) {
     return function(dispatch) {
-        axios.post('/profil')
+        axios.post('/profil', profil)
             .then(function(response) {
                 dispatch({type:"POST_PROFILE", payload:response.data})
             })

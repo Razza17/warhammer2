@@ -15,9 +15,9 @@ export function getCarac() {
 
 
 // POST CHARACTER CARACTERISTIQUE
-export function postCarac() {
+export function postCarac(carac) {
     return function(dispatch) {
-        axios.post('/caracteristique')
+        axios.post('/caracteristique', carac)
             .then(function(response) {
                 dispatch({type:"POST_CARACTERISTIQUE", payload:response.data})
             })
