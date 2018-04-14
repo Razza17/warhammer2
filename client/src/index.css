@@ -4,6 +4,18 @@ body {
     font-family: sans-serif;
 }
 
+.align-center {
+    text-align: center;
+}
+
+.hideNav {
+    opacity: 0;
+}
+
+.showNav {
+    opacity: 1;
+}
+
 /* BOOTSTRAP SURCOUCHE */
 .panel, table {
     background-color: rgba(46, 51, 56, 0.8);

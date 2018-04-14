@@ -6,7 +6,9 @@ var armeSchema = mongoose.Schema({
     degats: Number,
     portee: String,
     rechargement: Number,
-    attributs: String
+    attributs: String,
+    user : String,
+    perso : String
 });
 
 var Arme = mongoose.model('Arme', armeSchema);

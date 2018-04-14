@@ -5,17 +5,13 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
-let index = require('./routes/index');
-let users = require('./routes/users');
-
 let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,7 +20,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/wolfgang');
+mongoose.connect('mongodb://localhost:27017/warhammer', {
+    useMongoClient: true
+});
 
 let Profile = require('./models/profile');
 let Details = require('./models/details');
@@ -39,6 +37,7 @@ let Money = require('./models/money');
 let Inventaire = require('./models/inventaire');
 let Folie = require('./models/folie');
 let Experience = require('./models/experience');
+let User = require('./models/user');
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -52,14 +51,18 @@ app.post('/profil', function(req, res) {
     })
 });
 
+
 //---->>>> GET PROFILE <<<<----
-app.get('/profil', function(req, res) {
-    Profile.find(function(err, profile) {
+app.get('/profil/:user/:perso', function(req, res) {
+    let user = req.params.user.substring(1);
+    let perso = req.params.perso.substring(1);
+
+    Profile.aggregate({$match: {user: user, nom: perso}}, function (err, data){
         if(err) {
             throw err;
         }
-        res.json(profile);
-    })
+        res.json(data);
+    });
 });
 
 //---->>>> UPDATE PROFILE <<<<----
@@ -228,7 +231,6 @@ app.get('/competencebase', function(req, res) {
 });
 
 //---->>>> UPDATE COMPETENCE BASE <<<<----
-
 app.put('/competencebase/:_id', function(req, res) {
     let newData = req.body;
 
@@ -274,7 +276,6 @@ app.get('/competenceavance', function(req, res) {
 });
 
 //---->>>> UPDATE COMPETENCE AVANCE <<<<----
-
 app.put('/competenceavance/:_id', function(req, res) {
     let newData = req.body;
 
@@ -379,7 +380,6 @@ app.delete('/arme/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE ARMES <<<<----
-
 app.put('/arme/:_id', function(req, res) {
     let newData = req.body;
 
@@ -439,7 +439,6 @@ app.delete('/armure/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE ARMURES <<<<----
-
 app.put('/armure/:_id', function(req, res) {
     let newData = req.body;
 
@@ -545,7 +544,6 @@ app.delete('/inventaire/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE INVENTAIRE <<<<----
-
 app.put('/inventaire/:_id', function(req, res) {
     let newData = req.body;
 
@@ -602,7 +600,6 @@ app.delete('/folie/:_id', function(req, res) {
 });
 
 //---->>>> UPDATE FOLIE <<<<----
-
 app.put('/folie/:_id', function(req, res) {
     let newData = req.body;
 
@@ -647,7 +644,6 @@ app.get('/experience', function(req, res) {
 });
 
 //---->>>> UPDATE EXPERIENCE <<<<----
-
 app.put('/experience/:_id', function(req, res) {
     let newData = req.body;
 
@@ -668,10 +664,51 @@ app.put('/experience/:_id', function(req, res) {
     })
 });
 
-// END API
+//---->>>> POST USER <<<<----
+app.post('/user', function(req, res) {
+    let data = req.body;
 
-app.use('/', index);
-app.use('/users', users);
+    User.create(data, function(err, user) {
+        if(err) {
+            throw err;
+        }
+        res.json(user);
+    })
+});
+
+//---->>>> GET USER <<<<----
+app.get('/user', function(req, res) {
+    User.find(function(err, user) {
+        if(err) {
+            throw err;
+        }
+        res.json(user);
+    })
+});
+
+//---->>>> UPDATE USER <<<<----
+app.put('/user/:_id', function(req, res) {
+    let newData = req.body;
+
+    let update = {
+        '$set': {
+            password: newData.password,
+            email: newData.email,
+            pseudo: newData.pseudo
+        }
+    };
+
+    let options = {new: false};
+
+    User.updateOne({_id: newData._id}, update, options, function(err, data) {
+        if(err) {
+            throw err;
+        }
+        res.json(data);
+    })
+});
+
+// END API
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

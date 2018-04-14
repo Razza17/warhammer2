@@ -4,7 +4,9 @@ var armureSchema = mongoose.Schema({
     nom: String,
     encombrement: Number,
     couverture: String,
-    points: Number
+    points: Number,
+    user : String,
+    perso : String
 });
 
 var Armure = mongoose.model('Armure', armureSchema);

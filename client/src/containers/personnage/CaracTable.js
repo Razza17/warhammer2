@@ -41,7 +41,7 @@ class CaracTable extends Component {
                             <th colSpan="8">Profil Principal</th>
                             <th colSpan="8">Profil Secondaire</th>
                         </tr>
-                        <tr className="profilHeader">
+                        <tr>
                             <th>&nbsp;</th>
                             <th>CC</th>
                             <th>CT</th>
@@ -80,7 +80,7 @@ class CaracTable extends Component {
                             <th colSpan="8">Profil Principal</th>
                             <th colSpan="8">Profil Secondaire</th>
                         </tr>
-                        <tr className="profilHeader">
+                        <tr>
                             <th>&nbsp;</th>
                             <th>CC</th>
                             <th>CT</th>
