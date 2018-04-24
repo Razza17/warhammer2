@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/warhammer', {
+mongoose.connect('mongodb://localhost:27017/wolfgang', {
     useMongoClient: true
 });
 
@@ -53,16 +53,13 @@ app.post('/profil', function(req, res) {
 
 
 //---->>>> GET PROFILE <<<<----
-app.get('/profil/:user/:perso', function(req, res) {
-    let user = req.params.user.substring(1);
-    let perso = req.params.perso.substring(1);
-
-    Profile.aggregate({$match: {user: user, nom: perso}}, function (err, data){
+app.get('/profil', function(req, res) {
+    Profile.find(function(err, profile) {
         if(err) {
             throw err;
         }
-        res.json(data);
-    });
+        res.json(profile);
+    })
 });
 
 //---->>>> UPDATE PROFILE <<<<----
