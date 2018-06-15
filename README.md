@@ -11,6 +11,7 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 
 # Chemin de la BDD MongoDB
 * ATTENTION : la bdd MongoDB est en local sur mon ordinateur pour le moment.
+* ./bin/mongod --dbpath path/to/mongodb/database
 * warhammer2/dbs
 
 # Reste à faire
@@ -30,4 +31,3 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - Choix du personnage à afficher selon l'utilisateur
 - DELETE Personnage(s)
 - Page Login et mot de passe (en cours)
-
