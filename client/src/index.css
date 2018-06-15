@@ -4,6 +4,7 @@ body {
     font-family: sans-serif;
 }
 
+/* CLASS UNIQUE */
 .align-center {
     text-align: center;
 }
@@ -15,8 +16,24 @@ body {
 .showNav {
     opacity: 1;
 }
+/* END CLASS UNIQUE */
+
+/* HOME PAGE */
+#home {
+  background-image: url('img/home.jpg');
+}
+
+#home h1 {
+  margin-bottom: 50px;
+}
+/* END HOME PAGE */
 
 /* BOOTSTRAP SURCOUCHE */
+.home-panel .panel-heading {
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .panel, table {
     background-color: rgba(46, 51, 56, 0.8);
 }

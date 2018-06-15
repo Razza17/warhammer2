@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Col, Button } from 'react-bootstrap';
+import { Grid, Col, Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export class Home extends Component {
@@ -7,16 +7,20 @@ export class Home extends Component {
         return (
             <Grid id="home" fluid>
                 <Col xs={12}>
-                    <h1 className="align-center">Bienvenue Guerrier</h1>
-                    <Col xs={6}>
-                        <h3>
-                            Pour te connecter c'est par ici : <br/><Link to="/login"><Button>Se connecter</Button></Link>
+                    <h1 className="align-center">Bienvenue sur Warhammer !</h1>
+                    <Col xs={6} lg={3} lgOffset={3} className="home-panel">
+                      <Panel header="Tu es déjà un guerrier">
+                        <h3 className="align-center">
+                            Pour te connecter c'est <Link to="/login">ici</Link>
                         </h3>
+                      </Panel>
                     </Col>
-                    <Col xs={6}>
-                        <h3>
-                            Sinon pour créer un compte c'est par ici : <br/> <Link to="/logup"><Button>Créer un compte</Button></Link>
+                    <Col xs={6} lg={3} className="home-panel">
+                      <Panel header="Tu veux devenir un guerrier ?">
+                        <h3 className="align-center">
+                            Pour créer un compte c'est <Link to="/logup">ici</Link>
                         </h3>
+                      </Panel>
                     </Col>
                 </Col>
             </Grid>
