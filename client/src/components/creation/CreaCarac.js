@@ -15,11 +15,13 @@ class CreaCarac extends Component {
         let user = recupUser[1];
         let perso = this.props.profile.length && this.props.profile[0].nom;
 
+        console.log(perso);
+
         this.state = {
             user: user,
             perso: perso,
             activeKey: "0",
-            nextScreen: "/recap?pseudo="+user,
+            nextScreen: "/recap?pseudo="+user+"&perso="+perso,
             basecc: null, basect: null, basef: null, basee: null, baseag: null, baseint: null, basefm: null, basesoc: null,
             basea: null, baseb: null, basebf: null, basebe: null, basem: null, basemag: null, basepf: null, basepd: null,
             caracBaseValidate: false,
