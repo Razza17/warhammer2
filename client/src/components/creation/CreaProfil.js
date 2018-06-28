@@ -11,7 +11,8 @@ class CreaProfil extends Component {
 
     constructor(props) {
         super(props);
-        let user = window.location.search.substring(1);
+        let recupUser = window.location.search.substring(1).split('=');
+        let user = recupUser[1];
 
         this.state = {
             user: user,
