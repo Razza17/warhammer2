@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import { fakeAuth } from "./components/home/Login";
+
 export class Navbars extends Component {
     render() {
+        const authed = fakeAuth.isAuthenticated;
         return (
             <Navbar collapseOnSelect>
                 <Navbar.Header>
@@ -14,7 +17,7 @@ export class Navbars extends Component {
                     <Navbar.Toggle id='collapseButton' />
                 </Navbar.Header>
                 <Navbar.Collapse>
-                    <Nav>
+                    <Nav className={authed === true ? "showNav" : "hideNav"}>
                         <LinkContainer to="/personnage">
                             <NavItem eventKey={0}>Personnage</NavItem>
                         </LinkContainer>
