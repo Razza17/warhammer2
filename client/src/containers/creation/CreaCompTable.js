@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Col, PanelGroup, Panel, Table, FormGroup, FormControl, Checkbox, Button } from 'react-bootstrap';
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { findDOMNode } from 'react-dom';
+import React, {Component} from 'react';
+import {Col, PanelGroup, Panel, Table, FormGroup, FormControl, Checkbox, Button} from 'react-bootstrap';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {findDOMNode} from 'react-dom';
 
 import CompetenceData from '../../data/Competence';
 import CreaCompBase from '../../components/creation/CreaCompBase';
 import Competence from '../../components/personnage/Competence';
-import { getProfile } from "../../actions/ProfilAction";
-import { getCompAvance, postCompAvance } from "../../actions/CompAvanceAction";
+import {getProfile} from "../../actions/ProfilAction";
+import {getCompAvance, postCompAvance} from "../../actions/CompAvanceAction";
 
 class CreaCompTable extends Component {
 
@@ -16,24 +16,19 @@ class CreaCompTable extends Component {
         super(props);
         let recupUser = window.location.search.substring(1).split('=');
         let user = recupUser[1];
-        let perso = this.props.profile.length && this.props.profile[0].nom;
 
         this.state = {
             user: user,
-            perso: perso,
             acquisCheck: false,
             dixCheck: false,
             vingtCheck: false,
-            creaBonusCompBase: null
-        }
-
-        this.state = {
+            creaBonusCompBase: "0",
             activeKey: "0"
         }
     }
 
     handleSelect(activeKey) {
-        this.setState({ activeKey });
+        this.setState({activeKey});
         this.props.getProfile();
         this.props.getCompAvance();
     }
@@ -57,6 +52,7 @@ class CreaCompTable extends Component {
     }
 
     handlePost() {
+        let perso = this.props.profile.length && this.props.profile[0].nom;
         let postCompAvance = {
             nom: findDOMNode(this.refs.nomPostCompAvance).value,
             carac: findDOMNode(this.refs.caracPostCompAvance).value,
@@ -65,9 +61,8 @@ class CreaCompTable extends Component {
             vingt: this.state.vingtCheck,
             bonus: findDOMNode(this.refs.bonusPostCompAvance).value,
             user: this.state.user,
-            perso: this.state.perso
+            perso: perso
         };
-        console.log(postCompAvance);
         this.props.postCompAvance(postCompAvance);
         this.props.getCompAvance();
         this.resetForm();
@@ -87,11 +82,14 @@ class CreaCompTable extends Component {
     onChange(e) {
         const name = e.target.name;
         const value = e.target.value;
-        value !== "" ? this.setState({ [name]: "success" }) : this.setState({ [name]: "error" });
+        value !== "" ? this.setState({[name]: "success"}) : this.setState({[name]: "error"});
     }
 
+    postBase = () => {
+        this.child.handleSave();
+    };
+
     render() {
-        const perso = this.props.profile.length && this.props.profile[0].nom;
         return (
             <Col xs={12} md={6} mdOffset={3}>
                 <h2 className="text-center uppercase">Compétences de base et avancées</h2>
@@ -99,40 +97,48 @@ class CreaCompTable extends Component {
                     <Panel eventKey="1" header="Compétences de base">
                         <Table condensed hover striped className="border" fill>
                             <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Carac.</th>
-                                    <th>Acquis</th>
-                                    <th>+10%</th>
-                                    <th>+20%</th>
-                                    <th>Bonus</th>
-                                    <th>Enregistrer</th>
-                                </tr>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Carac.</th>
+                                <th>Acquis</th>
+                                <th>+10%</th>
+                                <th>+20%</th>
+                                <th>Bonus</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {
-                                  CompetenceData.competenceB.map((competenceB, i) => <CreaCompBase key={i} {...competenceB} character={perso} />)
-                                }
+                            {
+                                CompetenceData.competenceB.map((competenceB, i) => <CreaCompBase onRef={ref => (this.child = ref)}
+                                                                                                 key={i} {...competenceB} />)
+                            }
+                            <tr>
+                                <td colSpan="6">
+                                    <Button onClick={this.postBase}>Enregistrer toutes les compétences</Button>
+                                </td>
+                            </tr>
                             </tbody>
                         </Table>
                     </Panel>
 
                     <Panel eventKey="2" header="Compétences avancées">
-                      <Table condensed hover striped fill>
-                          <thead>
+                        <Table condensed hover striped fill>
+                            <thead>
                             <tr>
                                 <th>Nom</th>
                                 <th>Carac.</th>
-                                <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
+                                <th><span className="show-desktop">Acquis</span><span
+                                    className="show-mobile">Acq.</span></th>
                                 <th>+10%</th>
                                 <th>+20%</th>
-                                <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
-                                <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
+                                <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span>
+                                </th>
+                                <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span>
+                                </th>
                             </tr>
-                          </thead>
-                          <tbody>
+                            </thead>
+                            <tbody>
                             {
-                              this.props.compAvance.map((competenceA, i) => <Competence key={i} {...competenceA} character={perso} />)
+                                this.props.compAvance.map((competenceA, i) => <Competence key={i} {...competenceA} />)
                             }
                             <tr>
                                 <td>
@@ -140,12 +146,13 @@ class CreaCompTable extends Component {
                                         <FormControl
                                             type='text'
                                             placeholder='Nom'
-                                            ref='nomPostCompAvance' />
+                                            ref='nomPostCompAvance'/>
                                     </FormGroup>
                                 </td>
                                 <td>
                                     <FormGroup controlId="formControlsSelect">
-                                        <FormControl componentClass='select' placeholder='Caractéristiques' ref='caracPostCompAvance'>
+                                        <FormControl componentClass='select' placeholder='Caractéristiques'
+                                                     ref='caracPostCompAvance'>
                                             <option value='select'>Caractéristiques</option>
                                             <option value='(F)'>Force (F)</option>
                                             <option value='(Soc)'>Sociabilité (Soc)</option>
@@ -156,28 +163,28 @@ class CreaCompTable extends Component {
                                     </FormGroup>
                                 </td>
                                 <td>
-                                    <Checkbox checked={this.state.acquisCheck} onChange={this.changeAcquis.bind(this)} />
+                                    <Checkbox checked={this.state.acquisCheck} onChange={this.changeAcquis.bind(this)}/>
                                 </td>
                                 <td>
-                                    <Checkbox checked={this.state.dixCheck} onChange={this.changeDix.bind(this)} />
+                                    <Checkbox checked={this.state.dixCheck} onChange={this.changeDix.bind(this)}/>
                                 </td>
                                 <td>
-                                    <Checkbox checked={this.state.vingtCheck} onChange={this.changeVingt.bind(this)} />
+                                    <Checkbox checked={this.state.vingtCheck} onChange={this.changeVingt.bind(this)}/>
                                 </td>
                                 <td>
                                     <FormGroup controlId="bonusPostCompAvance">
                                         <FormControl
                                             type='text'
                                             placeholder='Bonus'
-                                            ref='bonusPostCompAvance' />
+                                            ref='bonusPostCompAvance'/>
                                     </FormGroup>
                                 </td>
                                 <td colSpan="2">
                                     <Button onClick={this.handlePost.bind(this)}>Add</Button>
                                 </td>
                             </tr>
-                          </tbody>
-                      </Table>
+                            </tbody>
+                        </Table>
                     </Panel>
                 </PanelGroup>
             </Col>
@@ -185,7 +192,7 @@ class CreaCompTable extends Component {
     }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         profile: state.profile.profile,
         compAvance: state.compAvance.compAvance

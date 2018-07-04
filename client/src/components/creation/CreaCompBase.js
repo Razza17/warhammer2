@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { FormGroup, FormControl, Checkbox, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { findDOMNode } from 'react-dom';
+import React, {Component} from 'react';
+import {FormGroup, FormControl, Checkbox, Button} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {findDOMNode} from 'react-dom';
 
-import { postCompBase } from "../../actions/CompBaseAction";
+import {postCompBase} from "../../actions/CompBaseAction";
 
 class CreaCompBase extends Component {
 
@@ -20,6 +20,14 @@ class CreaCompBase extends Component {
             vingtCheck: false,
             creaBonusCompBase: null
         }
+    }
+
+    componentDidMount() {
+        this.props.onRef(this)
+    }
+
+    componentWillUnmount() {
+        this.props.onRef(null)
     }
 
     changeAcquis() {
@@ -40,7 +48,16 @@ class CreaCompBase extends Component {
         })
     }
 
-    handlePost() {
+    handleSave() {
+        let buttons = document.getElementsByClassName("save-comp");
+
+        for (let i = 0; i < buttons.length; i++) {
+            console.log(buttons[i]);
+        }
+
+    }
+
+    postTableComp() {
         let compBase = {
             nom: this.props.nom,
             carac: this.props.carac,
@@ -51,13 +68,14 @@ class CreaCompBase extends Component {
             user: this.state.user,
             perso: this.props.character
         };
-        this.props.postCompBase(compBase);
+        console.log(compBase);
+        // this.props.postCompBase(compBase);
     }
 
     onChange(e) {
         const name = e.target.name;
         const value = e.target.value;
-        value !== "" ? this.setState({ [name]: "success" }) : this.setState({ [name]: "error" });
+        value !== "" ? this.setState({[name]: "success"}) : this.setState({[name]: "error"});
     }
 
     render() {
@@ -70,13 +88,13 @@ class CreaCompBase extends Component {
                     {this.props.carac}
                 </td>
                 <td>
-                    <Checkbox checked={this.state.acquisCheck} onChange={this.changeAcquis.bind(this)} />
+                    <Checkbox checked={this.state.acquisCheck} onChange={this.changeAcquis.bind(this)}/>
                 </td>
                 <td>
-                    <Checkbox checked={this.state.dixCheck} onChange={this.changeDix.bind(this)} />
+                    <Checkbox checked={this.state.dixCheck} onChange={this.changeDix.bind(this)}/>
                 </td>
                 <td>
-                    <Checkbox checked={this.state.vingtCheck} onChange={this.changeVingt.bind(this)} />
+                    <Checkbox checked={this.state.vingtCheck} onChange={this.changeVingt.bind(this)}/>
                 </td>
                 <td>
                     <FormGroup controlId="bonusCompBase">
@@ -88,8 +106,8 @@ class CreaCompBase extends Component {
                         />
                     </FormGroup>
                 </td>
-                <td>
-                    <Button onClick={this.handlePost.bind(this)}>Enregistrer {this.props.nom}</Button>
+                <td className="">
+                    <Button className="save-comp" onClick={this.postTableComp.bind(this)}>Enregistrer</Button>
                 </td>
             </tr>
         );

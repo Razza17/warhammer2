@@ -15,8 +15,6 @@ class CreaCarac extends Component {
         let user = recupUser[1];
         let perso = this.props.profile.length && this.props.profile[0].nom;
 
-        console.log(perso);
-
         this.state = {
             user: user,
             perso: perso,
