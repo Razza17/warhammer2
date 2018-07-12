@@ -12,9 +12,14 @@ class CreaCompBase extends Component {
     super(props);
 
     let saveLine = document.getElementsByClassName('save-comp');
-    // let dataLine = saveLine.getAttributeNode("data-activeLine");
 
     console.log(saveLine);
+
+    for(let i = 0; i < saveLine.length; i++) {
+      let dataLine = saveLine[i].dataset.activeLine;
+      console.log(saveLine[i]);
+      console.log('hello');
+    }
 
     this.state = {
       activeLine: "0",
