@@ -10,24 +10,19 @@ class CreaCompBase extends Component {
 
   constructor(props) {
     super(props);
-    let recupUser = window.location.search.substring(1).split('=');
-    let user = recupUser[1];
+
+    let saveLine = document.getElementsByClassName('save-comp');
+    // let dataLine = saveLine.getAttributeNode("data-activeLine");
+
+    console.log(saveLine);
 
     this.state = {
-      user: user,
+      activeLine: "0",
       acquisCheck: false,
       dixCheck: false,
       vingtCheck: false,
-      creaBonusCompBase: null
+      creaBonusCompBase: 0
     }
-  }
-
-  componentDidMount() {
-    this.props.onRef(this)
-  }
-
-  componentWillUnmount() {
-    this.props.onRef(null)
   }
 
   changeAcquis() {
@@ -48,18 +43,7 @@ class CreaCompBase extends Component {
     })
   }
 
-  handleSave() {
-    let buttons = document.getElementsByClassName("save-comp");
-
-    for (let i = 0; i < buttons.length; i++) {
-      console.log(buttons[i]);
-    }
-
-  }
-
   postTableComp() {
-    let splitUrl = window.location.search.substring(1).split('=');
-    let perso = splitUrl[2];
     let compBase = {
       nom: this.props.nom,
       carac: this.props.carac,
@@ -67,8 +51,8 @@ class CreaCompBase extends Component {
       dix: this.state.dixCheck,
       vingt: this.state.vingtCheck,
       bonus: findDOMNode(this.refs.bonusCompBase).value,
-      user: this.state.user,
-      perso: perso
+      user: this.props.user,
+      perso: this.props.character
     };
     console.log(compBase);
     // this.props.postCompBase(compBase);
@@ -104,12 +88,13 @@ class CreaCompBase extends Component {
               type='text'
               name="bonusCompBase"
               ref='bonusCompBase'
+              defaultValue = {this.state.creaBonusCompBase}
               onChange={this.onChange.bind(this)}
               />
           </FormGroup>
         </td>
         <td className="">
-          <Button className="save-comp" onClick={this.postTableComp.bind(this)}>Enregistrer</Button>
+          <Button className="save-comp" data-activeLine={this.state.activeLine} onClick={this.postTableComp.bind(this)}>Enregistre {this.props.nom}</Button>
         </td>
       </tr>
     );

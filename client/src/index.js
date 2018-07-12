@@ -21,9 +21,9 @@ const middleware = applyMiddleware(thunk, createLogger());
 const store = createStore(reducers, middleware);
 
 ReactDOM.render((
-    <Provider store={store}>
-        <BrowserRouter>
-            <App/>
-        </BrowserRouter>
-    </Provider>
+  <Provider store={store}>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
+  </Provider>
 ), document.getElementById('root'));

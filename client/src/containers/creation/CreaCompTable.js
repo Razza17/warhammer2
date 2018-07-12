@@ -14,16 +14,19 @@ class CreaCompTable extends Component {
 
   constructor(props) {
     super(props);
-    let recupUser = window.location.search.substring(1).split('=');
-    let user = recupUser[1];
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
 
     this.state = {
       user: user,
+      perso: perso,
       acquisCheck: false,
       dixCheck: false,
       vingtCheck: false,
       creaBonusCompBase: "0",
-      activeKey: "0"
+      activeKey: "1"
     }
   }
 
@@ -52,7 +55,6 @@ class CreaCompTable extends Component {
   }
 
   handlePost() {
-    let perso = this.props.profile.length && this.props.profile[0].nom;
     let postCompAvance = {
       nom: findDOMNode(this.refs.nomPostCompAvance).value,
       carac: findDOMNode(this.refs.caracPostCompAvance).value,
@@ -61,7 +63,7 @@ class CreaCompTable extends Component {
       vingt: this.state.vingtCheck,
       bonus: findDOMNode(this.refs.bonusPostCompAvance).value,
       user: this.state.user,
-      perso: perso
+      perso: this.state.perso
     };
     this.props.postCompAvance(postCompAvance);
     this.props.getCompAvance();
@@ -94,7 +96,7 @@ class CreaCompTable extends Component {
       <Col xs={12} md={6} mdOffset={3}>
         <h2 className="text-center uppercase">Compétences de base et avancées</h2>
         <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)} accordion>
-          <Panel eventKey="1" header="Compétences de base">
+          <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1" header="Compétences de base">
             <Table condensed hover striped className="border" fill>
               <thead>
                 <tr>
@@ -108,19 +110,13 @@ class CreaCompTable extends Component {
               </thead>
               <tbody>
                 {
-                  CompetenceData.competenceB.map((competenceB, i) => <CreaCompBase onRef={ref => (this.child = ref)}
-                  key={i} {...competenceB} />)
+                  CompetenceData.competenceB.map((competenceB, i) => <CreaCompBase user={this.state.user} perso={this.state.perso} key={i} {...competenceB} />)
                 }
-                <tr>
-                  <td colSpan="6">
-                    <Button onClick={this.postBase}>Enregistrer toutes les compétences</Button>
-                  </td>
-                </tr>
               </tbody>
             </Table>
           </Panel>
 
-          <Panel eventKey="2" header="Compétences avancées">
+          <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2" header="Compétences avancées">
             <Table condensed hover striped fill>
               <thead>
                 <tr>

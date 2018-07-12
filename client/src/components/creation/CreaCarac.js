@@ -11,12 +11,15 @@ class CreaCarac extends Component {
 
   constructor(props) {
     super(props);
-    let recupUser = window.location.search.substring(1).split('=');
-    let user = recupUser[1];
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
 
     this.state = {
       user: user,
-      activeKey: "0",
+      perso: perso,
+      activeKey: "1",
       basecc: null, basect: null, basef: null, basee: null, baseag: null, baseint: null, basefm: null, basesoc: null,
       basea: null, baseb: null, basebf: null, basebe: null, basem: null, basemag: null, basepf: null, basepd: null,
       caracBaseValidate: false,
@@ -30,8 +33,6 @@ class CreaCarac extends Component {
   }
 
   handleBase() {
-    let splitUrl = window.location.search.substring(1).split('=');
-    let perso = splitUrl[2];
     let caracBase = {
       type: "base",
       cc: findDOMNode(this.refs.basecc).value,
@@ -51,7 +52,7 @@ class CreaCarac extends Component {
       pf: findDOMNode(this.refs.basepf).value,
       pd: findDOMNode(this.refs.basepd).value,
       user: this.state.user,
-      perso: perso
+      perso: this.state.perso
     };
 
     if(this.state.basecc === "success"
@@ -98,8 +99,6 @@ class CreaCarac extends Component {
   }
 
   handleAvance() {
-    let splitUrl = window.location.search.substring(1).split('=');
-    let perso = splitUrl[2];
     let caracAvance = {
       type: "avance",
       cc: findDOMNode(this.refs.avcc).value,
@@ -119,7 +118,7 @@ class CreaCarac extends Component {
       pf: findDOMNode(this.refs.avpf).value,
       pd: findDOMNode(this.refs.avpd).value,
       user: this.state.user,
-      perso: perso
+      perso: this.state.perso
     };
 
     if(this.state.avcc === "success"
@@ -166,8 +165,6 @@ class CreaCarac extends Component {
   }
 
   handleActuel() {
-    let splitUrl = window.location.search.substring(1).split('=');
-    let perso = splitUrl[2];
     let caracActuel = {
       type: "actuel",
       cc: findDOMNode(this.refs.accc).value,
@@ -187,7 +184,7 @@ class CreaCarac extends Component {
       pf: findDOMNode(this.refs.acpf).value,
       pd: findDOMNode(this.refs.acpd).value,
       user: this.state.user,
-      perso: perso
+      perso: this.state.perso
     };
 
     if(this.state.accc === "success"
@@ -212,6 +209,7 @@ class CreaCarac extends Component {
       let newActiveKey = stateActiveKey + 1;
       let string = newActiveKey.toString();
       this.setState({ activeKey: string, caracActuelValidate: true });
+      window.location.assign(window.location.origin + "/creationComp" + window.location.search);
     } else {
       this.state.accc === null && this.setState({ accc: "error"});
       this.state.acct === null && this.setState({ acct: "error"});
@@ -249,7 +247,7 @@ class CreaCarac extends Component {
       <Col xs={12} md={6} mdOffset={3}>
         <h2 className="text-center uppercase">Caractéristiques de ton perso</h2>
         <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)} accordion>
-          <Panel eventKey="1" header="Caractéristiques de base">
+          <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1" header="Caractéristiques de base">
             <Table condensed bordered hover striped fill>
               <thead>
                 <tr>
@@ -471,7 +469,7 @@ class CreaCarac extends Component {
             <Button onClick={this.handleBase.bind(this)}>Enregistrer</Button>
           </Panel>
 
-          <Panel eventKey="2" header="Caractéristiques avancées">
+          <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2" header="Caractéristiques avancées">
             <Table condensed bordered hover striped fill>
               <thead>
                 <tr>
@@ -693,7 +691,7 @@ class CreaCarac extends Component {
             <Button onClick={this.handleAvance.bind(this)}>Enregistrer</Button>
           </Panel>
 
-          <Panel eventKey="3" header="Caractéristiques actuelles">
+          <Panel className={this.state.activeKey === "3" ? "show" : "hide"} eventKey="3" header="Caractéristiques actuelles">
             <Table condensed bordered hover striped fill>
               <thead>
                 <tr>
