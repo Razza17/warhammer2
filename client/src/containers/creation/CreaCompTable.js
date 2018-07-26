@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {findDOMNode} from 'react-dom';
 
-import CompetenceData from '../../data/Competence';
-import CreaCompBase from '../../components/creation/CreaCompBase';
 import Competence from '../../components/personnage/Competence';
+
 import {getProfile} from "../../actions/ProfilAction";
+import {getCompBase, postCompBase} from "../../actions/CompBaseAction";
 import {getCompAvance, postCompAvance} from "../../actions/CompAvanceAction";
 
 class CreaCompTable extends Component {
@@ -25,7 +25,7 @@ class CreaCompTable extends Component {
       acquisCheck: false,
       dixCheck: false,
       vingtCheck: false,
-      creaBonusCompBase: "0",
+      creaBonusCompBase: 0,
       activeKey: "1"
     }
   }
@@ -54,7 +54,23 @@ class CreaCompTable extends Component {
     })
   }
 
-  handlePost() {
+  postCompBase() {
+    let compBase = {
+      nom: findDOMNode(this.refs.nomPostCompBase).value,
+      carac: findDOMNode(this.refs.caracPostCompBase).value,
+      acquis: this.state.acquisCheck,
+      dix: this.state.dixCheck,
+      vingt: this.state.vingtCheck,
+      bonus: findDOMNode(this.refs.bonusPostCompBase).value,
+      user: this.state.user,
+      perso: this.state.perso
+    };
+    this.props.postCompBase(compBase);
+    this.props.getCompBase();
+    this.resetForm("base");
+  }
+
+  postCompAvance() {
     let postCompAvance = {
       nom: findDOMNode(this.refs.nomPostCompAvance).value,
       carac: findDOMNode(this.refs.caracPostCompAvance).value,
@@ -67,18 +83,37 @@ class CreaCompTable extends Component {
     };
     this.props.postCompAvance(postCompAvance);
     this.props.getCompAvance();
-    this.resetForm();
+    this.resetForm("avance");
   }
 
-  resetForm() {
-    findDOMNode(this.refs.nomPostCompAvance).value = "";
-    findDOMNode(this.refs.caracPostCompAvance).value = "";
-    findDOMNode(this.refs.bonusPostCompAvance).value = "";
-    this.setState({
-      acquisCheck: false,
-      dixCheck: false,
-      vingtCheck: false
-    })
+  resetForm(form) {
+    if (form === "base") {
+      findDOMNode(this.refs.nomPostCompBase).value = "";
+      findDOMNode(this.refs.caracPostCompBase).value = "";
+      findDOMNode(this.refs.bonusPostCompBase).value = "";
+      this.setState({
+        acquisCheck: false,
+        dixCheck: false,
+        vingtCheck: false
+      })
+    } else {
+      findDOMNode(this.refs.nomPostCompAvance).value = "";
+      findDOMNode(this.refs.caracPostCompAvance).value = "";
+      findDOMNode(this.refs.bonusPostCompAvance).value = "";
+      this.setState({
+        acquisCheck: false,
+        dixCheck: false,
+        vingtCheck: false
+      })
+    }
+  }
+
+  changePanel() {
+    // Plier le Panel en court et déplier le Panel suivant
+    let stateActiveKey = parseInt(this.state.activeKey, 10);
+    let newActiveKey = stateActiveKey + 1;
+    let stringKey = newActiveKey.toString();
+    this.setState({ activeKey: stringKey });
   }
 
   onChange(e) {
@@ -86,10 +121,6 @@ class CreaCompTable extends Component {
     const value = e.target.value;
     value !== "" ? this.setState({[name]: "success"}) : this.setState({[name]: "error"});
   }
-
-  postBase = () => {
-    this.child.handleSave();
-  };
 
   render() {
     return (
@@ -109,9 +140,55 @@ class CreaCompTable extends Component {
                 </tr>
               </thead>
               <tbody>
-                {
-                  CompetenceData.competenceB.map((competenceB, i) => <CreaCompBase user={this.state.user} perso={this.state.perso} key={i} {...competenceB} />)
-                }
+                { this.props.compBase.map((competenceB, i) => <Competence key={i} {...competenceB} />) }
+                <tr>
+                  <td>
+                    <FormGroup controlId="nomPostCompBase">
+                      <FormControl
+                        type='text'
+                        placeholder='Nom'
+                        ref='nomPostCompBase'/>
+                    </FormGroup>
+                  </td>
+                  <td>
+                    <FormGroup controlId="formControlsSelect">
+                      <FormControl componentClass='select' placeholder='Caractéristiques'
+                        ref='caracPostCompBase'>
+                        <option value='select'>Caractéristiques</option>
+                        <option value='(F)'>Force (F)</option>
+                        <option value='(Soc)'>Sociabilité (Soc)</option>
+                        <option value='(Ag)'>Agilité (Ag)</option>
+                        <option value='(Int)'>Intélligence (Int)</option>
+                        <option value='(E)'>Endurance (E)</option>
+                      </FormControl>
+                    </FormGroup>
+                  </td>
+                  <td>
+                    <Checkbox checked={this.state.acquisCheck} onChange={this.changeAcquis.bind(this)}/>
+                  </td>
+                  <td>
+                    <Checkbox checked={this.state.dixCheck} onChange={this.changeDix.bind(this)}/>
+                  </td>
+                  <td>
+                    <Checkbox checked={this.state.vingtCheck} onChange={this.changeVingt.bind(this)}/>
+                  </td>
+                  <td>
+                    <FormGroup controlId="bonusPostCompBase">
+                      <FormControl
+                        type='text'
+                        placeholder='Bonus'
+                        ref='bonusPostCompBase'/>
+                    </FormGroup>
+                  </td>
+                  <td colSpan="2">
+                    <Button onClick={this.postCompBase.bind(this)}>Ajouter</Button>
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan={7}>
+                    <Button onClick={this.changePanel.bind(this)}>Passer aux compétences avancées</Button>
+                  </td>
+                </tr>
               </tbody>
             </Table>
           </Panel>
@@ -131,9 +208,7 @@ class CreaCompTable extends Component {
                 </tr>
               </thead>
               <tbody>
-                {
-                  this.props.compAvance.map((competenceA, i) => <Competence key={i} {...competenceA} />)
-                }
+                { this.props.compAvance.map((competenceA, i) => <Competence key={i} {...competenceA} />) }
                 <tr>
                   <td>
                     <FormGroup controlId="nomPostCompAvance">
@@ -174,7 +249,7 @@ class CreaCompTable extends Component {
                     </FormGroup>
                   </td>
                   <td colSpan="2">
-                    <Button onClick={this.handlePost.bind(this)}>Add</Button>
+                    <Button onClick={this.postCompAvance.bind(this)}>Ajouter</Button>
                   </td>
                 </tr>
               </tbody>
@@ -189,13 +264,16 @@ class CreaCompTable extends Component {
 function mapStateToProps(state) {
   return {
     profile: state.profile.profile,
-    compAvance: state.compAvance.compAvance
+    compAvance: state.compAvance.compAvance,
+    compBase: state.compBase.compBase
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getProfile,
+    getCompBase,
+    postCompBase,
     getCompAvance,
     postCompAvance
   }, dispatch)
