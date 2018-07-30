@@ -9,7 +9,6 @@ var competenceAvanceSchema = mongoose.Schema({
     bonus : Number,
     user : String,
     perso : String
-
 });
 
 var CompetenceAvance = mongoose.model('CompetenceAvance', competenceAvanceSchema);

@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/wolfgang', {
+mongoose.connect('mongodb://localhost:27017/warhammer', {
     useMongoClient: true
 });
 
