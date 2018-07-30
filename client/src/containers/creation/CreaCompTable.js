@@ -125,9 +125,9 @@ class CreaCompTable extends Component {
   render() {
     return (
       <Col xs={12} md={6} mdOffset={3}>
-        <h2 className="text-center uppercase">Compétences de base et avancées</h2>
+        <h2 className="text-center uppercase">{this.state.activeKey === "1" ? "Compétences de base" : "Compétences de avancées"}</h2>
         <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)} accordion>
-          <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1" header="Compétences de base">
+          <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1">
             <Table condensed hover striped className="border" fill>
               <thead>
                 <tr>
@@ -184,16 +184,11 @@ class CreaCompTable extends Component {
                     <Button onClick={this.postCompBase.bind(this)}>Ajouter</Button>
                   </td>
                 </tr>
-                <tr>
-                  <td colSpan={7}>
-                    <Button onClick={this.changePanel.bind(this)}>Passer aux compétences avancées</Button>
-                  </td>
-                </tr>
               </tbody>
             </Table>
           </Panel>
 
-          <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2" header="Compétences avancées">
+          <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2">
             <Table condensed hover striped fill>
               <thead>
                 <tr>
@@ -256,6 +251,8 @@ class CreaCompTable extends Component {
             </Table>
           </Panel>
         </PanelGroup>
+
+        <Button className={this.state.activeKey === '1' ? 'next-table show' : 'next-table hide'} onClick={this.changePanel.bind(this)}>Passer aux compétences avancées</Button>
       </Col>
     )
   }

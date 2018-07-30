@@ -245,9 +245,11 @@ class CreaCarac extends Component {
   render() {
     return (
       <Col xs={12} md={6} mdOffset={3}>
-        <h2 className="text-center uppercase">Caractéristiques de ton perso</h2>
+        <h2 className="text-center uppercase">
+          {this.state.activeKey === "1" ? "Caractéristiques de base" : this.state.activeKey === "2" ? "Caractéristiques avancées" : "Caractéristiques actuelles"}
+        </h2>
         <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)} accordion>
-          <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1" header="Caractéristiques de base">
+          <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1">
             <Table condensed bordered hover striped fill>
               <thead>
                 <tr>
@@ -464,12 +466,14 @@ class CreaCarac extends Component {
                     </FormGroup>
                   </td>
                 </tr>
+                <tr>
+                  <td colSpan={8}><Button onClick={this.handleBase.bind(this)}>Enregistrer</Button></td>
+                </tr>
               </tbody>
             </Table>
-            <Button onClick={this.handleBase.bind(this)}>Enregistrer</Button>
           </Panel>
 
-          <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2" header="Caractéristiques avancées">
+          <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2">
             <Table condensed bordered hover striped fill>
               <thead>
                 <tr>
@@ -686,12 +690,14 @@ class CreaCarac extends Component {
                     </FormGroup>
                   </td>
                 </tr>
+                <tr>
+                  <td colSpan={8}><Button onClick={this.handleAvance.bind(this)}>Enregistrer</Button></td>
+                </tr>
               </tbody>
             </Table>
-            <Button onClick={this.handleAvance.bind(this)}>Enregistrer</Button>
           </Panel>
 
-          <Panel className={this.state.activeKey === "3" ? "show" : "hide"} eventKey="3" header="Caractéristiques actuelles">
+          <Panel className={this.state.activeKey === "3" ? "show" : "hide"} eventKey="3">
             <Table condensed bordered hover striped fill>
               <thead>
                 <tr>
@@ -908,9 +914,11 @@ class CreaCarac extends Component {
                     </FormGroup>
                   </td>
                 </tr>
+                <tr>
+                  <td colSpan={8}><Button onClick={this.handleActuel.bind(this)}>Enregistrer</Button></td>
+                </tr>
               </tbody>
             </Table>
-            <Button onClick={this.handleActuel.bind(this)}>Enregistrer</Button>
           </Panel>
         </PanelGroup>
       </Col>

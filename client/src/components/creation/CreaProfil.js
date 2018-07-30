@@ -134,9 +134,9 @@ class CreaProfil extends Component {
   render() {
     return (
       <Col xs={12} md={4} mdOffset={4}>
-        <h2 className="text-center uppercase">Profil et détails de ton perso</h2>
+        <h2 className="text-center uppercase">{this.state.activeKey === "1" ? "Profil de ton personnage" : "Détails de ton personnage"}</h2>
         <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)} accordion>
-          <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1" header="Profil de ton personnage">
+          <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1">
             <Form>
               <FormGroup controlId="profileNom" validationState={this.state.profileNom}>
                 <InputGroup>
@@ -194,7 +194,7 @@ class CreaProfil extends Component {
             </Form>
           </Panel>
 
-          <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2" header="Details de ton personnage">
+          <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2">
             <Form>
               <Col xs={12} md={6}>
                 <FormGroup controlId="detailAge" validationState={this.state.detailAge}>
