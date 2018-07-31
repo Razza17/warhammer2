@@ -7,30 +7,30 @@ import Count from "../../components/personnage/Count";
 import { getCount, updateCount } from "../../actions/CountAction";
 
 class CountContainer extends Component {
-    componentWillMount() {
-        this.props.getCount();
-    }
+  componentWillMount() {
+    this.props.getCount();
+  }
 
-    render() {
-        return (
-            <Col xs={12}>
-                { this.props.count.map((count, i) => <Count key={i} {...count} get={this.props.getCount} update={this.props.updateCount} />) }
-            </Col>
-        )
-    }
+  render() {
+    return (
+      <Col xs={12}>
+        { this.props.count.map((count, i) => <Count key={i} {...count} get={this.props.getCount} update={this.props.updateCount} />) }
+      </Col>
+    )
+  }
 }
 
 function mapStateToProps(state) {
-    return {
-        count: state.count.count
-    }
+  return {
+    count: state.count.count
+  }
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({
-        getCount,
-        updateCount
-    }, dispatch)
+  return bindActionCreators({
+    getCount,
+    updateCount
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountContainer);

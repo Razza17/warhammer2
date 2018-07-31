@@ -248,7 +248,7 @@ class CreaCarac extends Component {
         <h2 className="text-center uppercase">
           {this.state.activeKey === "1" ? "Caractéristiques de base" : this.state.activeKey === "2" ? "Caractéristiques avancées" : "Caractéristiques actuelles"}
         </h2>
-        <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)} accordion>
+        <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)}>
           <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1">
             <Table condensed bordered hover striped fill>
               <thead>

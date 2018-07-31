@@ -32,7 +32,7 @@ class Logup extends Component {
     if(password === confirmPassword && password !== "" && confirmPassword !== "") {
       this.props.postLogup(user);
       this.setState({redirect:true});
-      let redirect = "/creation?pseudo=" + pseudo;
+      let redirect = "/creationProfile?pseudo=" + pseudo;
       this.props.history.push(redirect);
     } else {
       this.setState({ activeKey: "1" });
