@@ -11,88 +11,88 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class FolieTable extends Component {
 
-    componentWillMount() {
-        this.props.getFolie();
+  componentWillMount() {
+    this.props.getFolie();
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      update: false
     }
+  }
 
-    constructor(props) {
-        super(props);
+  showUpdate() {
+    this.setState({
+      update: !this.state.update
+    })
+  }
 
-        this.state = {
-            update: false
-        }
-    }
+  handleSubmit() {
+    const folie = {
+      nom: findDOMNode(this.refs.nomPostFolie).value
+    };
+    this.props.postFolie(folie);
+    this.props.getFolie();
+    this.resetForm();
+  }
 
-    showUpdate() {
-        this.setState({
-            update: !this.state.update
-        })
-    }
+  resetForm(){
+    findDOMNode(this.refs.nomPostFolie).value = "";
+  }
 
-    handleSubmit() {
-        const folie = {
-            nom: findDOMNode(this.refs.nomPostFolie).value
-        };
-        this.props.postFolie(folie);
-        this.props.getFolie();
-        this.resetForm();
-    }
-
-    resetForm(){
-        findDOMNode(this.refs.nomPostFolie).value = "";
-    }
-
-    render() {
-        return (
-            <Panel header="Folies" className="noPadding">
-                <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
-                <Table condensed bordered hover striped fill>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            {this.state.update && <th>Actions</th>}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.props.folie.map((folie, i) => this.state.update ?
-                                <FolieUpdate key={folie._id} {...folie}  getFolie={this.props.getFolie} /> :
-                                <Folie key={i} {...folie}/>)
-                        }
-                        {this.state.update &&
-                        <tr>
-                            <td>
-                                <FormGroup controlId="nomPostFolie">
-                                    <FormControl
-                                        type='text'
-                                        placeholder='Nom'
-                                        ref='nomPostFolie' />
-                                </FormGroup>
-                            </td>
-                            <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
-                        </tr>
-                        }
-                    </tbody>
-                </Table>
-            </Panel>
+  render() {
+    return (
+      <Panel header="Folies" className="noPadding">
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+        <Table condensed bordered hover striped fill>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              {this.state.update && <th>Actions</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.props.folie.map((folie, i) => this.state.update ?
+              <FolieUpdate key={folie._id} {...folie}  getFolie={this.props.getFolie} /> :
+                <Folie key={i} {...folie}/>)
+                }
+                {this.state.update &&
+                  <tr>
+                    <td>
+                      <FormGroup controlId="nomPostFolie">
+                        <FormControl
+                          type='text'
+                          placeholder='Nom'
+                          ref='nomPostFolie' />
+                      </FormGroup>
+                    </td>
+                    <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                  </tr>
+                }
+              </tbody>
+            </Table>
+          </Panel>
         )
+      }
     }
-}
 
-function mapStateToProps(state) {
-    return {
+    function mapStateToProps(state) {
+      return {
         folie: state.folie.folie,
         modified: state.folie.payload,
         msg: state.folie.msg,
         style: state.folie.style
+      }
     }
-}
 
-function mapDispatchtoProps(dispatch) {
-    return bindActionCreators({
+    function mapDispatchtoProps(dispatch) {
+      return bindActionCreators({
         getFolie,
         postFolie
-    }, dispatch)
-}
+      }, dispatch)
+    }
 
-export default connect(mapStateToProps, mapDispatchtoProps)(updateMessage(FolieTable));
+    export default connect(mapStateToProps, mapDispatchtoProps)(updateMessage(FolieTable));

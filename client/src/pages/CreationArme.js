@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Grid, Row } from 'react-bootstrap';
 
-import CreaComp from "../components/creation/CreaComp";
+import CreaArme from "../components/creation/CreaArme";
 
-export class CreationComp extends Component {
+export class CreationArme extends Component {
   render() {
     return (
-      <Grid id="creaComp" fluid>
+      <Grid id="creaArme" fluid>
         <Row>
-          <CreaComp />
+          <CreaArme />
         </Row>
       </Grid>
     )
