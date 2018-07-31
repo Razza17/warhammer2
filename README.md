@@ -30,8 +30,9 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] Page Combat (Regroupement des composants utiles à la phase de combat)
 - [x] Page Login et mot de passe
 - [x] Page Création de personnage et POST dans la BDD
-- Page Création : Talents, Armes, Armures (en cours)
-- Page Création : Munitions, Argent, Folies, Sac
+- [x] Page Création : Talents, Armes, Armures
+- [x] Page Création : Munitions, Argent, Folies, Inventaire
+- Page récap avec update possible
 - Récupération des données du personnage selon l'utilisateur
 - Choix du personnage à afficher selon l'utilisateur
 - DELETE Personnage(s)

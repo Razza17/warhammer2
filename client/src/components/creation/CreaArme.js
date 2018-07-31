@@ -181,7 +181,7 @@ class CreaArme extends Component {
                 </tr>
               </thead>
               <tbody>
-                { this.props.armure.map((armure, i) => <Armure key={i} {...armure} />) }
+                { this.props.armure.map((armures, i) => <Armure key={i} {...armures} />) }
                 <tr>
                   <td>
                     <FormGroup controlId="nomArmure">
@@ -248,10 +248,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getArme,
-    postArme,
-    getArmure,
-    postArmure
+    getArme, postArme,
+    getArmure, postArmure
   }, dispatch)
 }
 

@@ -15,9 +15,9 @@ export function getMoney() {
 
 
 // POST MONEY
-export function postMoney() {
+export function postMoney(money) {
   return function(dispatch) {
-    axios.post('/money')
+    axios.post('/money', money)
     .then(function(response) {
       dispatch({type:"POST_MONEY", payload:response.data})
     })

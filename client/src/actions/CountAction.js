@@ -15,9 +15,9 @@ export function getCount() {
 
 
 // POST COUNT POINT
-export function postCount() {
+export function postCount(data) {
   return function(dispatch) {
-    axios.post('/count')
+    axios.post('/count', data)
     .then(function(response) {
       dispatch({type:"POST_COUNT", payload:response.data})
     })

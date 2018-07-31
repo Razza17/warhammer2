@@ -124,7 +124,7 @@ class CreaCompTable extends Component {
         dixCheck: false,
         vingtCheck: false
       })
-    } else if (form === "base") {
+    } else if (form === "avance") {
       findDOMNode(this.refs.nomPostCompAvance).value = "";
       findDOMNode(this.refs.caracPostCompAvance).value = "";
       findDOMNode(this.refs.bonusPostCompAvance).value = "";
