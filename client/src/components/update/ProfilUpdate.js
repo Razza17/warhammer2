@@ -12,7 +12,7 @@ export class ProfilUpdate extends Component {
     };
 
     this.props.updateProfile(id, newData);
-    this.props.getProfile();
+    this.props.getProfile(this.props.user, this.props.perso);
   }
 
   render() {

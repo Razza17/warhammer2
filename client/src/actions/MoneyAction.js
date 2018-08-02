@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET MONEY
-export function getMoney() {
+export function getMoney(user, perso) {
   return function(dispatch) {
-    axios.get('/money')
+    axios.get('/money/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_MONEY", payload:response.data})
     })

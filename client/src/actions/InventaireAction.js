@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET INVENTAIRE
-export function getInventaire() {
+export function getInventaire(user, perso) {
   return function(dispatch) {
-    axios.get('/inventaire')
+    axios.get('/inventaire/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_INVENTAIRE", payload:response.data})
     })

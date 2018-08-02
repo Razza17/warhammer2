@@ -3,11 +3,11 @@ import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import CompetenceBaseUpdate from '../../components/update/CompetenceBaseUpdate';
-import { getCompBase, updateCompBase } from "../../actions/CompBaseAction";
+import CompetenceAvanceUpdate from '../../components/update/CompetenceAvanceUpdate';
+import { getCompAvance, updateCompAvance } from "../../actions/CompAvanceAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
-class CompBaseRecap extends Component {
+class CompAvanceRecap extends Component {
 
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ class CompBaseRecap extends Component {
   }
 
   componentWillMount() {
-    this.props.getCompBase(this.state.user, this.state.perso);
+    this.props.getCompAvance(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -35,7 +35,7 @@ class CompBaseRecap extends Component {
 
   render() {
     return (
-      <Panel header="Compétences de base" className="noPadding">
+      <Panel header="Compétences de Avance" className="noPadding">
         <Table condensed hover striped fill>
           <thead>
             <tr>
@@ -49,7 +49,7 @@ class CompBaseRecap extends Component {
             </tr>
           </thead>
           <tbody>
-            { this.props.compBase.map((competenceB, i) => <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} updateCompBase={this.props.updateCompBase} user={this.state.user} perso={this.state.perso}/>) }
+            { this.props.compAvance.map((competenceB, i) => <CompetenceAvanceUpdate key={i} {...competenceB} getCompAvance={this.props.getCompAvance} updateCompAvance={this.props.updateCompAvance} user={this.state.user} perso={this.state.perso}/>) }
           </tbody>
         </Table>
       </Panel>
@@ -59,17 +59,17 @@ class CompBaseRecap extends Component {
 
 function mapStateToProps(state) {
   return {
-    compBase: state.compBase.compBase,
-    modified: state.compBase.payload,
-    msg: state.compBase.msg,
-    style: state.compBase.style
+    compAvance: state.compAvance.compAvance,
+    modified: state.compAvance.payload,
+    msg: state.compAvance.msg,
+    style: state.compAvance.style
   }
 }
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    getCompBase, updateCompBase
+    getCompAvance, updateCompAvance
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompBaseRecap));
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompAvanceRecap));

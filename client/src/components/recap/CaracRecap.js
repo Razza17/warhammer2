@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Panel, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { findDOMNode } from 'react-dom';
 
 import { CaracUpdate } from "../../components/update/CaracUpdate";
 import { CaracUpdateMobile } from "../../components/update/CaracUpdateMobile";
@@ -22,10 +21,7 @@ class CaracRecap extends Component {
 
     this.state = {
       user: user,
-      perso: perso,
-      showAlert: false,
-      alertStyle: "success",
-      alertMessage: ""
+      perso: perso
     }
   }
 
@@ -33,45 +29,9 @@ class CaracRecap extends Component {
     this.props.getCarac(this.state.user, this.state.perso);
   }
 
-  updateCarac() {
-    let id = findDOMNode(this.refs.countId).value;
-    let newData = {
-      name: "Munitions",
-      value: findDOMNode(this.refs.countValue).value
-    };
-
-    if (findDOMNode(this.refs.countValue).value !== "") {
-      this.props.updateCarac(id, newData);
-      this.props.getCarac(this.state.user, this.state.perso);
-      this.setState({
-        showAlert: true,
-        alertStyle: "success",
-        alertMessage: "Your Profile has been successfully updated"
-      })
-
-      setTimeout(() => {
-        this.setState({
-          showAlert: false
-        })
-      }, 2500);
-    } else {
-      this.setState({
-        showAlert: true,
-        alertStyle: "danger",
-        alertMessage: "Oups something went wrong ! Maybe try again ;-)"
-      })
-
-      setTimeout(() => {
-        this.setState({
-          showAlert: false
-        })
-      }, 2500);
-    }
-  }
-
   render() {
     return (
-      <Panel header="Profil du personnage" className="noPadding">
+      <Panel header="Caractéristiques du personnage" className="noPadding">
         <Table condensed bordered hover striped className="carac-table-desktop" fill>
           <thead>
             <tr>

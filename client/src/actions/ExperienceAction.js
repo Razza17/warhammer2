@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET EXPERIENCE
-export function getExperience() {
+export function getExperience(user, perso) {
   return function(dispatch) {
-    axios.get('/experience')
+    axios.get('/experience/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_EXPERIENCE", payload:response.data})
     })
