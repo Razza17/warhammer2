@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET CHARACTER CARACTERISTIQUE
-export function getCarac() {
+export function getCarac(user, perso) {
   return function(dispatch) {
-    axios.get('/caracteristique')
+    axios.get('/caracteristique/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_CARACTERISTIQUE", payload:response.data})
     })

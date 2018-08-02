@@ -51,10 +51,12 @@ app.post('/profil', function(req, res) {
   })
 });
 
-
 //---->>>> GET PROFILE <<<<----
-app.get('/profil', function(req, res) {
-  Profile.find(function(err, profile) {
+app.get('/profil/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Profile.find({user: user, perso: perso}, function(err, profile) {
     if(err) {
       throw err;
     }
@@ -69,8 +71,11 @@ app.put('/profil/:_id', function(req, res) {
 
   let update = {
     '$set': {
+      nom: newData.nom,
+      race: newData.race,
       carriereA: newData.carriereA,
-      Acarriere: newData.Acarriere
+      Acarriere: newData.Acarriere,
+      perso: newData.nom
     }
   };
 
@@ -97,12 +102,45 @@ app.post('/details', function(req, res) {
 });
 
 //---->>>> GET DETAILS <<<<----
-app.get('/details', function(req, res) {
-  Details.find(function(err, detail) {
+app.get('/details/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Details.find({user: user, perso: perso}, function(err, detail) {
     if(err) {
       throw err;
     }
     res.json(detail);
+  })
+});
+
+//---->>>> UPDATE DETAILS <<<<----
+app.put('/details/:_id', function(req, res) {
+  let newData = req.body;
+  let query = req.params._id;
+
+  let update = {
+    '$set': {
+      age: newData.age,
+      sexe: newData.sexe,
+      yeux: newData.yeux,
+      taille: newData.taille,
+      cheveux: newData.cheveux,
+      poids: newData.poids,
+      signeAstral: newData.signeAstral,
+      fraterie: newData.fraterie,
+      naissance: newData.naissance,
+      distinction: newData.distinction,
+    }
+  };
+
+  let options = {new: false};
+
+  Details.findOneAndUpdate(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
   })
 });
 
@@ -119,8 +157,11 @@ app.post('/caracteristique', function(req, res) {
 });
 
 //---->>>> GET CARACTERISTIQUES <<<<----
-app.get('/caracteristique', function(req, res) {
-  Caracteristique.find(function(err, carac) {
+app.get('/caracteristique/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Caracteristique.find({user: user, perso: perso}, function(err, carac) {
     if(err) {
       throw err;
     }
@@ -176,8 +217,11 @@ app.post('/count', function(req, res) {
 });
 
 //---->>>> GET COUNT <<<<----
-app.get('/count', function(req, res) {
-  Count.find(function(err, counting) {
+app.get('/count/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Count.find({user: user, perso: perso}, function(err, counting) {
     if(err) {
       throw err;
     }
@@ -218,8 +262,11 @@ app.post('/competencebase', function(req, res) {
 });
 
 //---->>>> GET COMPETENCE BASE <<<<----
-app.get('/competencebase', function(req, res) {
-  CompetenceBase.find(function(err, competence) {
+app.get('/competencebase/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  CompetenceBase.find({user: user, perso: perso}, function(err, competence) {
     if(err) {
       throw err;
     }
@@ -263,8 +310,11 @@ app.post('/competenceavance', function(req, res) {
 });
 
 //---->>>> GET COMPETENCE AVANCE <<<<----
-app.get('/competenceavance', function(req, res) {
-  CompetenceAvance.find(function(err, competence) {
+app.get('/competenceavance/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  CompetenceAvance.find({user: user, perso: perso}, function(err, competence) {
     if(err) {
       throw err;
     }
@@ -310,8 +360,11 @@ app.post('/talent', function(req, res) {
 });
 
 //---->>>> GET TALENT <<<<----
-app.get('/talent', function(req, res) {
-  Talent.find(function(err, talents) {
+app.get('/talent/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Talent.find({user: user, perso: perso}, function(err, talents) {
     if(err) {
       throw err;
     }
@@ -355,8 +408,11 @@ app.post('/arme', function(req, res) {
 });
 
 //---->>>> GET ARMES <<<<----
-app.get('/arme', function(req, res) {
-  Arme.find(function(err, armes) {
+app.get('/arme/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Arme.find({user: user, perso: perso}, function(err, armes) {
     if(err) {
       throw err;
     }
@@ -414,8 +470,11 @@ app.post('/armure', function(req, res) {
 });
 
 //---->>>> GET ARMURES <<<<----
-app.get('/armure', function(req, res) {
-  Armure.find(function(err, armures) {
+app.get('/armure/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Armure.find({user: user, perso: perso}, function(err, armures) {
     if(err) {
       throw err;
     }
@@ -471,8 +530,11 @@ app.post('/money', function(req, res) {
 });
 
 //---->>>> GET MONEY <<<<----
-app.get('/money', function(req, res) {
-  Money.find(function(err, money) {
+app.get('/money/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Money.find({user: user, perso: perso}, function(err, money) {
     if(err) {
       throw err;
     }
@@ -484,9 +546,6 @@ app.get('/money', function(req, res) {
 app.put('/money/:_id', function(req, res) {
   let newData = req.body;
   let query = req.params._id;
-
-  console.log('newData : ', newData.couronnes);
-  console.log('query : ', query);
 
   let update = {
     '$set': {
@@ -519,8 +578,11 @@ app.post('/inventaire', function(req, res) {
 });
 
 //---->>>> GET INVENTAIRE <<<<----
-app.get('/inventaire', function(req, res) {
-  Inventaire.find(function(err, inventaire) {
+app.get('/inventaire/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Inventaire.find({user: user, perso: perso}, function(err, inventaire) {
     if(err) {
       throw err;
     }
@@ -575,8 +637,11 @@ app.post('/folie', function(req, res) {
 });
 
 //---->>>> GET FOLIE <<<<----
-app.get('/folie', function(req, res) {
-  Folie.find(function(err, folie) {
+app.get('/folie/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Folie.find({user: user, perso: perso}, function(err, folie) {
     if(err) {
       throw err;
     }
@@ -631,8 +696,11 @@ app.post('/experience', function(req, res) {
 });
 
 //---->>>> GET EXPERIENCE <<<<----
-app.get('/experience', function(req, res) {
-  Experience.find(function(err, experience) {
+app.get('/experience/:user/:perso', function(req, res) {
+  let user = req.params.user;
+  let perso = req.params.perso;
+
+  Experience.find({user: user, perso: perso}, function(err, experience) {
     if(err) {
       throw err;
     }

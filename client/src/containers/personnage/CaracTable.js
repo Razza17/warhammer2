@@ -12,118 +12,123 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class CaracTable extends Component {
 
-    componentWillMount() {
-        this.props.getCarac();
+  constructor(props) {
+    super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
+
+    this.state = {
+      user: user,
+      perso: perso,
+      update: false
     }
+  }
 
-    constructor(props) {
-        super(props);
+  componentWillMount() {
+    this.props.getCarac(this.state.user, this.state.perso);
+  }
 
-        this.state = {
-            update: false
+  showUpdate() {
+    this.setState({
+      update: !this.state.update
+    })
+  }
+
+  render() {
+    return (
+      <Panel header="Profil du personnage" className="noPadding">
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Modifier</Button>
+        <Table condensed bordered hover striped className="carac-table-desktop" fill>
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th colSpan="8">Profil Principal</th>
+              <th colSpan="8">Profil Secondaire</th>
+            </tr>
+            <tr>
+              <th>&nbsp;</th>
+              <th>CC</th>
+              <th>CT</th>
+              <th>F</th>
+              <th>E</th>
+              <th>Ag</th>
+              <th>Int</th>
+              <th>FM</th>
+              <th>Soc</th>
+              <th>A</th>
+              <th>B</th>
+              <th>BF</th>
+              <th>BE</th>
+              <th>M</th>
+              <th>Mag</th>
+              <th>PF</th>
+              <th>PD</th>
+              {this.state.update && <th>Update</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.props.carac.map((carac, i) =>
+              this.state.update ? <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/> :
+              <Carac key={i} {...carac} />)
+            }
+          </tbody>
+        </Table>
+        { this.state.update ?
+          this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) :
+          <Table condensed bordered hover striped className="carac-table-mobile" fill>
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                <th colSpan="8">Profil Principal</th>
+                <th colSpan="8">Profil Secondaire</th>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <th>CC</th>
+                <th>CT</th>
+                <th>F</th>
+                <th>E</th>
+                <th>Ag</th>
+                <th>Int</th>
+                <th>FM</th>
+                <th>Soc</th>
+                <th>A</th>
+                <th>B</th>
+                <th>BF</th>
+                <th>BE</th>
+                <th>M</th>
+                <th>Mag</th>
+                <th>PF</th>
+                <th>PD</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.props.carac.map((carac, i) => <Carac key={i} {...carac} />) }
+            </tbody>
+          </Table>
         }
-    }
-
-    showUpdate() {
-        this.setState({
-            update: !this.state.update
-        })
-    }
-
-    render() {
-        return (
-            <Panel header="Profil du personnage" className="noPadding">
-                <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
-                <Table condensed bordered hover striped className="carac-table-desktop" fill>
-                    <thead>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th colSpan="8">Profil Principal</th>
-                            <th colSpan="8">Profil Secondaire</th>
-                        </tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th>CC</th>
-                            <th>CT</th>
-                            <th>F</th>
-                            <th>E</th>
-                            <th>Ag</th>
-                            <th>Int</th>
-                            <th>FM</th>
-                            <th>Soc</th>
-                            <th>A</th>
-                            <th>B</th>
-                            <th>BF</th>
-                            <th>BE</th>
-                            <th>M</th>
-                            <th>Mag</th>
-                            <th>PF</th>
-                            <th>PD</th>
-                            {this.state.update && <th>Update</th>}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.props.carac.map((carac, i) =>
-                                this.state.update ? <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/> :
-                                    <Carac key={i} {...carac} />)
-                        }
-                    </tbody>
-                </Table>
-                {this.state.update ?
-                    this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>)
-                :
-                    <Table condensed bordered hover striped className="carac-table-mobile" fill>
-                        <thead>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th colSpan="8">Profil Principal</th>
-                            <th colSpan="8">Profil Secondaire</th>
-                        </tr>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th>CC</th>
-                            <th>CT</th>
-                            <th>F</th>
-                            <th>E</th>
-                            <th>Ag</th>
-                            <th>Int</th>
-                            <th>FM</th>
-                            <th>Soc</th>
-                            <th>A</th>
-                            <th>B</th>
-                            <th>BF</th>
-                            <th>BE</th>
-                            <th>M</th>
-                            <th>Mag</th>
-                            <th>PF</th>
-                            <th>PD</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        { this.props.carac.map((carac, i) => <Carac key={i} {...carac} />) }
-                        </tbody>
-                    </Table>
-                }
-            </Panel>
-        )
-    }
+      </Panel>
+    )
+  }
 }
 
 function mapStateToProps(state){
-    return {
-        carac: state.carac.carac,
-        modified: state.carac.payload,
-        msg: state.carac.msg,
-        style: state.carac.style
-    }
+  return {
+    carac: state.carac.carac,
+    modified: state.carac.payload,
+    msg: state.carac.msg,
+    style: state.carac.style
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getCarac,
-        updateCarac
-    }, dispatch);
+  return bindActionCreators({
+    getCarac,
+    updateCarac
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CaracTable));

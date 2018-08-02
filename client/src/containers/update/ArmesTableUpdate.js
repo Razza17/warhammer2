@@ -9,120 +9,120 @@ import ArmesUpdate from '../../components/update/ArmesUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class ArmesTableUpdate extends Component {
-    componentWillMount() {
-        this.props.getArme();
-    }
+  componentWillMount() {
+    this.props.getArme();
+  }
 
-    handleSubmit() {
-        const arme = [{
-            nom: findDOMNode(this.refs.nomArme).value,
-            encombrement: findDOMNode(this.refs.encArme).value,
-            degats: findDOMNode(this.refs.degatsArme).value,
-            portee: findDOMNode(this.refs.porteeArme).value,
-            rechargement: findDOMNode(this.refs.rechargementArme).value,
-            attributs: findDOMNode(this.refs.attributsArme).value
-        }];
-        this.props.postArme(arme);
-        this.resetForm();
-    }
+  handleSubmit() {
+    const arme = [{
+      nom: findDOMNode(this.refs.nomArme).value,
+      encombrement: findDOMNode(this.refs.encArme).value,
+      degats: findDOMNode(this.refs.degatsArme).value,
+      portee: findDOMNode(this.refs.porteeArme).value,
+      rechargement: findDOMNode(this.refs.rechargementArme).value,
+      attributs: findDOMNode(this.refs.attributsArme).value
+    }];
+    this.props.postArme(arme);
+    this.resetForm();
+  }
 
-    resetForm() {
-        findDOMNode(this.refs.nomArme).value = "";
-        findDOMNode(this.refs.encArme).value = "";
-        findDOMNode(this.refs.degatsArme).value = "";
-        findDOMNode(this.refs.porteeArme).value = "";
-        findDOMNode(this.refs.rechargementArme).value = "";
-        findDOMNode(this.refs.attributsArme).value = "";
-    }
+  resetForm() {
+    findDOMNode(this.refs.nomArme).value = "";
+    findDOMNode(this.refs.encArme).value = "";
+    findDOMNode(this.refs.degatsArme).value = "";
+    findDOMNode(this.refs.porteeArme).value = "";
+    findDOMNode(this.refs.rechargementArme).value = "";
+    findDOMNode(this.refs.attributsArme).value = "";
+  }
 
-    render() {
-        return (
-            <Panel collapsible header="Armes">
-                <Table condensed bordered hover striped fill>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Enc</th>
-                            <th><span className="show-desktop">Dégâts</span><span className="show-mobile">Dég</span></th>
-                            <th>Portée</th>
-                            <th><span className="show-desktop">Rechargement</span><span className="show-mobile">Recharg</span></th>
-                            <th>Attributs</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.props.arme.map((armes) => <ArmesUpdate key={armes._id} {...armes} getArme={this.props.getArme} />) }
-                        <tr>
-                            <td>
-                                <FormGroup controlId="nomArme">
-                                    <FormControl
-                                        type='text'
-                                        placeholder='Nom'
-                                        ref='nomArme' />
-                                </FormGroup>
-                            </td>
-                            <td>
-                                <FormGroup controlId="encArme">
-                                    <FormControl
-                                        type='number'
-                                        placeholder='Encombrement'
-                                        ref='encArme' />
-                                </FormGroup>
-                            </td>
-                            <td>
-                                <FormGroup controlId="degatsArme">
-                                    <FormControl
-                                        type='number'
-                                        placeholder='Dégâts'
-                                        ref='degatsArme' />
-                                </FormGroup>
-                            </td>
-                            <td>
-                                <FormGroup controlId="porteeArme">
-                                    <FormControl
-                                        type='text'
-                                        placeholder='Potée'
-                                        ref='porteeArme' />
-                                </FormGroup>
-                            </td>
-                            <td>
-                                <FormGroup controlId="rechargementArme">
-                                    <FormControl
-                                        type='number'
-                                        placeholder='Rechargement'
-                                        ref='rechargementArme' />
-                                </FormGroup>
-                            </td>
-                            <td>
-                                <FormGroup controlId="attributsArme">
-                                    <FormControl
-                                        type='text'
-                                        placeholder='Attributs'
-                                        ref='attributsArme' />
-                                </FormGroup>
-                            </td>
-                            <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </Panel>
-        )
-    }
+  render() {
+    return (
+      <Panel collapsible header="Armes">
+        <Table condensed bordered hover striped fill>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Enc</th>
+              <th><span className="show-desktop">Dégâts</span><span className="show-mobile">Dég</span></th>
+              <th>Portée</th>
+              <th><span className="show-desktop">Rechargement</span><span className="show-mobile">Recharg</span></th>
+              <th>Attributs</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.props.arme.map((armes) => <ArmesUpdate key={armes._id} {...armes} getArme={this.props.getArme} />) }
+            <tr>
+              <td>
+                <FormGroup controlId="nomArme">
+                  <FormControl
+                    type='text'
+                    placeholder='Nom'
+                    ref='nomArme' />
+                </FormGroup>
+              </td>
+              <td>
+                <FormGroup controlId="encArme">
+                  <FormControl
+                    type='number'
+                    placeholder='Encombrement'
+                    ref='encArme' />
+                </FormGroup>
+              </td>
+              <td>
+                <FormGroup controlId="degatsArme">
+                  <FormControl
+                    type='number'
+                    placeholder='Dégâts'
+                    ref='degatsArme' />
+                </FormGroup>
+              </td>
+              <td>
+                <FormGroup controlId="porteeArme">
+                  <FormControl
+                    type='text'
+                    placeholder='Potée'
+                    ref='porteeArme' />
+                </FormGroup>
+              </td>
+              <td>
+                <FormGroup controlId="rechargementArme">
+                  <FormControl
+                    type='number'
+                    placeholder='Rechargement'
+                    ref='rechargementArme' />
+                </FormGroup>
+              </td>
+              <td>
+                <FormGroup controlId="attributsArme">
+                  <FormControl
+                    type='text'
+                    placeholder='Attributs'
+                    ref='attributsArme' />
+                </FormGroup>
+              </td>
+              <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+            </tr>
+          </tbody>
+        </Table>
+      </Panel>
+    )
+  }
 }
 
 function mapStateToProps(state) {
-    return {
-        arme: state.arme.arme,
-        msg: state.arme.msg,
-        style: state.arme.style
-    }
+  return {
+    arme: state.arme.arme,
+    msg: state.arme.msg,
+    style: state.arme.style
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getArme,
-        postArme
-    }, dispatch);
+  return bindActionCreators({
+    getArme,
+    postArme
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(ArmesTableUpdate));

@@ -8,51 +8,51 @@ import { getCompBase } from "../../actions/CompBaseAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceTableBaseUpdate extends Component {
-    componentWillMount() {
-        this.props.getCompBase();
-    }
+  componentWillMount() {
+    this.props.getCompBase();
+  }
 
-    render() {
-        return (
-            <Panel collapsible header="Compétences de base">
-                <Table condensed hover striped className="border" fill>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Carac.</th>
-                            <th>Acquis</th>
-                            <th>+10%</th>
-                            <th>+20%</th>
-                            <th>Bonus</th>
-                            <th>Total</th>
-                            <th>Update</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.props.compBase.map((competenceB, i) =>
-                                <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} />
-                            )
-                        }
-                    </tbody>
-                </Table>
-            </Panel>
-        )
-    }
+  render() {
+    return (
+      <Panel collapsible header="Compétences de base">
+        <Table condensed hover striped className="border" fill>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Carac.</th>
+              <th>Acquis</th>
+              <th>+10%</th>
+              <th>+20%</th>
+              <th>Bonus</th>
+              <th>Total</th>
+              <th>Update</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.props.compBase.map((competenceB, i) =>
+              <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} />
+            )
+          }
+        </tbody>
+      </Table>
+    </Panel>
+  )
+}
 }
 
 function mapStateToProps(state) {
-    return {
-        compBase: state.compBase.compBase,
-        msg: state.compBase.msg,
-        style: state.compBase.style
-    }
+  return {
+    compBase: state.compBase.compBase,
+    msg: state.compBase.msg,
+    style: state.compBase.style
+  }
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({
-        getCompBase
-    }, dispatch)
+  return bindActionCreators({
+    getCompBase
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompetenceTableBaseUpdate));

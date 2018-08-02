@@ -9,88 +9,88 @@ import InventaireUpdate from '../../components/update/InventaireUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class InventaireTableUpdate extends Component {
-    componentWillMount() {
-        this.props.getInventaire();
-    }
+  componentWillMount() {
+    this.props.getInventaire();
+  }
 
-    handleSubmit() {
-        const inventaire = {
-            nom: findDOMNode(this.refs.nomPostInventaire).value,
-            quantite: findDOMNode(this.refs.quantitePostInventaire).value,
-            encombrement: findDOMNode(this.refs.encPostInventaire).value
-        };
-        this.props.postInventaire(inventaire);
-        this.props.getInventaire();
-        this.resetForm();
-    }
+  handleSubmit() {
+    const inventaire = {
+      nom: findDOMNode(this.refs.nomPostInventaire).value,
+      quantite: findDOMNode(this.refs.quantitePostInventaire).value,
+      encombrement: findDOMNode(this.refs.encPostInventaire).value
+    };
+    this.props.postInventaire(inventaire);
+    this.props.getInventaire();
+    this.resetForm();
+  }
 
-    resetForm() {
-        findDOMNode(this.refs.nomPostInventaire).value = "";
-        findDOMNode(this.refs.quantitePostInventaire).value = "";
-        findDOMNode(this.refs.encPostInventaire).value = "";
-    }
+  resetForm() {
+    findDOMNode(this.refs.nomPostInventaire).value = "";
+    findDOMNode(this.refs.quantitePostInventaire).value = "";
+    findDOMNode(this.refs.encPostInventaire).value = "";
+  }
 
-    render() {
-        return (
-            <Panel collapsible header="Inventaire">
-                <Table condensed bordered hover striped fill>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Quantité</th>
-                            <th>Encombrement</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.props.inventaire.map((inventaire) => <InventaireUpdate key={inventaire._id} {...inventaire} getInventaire={this.props.getInventaire} />) }
-                        <tr>
-                            <td>
-                                <FormGroup controlId="nomPostInventaire">
-                                    <FormControl
-                                        type='text'
-                                        placeholder='Nom'
-                                        ref='nomPostInventaire' />
-                                </FormGroup>
-                            </td>
-                            <td>
-                                <FormGroup controlId="quantitePostInventaire">
-                                    <FormControl
-                                        type='number'
-                                        placeholder='Quantité'
-                                        ref='quantitePostInventaire' />
-                                </FormGroup>
-                            </td>
-                            <td>
-                                <FormGroup controlId="encPostInventaire">
-                                    <FormControl
-                                        type='number'
-                                        placeholder='Encombrement'
-                                        ref='encPostInventaire' />
-                                </FormGroup>
-                            </td>
-                            <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </Panel>
-        )
-    }
+  render() {
+    return (
+      <Panel collapsible header="Inventaire">
+        <Table condensed bordered hover striped fill>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Quantité</th>
+              <th>Encombrement</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.props.inventaire.map((inventaire) => <InventaireUpdate key={inventaire._id} {...inventaire} getInventaire={this.props.getInventaire} />) }
+            <tr>
+              <td>
+                <FormGroup controlId="nomPostInventaire">
+                  <FormControl
+                    type='text'
+                    placeholder='Nom'
+                    ref='nomPostInventaire' />
+                </FormGroup>
+              </td>
+              <td>
+                <FormGroup controlId="quantitePostInventaire">
+                  <FormControl
+                    type='number'
+                    placeholder='Quantité'
+                    ref='quantitePostInventaire' />
+                </FormGroup>
+              </td>
+              <td>
+                <FormGroup controlId="encPostInventaire">
+                  <FormControl
+                    type='number'
+                    placeholder='Encombrement'
+                    ref='encPostInventaire' />
+                </FormGroup>
+              </td>
+              <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+            </tr>
+          </tbody>
+        </Table>
+      </Panel>
+    )
+  }
 }
 
 function mapStateToProps(state) {
-    return {
-        inventaire: state.inventaire.inventaire,
-        msg: state.inventaire.msg,
-        style: state.inventaire.style
-    }
+  return {
+    inventaire: state.inventaire.inventaire,
+    msg: state.inventaire.msg,
+    style: state.inventaire.style
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getInventaire,
-        postInventaire
-    }, dispatch);
+  return bindActionCreators({
+    getInventaire,
+    postInventaire
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(InventaireTableUpdate));

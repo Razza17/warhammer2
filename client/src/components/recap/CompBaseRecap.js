@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button } from 'react-bootstrap';
+import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Competence from "../../components/personnage/Competence";
 import CompetenceBaseUpdate from '../../components/update/CompetenceBaseUpdate';
 import { getCompBase, updateCompBase } from "../../actions/CompBaseAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
-class CompetenceBase extends Component {
-
-  componentWillMount() {
-    this.props.getCompBase();
-  }
+class CompBaseRecap extends Component {
 
   constructor(props) {
     super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
 
     this.state = {
+      user: user,
+      perso: perso,
       update: false
     }
+  }
+
+  componentWillMount() {
+    this.props.getCompBase(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -31,7 +36,6 @@ class CompetenceBase extends Component {
   render() {
     return (
       <Panel header="Compétences de base" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
         <Table condensed hover striped fill>
           <thead>
             <tr>
@@ -47,8 +51,7 @@ class CompetenceBase extends Component {
           </thead>
           <tbody>
             {
-              this.props.compBase.map((competenceB, i) =>
-              this.state.update ? <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} updateCompBase={this.props.updateCompBase}/> : <Competence key={i} {...competenceB}/>)
+              this.props.compBase.map((competenceB, i) => <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} updateCompBase={this.props.updateCompBase}/> )
             }
           </tbody>
         </Table>
@@ -72,4 +75,4 @@ function mapDispatchToProps(dispatch){
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompetenceBase));
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompBaseRecap));

@@ -30,10 +30,10 @@ export class CaracUpdate extends Component {
     }
 
     render() {
-        let tooltip = <Tooltip id={this.props._id}>Click here to update</Tooltip>;
+        let tooltip = <Tooltip id={this.props._id}>Modifier les Caractéristiques</Tooltip>;
         return (
             <tr>
-                <td>{this.props.type}</td>
+                <td>{this.props.type === "base" ? "Base" : this.props.type === "avance" ? "Avancé" : "Actuel"}</td>
                 <td>
                     <FormGroup controlId="cc">
                         <FormControl

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET COMPETENCE DE BASE
-export function getCompBase() {
+export function getCompBase(user, perso) {
   return function(dispatch) {
-    axios.get('/competencebase')
+    axios.get('/competencebase/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_COMPBASE", payload:response.data})
     })
@@ -12,7 +12,6 @@ export function getCompBase() {
     })
   }
 }
-
 
 // POST COMPETENCE DE BASE
 export function postCompBase(newComp) {

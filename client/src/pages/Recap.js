@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import ProfilTable from "../containers/personnage/ProfilTable";
+import ProfilRecap from "../components/recap/ProfilRecap";
+import DetailsRecap from "../components/recap/DetailsRecap";
+import CountRecap from "../components/recap/CountRecap";
+import CaracRecap from "../components/recap/CaracRecap";
 
 export class Recap extends Component {
   render() {
     return (
       <Grid id="recap" fluid>
+        <h2 className="align-center">Récapitulatif de ton personnage</h2>
         <Row>
+          <Col xs={12} sm={6} md={4} mdOffset={2}>
+            <ProfilRecap />
+            <CountRecap />
+          </Col>
           <Col xs={12} sm={6} md={4}>
-            <ProfilTable />
+            <DetailsRecap />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} md={8} mdOffset={2}>
+            <CaracRecap />
           </Col>
         </Row>
       </Grid>
