@@ -37,10 +37,12 @@ class FolieTable extends Component {
 
   handleSubmit() {
     const folie = {
-      nom: findDOMNode(this.refs.nomPostFolie).value
+      nom: findDOMNode(this.refs.nomPostFolie).value,
+      user: this.state.user,
+      perso: this.state.perso
     };
     this.props.postFolie(folie);
-    this.props.getFolie();
+    this.props.getFolie(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -51,7 +53,9 @@ class FolieTable extends Component {
   render() {
     return (
       <Panel header="Folies" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
+          {this.state.update ? "Retour aux Folies" : "Modifier / Ajouter"}
+        </Button>
         <Table condensed bordered hover striped fill>
           <thead>
             <tr>
@@ -71,7 +75,7 @@ class FolieTable extends Component {
                       ref='nomPostFolie' />
                   </FormGroup>
                 </td>
-                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
               </tr>
             }
           </tbody>

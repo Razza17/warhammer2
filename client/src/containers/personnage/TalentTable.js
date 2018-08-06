@@ -41,9 +41,11 @@ class TalentTable extends Component {
       desc: findDOMNode(this.refs.descPostTalent).value,
       competence: findDOMNode(this.refs.compPostTalent).value,
       bonus: findDOMNode(this.refs.bonusPostTalent).value,
+      user: this.state.user,
+      perso: this.state.perso
     };
     this.props.postTalent(newTalent);
-    this.props.getTalent();
+    this.props.getTalent(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -57,7 +59,9 @@ class TalentTable extends Component {
   render () {
     return (
       <Panel header="Talents" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
+          {this.state.update ? "Retour aux Talents" : "Modifier / Ajouter"}
+        </Button>
         <Table condensed hover striped fill>
           <thead>
             <tr>
@@ -69,13 +73,7 @@ class TalentTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              this.props.talent.map((talents, i) =>
-              this.state.update ?
-              <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} updateTalent={this.props.updateTalent} /> :
-                <Talent key={i} {...talents} />
-              )
-            }
+            { this.props.talent.map((talents, i) => this.state.update ? <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} updateTalent={this.props.updateTalent} /> : <Talent key={i} {...talents} />) }
             {this.state.update &&
               <tr>
                 <td>
@@ -110,7 +108,7 @@ class TalentTable extends Component {
                       ref='bonusPostTalent' />
                   </FormGroup>
                 </td>
-                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
               </tr>
             }
           </tbody>

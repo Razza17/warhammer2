@@ -37,7 +37,9 @@ class CompetenceBase extends Component {
   render() {
     return (
       <Panel header="Compétences de base" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
+          {this.state.update ? "Retour aux Compétences" : "Modifier"}
+        </Button>
         <Table condensed hover striped fill>
           <thead>
             <tr>
@@ -52,10 +54,7 @@ class CompetenceBase extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              this.props.compBase.map((competenceB, i) =>
-              this.state.update ? <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} updateCompBase={this.props.updateCompBase}/> : <Competence key={i} {...competenceB}/>)
-            }
+            { this.props.compBase.map((competenceB, i) => this.state.update ? <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} updateCompBase={this.props.updateCompBase}/> : <Competence key={i} {...competenceB}/>) }
           </tbody>
         </Table>
       </Panel>

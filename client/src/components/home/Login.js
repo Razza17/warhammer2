@@ -3,7 +3,7 @@ import { Col, FormGroup, FormControl, Button, Alert } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { findDOMNode } from 'react-dom';
+// import { findDOMNode } from 'react-dom';
 
 import { getUser } from "../../actions/UserAction";
 
@@ -23,11 +23,11 @@ class Login extends Component {
   }
 
   handleLogin() {
-    let formPseudo = findDOMNode(this.refs.pseudo).value;
-    let formPassword = findDOMNode(this.refs.password).value;
-    let users = this.props.user.length && this.props.user.map((user) => {
-      return formPseudo === user.pseudo && formPassword === user.password
-    });
+    // let formPseudo = findDOMNode(this.refs.pseudo).value;
+    // let formPassword = findDOMNode(this.refs.password).value;
+    // let users = this.props.user.length && this.props.user.map((user) => {
+    //   return formPseudo === user.pseudo && formPassword === user.password
+    // });
     fakeAuth.authenticate(() => {
       this.setState({ redirectToReferrer: true });
     })

@@ -39,7 +39,9 @@ class CaracTable extends Component {
   render() {
     return (
       <Panel header="Profil du personnage" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Modifier</Button>
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
+          {this.state.update ? "Retour aux Caractéristiques" : "Modifier"}
+        </Button>
         <Table condensed bordered hover striped className="carac-table-desktop" fill>
           <thead>
             <tr>
@@ -69,11 +71,7 @@ class CaracTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              this.props.carac.map((carac, i) =>
-              this.state.update ? <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/> :
-              <Carac key={i} {...carac} />)
-            }
+            { this.props.carac.map((carac, i) => this.state.update ? <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/> : <Carac key={i} {...carac} />) }
           </tbody>
         </Table>
         { this.state.update ?

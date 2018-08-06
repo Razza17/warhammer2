@@ -40,10 +40,12 @@ class ArmureTable extends Component {
       nom: findDOMNode(this.refs.nomArmure).value,
       encombrement: findDOMNode(this.refs.encArmure).value,
       couverture: findDOMNode(this.refs.couvArmure).value,
-      points: findDOMNode(this.refs.pointsArmure).value
+      points: findDOMNode(this.refs.pointsArmure).value,
+      user: this.state.user,
+      perso: this.state.perso
     };
     this.props.postArmure(armure);
-    this.props.getArmure();
+    this.props.getArmure(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -57,7 +59,9 @@ class ArmureTable extends Component {
   render() {
     return (
       <Panel header="Armures" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
+          {this.state.update ? "Retour aux Armures" : "Modifier / Ajouter"}
+        </Button>
         <Table condensed bordered hover striped fill>
           <thead>
             <tr>
@@ -108,7 +112,7 @@ class ArmureTable extends Component {
                       ref='pointsArmure' />
                   </FormGroup>
                 </td>
-                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
               </tr>
             }
           </tbody>

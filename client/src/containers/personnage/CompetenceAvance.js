@@ -63,9 +63,12 @@ class CompetenceAvance extends Component {
       acquis: this.state.acquisCheck,
       dix: this.state.dixCheck,
       vingt: this.state.vingtCheck,
-      bonus: findDOMNode(this.refs.bonusPostCompAvance).value
+      bonus: findDOMNode(this.refs.bonusPostCompAvance).value,
+      user: this.state.user,
+      perso: this.state.perso
     }];
     this.props.postCompAvance(postCompAvance);
+    this.props.getCompAvance(this.state.user,this.state.perso);
     this.resetForm();
   }
 
@@ -82,8 +85,10 @@ class CompetenceAvance extends Component {
 
   render() {
     return (
-      <Panel header="Compétences de Avancées" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+      <Panel header="Compétences Avancées" className="noPadding">
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
+          {this.state.update ? "Retour aux Compétences" : "Modifier / Ajouter"}
+        </Button>
         <Table condensed hover striped fill>
           <thead>
             <tr>
@@ -98,11 +103,7 @@ class CompetenceAvance extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              this.props.compAvance.map((competenceA, i) =>
-              this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} getCompAvance={this.props.getCompAvance}  updateCompAvance={this.props.updateCompAvance}/> : <Competence key={i} {...competenceA}/>
-          )
-        }
+            { this.props.compAvance.map((competenceA, i) => this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} getCompAvance={this.props.getCompAvance}  updateCompAvance={this.props.updateCompAvance}/> : <Competence key={i} {...competenceA}/>) }
         {this.state.update &&
           <tr>
             <td>
@@ -143,7 +144,7 @@ class CompetenceAvance extends Component {
               </FormGroup>
             </td>
             <td colSpan="2">
-              <Button onClick={this.handlePost.bind(this)}>Add</Button>
+              <Button onClick={this.handlePost.bind(this)}>Ajouter</Button>
             </td>
           </tr>
         }

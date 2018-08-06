@@ -36,15 +36,18 @@ class ArmesTable extends Component {
   }
 
   handleSubmit() {
-    const arme = [{
+    const arme = {
       nom: findDOMNode(this.refs.nomArme).value,
       encombrement: findDOMNode(this.refs.encArme).value,
       degats: findDOMNode(this.refs.degatsArme).value,
       portee: findDOMNode(this.refs.porteeArme).value,
       rechargement: findDOMNode(this.refs.rechargementArme).value,
-      attributs: findDOMNode(this.refs.attributsArme).value
-    }];
+      attributs: findDOMNode(this.refs.attributsArme).value,
+      user: this.state.user,
+      perso: this.state.perso
+    };
     this.props.postArme(arme);
+    this.props.getArme(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -60,7 +63,9 @@ class ArmesTable extends Component {
   render() {
     return (
       <Panel header="Armes" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
+          {this.state.update ? "Retour aux Armes" : "Modifier / Ajouter"}
+        </Button>
         <Table condensed bordered hover striped fill>
           <thead>
             <tr>
@@ -125,7 +130,7 @@ class ArmesTable extends Component {
                       ref='attributsArme' />
                   </FormGroup>
                 </td>
-                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
               </tr>
             }
           </tbody>

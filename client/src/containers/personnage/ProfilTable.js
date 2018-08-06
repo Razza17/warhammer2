@@ -6,6 +6,7 @@ import { Profil } from "../../components/personnage/Profil";
 import { getProfile } from '../../actions/ProfilAction';
 
 class ProfilTable extends Component {
+  
   componentWillMount() {
     let urlParams = window.location.search.substring(1).split('=');
     let recupUser = urlParams[1].split('&');

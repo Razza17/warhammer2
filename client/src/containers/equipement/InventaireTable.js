@@ -39,10 +39,12 @@ class InventaireTable extends Component {
     const inventaire = {
       nom: findDOMNode(this.refs.nomPostInventaire).value,
       quantite: findDOMNode(this.refs.quantitePostInventaire).value,
-      encombrement: findDOMNode(this.refs.encPostInventaire).value
+      encombrement: findDOMNode(this.refs.encPostInventaire).value,
+      user: this.state.user,
+      perso: this.state.perso
     };
     this.props.postInventaire(inventaire);
-    this.props.getInventaire();
+    this.props.getInventaire(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -55,7 +57,9 @@ class InventaireTable extends Component {
   render() {
     return (
       <Panel header="Inventaire" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
+          {this.state.update ? "Retour à l'inventaire" : "Modifier / Ajouter"}
+        </Button>
         <Table condensed bordered hover striped fill>
           <thead>
             <tr>
@@ -93,7 +97,7 @@ class InventaireTable extends Component {
                       ref='encPostInventaire' />
                   </FormGroup>
                 </td>
-                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
               </tr>
             }
           </tbody>
