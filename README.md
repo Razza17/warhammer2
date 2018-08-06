@@ -8,10 +8,13 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 
 # Lancer le server
 * Se mettre dans le dossier warhammer2 puis faire npm run start-dev
+* ou si cela ne fonctionne pas :
+* dans le dossier warhammer2 : nodemon
+* dans le dossier warhammer2/client : npm start
 
 # Chemin de la BDD MongoDB
 * ATTENTION : la bdd MongoDB est en local sur mon ordinateur pour le moment.
-* warhammer2/dbs
+* ./bin/mongod --dbpath path/to/mongodb/database/warhammer2/dbs
 
 # Reste à faire
 - [x] Architecture de l'app
@@ -25,9 +28,11 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] POST, UPDATE and DELETE les données de l'équipement
 - [x] POST, UPDATE and DELETE les données de l'inventaire
 - [x] Page Combat (Regroupement des composants utiles à la phase de combat)
-- Page Création de personnage et POST dans la BDD (en cours)
+- [x] Page Login et mot de passe
+- [x] Page Création de personnage et POST dans la BDD
+- [x] Page Création : Talents, Armes, Armures
+- [x] Page Création : Munitions, Argent, Folies, Inventaire
+- Page récap avec update possible
 - Récupération des données du personnage selon l'utilisateur
 - Choix du personnage à afficher selon l'utilisateur
 - DELETE Personnage(s)
-- Page Login et mot de passe (en cours)
-

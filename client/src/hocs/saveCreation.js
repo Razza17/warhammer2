@@ -12,9 +12,7 @@ export const saveCreation = (InnerComponent) => {
         }
 
         handleSubmit() {
-            if(this.props.form === "Profile") {
-                console.log('Profile');
-            }
+            console.log(this.props);
         }
 
         render() {

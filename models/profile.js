@@ -5,7 +5,8 @@ var profileSchema = mongoose.Schema({
     race: String,
     carriereA: String,
     Acarriere: String,
-    user : String
+    user : String,
+    perso : String
 });
 
 var Profile = mongoose.model('Profile', profileSchema);

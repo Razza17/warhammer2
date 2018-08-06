@@ -10,68 +10,71 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceBase extends Component {
 
-    componentWillMount() {
-        this.props.getCompBase();
-    }
+  constructor(props) {
+    super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            update: false
-        }
+    this.state = {
+      user: user,
+      perso: perso,
+      update: false
     }
+  }
 
-    showUpdate() {
-        this.setState({
-            update: !this.state.update
-        })
-    }
+  componentWillMount() {
+    this.props.getCompBase(this.state.user,this.state.perso);
+  }
 
-    render() {
-        return (
-            <Panel header="Compétences de base" className="noPadding">
-                <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>Update</Button>
-                <Table condensed hover striped fill>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Carac.</th>
-                            <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
-                            <th>+10%</th>
-                            <th>+20%</th>
-                            <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
-                            <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
-                            {this.state.update && <th>Update</th>}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.props.compBase.map((competenceB, i) =>
-                                this.state.update ? <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} updateCompBase={this.props.updateCompBase}/> : <Competence key={i} {...competenceB}/>
-                            )
-                        }
-                    </tbody>
-                </Table>
-            </Panel>
-        )
-    }
+  showUpdate() {
+    this.setState({
+      update: !this.state.update
+    })
+  }
+
+  render() {
+    return (
+      <Panel header="Compétences de base" className="noPadding">
+        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
+          {this.state.update ? "Retour aux Compétences" : "Modifier"}
+        </Button>
+        <Table condensed hover striped fill>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Carac.</th>
+              <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
+              <th>+10%</th>
+              <th>+20%</th>
+              <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
+              <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
+              {this.state.update && <th>Update</th>}
+            </tr>
+          </thead>
+          <tbody>
+            { this.props.compBase.map((competenceB, i) => this.state.update ? <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} updateCompBase={this.props.updateCompBase}/> : <Competence key={i} {...competenceB}/>) }
+          </tbody>
+        </Table>
+      </Panel>
+    )
+  }
 }
 
 function mapStateToProps(state) {
-    return {
-        compBase: state.compBase.compBase,
-        modified: state.compBase.payload,
-        msg: state.compBase.msg,
-        style: state.compBase.style
-    }
+  return {
+    compBase: state.compBase.compBase,
+    modified: state.compBase.payload,
+    msg: state.compBase.msg,
+    style: state.compBase.style
+  }
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({
-        getCompBase,
-        updateCompBase
-    }, dispatch)
+  return bindActionCreators({
+    getCompBase, updateCompBase
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompetenceBase));

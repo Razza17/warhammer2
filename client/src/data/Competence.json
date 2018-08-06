@@ -1,82 +1,102 @@
 {
   "competenceB" : [
     {
+      "activeLine" : "0",
       "nom" : "Canotage",
       "carac" : "(F)"
     },
     {
+      "activeLine" : "1",
       "nom" : "Charisme",
       "carac" : "(Soc)"
     },
     {
+      "activeLine" : "2",
       "nom" : "Comandement",
       "carac" : "(Soc)"
     },
     {
+      "activeLine" : "3",
       "nom" : "Commérage",
       "carac" : "(Soc)"
     },
     {
-      "nom" : "Conduite d\"attelage",
+      "activeLine" : "4",
+      "nom" : "Conduite d'attelage",
       "carac" : "(F)"
     },
     {
+      "activeLine" : "5",
       "nom" : "Déguisement",
       "carac" : "(Soc)"
     },
     {
+      "activeLine" : "6",
       "nom" : "Déplacements silencieux",
       "carac" : "(Ag)"
     },
     {
+      "activeLine" : "7",
       "nom" : "Dissimulation",
       "carac" : "(Ag)"
     },
     {
+      "activeLine" : "8",
       "nom" : "Equitation",
       "carac" : "(Ag)"
     },
     {
+      "activeLine" : "9",
       "nom" : "Escalade",
       "carac" : "(F)"
     },
     {
+      "activeLine" : "10",
       "nom" : "Evaluation",
       "carac" : "(Int)"
     },
     {
+      "activeLine" : "11",
       "nom" : "Fouille",
       "carac" : "(Int)"
     },
     {
+      "activeLine" : "12",
       "nom" : "Intimidation",
       "carac" : "(F)"
     },
     {
+      "activeLine" : "13",
       "nom" : "Jeu",
       "carac" : "(Int)"
     },
     {
+      "activeLine" : "14",
       "nom" : "Marchandage",
       "carac" : "(Soc)"
     },
     {
+      "activeLine" : "15",
       "nom" : "Natation",
       "carac" : "(F)"
     },
     {
+      "activeLine" : "16",
       "nom" : "Perception",
       "carac" : "(Int)"
     },
     {
-      "nom" : "Résistance à l\"alcool",
+      "activeLine" : "17",
+      "nom" : "Résistance à l'alcool",
       "carac" : "(E)"
     },
     {
+      "activeLine" : "18",
       "nom" : "Soins des animaux",
       "carac" : "(Int)"
     },
     {
+      "activeLine" : "19",
       "nom" : "Survie",
       "carac" : "(Int)"
     }

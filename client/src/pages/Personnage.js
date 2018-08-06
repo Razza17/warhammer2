@@ -9,7 +9,7 @@ import CompetenceBase from "../containers/personnage/CompetenceBase";
 import CompetenceAvance from "../containers/personnage/CompetenceAvance";
 import TalentTable from "../containers/personnage/TalentTable";
 
-import WarhammerLogo from "../img/Warhammer-Logo.jpg";
+import WarhammerLogo from "../img/Warhammer-Logo.png";
 
 export class Personnage extends Component {
     render() {

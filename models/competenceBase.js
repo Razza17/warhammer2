@@ -9,7 +9,6 @@ var competenceBaseSchema = mongoose.Schema({
     bonus : Number,
     user : String,
     perso : String
-
 });
 
 var CompetenceBase = mongoose.model('CompetenceBase', competenceBaseSchema);
