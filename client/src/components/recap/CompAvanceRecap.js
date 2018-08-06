@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button } from 'react-bootstrap';
+import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Competence from "../../components/personnage/Competence";
-import CompetenceBaseUpdate from '../../components/update/CompetenceBaseUpdate';
-import { getCompBase, updateCompBase } from "../../actions/CompBaseAction";
+import CompetenceAvanceUpdate from '../../components/update/CompetenceAvanceUpdate';
+import { getCompAvance, updateCompAvance } from "../../actions/CompAvanceAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
-class CompetenceBase extends Component {
+class CompAvanceRecap extends Component {
 
   constructor(props) {
     super(props);
@@ -25,7 +24,7 @@ class CompetenceBase extends Component {
   }
 
   componentWillMount() {
-    this.props.getCompBase(this.state.user,this.state.perso);
+    this.props.getCompAvance(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -36,10 +35,7 @@ class CompetenceBase extends Component {
 
   render() {
     return (
-      <Panel header="Compétences de base" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
-          {this.state.update ? "Retour aux Compétences" : "Modifier"}
-        </Button>
+      <Panel header="Compétences de Avance" className="noPadding">
         <Table condensed hover striped fill>
           <thead>
             <tr>
@@ -50,11 +46,10 @@ class CompetenceBase extends Component {
               <th>+20%</th>
               <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
               <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
-              {this.state.update && <th>Update</th>}
             </tr>
           </thead>
           <tbody>
-            { this.props.compBase.map((competenceB, i) => this.state.update ? <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} updateCompBase={this.props.updateCompBase}/> : <Competence key={i} {...competenceB}/>) }
+            { this.props.compAvance.map((competenceB, i) => <CompetenceAvanceUpdate key={i} {...competenceB} getCompAvance={this.props.getCompAvance} updateCompAvance={this.props.updateCompAvance} user={this.state.user} perso={this.state.perso}/>) }
           </tbody>
         </Table>
       </Panel>
@@ -64,17 +59,17 @@ class CompetenceBase extends Component {
 
 function mapStateToProps(state) {
   return {
-    compBase: state.compBase.compBase,
-    modified: state.compBase.payload,
-    msg: state.compBase.msg,
-    style: state.compBase.style
+    compAvance: state.compAvance.compAvance,
+    modified: state.compAvance.payload,
+    msg: state.compAvance.msg,
+    style: state.compAvance.style
   }
 }
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    getCompBase, updateCompBase
+    getCompAvance, updateCompAvance
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompetenceBase));
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(CompAvanceRecap));

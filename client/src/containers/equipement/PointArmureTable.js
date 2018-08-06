@@ -6,8 +6,22 @@ import { bindActionCreators } from 'redux';
 import { getCarac } from "../../actions/CaracAction";
 
 class PointArmureTable extends Component {
+
+  constructor(props) {
+    super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
+
+    this.state = {
+      user: user,
+      perso: perso
+    }
+  }
+
   componentWillMount() {
-    this.props.getCarac();
+    this.props.getCarac(this.state.user, this.state.perso);
   }
 
   ptsTete() {

@@ -9,10 +9,11 @@ import { applyMiddleware, createStore } from 'redux';
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk';
 
+// Redux Reducer
 import reducers from './reducers/index';
 
 // CSS import
-import './index.css';
+import './style/index_old.css';
 
 // Components import
 import App from './App';

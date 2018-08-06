@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET CHARACTER PROFILE
-export function getProfile() {
+export function getProfile(user, perso) {
   return function(dispatch) {
-    axios.get('/profil')
+    axios.get('/profil/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_PROFILE", payload:response.data})
     })

@@ -68,17 +68,17 @@ class Count extends Component {
         <Panel className="count" header={this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? "Points de Fortune" : "Blessures") : "Munitions"}>
           <span><strong>{this.props.value}
             {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}</strong>
-          {this.props.name === "Fortune" && "sur " + pointDestin}
-          {this.props.name === "Blessure" && "sur " + blessure}
-        </span>
-        <ButtonGroup style={{marginLeft: "20px"}}>
-          <Button bsStyle="danger" onClick={this.onDecrement.bind(this)}><Glyphicon glyph="minus" /></Button>
-          <Button bsStyle="success" onClick={this.onIncrement.bind(this)}><Glyphicon glyph="plus" /></Button>
-        </ButtonGroup>
-      </Panel>
-    </Col>
-  );
-}
+            {this.props.name === "Fortune" && "sur " + pointDestin}
+            {this.props.name === "Blessure" && "sur " + blessure}
+          </span>
+          <ButtonGroup style={{marginLeft: "20px"}}>
+            <Button bsStyle="danger" onClick={this.onDecrement.bind(this)}><Glyphicon glyph="minus" /></Button>
+            <Button bsStyle="success" onClick={this.onIncrement.bind(this)}><Glyphicon glyph="plus" /></Button>
+          </ButtonGroup>
+        </Panel>
+      </Col>
+    );
+  }
 }
 
 function mapStateToProps(state) {

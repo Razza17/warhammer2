@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET ARME
-export function getArme() {
+export function getArme(user, perso) {
   return function(dispatch) {
-    axios.get('/arme')
+    axios.get('/arme/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_ARME", payload:response.data})
     })

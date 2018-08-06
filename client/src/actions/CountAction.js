@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET COUNT POINT
-export function getCount() {
+export function getCount(user, perso) {
   return function(dispatch) {
-    axios.get('/count')
+    axios.get('/count/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_COUNT", payload:response.data})
     })

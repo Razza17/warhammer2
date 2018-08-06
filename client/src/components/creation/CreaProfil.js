@@ -51,13 +51,13 @@ class CreaProfil extends Component {
     };
     if(this.state.profileNom === "success" && this.state.profileRace === "success" && this.state.profileCarriereA === "success"
     && this.state.profileAcarriere === "success") {
-      let urlParams = window.location.search;
       this.props.postProfile(profile);
       // Plier le Panel en cours et déplier le Panel suivant
       let stateActiveKey = parseInt(this.state.activeKey, 10);
       let newActiveKey = stateActiveKey + 1;
       let string = newActiveKey.toString();
       this.setState({ activeKey: string, profileFormValidate: true });
+      let urlParams = window.location.search;
       window.history.pushState(null, null, urlParams + "&perso=" + profileNom);
     } else {
       this.state.profileNom === null && this.setState({ profileNom: "error" });

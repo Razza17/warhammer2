@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET COMPETENCE AVANCE
-export function getCompAvance() {
+export function getCompAvance(user, perso) {
   return function(dispatch) {
-    axios.get('/competenceavance')
+    axios.get('/competenceavance/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_COMPAVANCE", payload:response.data})
     })

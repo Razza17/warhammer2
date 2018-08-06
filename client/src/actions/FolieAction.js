@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET FOLIE
-export function getFolie() {
+export function getFolie(user, perso) {
   return function(dispatch) {
-    axios.get('/folie')
+    axios.get('/folie/' + user + '/' + perso)
     .then(function(response) {
       dispatch({type:"GET_FOLIE", payload:response.data})
     })
