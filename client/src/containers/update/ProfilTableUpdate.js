@@ -9,10 +9,6 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class ProfilTableUpdate extends Component {
 
-  componentWillMount() {
-    this.props.getProfile();
-  }
-
   render() {
     return (
       <Panel collapsible header="Personnage">

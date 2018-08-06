@@ -9,9 +9,6 @@ import FolieUpdate from '../../components/update/FolieUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class FolieTableUpdate extends Component {
-  componentWillMount() {
-    this.props.getFolie();
-  }
 
   handleSubmit() {
     const folie = {

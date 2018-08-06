@@ -9,9 +9,6 @@ import { TalentUpdate } from "../../components/update/TalentUpdate";
 import { updateMessage } from "../../hocs/updateMessage";
 
 class TalentTableUpdate extends Component {
-  componentWillMount() {
-    this.props.getTalent();
-  }
 
   handleSubmit() {
     let newTalent = {

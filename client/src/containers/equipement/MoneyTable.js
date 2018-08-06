@@ -7,8 +7,22 @@ import { getMoney, updateMoney } from "../../actions/MoneyAction";
 import { Money } from "../../components/equipement/Money";
 
 class MoneyTable extends Component {
+
+  constructor(props) {
+    super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
+
+    this.state = {
+      user: user,
+      perso: perso
+    }
+  }
+
   componentWillMount() {
-    this.props.getMoney();
+    this.props.getMoney(this.state.user, this.state.perso);
   }
 
   render() {
@@ -18,7 +32,7 @@ class MoneyTable extends Component {
           { this.props.money.map((money, i) => <Money key={i} {...money} get={this.props.getMoney}  update={this.props.updateMoney} />) }
         </Table>
       </Panel>
-    );
+    )
   }
 }
 

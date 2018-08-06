@@ -11,16 +11,22 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class TalentTable extends Component {
 
-  componentWillMount() {
-    this.props.getTalent();
-  }
-
   constructor(props) {
     super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
 
     this.state = {
+      user: user,
+      perso: perso,
       update: false
     }
+  }
+
+  componentWillMount() {
+    this.props.getTalent(this.state.user, this.state.perso);
   }
 
   showUpdate() {

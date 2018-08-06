@@ -9,19 +9,31 @@ import ArmesUpdate from '../../components/update/ArmesUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class ArmesTableUpdate extends Component {
-  componentWillMount() {
-    this.props.getArme();
+
+  constructor(props) {
+    super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
+
+    this.state = {
+      user: user,
+      perso: perso
+    }
   }
 
   handleSubmit() {
-    const arme = [{
+    const arme = {
       nom: findDOMNode(this.refs.nomArme).value,
       encombrement: findDOMNode(this.refs.encArme).value,
       degats: findDOMNode(this.refs.degatsArme).value,
       portee: findDOMNode(this.refs.porteeArme).value,
       rechargement: findDOMNode(this.refs.rechargementArme).value,
-      attributs: findDOMNode(this.refs.attributsArme).value
-    }];
+      attributs: findDOMNode(this.refs.attributsArme).value,
+      user: this.state.user,
+      perso: this.state.perso
+    };
     this.props.postArme(arme);
     this.resetForm();
   }
@@ -51,7 +63,7 @@ class ArmesTableUpdate extends Component {
             </tr>
           </thead>
           <tbody>
-            { this.props.arme.map((armes) => <ArmesUpdate key={armes._id} {...armes} getArme={this.props.getArme} />) }
+            { this.props.arme.map((armes) => <ArmesUpdate key={armes._id} {...armes} />) }
             <tr>
               <td>
                 <FormGroup controlId="nomArme">
@@ -101,7 +113,7 @@ class ArmesTableUpdate extends Component {
                     ref='attributsArme' />
                 </FormGroup>
               </td>
-              <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+              <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
             </tr>
           </tbody>
         </Table>

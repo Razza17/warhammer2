@@ -28,7 +28,6 @@ class Login extends Component {
     let users = this.props.user.length && this.props.user.map((user) => {
       return formPseudo === user.pseudo && formPassword === user.password
     });
-    console.log(users);
     fakeAuth.authenticate(() => {
       this.setState({ redirectToReferrer: true });
     })

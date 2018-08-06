@@ -10,16 +10,22 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceBase extends Component {
 
-  componentWillMount() {
-    this.props.getCompBase();
-  }
-
   constructor(props) {
     super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
 
     this.state = {
+      user: user,
+      perso: perso,
       update: false
     }
+  }
+
+  componentWillMount() {
+    this.props.getCompBase(this.state.user,this.state.perso);
   }
 
   showUpdate() {

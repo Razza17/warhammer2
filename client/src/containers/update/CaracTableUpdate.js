@@ -9,9 +9,6 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 
 class CaracTableUpdate extends Component {
-  componentWillMount() {
-    this.props.getCarac();
-  }
 
   render() {
     return (

@@ -11,16 +11,22 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class FolieTable extends Component {
 
-  componentWillMount() {
-    this.props.getFolie();
-  }
-
   constructor(props) {
     super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
 
     this.state = {
+      user: user,
+      perso: perso,
       update: false
     }
+  }
+
+  componentWillMount() {
+    this.props.getFolie(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -54,45 +60,41 @@ class FolieTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              this.props.folie.map((folie, i) => this.state.update ?
-              <FolieUpdate key={folie._id} {...folie}  getFolie={this.props.getFolie} /> :
-                <Folie key={i} {...folie}/>)
-                }
-                {this.state.update &&
-                  <tr>
-                    <td>
-                      <FormGroup controlId="nomPostFolie">
-                        <FormControl
-                          type='text'
-                          placeholder='Nom'
-                          ref='nomPostFolie' />
-                      </FormGroup>
-                    </td>
-                    <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
-                  </tr>
-                }
-              </tbody>
-            </Table>
-          </Panel>
-        )
-      }
-    }
+            { this.props.folie.map((folie, i) => this.state.update ? <FolieUpdate key={folie._id} {...folie}  getFolie={this.props.getFolie} /> : <Folie key={i} {...folie}/>) }
+            {this.state.update &&
+              <tr>
+                <td>
+                  <FormGroup controlId="nomPostFolie">
+                    <FormControl
+                      type='text'
+                      placeholder='Nom'
+                      ref='nomPostFolie' />
+                  </FormGroup>
+                </td>
+                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+              </tr>
+            }
+          </tbody>
+        </Table>
+      </Panel>
+    )
+  }
+}
 
-    function mapStateToProps(state) {
-      return {
-        folie: state.folie.folie,
-        modified: state.folie.payload,
-        msg: state.folie.msg,
-        style: state.folie.style
-      }
-    }
+function mapStateToProps(state) {
+  return {
+    folie: state.folie.folie,
+    modified: state.folie.payload,
+    msg: state.folie.msg,
+    style: state.folie.style
+  }
+}
 
-    function mapDispatchtoProps(dispatch) {
-      return bindActionCreators({
-        getFolie,
-        postFolie
-      }, dispatch)
-    }
+function mapDispatchtoProps(dispatch) {
+  return bindActionCreators({
+    getFolie,
+    postFolie
+  }, dispatch)
+}
 
-    export default connect(mapStateToProps, mapDispatchtoProps)(updateMessage(FolieTable));
+export default connect(mapStateToProps, mapDispatchtoProps)(updateMessage(FolieTable));

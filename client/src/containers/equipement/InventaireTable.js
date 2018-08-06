@@ -11,16 +11,22 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class InventaireTable extends Component {
 
-  componentWillMount() {
-    this.props.getInventaire();
-  }
-
   constructor(props) {
     super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
 
     this.state = {
+      user: user,
+      perso: perso,
       update: false
     }
+  }
+
+  componentWillMount() {
+    this.props.getInventaire(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -60,61 +66,57 @@ class InventaireTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              this.props.inventaire.map((inventaire, i) => this.state.update ?
-              <InventaireUpdate key={inventaire._id} {...inventaire} getInventaire={this.props.getInventaire} /> :
-                <Inventaire key={i} {...inventaire}/>)
-                }
-                {this.state.update &&
-                  <tr>
-                    <td>
-                      <FormGroup controlId="nomPostInventaire">
-                        <FormControl
-                          type='text'
-                          placeholder='Nom'
-                          ref='nomPostInventaire' />
-                      </FormGroup>
-                    </td>
-                    <td>
-                      <FormGroup controlId="quantitePostInventaire">
-                        <FormControl
-                          type='number'
-                          placeholder='Quantité'
-                          ref='quantitePostInventaire' />
-                      </FormGroup>
-                    </td>
-                    <td>
-                      <FormGroup controlId="encPostInventaire">
-                        <FormControl
-                          type='number'
-                          placeholder='Encombrement'
-                          ref='encPostInventaire' />
-                      </FormGroup>
-                    </td>
-                    <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
-                  </tr>
-                }
-              </tbody>
-            </Table>
-          </Panel>
-        )
-      }
-    }
+            { this.props.inventaire.map((inventaire, i) => this.state.update ? <InventaireUpdate key={inventaire._id} {...inventaire} getInventaire={this.props.getInventaire} /> : <Inventaire key={i} {...inventaire}/>) }
+            {this.state.update &&
+              <tr>
+                <td>
+                  <FormGroup controlId="nomPostInventaire">
+                    <FormControl
+                      type='text'
+                      placeholder='Nom'
+                      ref='nomPostInventaire' />
+                  </FormGroup>
+                </td>
+                <td>
+                  <FormGroup controlId="quantitePostInventaire">
+                    <FormControl
+                      type='number'
+                      placeholder='Quantité'
+                      ref='quantitePostInventaire' />
+                  </FormGroup>
+                </td>
+                <td>
+                  <FormGroup controlId="encPostInventaire">
+                    <FormControl
+                      type='number'
+                      placeholder='Encombrement'
+                      ref='encPostInventaire' />
+                  </FormGroup>
+                </td>
+                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Add</Button></td>
+              </tr>
+            }
+          </tbody>
+        </Table>
+      </Panel>
+    )
+  }
+}
 
-    function mapStateToProps(state) {
-      return {
-        inventaire: state.inventaire.inventaire,
-        modified: state.inventaire.payload,
-        msg: state.inventaire.msg,
-        style: state.inventaire.style
-      }
-    }
+function mapStateToProps(state) {
+  return {
+    inventaire: state.inventaire.inventaire,
+    modified: state.inventaire.payload,
+    msg: state.inventaire.msg,
+    style: state.inventaire.style
+  }
+}
 
-    function mapDispatchtoProps(dispatch) {
-      return bindActionCreators({
-        getInventaire,
-        postInventaire
-      }, dispatch)
-    }
+function mapDispatchtoProps(dispatch) {
+  return bindActionCreators({
+    getInventaire,
+    postInventaire
+  }, dispatch)
+}
 
-    export default connect(mapStateToProps, mapDispatchtoProps)(updateMessage(InventaireTable));
+export default connect(mapStateToProps, mapDispatchtoProps)(updateMessage(InventaireTable));

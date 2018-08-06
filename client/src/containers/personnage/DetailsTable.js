@@ -6,8 +6,22 @@ import {Details} from "../../components/personnage/Details";
 import { getDetails } from '../../actions/DetailAction';
 
 class DetailsTable extends Component {
+
+  constructor(props) {
+    super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
+
+    this.state = {
+      user: user,
+      perso: perso
+    }
+  }
+
   componentWillMount() {
-    this.props.getDetails();
+    this.props.getDetails(this.state.user, this.state.perso);
   }
 
   render() {

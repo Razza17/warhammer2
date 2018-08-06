@@ -9,9 +9,6 @@ import ArmureUpdate from '../../components/update/ArmureUpdate';
 import { updateMessage} from "../../hocs/updateMessage";
 
 class ArmureTableUpdate extends Component {
-  componentWillMount() {
-    this.props.getArmure();
-  }
 
   handleSubmit() {
     const armure = {

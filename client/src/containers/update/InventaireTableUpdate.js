@@ -9,9 +9,6 @@ import InventaireUpdate from '../../components/update/InventaireUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class InventaireTableUpdate extends Component {
-  componentWillMount() {
-    this.props.getInventaire();
-  }
 
   handleSubmit() {
     const inventaire = {

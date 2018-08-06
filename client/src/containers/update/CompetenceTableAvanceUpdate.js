@@ -9,9 +9,6 @@ import CompetenceAvanceUpdate from "../../components/update/CompetenceAvanceUpda
 import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceTableAvanceUpdate extends Component {
-  componentWillMount() {
-    this.props.getCompAvance();
-  }
 
   constructor(props) {
     super(props);

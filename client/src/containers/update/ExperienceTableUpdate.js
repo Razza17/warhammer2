@@ -8,9 +8,6 @@ import { ExperienceUpdate } from '../../components/update/ExperienceUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
 
 class ExperienceTableUpdate extends Component {
-  componentWillMount() {
-    this.props.getExperience();
-  }
 
   render() {
     return (

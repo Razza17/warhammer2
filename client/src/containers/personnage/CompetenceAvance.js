@@ -11,19 +11,25 @@ import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceAvance extends Component {
 
-  componentWillMount() {
-    this.props.getCompAvance();
-  }
-
   constructor(props) {
     super(props);
+    let urlParams = window.location.search.substring(1).split('=');
+    let recupUser = urlParams[1].split('&');
+    let user = recupUser[0];
+    let perso = urlParams[2];
 
     this.state = {
+      user: user,
+      perso: perso,
       update: false,
       acquisCheck: false,
       dixCheck: false,
       vingtCheck: false
     }
+  }
+
+  componentWillMount() {
+    this.props.getCompAvance(this.state.user,this.state.perso);
   }
 
   showUpdate() {

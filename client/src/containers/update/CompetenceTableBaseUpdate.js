@@ -8,9 +8,6 @@ import { getCompBase } from "../../actions/CompBaseAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceTableBaseUpdate extends Component {
-  componentWillMount() {
-    this.props.getCompBase();
-  }
 
   render() {
     return (
