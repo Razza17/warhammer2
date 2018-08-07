@@ -52,6 +52,18 @@ app.get('/perso/:user', function(req, res) {
   })
 });
 
+//---->>>> POST CHARACTER <<<<----
+app.post('/perso', function(req, res) {
+  let perso = req.body;
+
+  Perso.create(perso, function(err, persos) {
+    if(err) {
+      throw err;
+    }
+    res.json(persos);
+  })
+});
+
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
   let profil = req.body;

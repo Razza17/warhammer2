@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom';
 
 import { postProfile, getProfile } from "../../actions/ProfilAction";
 import { postDetails } from "../../actions/DetailAction";
+import { postPerso } from "../../actions/PersoAction";
 
 class CreaProfil extends Component {
 
@@ -49,9 +50,14 @@ class CreaProfil extends Component {
       user:this.state.user,
       perso:profileNom
     };
+    let perso = {
+      nom:profileNom,
+      user:this.state.user
+    }
     if(this.state.profileNom === "success" && this.state.profileRace === "success" && this.state.profileCarriereA === "success"
     && this.state.profileAcarriere === "success") {
       this.props.postProfile(profile);
+      this.props.postPerso(perso);
       // Plier le Panel en cours et déplier le Panel suivant
       let stateActiveKey = parseInt(this.state.activeKey, 10);
       let newActiveKey = stateActiveKey + 1;
@@ -355,9 +361,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    postProfile,
-    getProfile,
-    postDetails
+    postProfile, getProfile,
+    postDetails,
+    postPerso
   }, dispatch)
 }
 

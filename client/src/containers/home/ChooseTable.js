@@ -24,8 +24,8 @@ class ChooseTable extends Component {
   }
 
   handleSubmit() {
-    // let perso = findDOMNode(this.refs.perso).value;
-    // window.location.assign("./personnage?pseudo=" + this.state.user + "&perso=" + perso);
+    let perso = findDOMNode(this.refs.perso).value;
+    window.location.assign("./personnage?pseudo=" + this.state.user + "&perso=" + perso);
   }
 
   render() {
