@@ -12,8 +12,8 @@ import { CreationInventaire } from "./pages/CreationInventaire";
 import { Personnage } from "./pages/Personnage";
 import { Equipement } from "./pages/Equipement";
 import { Combat } from "./pages/Combat";
-import { Update } from "./pages/Update";
 import { Recap } from "./pages/Recap";
+import { ChoosePerso } from "./pages/ChoosePerso";
 
 const Main = () => (
   <main>
@@ -21,6 +21,7 @@ const Main = () => (
       <Route exact path='/' component={Home}/>
       <Route path='/logup' component={Logup}/>
       <Route path='/login' component={Login}/>
+      <Route path='/choosePerso' component={ChoosePerso}/>
       <Route path='/creationProfile' component={CreationProfile}/>
       <Route path='/creationCarac' component={CreationCarac}/>
       <Route path='/creationComp' component={CreationComp}/>
@@ -30,7 +31,6 @@ const Main = () => (
       <Route path='/personnage' component={Personnage}/>
       <Route path='/equipement' component={Equipement}/>
       <Route  path='/combat' component={Combat}/>
-      <Route path='/update' component={Update}/>
     </Switch>
   </main>
 );

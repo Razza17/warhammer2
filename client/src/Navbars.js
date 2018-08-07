@@ -3,10 +3,15 @@ import { NavLink } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-let urlParams = window.location.search.substring(1).split('=');
-let recupUser = urlParams[1].split('&');
-let user = recupUser[0];
-let perso = urlParams[2];
+let user = "";
+let perso = "";
+
+if (window.location.search !== "") {
+  let urlParams = window.location.search.substring(1).split('=');
+  let recupUser = urlParams[1].split('&');
+  user = recupUser[0];
+  perso = urlParams[2];
+}
 
 export class Navbars extends Component {
   render() {

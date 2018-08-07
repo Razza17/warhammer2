@@ -1,57 +1,75 @@
 import React, { Component } from 'react';
 import { Col, FormGroup, FormControl, Button, Alert } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-// import { findDOMNode } from 'react-dom';
+import { findDOMNode } from 'react-dom';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import store from '../../index.js';
 
-import { getUser } from "../../actions/UserAction";
+import { getUser } from '../../actions/UserAction.js';
 
 class Login extends Component {
 
-  componentWillMount() {
-    this.props.getUser();
-  }
+  constructor(props) {
+    super(props);
 
-  constructor() {
-    super();
+    let config = {
+      apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
+      authDomain: "warhammer-81ced.firebaseapp.com",
+      databaseURL: "https://warhammer-81ced.firebaseio.com",
+      projectId: "warhammer-81ced",
+      storageBucket: "warhammer-81ced.appspot.com",
+      messagingSenderId: "1046515260577"
+    };
+    firebase.initializeApp(config);
 
     this.state = {
-      redirectToReferrer: false,
-      visible: false
+      visible: false,
+      msg: ""
     }
   }
 
   handleLogin() {
-    // let formPseudo = findDOMNode(this.refs.pseudo).value;
-    // let formPassword = findDOMNode(this.refs.password).value;
-    // let users = this.props.user.length && this.props.user.map((user) => {
-    //   return formPseudo === user.pseudo && formPassword === user.password
-    // });
-    fakeAuth.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
+    let reactThis = this;
+    let that = this.props;
+    let reduxStore = {store}.store;
+    let pseudo = "";
+
+    firebase.auth().signInWithEmailAndPassword(findDOMNode(this.refs.email).value,findDOMNode(this.refs.password).value,)
+    .then(function(onResolve) {
+      let response = [onResolve.user.email];
+      that.getUser(response[0]);
+      reduxStore.subscribe(() => {
+        pseudo = reduxStore.getState().user.user[0].pseudo;
+        window.location.assign('./choosePerso?pseudo='+pseudo);
+      });
     })
+    .catch(function(err) {
+      let errorMessage = err.message;
+
+      reactThis.setState({
+        visible: !reactThis.state.visible,
+        msg: errorMessage
+      })
+
+      setTimeout(function() {
+        reactThis.setState({
+          visible: !reactThis.state.visible
+        })
+      }, 3000)
+    });
   }
 
   render() {
-
-    const { from } = this.props.location.state || { from: { pathname: '/' } };
-    const { redirectToReferrer } = this.state.redirectToReferrer;
-
-    if (redirectToReferrer) {
-      return (
-        <Redirect to={from} />
-      )
-    }
-
     return (
       <Col xs={6} xsOffset={3}>
         <h1 className="align-center">Connecte toi</h1>
-        <FormGroup controlId="pseudo">
+        <FormGroup controlId="email">
           <FormControl
-            type='text'
-            placeholder="Entre ton pseudo"
-            ref='pseudo' />
+            type='email'
+            placeholder="Entre ton email"
+            ref='email' />
         </FormGroup>
         <FormGroup controlId="password">
           <FormControl
@@ -61,20 +79,12 @@ class Login extends Component {
         </FormGroup>
         <Button onClick={this.handleLogin.bind(this)}>Submit</Button>
         <Alert className={this.state.visible ? "showNav" : "hideNav"} bsStyle="danger">
-          Ton pseudo et/ou ton mot de passe ne sont pas correct !!!!
+          {this.state.msg}
         </Alert>
       </Col>
     )
   }
 }
-
-export const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100)
-  },
-};
 
 function mapStateToProps(state){
   return {

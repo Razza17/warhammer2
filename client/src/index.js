@@ -13,7 +13,7 @@ import thunk from 'redux-thunk';
 import reducers from './reducers/index';
 
 // CSS import
-import './style/index_old.css';
+import './style/index.css';
 
 // Components import
 import App from './App';
@@ -28,3 +28,5 @@ ReactDOM.render((
     </BrowserRouter>
   </Provider>
 ), document.getElementById('root'));
+
+export default store;

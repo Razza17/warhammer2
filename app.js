@@ -24,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/warhammer', {
   useMongoClient: true
 });
 
+let Perso = require('./models/perso');
 let Profile = require('./models/profile');
 let Details = require('./models/details');
 let Caracteristique = require('./models/Caracteristique');
@@ -38,6 +39,18 @@ let Inventaire = require('./models/inventaire');
 let Folie = require('./models/folie');
 let Experience = require('./models/experience');
 let User = require('./models/user');
+
+//---->>>> GET CHARACTER <<<<----
+app.get('/perso/:user', function(req, res) {
+  let user = req.params.user;
+
+  Perso.find({user: user}, function(err, perso) {
+    if(err) {
+      throw err;
+    }
+    res.json(perso);
+  })
+});
 
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
@@ -742,8 +755,10 @@ app.post('/user', function(req, res) {
 });
 
 //---->>>> GET USER <<<<----
-app.get('/user', function(req, res) {
-  User.find(function(err, user) {
+app.get('/user/:email', function(req, res) {
+  let email = req.params.email;
+
+  User.find({email: email}, function(err, user) {
     if(err) {
       throw err;
     }
