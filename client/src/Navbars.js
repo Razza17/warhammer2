@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-let user = "";
-let perso = "";
+let user;
+let perso;
 
 if (window.location.search !== "") {
   let urlParams = window.location.search.substring(1).split('=');
@@ -15,6 +15,7 @@ if (window.location.search !== "") {
 
 export class Navbars extends Component {
   render() {
+    console.log(user, perso);
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
@@ -24,7 +25,7 @@ export class Navbars extends Component {
           <Navbar.Toggle id='collapseButton' />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav>
+          <Nav className={user !== undefined && perso !== undefined ? "showNav" : "hideNav"}>
             <LinkContainer to={"/personnage?pseudo="+user+"&perso="+perso}>
               <NavItem eventKey={0}>Personnage</NavItem>
             </LinkContainer>
@@ -34,6 +35,14 @@ export class Navbars extends Component {
             <LinkContainer to={"/combat?pseudo="+user+"&perso="+perso}>
               <NavItem eventKey={2}>Combat</NavItem>
             </LinkContainer>
+          </Nav>
+          <Nav className={user !== undefined && perso !== undefined ? "showNav" : "hideNav"} pullRight>
+            <NavItem eventKey={1} href="#">
+              Mon Compte
+            </NavItem>
+            <NavItem eventKey={2} href="#">
+              Me déconnecter
+            </NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

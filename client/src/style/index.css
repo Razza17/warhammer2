@@ -23,11 +23,11 @@ main > div {
 }
 
 .hideNav {
-  opacity: 0;
+  display: none;
 }
 
 .showNav {
-  opacity: 1;
+  display: block;
 }
 /* END CLASS UNIQUE */
 
