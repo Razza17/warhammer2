@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, FormGroup, FormControl, Button, Alert } from 'react-bootstrap';
+import { Grid, Col, FormGroup, FormControl, Button, Alert, PanelGroup, Panel } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
@@ -63,25 +63,30 @@ class Login extends Component {
 
   render() {
     return (
-      <Col xs={6} xsOffset={3}>
-        <h1 className="align-center">Connecte toi</h1>
-        <FormGroup controlId="email">
-          <FormControl
-            type='email'
-            placeholder="Entre ton email"
-            ref='email' />
-        </FormGroup>
-        <FormGroup controlId="password">
-          <FormControl
-            type='password'
-            placeholder="Entre ton mot de passe"
-            ref='password' />
-        </FormGroup>
-        <Button onClick={this.handleLogin.bind(this)}>Submit</Button>
-        <Alert className={this.state.visible ? "showNav" : "hideNav"} bsStyle="danger">
-          {this.state.msg}
-        </Alert>
-      </Col>
+      <Grid id="login" fluid>
+        <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
+          <PanelGroup>
+            <Panel header="Connecte toi">
+              <FormGroup controlId="email">
+                <FormControl
+                  type='email'
+                  placeholder="Entre ton email"
+                  ref='email' />
+              </FormGroup>
+              <FormGroup controlId="password">
+                <FormControl
+                  type='password'
+                  placeholder="Entre ton mot de passe"
+                  ref='password' />
+              </FormGroup>
+              <Button onClick={this.handleLogin.bind(this)}>Envoyer</Button>
+              <Alert className={this.state.visible ? "show" : "hide"} bsStyle="danger">
+                {this.state.msg}
+              </Alert>
+            </Panel>
+          </PanelGroup>
+        </Col>
+      </Grid>
     )
   }
 }

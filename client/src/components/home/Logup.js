@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Col, FormGroup, FormControl, InputGroup, Button, PanelGroup, Panel } from 'react-bootstrap';
+import { Grid, Col, FormGroup, FormControl, Button, PanelGroup, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
+import firebase from 'firebase/app';
 
 import { postLogup } from "../../actions/LogupAction";
 
@@ -11,100 +12,103 @@ class Logup extends Component {
   constructor(props) {
     super(props);
 
+    let config = {
+      apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
+      authDomain: "warhammer-81ced.firebaseapp.com",
+      databaseURL: "https://warhammer-81ced.firebaseio.com",
+      projectId: "warhammer-81ced",
+      storageBucket: "warhammer-81ced.appspot.com",
+      messagingSenderId: "1046515260577"
+    };
+    firebase.initializeApp(config);
+
     this.state = {
       redirect: false,
-      activeKey: "0"
+      activeKey: "0",
+      errorMsg: ""
     }
   }
 
   handleLogup() {
-    let user = {
-      nom:findDOMNode(this.refs.nom).value,
-      prenom:findDOMNode(this.refs.prenom).value,
-      pseudo:findDOMNode(this.refs.pseudo).value,
-      email:findDOMNode(this.refs.email).value,
-      password:findDOMNode(this.refs.password).value,
-    };
     let password = findDOMNode(this.refs.password).value;
     let confirmPassword = findDOMNode(this.refs.confirmPassword).value;
     let pseudo = findDOMNode(this.refs.pseudo).value;
+    let email = findDOMNode(this.refs.email).value;
+    let prenom  = findDOMNode(this.refs.prenom).value;
+    let nom = findDOMNode(this.refs.nom).value;
+    let user = {
+      nom:nom,
+      prenom:prenom,
+      pseudo:pseudo,
+      email:email,
+      password:password,
+    };
 
     if(password === confirmPassword && password !== "" && confirmPassword !== "") {
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        this.setState({ activeKey: "1", errorMsg: errorCode + " : " + errorMessage });
+      });
       this.props.postLogup(user);
       this.setState({redirect:true});
       let redirect = "/creationProfile?pseudo=" + pseudo;
       this.props.history.push(redirect);
     } else {
-      this.setState({ activeKey: "1" });
-      // alert("Tes deux mots de passe ne correspondent pas ou sont vides !");
+      this.setState({ activeKey: "1", errorMsg: "Tes deux mots de passe ne correspondent pas ou sont vides !" });
     }
   }
 
   render() {
     return (
-      <Col id="logup" xs={6} xsOffset={3} md={3} mdOffset={4}>
-        <h1 className="align-center">Créer ton compte</h1>
-        <FormGroup controlId="nom">
-          <InputGroup>
-            <InputGroup.Addon>Nom :</InputGroup.Addon>
-            <FormControl
-              type='text'
-              placeholder="Entre ton nom"
-              ref='nom' />
-          </InputGroup>
-        </FormGroup>
-        <FormGroup controlId="prenom">
-          <InputGroup>
-            <InputGroup.Addon>Prénom :</InputGroup.Addon>
-            <FormControl
-              type='text'
-              placeholder="Entre ton prénom"
-              ref='prenom' />
-          </InputGroup>
-        </FormGroup>
-        <FormGroup controlId="pseudo">
-          <InputGroup>
-            <InputGroup.Addon>Pseudo :</InputGroup.Addon>
-            <FormControl
-              type='text'
-              placeholder="Entre ton pseudo"
-              ref='pseudo' />
-          </InputGroup>
-        </FormGroup>
-        <FormGroup controlId="email">
-          <InputGroup>
-            <InputGroup.Addon>Email :</InputGroup.Addon>
-            <FormControl
-              type='email'
-              placeholder="Entre ton email"
-              ref='email' />
-          </InputGroup>
-        </FormGroup>
-        <FormGroup controlId="password">
-          <InputGroup>
-            <InputGroup.Addon>Mot de passe :</InputGroup.Addon>
-            <FormControl
-              type='password'
-              placeholder="Entre ton mot de passe"
-              ref='password' />
-          </InputGroup>
-        </FormGroup>
-        <FormGroup controlId="confirmPassword">
-          <InputGroup>
-            <InputGroup.Addon>Confirmation :</InputGroup.Addon>
-            <FormControl
-              type='password'
-              placeholder="Confirmation de ton mot de passe"
-              ref='confirmPassword' />
-          </InputGroup>
-        </FormGroup>
-        <Button onClick={this.handleLogup.bind(this)}>Envoyer</Button>
-        <PanelGroup>
-          <Panel className={this.state.activeKey === "1" ? "loginMsg show" : "loginMsg hide"}>
-            <p>Tes deux mots de passe ne correspondent pas ou sont vides !</p>
-          </Panel>
-        </PanelGroup>
-      </Col>
+      <Grid id="logup" fluid>
+        <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
+          <PanelGroup>
+            <Panel header="Créer ton compte">
+              <FormGroup controlId="nom">
+                  <FormControl
+                    type='text'
+                    placeholder="Entre ton nom"
+                    ref='nom' />
+              </FormGroup>
+              <FormGroup controlId="prenom">
+                  <FormControl
+                    type='text'
+                    placeholder="Entre ton prénom"
+                    ref='prenom' />
+              </FormGroup>
+              <FormGroup controlId="pseudo">
+                  <FormControl
+                    type='text'
+                    placeholder="Entre ton pseudo"
+                    ref='pseudo' />
+              </FormGroup>
+              <FormGroup controlId="email">
+                  <FormControl
+                    type='email'
+                    placeholder="Entre ton email"
+                    ref='email' />
+              </FormGroup>
+              <FormGroup controlId="password">
+                  <FormControl
+                    type='password'
+                    placeholder="Entre ton mot de passe"
+                    ref='password' />
+              </FormGroup>
+              <FormGroup controlId="confirmPassword">
+                  <FormControl
+                    type='password'
+                    placeholder="Confirmation de ton mot de passe"
+                    ref='confirmPassword' />
+              </FormGroup>
+              <Button onClick={this.handleLogup.bind(this)}>Envoyer</Button>
+            </Panel>
+            <Panel className={this.state.activeKey === "1" ? "loginMsg show" : "loginMsg hide"}>
+              <p>{this.state.errorMsg}</p>
+            </Panel>
+          </PanelGroup>
+        </Col>
+      </Grid>
     )
   }
 }

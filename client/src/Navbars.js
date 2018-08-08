@@ -15,7 +15,6 @@ if (window.location.search !== "") {
 
 export class Navbars extends Component {
   render() {
-    console.log(user, perso);
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
@@ -25,7 +24,7 @@ export class Navbars extends Component {
           <Navbar.Toggle id='collapseButton' />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav className={user !== undefined && perso !== undefined ? "showNav" : "hideNav"}>
+          <Nav className={user !== undefined && perso !== undefined ? "show" : "hide"}>
             <LinkContainer to={"/personnage?pseudo="+user+"&perso="+perso}>
               <NavItem eventKey={0}>Personnage</NavItem>
             </LinkContainer>
@@ -36,7 +35,7 @@ export class Navbars extends Component {
               <NavItem eventKey={2}>Combat</NavItem>
             </LinkContainer>
           </Nav>
-          <Nav className={user !== undefined && perso !== undefined ? "showNav" : "hideNav"} pullRight>
+          <Nav className={user !== undefined && perso !== undefined ? "show" : "hide"} pullRight>
             <NavItem eventKey={1} href="#">
               Mon Compte
             </NavItem>

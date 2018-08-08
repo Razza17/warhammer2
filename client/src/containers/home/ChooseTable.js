@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Panel, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { findDOMNode } from 'react-dom';
-import fakeAuth from '../../hocs/authFunction';
 
 import { getPerso } from '../../actions/PersoAction';
 
@@ -25,8 +24,6 @@ class ChooseTable extends Component {
   }
 
   handleSubmit() {
-    let auth = {fakeAuth};
-    auth.fakeAuth.authenticate("true");
     let perso = findDOMNode(this.refs.perso).value;
     window.location.assign("./personnage?pseudo=" + this.state.user + "&perso=" + perso);
   }

@@ -7,7 +7,7 @@ export const updateMessage = (InnerComponent) => {
       super(props);
 
       this.state = {
-        status: "hideMsg",
+        status: "hide",
         msg: "",
         style: "info"
       };
@@ -16,14 +16,14 @@ export const updateMessage = (InnerComponent) => {
     componentWillReceiveProps(nextProps) {
       if(nextProps.modified !== undefined && nextProps.modified.nModified === 1) {
         this.setState({
-          status: "hideMsg showMsg",
+          status: "hide show",
           msg: nextProps.msg,
           style: nextProps.style
         });
 
         setTimeout(() => {
           this.setState({
-            status: "hideMsg",
+            status: "hide",
             msg: "",
             style: "info"
           })
@@ -31,14 +31,14 @@ export const updateMessage = (InnerComponent) => {
 
       } else if(nextProps.modified !== undefined && nextProps.modified.nModified === 0) {
         this.setState({
-          status: "hideMsg showMsg",
+          status: "hide show",
           msg: "Nothing changed, please update an item !!!!",
           style: "info"
         });
 
         setTimeout(() => {
           this.setState({
-            status: "hideMsg",
+            status: "hide",
             msg: "",
             style: "info"
           })

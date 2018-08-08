@@ -33,6 +33,8 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] Page Création : Talents, Armes, Armures
 - [x] Page Création : Munitions, Argent, Folies, Inventaire
 - [x] Page récap avec update possible
-- Récupération des données du personnage selon l'utilisateur
-- Choix du personnage à afficher selon l'utilisateur
+- [x] Récupération des données du personnage selon l'utilisateur
+- [x] Choix du personnage à afficher selon l'utilisateur
+- Page "mon compte" + changement email, pseudo, nom de personnages + récupération password
 - DELETE Personnage(s)
+- Design global
