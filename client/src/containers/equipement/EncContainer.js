@@ -84,9 +84,16 @@ class EncContainer extends Component {
   render() {
     let total = this.encArme() + this.encArmure() + this.encInventaire();
     let max = this.props.carac.length > 0 && this.props.carac[2].f * 10;
-    let encombrement = "Encombrement : " + total + " sur " + max;
+    let encombrement = total + " sur " + max;
     return (
-      <Panel header={encombrement} bsStyle={total < max ? "default" : "danger"}></Panel>
+      <Panel className="enc">
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">Encombrement</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body className={total < max ? "default" : "danger"}>
+          {encombrement}
+        </Panel.Body>
+      </Panel>
     )
   }
 }

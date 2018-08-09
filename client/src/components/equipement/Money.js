@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Badge } from 'react-bootstrap';
+import { Button, ButtonGroup, Badge, Glyphicon } from 'react-bootstrap';
 
 
 export class Money extends Component {
@@ -11,7 +11,7 @@ export class Money extends Component {
       sous: this.props.sous
     };
     this.props.update(this.props._id, data);
-    this.props.get();
+    this.props.get(this.props.user, this.props.perso);
   }
 
   onDecrementCouronnes(){
@@ -22,7 +22,7 @@ export class Money extends Component {
         sous: this.props.sous
       };
       this.props.update(this.props._id, data);
-      this.props.get();
+      this.props.get(this.props.user, this.props.perso);
     }
   }
 
@@ -33,7 +33,7 @@ export class Money extends Component {
       sous: this.props.sous
     };
     this.props.update(this.props._id, data);
-    this.props.get();
+    this.props.get(this.props.user, this.props.perso);
   }
 
   onDecrementPistoles(){
@@ -44,7 +44,7 @@ export class Money extends Component {
         sous: this.props.sous
       };
       this.props.update(this.props._id, data);
-      this.props.get();
+      this.props.get(this.props.user, this.props.perso);
     }
   }
 
@@ -55,7 +55,7 @@ export class Money extends Component {
       sous: this.props.sous + 1
     };
     this.props.update(this.props._id, data);
-    this.props.get();
+    this.props.get(this.props.user, this.props.perso);
   }
 
   onDecrementSous(){
@@ -66,7 +66,7 @@ export class Money extends Component {
         sous: this.props.sous - 1
       };
       this.props.update(this.props._id, data);
-      this.props.get();
+      this.props.get(this.props.user, this.props.perso);
     }
   }
 
@@ -78,7 +78,7 @@ export class Money extends Component {
         sous: this.props.sous
       };
       this.props.update(this.props._id, data);
-      this.props.get();
+      this.props.get(this.props.user, this.props.perso);
     }
   }
 
@@ -90,7 +90,7 @@ export class Money extends Component {
         sous: this.props.sous
       };
       this.props.update(this.props._id, data);
-      this.props.get();
+      this.props.get(this.props.user, this.props.perso);
     }
   }
 
@@ -102,7 +102,7 @@ export class Money extends Component {
         sous: this.props.sous - 12
       };
       this.props.update(this.props._id, data);
-      this.props.get();
+      this.props.get(this.props.user, this.props.perso);
     }
   }
 
@@ -114,7 +114,7 @@ export class Money extends Component {
         sous: this.props.sous + 12
       };
       this.props.update(this.props._id, data);
-      this.props.get();
+      this.props.get(this.props.user, this.props.perso);
     }
   }
 
@@ -139,37 +139,37 @@ export class Money extends Component {
         <tr>
           <td>{this.props.couronnes}</td>
           <td>
-            <Badge onClick={this.handlePistolesToCouronnes.bind(this)}>&lt;</Badge>
+            <Badge onClick={this.handlePistolesToCouronnes.bind(this)}><Glyphicon glyph="menu-left" /></Badge>
             <span> 20 </span>
-            <Badge onClick={this.handleCouronnesToPistoles.bind(this)}>&gt;</Badge>
+            <Badge onClick={this.handleCouronnesToPistoles.bind(this)}><Glyphicon glyph="menu-right" /></Badge>
           </td>
           <td>{this.props.pistoles}</td>
           <td>
-            <Badge onClick={this.handleSousToPistoles.bind(this)}>&lt;</Badge>
+            <Badge onClick={this.handleSousToPistoles.bind(this)}><Glyphicon glyph="menu-left" /></Badge>
             <span> 12 </span>
-            <Badge onClick={this.handlePistolesToSous.bind(this)}>&gt;</Badge>
+            <Badge onClick={this.handlePistolesToSous.bind(this)}><Glyphicon glyph="menu-right" /></Badge>
           </td>
           <td>{this.props.sous}</td>
         </tr>
         <tr>
           <td>
             <ButtonGroup>
-              <Button onClick={this.onDecrementCouronnes.bind(this)} bsStyle="danger">-</Button>
-              <Button onClick={this.onIncrementCouronnes.bind(this)} bsStyle="success">+</Button>
+              <Button onClick={this.onDecrementCouronnes.bind(this)} bsStyle="danger"><Glyphicon glyph="minus" /></Button>
+              <Button onClick={this.onIncrementCouronnes.bind(this)} bsStyle="success"><Glyphicon glyph="plus" /></Button>
             </ButtonGroup>
           </td>
           <td>&nbsp;</td>
           <td>
             <ButtonGroup>
-              <Button onClick={this.onDecrementPistoles.bind(this)} bsStyle="danger">-</Button>
-              <Button onClick={this.onIncrementPistoles.bind(this)} bsStyle="success">+</Button>
+              <Button onClick={this.onDecrementPistoles.bind(this)} bsStyle="danger"><Glyphicon glyph="minus" /></Button>
+              <Button onClick={this.onIncrementPistoles.bind(this)} bsStyle="success"><Glyphicon glyph="plus" /></Button>
             </ButtonGroup>
           </td>
           <td>&nbsp;</td>
           <td>
             <ButtonGroup>
-              <Button onClick={this.onDecrementSous.bind(this)} bsStyle="danger">-</Button>
-              <Button onClick={this.onIncrementSous.bind(this)} bsStyle="success">+</Button>
+              <Button onClick={this.onDecrementSous.bind(this)} bsStyle="danger"><Glyphicon glyph="minus" /></Button>
+              <Button onClick={this.onIncrementSous.bind(this)} bsStyle="success"><Glyphicon glyph="plus" /></Button>
             </ButtonGroup>
           </td>
         </tr>

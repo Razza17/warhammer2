@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button, FormControl, FormGroup } from 'react-bootstrap';
+import { Table, Panel, Button, FormControl, FormGroup, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
@@ -56,52 +56,55 @@ class InventaireTable extends Component {
 
   render() {
     return (
-      <Panel header="Inventaire" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
-          {this.state.update ? "Retour à l'inventaire" : "Modifier / Ajouter"}
-        </Button>
-        <Table condensed bordered hover striped fill>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th><span className="show-desktop">Quantité</span><span className="show-mobile">Qté</span></th>
-              <th><span className="show-desktop">Encombrement</span><span className="show-mobile">Enc</span></th>
-              {this.state.update && <th>Actions</th>}
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.inventaire.map((inventaire, i) => this.state.update ? <InventaireUpdate key={inventaire._id} {...inventaire} getInventaire={this.props.getInventaire} /> : <Inventaire key={i} {...inventaire}/>) }
-            {this.state.update &&
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">Inventaire</Panel.Title>
+          <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>{this.state.update ? <Glyphicon glyph="minus" /> : <Glyphicon glyph="plus" />}</Button>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed bordered hover striped fill>
+            <thead>
               <tr>
-                <td>
-                  <FormGroup controlId="nomPostInventaire">
-                    <FormControl
-                      type='text'
-                      placeholder='Nom'
-                      ref='nomPostInventaire' />
-                  </FormGroup>
-                </td>
-                <td>
-                  <FormGroup controlId="quantitePostInventaire">
-                    <FormControl
-                      type='number'
-                      placeholder='Quantité'
-                      ref='quantitePostInventaire' />
-                  </FormGroup>
-                </td>
-                <td>
-                  <FormGroup controlId="encPostInventaire">
-                    <FormControl
-                      type='number'
-                      placeholder='Encombrement'
-                      ref='encPostInventaire' />
-                  </FormGroup>
-                </td>
-                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
+                <th>Nom</th>
+                <th><span className="show-desktop">Quantité</span><span className="show-mobile">Qté</span></th>
+                <th><span className="show-desktop">Encombrement</span><span className="show-mobile">Enc</span></th>
+                {this.state.update && <th>Actions</th>}
               </tr>
-            }
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              { this.props.inventaire.map((inventaire, i) => this.state.update ? <InventaireUpdate key={inventaire._id} {...inventaire} getInventaire={this.props.getInventaire} /> : <Inventaire key={i} {...inventaire}/>) }
+              {this.state.update &&
+                <tr>
+                  <td>
+                    <FormGroup controlId="nomPostInventaire">
+                      <FormControl
+                        type='text'
+                        placeholder='Nom'
+                        ref='nomPostInventaire' />
+                    </FormGroup>
+                  </td>
+                  <td>
+                    <FormGroup controlId="quantitePostInventaire">
+                      <FormControl
+                        type='number'
+                        placeholder='Quantité'
+                        ref='quantitePostInventaire' />
+                    </FormGroup>
+                  </td>
+                  <td>
+                    <FormGroup controlId="encPostInventaire">
+                      <FormControl
+                        type='number'
+                        placeholder='Encombrement'
+                        ref='encPostInventaire' />
+                    </FormGroup>
+                  </td>
+                  <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
+                </tr>
+              }
+            </tbody>
+          </Table>
+        </Panel.Body>
       </Panel>
     )
   }
