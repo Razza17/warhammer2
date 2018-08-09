@@ -64,44 +64,49 @@ class Logup extends Component {
       <Grid id="logup" fluid>
         <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
           <PanelGroup>
-            <Panel header="Créer ton compte">
-              <FormGroup controlId="nom">
-                  <FormControl
-                    type='text'
-                    placeholder="Entre ton nom"
-                    ref='nom' />
-              </FormGroup>
-              <FormGroup controlId="prenom">
-                  <FormControl
-                    type='text'
-                    placeholder="Entre ton prénom"
-                    ref='prenom' />
-              </FormGroup>
-              <FormGroup controlId="pseudo">
-                  <FormControl
-                    type='text'
-                    placeholder="Entre ton pseudo"
-                    ref='pseudo' />
-              </FormGroup>
-              <FormGroup controlId="email">
-                  <FormControl
-                    type='email'
-                    placeholder="Entre ton email"
-                    ref='email' />
-              </FormGroup>
-              <FormGroup controlId="password">
-                  <FormControl
-                    type='password'
-                    placeholder="Entre ton mot de passe"
-                    ref='password' />
-              </FormGroup>
-              <FormGroup controlId="confirmPassword">
-                  <FormControl
-                    type='password'
-                    placeholder="Confirmation de ton mot de passe"
-                    ref='confirmPassword' />
-              </FormGroup>
-              <Button onClick={this.handleLogup.bind(this)}>Envoyer</Button>
+            <Panel>
+              <Panel.Heading>
+                <Panel.Title componentClass="h2">Créer ton compte</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body>
+                <FormGroup controlId="nom">
+                    <FormControl
+                      type='text'
+                      placeholder="Entre ton nom"
+                      ref='nom' />
+                </FormGroup>
+                <FormGroup controlId="prenom">
+                    <FormControl
+                      type='text'
+                      placeholder="Entre ton prénom"
+                      ref='prenom' />
+                </FormGroup>
+                <FormGroup controlId="pseudo">
+                    <FormControl
+                      type='text'
+                      placeholder="Entre ton pseudo"
+                      ref='pseudo' />
+                </FormGroup>
+                <FormGroup controlId="email">
+                    <FormControl
+                      type='email'
+                      placeholder="Entre ton email"
+                      ref='email' />
+                </FormGroup>
+                <FormGroup controlId="password">
+                    <FormControl
+                      type='password'
+                      placeholder="Entre ton mot de passe"
+                      ref='password' />
+                </FormGroup>
+                <FormGroup controlId="confirmPassword">
+                    <FormControl
+                      type='password'
+                      placeholder="Confirmation de ton mot de passe"
+                      ref='confirmPassword' />
+                </FormGroup>
+                <Button onClick={this.handleLogup.bind(this)}>Envoyer</Button>
+              </Panel.Body>
             </Panel>
             <Panel className={this.state.activeKey === "1" ? "loginMsg show" : "loginMsg hide"}>
               <p>{this.state.errorMsg}</p>

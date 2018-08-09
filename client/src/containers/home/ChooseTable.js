@@ -30,13 +30,18 @@ class ChooseTable extends Component {
 
   render() {
     return (
-      <Panel header={"Choisis ton personnage " + this.state.user}>
-        <FormGroup controlId="formControlsSelect">
-          <FormControl componentClass="select" placeholder="select" ref="perso">
-            { this.props.perso.map((persos, i) => <option key={persos._id} value={persos.nom}>{persos.nom}</option>) }
-          </FormControl>
-        </FormGroup>
-        <Button onClick={this.handleSubmit.bind(this)}>Aller au combat</Button>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">{"Choisis ton personnage " + this.state.user}</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <FormGroup controlId="formControlsSelect">
+            <FormControl componentClass="select" placeholder="select" ref="perso">
+              { this.props.perso.map((persos, i) => <option key={persos._id} value={persos.nom}>{persos.nom}</option>) }
+            </FormControl>
+          </FormGroup>
+          <Button onClick={this.handleSubmit.bind(this)}>Aller au combat</Button>
+        </Panel.Body>
       </Panel>
     )
   }

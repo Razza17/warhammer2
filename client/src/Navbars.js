@@ -36,10 +36,10 @@ export class Navbars extends Component {
             </LinkContainer>
           </Nav>
           <Nav className={user !== undefined && perso !== undefined ? "show" : "hide"} pullRight>
-            <NavItem eventKey={1} href="#">
+            <NavItem eventKey={3} href="#">
               Mon Compte
             </NavItem>
-            <NavItem eventKey={2} href="#">
+            <NavItem eventKey={4} href="#">
               Me déconnecter
             </NavItem>
           </Nav>

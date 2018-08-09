@@ -66,23 +66,28 @@ class Login extends Component {
       <Grid id="login" fluid>
         <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
           <PanelGroup>
-            <Panel header="Connecte toi">
-              <FormGroup controlId="email">
-                <FormControl
-                  type='email'
-                  placeholder="Entre ton email"
-                  ref='email' />
-              </FormGroup>
-              <FormGroup controlId="password">
-                <FormControl
-                  type='password'
-                  placeholder="Entre ton mot de passe"
-                  ref='password' />
-              </FormGroup>
-              <Button onClick={this.handleLogin.bind(this)}>Envoyer</Button>
-              <Alert className={this.state.visible ? "show" : "hide"} bsStyle="danger">
-                {this.state.msg}
-              </Alert>
+            <Panel>
+              <Panel.Heading>
+                <Panel.Title componentClass="h2">Connecte toi</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body>
+                <FormGroup controlId="email">
+                  <FormControl
+                    type='email'
+                    placeholder="Entre ton email"
+                    ref='email' />
+                </FormGroup>
+                <FormGroup controlId="password">
+                  <FormControl
+                    type='password'
+                    placeholder="Entre ton mot de passe"
+                    ref='password' />
+                </FormGroup>
+                <Button onClick={this.handleLogin.bind(this)}>Envoyer</Button>
+                <Alert className={this.state.visible ? "show" : "hide"} bsStyle="danger">
+                  {this.state.msg}
+                </Alert>
+              </Panel.Body>
             </Panel>
           </PanelGroup>
         </Col>
