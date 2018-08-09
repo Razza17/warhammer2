@@ -1,17 +1,19 @@
-/*******************************************************************************
-SUMMARY
+/************************************SUMMARY************************************
 1. HTML, BODY, HTML TAGS
 2. NAVBAR
 3. PANELS
 4. FORMS
 5. BUTTONS
+6. TABLES
 9. STANDALONE CLASS
 10. PAGES
-10.1 HOME
-10.2 LOGIN
-10.3 CHOOSE CHARACTER
-10.4 LOGUP
-*******************************************************************************/
+  10.1 HOME
+  10.2 LOGIN
+  10.3 CHOOSE CHARACTER
+  10.4 LOGUP
+  10.5 PERSONNAGE
+11. MEDIA QUERIES
+***********************************SUMMARY*************************************/
 
 /************************ 1. HTML, BODY, HTML TAGS ************************/
 html, body, #root, .App, main {
@@ -33,7 +35,7 @@ ul li {
 }
 
 /************************ 2. NAVBAR ************************/
-.navbar {
+.navbar, .navbar-default {
   background-image: none;
   border-top: none;
   border-left: none;
@@ -48,17 +50,41 @@ ul li {
   margin-bottom: 0;
 }
 
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  background-color: #819ca9;
+}
+
 .navbar-default .navbar-brand {
   color: #ffffff;
+  transition: all 0.5s;
 }
 
-.navbar .navbar-nav>li>a {
-  border: none;
-  color: #ffffff;
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
 }
 
-.navbar-collapse li:hover {
+.navbar .navbar-nav {
   background-color: #819ca9;
+}
+
+.navbar .navbar-nav > li {
+  background-color: #819ca9;
+}
+
+.navbar .navbar-nav > li:hover {
+  background-color: #819ca9;
+}
+
+.navbar .navbar-nav > li > a {
+  color: #ffffff;
+  transition: all 0.5s;
+}
+
+.navbar .navbar-nav > li > a:hover {
+  background-color: #819ca9;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
+  transition: all 0.5s;
 }
 
 /************************ 3. PANELS ************************/
@@ -86,6 +112,10 @@ ul li {
   -webkit-box-shadow: 1px 3px 5px 0px #656565;
   -o-box-shadow: 1px 3px 5px 0px #656565;
   box-shadow: 1px 3px 5px 0px #656565;
+}
+
+.panel .panel-heading .panel-title {
+  font-size: 22px;
 }
 
 .panel .panel-body {
@@ -170,10 +200,85 @@ ul li {
   box-shadow: 3px 5px 5px 0px #000000;
 }
 
+.btn-default:focus {
+  background-image: none;
+  color: #ffffff;
+  background-color: #819ca9;
+  border: none;
+  -moz-box-shadow: 1px 1px 5px 0px #000000;
+  -webkit-box-shadow: 1px 1px 5px 0px #000000;
+  -o-box-shadow: 1px 1px 5px 0px #000000;
+  box-shadow: 1px 1px 5px 0px #000000;
+  transition: all 0.5s;
+}
+
 .showUpdateButton {
   position: absolute;
-  top: 60px;
+  top: 25px;
   right: 20px;
+  border-radius: 50px;
+}
+
+/************************ 6. TABLES ************************/
+.table {
+  margin-bottom: 0;
+  text-align: center;
+  background-color: transparent;
+}
+
+.table-bordered {
+  border: none;
+}
+
+.table>thead>tr {
+  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+}
+
+.table>tbody>tr {
+  transition: all 0.5s;
+}
+
+.table>tbody>tr:hover {
+  background-color: #819ca9;
+  border-bottom: 1px solid rgba(250, 250, 250, 1);
+  border-top: 1px solid rgba(250, 250, 250, 1);
+}
+
+.table>thead>tr>th {
+  border: none;
+  text-align: center;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #546e7a;
+  transition: all 0.5s;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd):hover {
+  background-color: #819ca9;
+  border-bottom: 1px solid rgba(250, 250, 250, 1);
+  border-top: 1px solid rgba(250, 250, 250, 1);
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  border: none;
+  vertical-align: middle;
+}
+
+.carac-table-desktop {
+  display: table;
+}
+
+.carac-table-mobile {
+  display: none;
+}
+
+.show-desktop {
+  display: block;
+}
+
+.show-mobile {
+  display: none;
 }
 
 /************************ 9. STANDALONE CLASS ************************/
@@ -238,7 +343,38 @@ ul li {
   transform: translateY(-50%);
 }
 
-/************************ 10.4 PERSONNAGE ************************/
+/************************ 10.5 PERSONNAGE ************************/
+#personnage {
+  margin: 30px 0;
+}
+
 .count .panel-body {
   text-align: center;
+}
+
+
+/************************ 11. MEDIA QUERIES ************************/
+
+@media screen and (max-width: 500px) {
+
+  .show-desktop {
+    display: none;
+  }
+
+  .show-mobile {
+    display: block;
+  }
+
+}
+
+@media screen and (max-width: 999px) {
+
+  .carac-table-desktop {
+    display: none;
+  }
+
+  .carac-table-mobile {
+    display: table;
+  }
+
 }

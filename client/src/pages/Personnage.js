@@ -12,40 +12,40 @@ import TalentTable from "../containers/personnage/TalentTable";
 import WarhammerLogo from "../img/Warhammer-Logo.png";
 
 export class Personnage extends Component {
-    render() {
-        return (
-            <Grid id="personnage" fluid>
-                <Row>
-                    <Col xs={12} sm={6} md={4}>
-                        <ProfilTable />
-                    </Col>
-                    <Col xs={12} sm={6} md={8} lg={4}>
-                        <DetailsTable />
-                    </Col>
-                    <Col xsHidden smHidden mdHidden lg={4}>
-                        <Image src={WarhammerLogo} alt="WarhammerLogo" width="100%" />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={12} lg={8} lgOffset={2}>
-                        <CaracTable />
-                    </Col>
-                </Row>
-                <Row>
-                    <CountContainer />
-                </Row>
-                <Row>
-                    <Col xs={12} md={6} lg={4}>
-                        <CompetenceBase />
-                    </Col>
-                    <Col xs={12} md={6} lg={4}>
-                        <CompetenceAvance />
-                    </Col>
-                    <Col xs={12} md={6} lg={4}>
-                        <TalentTable/>
-                    </Col>
-                </Row>
-            </Grid>
-        )
-    }
+  render() {
+    return (
+      <Grid id="personnage" fluid>
+        <Row>
+          <Col xs={12} sm={6} md={4}>
+            <ProfilTable />
+          </Col>
+          <Col xs={12} sm={6} md={8} lg={4}>
+            <DetailsTable />
+          </Col>
+          <Col xsHidden smHidden mdHidden lg={4}>
+            <Image src={WarhammerLogo} alt="WarhammerLogo" width="100%" />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} lg={8} lgOffset={2}>
+            <CaracTable />
+          </Col>
+        </Row>
+        <Row>
+          <CountContainer />
+        </Row>
+        <Row>
+          <Col xs={12} md={6} lg={4}>
+            <CompetenceBase />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <CompetenceAvance />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <TalentTable/>
+          </Col>
+        </Row>
+      </Grid>
+    )
+  }
 }

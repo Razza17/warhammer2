@@ -6,19 +6,33 @@ import { Profil } from "../../components/personnage/Profil";
 import { getProfile } from '../../actions/ProfilAction';
 
 class ProfilTable extends Component {
-  
-  componentWillMount() {
+
+  constructor(props) {
+    super(props);
     let urlParams = window.location.search.substring(1).split('=');
     let recupUser = urlParams[1].split('&');
     let user = recupUser[0];
     let perso = urlParams[2];
-    this.props.getProfile(user, perso);
+
+    this.state = {
+      user: user,
+      perso: perso
+    }
+  }
+
+  componentWillMount() {
+    this.props.getProfile(this.state.user, this.state.perso);
   }
 
   render() {
     return (
-      <Panel header="Personnage">
-        { this.props.profile.map((perso, i) => <Profil key={i} {...perso} />) }
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">{this.state.perso}</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          { this.props.profile.map((perso, i) => <Profil key={i} {...perso} />) }
+        </Panel.Body>
       </Panel>
     )
   }
