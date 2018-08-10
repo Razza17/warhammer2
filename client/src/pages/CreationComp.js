@@ -6,7 +6,7 @@ import CreaComp from "../components/creation/CreaComp";
 export class CreationComp extends Component {
   render() {
     return (
-      <Grid id="creaComp" fluid>
+      <Grid id="creaComp" className="vertical-middle" fluid>
         <CreaComp />
       </Grid>
     )

@@ -31,40 +31,45 @@ class CaracRecap extends Component {
 
   render() {
     return (
-      <Panel header="Caractéristiques du personnage" className="noPadding">
-        <Table condensed bordered hover striped className="carac-table-desktop" fill>
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th colSpan="8">Profil Principal</th>
-              <th colSpan="8">Profil Secondaire</th>
-            </tr>
-            <tr>
-              <th>&nbsp;</th>
-              <th>CC</th>
-              <th>CT</th>
-              <th>F</th>
-              <th>E</th>
-              <th>Ag</th>
-              <th>Int</th>
-              <th>FM</th>
-              <th>Soc</th>
-              <th>A</th>
-              <th>B</th>
-              <th>BF</th>
-              <th>BE</th>
-              <th>M</th>
-              <th>Mag</th>
-              <th>PF</th>
-              <th>PD</th>
-              <th>Modifier</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.carac.map((carac, i) => <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) }
-          </tbody>
-        </Table>
-        { this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) }
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>Caractéristiques</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed bordered hover striped className="carac-table-desktop" fill>
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                <th colSpan="8">Profil Principal</th>
+                <th colSpan="8">Profil Secondaire</th>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <th>CC</th>
+                <th>CT</th>
+                <th>F</th>
+                <th>E</th>
+                <th>Ag</th>
+                <th>Int</th>
+                <th>FM</th>
+                <th>Soc</th>
+                <th>A</th>
+                <th>B</th>
+                <th>BF</th>
+                <th>BE</th>
+                <th>M</th>
+                <th>Mag</th>
+                <th>PF</th>
+                <th>PD</th>
+                <th>Modifier</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.props.carac.map((carac, i) => <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) }
+            </tbody>
+          </Table>
+          { this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) }
+        </Panel.Body>
       </Panel>
     )
   }

@@ -6,7 +6,7 @@ import ChooseTable from '../containers/home/ChooseTable';
 export class ChoosePerso extends Component {
   render() {
     return (
-      <Grid id="choose" fluid>
+      <Grid id="choose" className="vertical-middle" fluid>
         <Col xs={12} md={4} mdOffset={4}>
           <ChooseTable />
         </Col>

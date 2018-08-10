@@ -5,16 +5,13 @@
 4. FORMS
 5. BUTTONS
 6. TABLES
-8. GLYPHICON
+7. GLYPHICON
 9. STANDALONE CLASS
 10. PAGES
   10.1 HOME
-  10.2 LOGIN
-  10.3 CHOOSE CHARACTER
-  10.4 LOGUP
-  10.5 PERSONNAGE
-  10.6 EQUIPEMENTS
-  10.7 CREATION PROFIL
+  10.2 PERSONNAGE
+  10.3 EQUIPEMENTS
+  10.4 RÉCAPITULATIF
 11. MEDIA QUERIES
 ***********************************SUMMARY*************************************/
 
@@ -35,6 +32,14 @@ h1 {
 
 ul li {
   list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 /************************ 2. NAVBAR ************************/
@@ -84,6 +89,7 @@ ul li {
 .panel {
   position: relative;
   background-color: transparent;
+  border: none;
 }
 
 .panel-default {
@@ -123,6 +129,12 @@ ul li {
 
 .panel .panel-body h3 {
   margin-top: 0;
+}
+
+.panel.panel-danger > .panel-heading {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
 }
 
 /************************ 4. FORMS ************************/
@@ -167,6 +179,12 @@ ul li {
   left: -2%;
   color: #819ca9;
   font-size: 10px;
+}
+
+.input-group-addon {
+  background-image: none;
+  background-color: transparent;
+  border: none;
 }
 
 /************************ 5. BUTTONS ************************/
@@ -233,6 +251,10 @@ ul li {
   right: 20px;
 }
 
+.next-table {
+  margin-top: 20px;
+}
+
 /************************ 6. TABLES ************************/
 .table {
   margin-bottom: 0;
@@ -295,35 +317,37 @@ ul li {
   display: none;
 }
 
-/************************ 8. GLYPHICON ************************/
+/************************ 7. GLYPHICON ************************/
 .glyphicon {
   cursor: pointer;
 }
 
-/************************ 9. STANDALONE CLASS ************************/
+/************************ 8. STANDALONE CLASS ************************/
 .align-center {
   text-align: center;
 }
 
-/************************ 10. PAGES ************************/
+.vertical-middle {
+  background-image: url('../img/home.jpg');
+  height: 100%;
+}
+
+.vertical-middle>div {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/*----------------------- 10. PAGES -----------------------*/
 /************************ 10.1 HOME ************************/
 #home {
   text-align: center;
-  background-image: url('../img/home.jpg');
-  height: 100%;
   padding-top: 0;
 }
 
 #home h1 {
   color: #ffffff;
   text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
-  /* margin: 50px 0 100px; */
-}
-
-#home.container-fluid > div {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 #home a {
@@ -335,43 +359,7 @@ ul li {
   text-shadow: 2px 5px 3px rgba(0, 0, 0, 1);
 }
 
-/************************ 10.2 LOGIN ************************/
-#login {
-  background-image: url('../img/home.jpg');
-  height: 100%;
-}
-
-#login.container-fluid > div {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/************************ 10.3 CHOOSE CHARACTER ************************/
-#choose {
-  background-image: url('../img/home.jpg');
-  height: 100%;
-}
-
-#choose.container-fluid > div {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/************************ 10.4 LOGUP ************************/
-#logup {
-  background-image: url('../img/home.jpg');
-  height: 100%;
-}
-
-#logup.container-fluid > div {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/************************ 10.5 PERSONNAGE ************************/
+/************************ 10.2 PERSONNAGE ************************/
 #personnage {
   padding: 30px 15px;
 }
@@ -380,7 +368,7 @@ ul li {
   text-align: center;
 }
 
-/************************ 10.6 EQUIPEMENT ************************/
+/************************ 10.3 EQUIPEMENT ************************/
 #equipement {
   padding: 30px 15px;
 }
@@ -406,16 +394,15 @@ ul li {
   background-color: #819ca9;
 }
 
-/************************ 10.5 PERSONNAGE ************************/
-#creaProfile {
-  background-image: url('../img/home.jpg');
-  height: 100%;
+/************************ 10.4 RÉCAPITULATIF ************************/
+#recap {
+  padding: 30px 15px;
 }
 
-#creaProfile.container-fluid > div {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+#recap h2 {
+  color: #ffffff;
+  text-shadow: 2px 3px 3px rgba(0, 0, 0, 1);
+  margin-bottom: 50px;
 }
 
 /************************ 11. MEDIA QUERIES ************************/

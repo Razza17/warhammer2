@@ -74,73 +74,78 @@ class ProfilRecap extends Component {
     return (
       <Col>
         {this.props.profile.map((perso, i) =>
-          <Panel key={i} header={perso.nom}>
-            <Form>
-              <FormGroup className="hide" controlId="profileId">
-                <InputGroup>
-                  <InputGroup.Addon>Id :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name="profileId"
-                    defaultValue={perso._id}
-                    ref='profileId'
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
-              </FormGroup>
-              <FormGroup className="hide" controlId="profileNom">
-                <InputGroup>
-                  <InputGroup.Addon>Nom :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name="profileNom"
-                    defaultValue={perso.nom}
-                    ref='profileNom'
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
-              </FormGroup>
-              <FormGroup controlId="profileRace">
-                <InputGroup>
-                  <InputGroup.Addon>Race :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name="profileRace"
-                    defaultValue={perso.race}
-                    ref='profileRace'
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
-              </FormGroup>
-              <FormGroup controlId="profileCarriereA">
-                <InputGroup>
-                  <InputGroup.Addon>Carrière acrtuelle :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name="profileCarriereA"
-                    defaultValue={perso.carriereA}
-                    ref='profileCarriereA'
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
-              </FormGroup>
-              <FormGroup controlId="profileAcarriere">
-                <InputGroup>
-                  <InputGroup.Addon>Ancienne carrière :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name="profileAcarriere"
-                    defaultValue={perso.Acarriere}
-                    ref='profileAcarriere'
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
-              </FormGroup>
-              <Button onClick={this.updateProfile.bind(this)}>Modifier</Button>
-              <Alert className={this.state.showAlert === true ? "show" : "hide"} bsStyle={this.state.alertStyle}>
-                {this.state.alertMessage}
-              </Alert>
-            </Form>
+          <Panel key={i}>
+            <Panel.Heading>
+              <Panel.Title>{perso.nom}</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <Form>
+                <FormGroup className="hide" controlId="profileId">
+                  <InputGroup>
+                    <InputGroup.Addon>Id :</InputGroup.Addon>
+                    <FormControl
+                      type='text'
+                      name="profileId"
+                      defaultValue={perso._id}
+                      ref='profileId'
+                      />
+                    <FormControl.Feedback/>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup className="hide" controlId="profileNom">
+                  <InputGroup>
+                    <InputGroup.Addon>Nom :</InputGroup.Addon>
+                    <FormControl
+                      type='text'
+                      name="profileNom"
+                      defaultValue={perso.nom}
+                      ref='profileNom'
+                      />
+                    <FormControl.Feedback/>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup controlId="profileRace">
+                  <InputGroup>
+                    <InputGroup.Addon>Race :</InputGroup.Addon>
+                    <FormControl
+                      type='text'
+                      name="profileRace"
+                      defaultValue={perso.race}
+                      ref='profileRace'
+                      />
+                    <FormControl.Feedback/>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup controlId="profileCarriereA">
+                  <InputGroup>
+                    <InputGroup.Addon>Carrière acrtuelle :</InputGroup.Addon>
+                    <FormControl
+                      type='text'
+                      name="profileCarriereA"
+                      defaultValue={perso.carriereA}
+                      ref='profileCarriereA'
+                      />
+                    <FormControl.Feedback/>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup controlId="profileAcarriere">
+                  <InputGroup>
+                    <InputGroup.Addon>Ancienne carrière :</InputGroup.Addon>
+                    <FormControl
+                      type='text'
+                      name="profileAcarriere"
+                      defaultValue={perso.Acarriere}
+                      ref='profileAcarriere'
+                      />
+                    <FormControl.Feedback/>
+                  </InputGroup>
+                </FormGroup>
+                <Button onClick={this.updateProfile.bind(this)}>Modifier</Button>
+                <Alert className={this.state.showAlert === true ? "show" : "hide"} bsStyle={this.state.alertStyle}>
+                  {this.state.alertMessage}
+                </Alert>
+              </Form>
+            </Panel.Body>
           </Panel>
         )}
       </Col>

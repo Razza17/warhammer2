@@ -6,7 +6,7 @@ import CreaArme from "../components/creation/CreaArme";
 export class CreationArme extends Component {
   render() {
     return (
-      <Grid id="creaArme" fluid>
+      <Grid id="creaArme" className="vertical-middle" fluid>
         <CreaArme />
       </Grid>
     )

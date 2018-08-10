@@ -30,20 +30,25 @@ class ArmureRecap extends Component {
 
   render() {
     return (
-      <Panel header="Armures" className="noPadding">
-        <Table condensed hover striped fill>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Enc</th>
-              <th><span className="show-desktop">Couverture</span><span className="show-mobile">Couv</span></th>
-              <th>Points</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.armure.map((armures, i) => <ArmureUpdate key={armures._id} {...armures} getArmure={this.props.getArmure} />) }
-          </tbody>
-        </Table>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>Armures</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed hover striped fill>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Enc</th>
+                <th><span className="show-desktop">Couverture</span><span className="show-mobile">Couv</span></th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.props.armure.map((armures, i) => <ArmureUpdate key={armures._id} {...armures} getArmure={this.props.getArmure} />) }
+            </tbody>
+          </Table>
+        </Panel.Body>
       </Panel>
     )
   }

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export class Home extends Component {
   render() {
     return (
-      <Grid id="home" fluid>
+      <Grid id="home" className="vertical-middle" fluid>
         <Col xs={12}>
           <h1 className="align-center">Bienvenue sur Warhammer !</h1>
           <Col xs={6} lg={3} lgOffset={3} className="home-panel">

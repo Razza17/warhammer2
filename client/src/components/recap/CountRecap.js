@@ -66,46 +66,51 @@ class CountRecap extends Component {
 
   render() {
     return (
-      <Panel header="Munitions">
-        {this.props.count.map((counts, i) =>
-          counts.name === "Munitions" &&
-          <Form key={i} inline>
-            <FormGroup className="hide" controlId="countId">
-              <InputGroup>
-                <InputGroup.Addon>Id :</InputGroup.Addon>
-                <FormControl
-                  type='text'
-                  name="countId"
-                  defaultValue={counts._id}
-                  ref='countId'
-                  />
-                <FormControl.Feedback/>
-              </InputGroup>
-            </FormGroup>
-            <Col xs={6} md={5} mdOffset={2}>
-              <FormGroup controlId="countValue">
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>Munitions</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          {this.props.count.map((counts, i) =>
+            counts.name === "Munitions" &&
+            <Form key={i} inline>
+              <FormGroup className="hide" controlId="countId">
                 <InputGroup>
-                  <InputGroup.Addon>{counts.name}</InputGroup.Addon>
+                  <InputGroup.Addon>Id :</InputGroup.Addon>
                   <FormControl
-                    type='number'
-                    name='countValue'
-                    defaultValue={counts.value}
-                    ref='countValue'
+                    type='text'
+                    name="countId"
+                    defaultValue={counts._id}
+                    ref='countId'
                     />
                   <FormControl.Feedback/>
                 </InputGroup>
               </FormGroup>
-            </Col>
-            <Col xs={6} md={5}>
-              <Button onClick={this.updateCount.bind(this)}>Modifier</Button>
-            </Col>
-            <Col xs={12}>
-              <Alert className={this.state.showAlert === true ? "show" : "hide"} bsStyle={this.state.alertStyle}>
-                {this.state.alertMessage}
-              </Alert>
-            </Col>
-          </Form>
-        )}
+              <Col xs={6} md={5} mdOffset={2}>
+                <FormGroup controlId="countValue">
+                  <InputGroup>
+                    <InputGroup.Addon>{counts.name}</InputGroup.Addon>
+                    <FormControl
+                      type='number'
+                      name='countValue'
+                      defaultValue={counts.value}
+                      ref='countValue'
+                      />
+                    <FormControl.Feedback/>
+                  </InputGroup>
+                </FormGroup>
+              </Col>
+              <Col xs={6} md={5}>
+                <Button onClick={this.updateCount.bind(this)}>Modifier</Button>
+              </Col>
+              <Col xs={12}>
+                <Alert className={this.state.showAlert === true ? "show" : "hide"} bsStyle={this.state.alertStyle}>
+                  {this.state.alertMessage}
+                </Alert>
+              </Col>
+            </Form>
+          )}
+        </Panel.Body>
       </Panel>
     )
   }

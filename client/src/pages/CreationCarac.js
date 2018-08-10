@@ -6,7 +6,7 @@ import CreaCarac from "../components/creation/CreaCarac";
 export class CreationCarac extends Component {
   render() {
     return (
-      <Grid id="creaCarac" fluid>
+      <Grid id="creaCarac" className="vertical-middle" fluid>
         <CreaCarac />
       </Grid>
     )

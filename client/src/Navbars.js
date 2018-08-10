@@ -6,7 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 let user;
 let perso;
 
-if (window.location.search !== "") {
+if (window.location.pathname === "/personnage" || window.location.pathname === "/equipement" || window.location.pathname === "/combat" || window.location.pathname === "/moncompte") {
   let urlParams = window.location.search.substring(1).split('=');
   let recupUser = urlParams[1].split('&');
   user = recupUser[0];
