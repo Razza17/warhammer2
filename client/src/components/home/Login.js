@@ -63,7 +63,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Grid id="login" fluid>
+      <Grid id="login" className="vertical-middle" fluid>
         <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
           <PanelGroup>
             <Panel>

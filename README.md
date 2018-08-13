@@ -28,13 +28,13 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] POST, UPDATE and DELETE les données de l'équipement
 - [x] POST, UPDATE and DELETE les données de l'inventaire
 - [x] Page Combat (Regroupement des composants utiles à la phase de combat)
-- [x] Page Login et mot de passe
+- [x] Page Login et mot de passe (avec Firebase).
 - [x] Page Création de personnage et POST dans la BDD
 - [x] Page Création : Talents, Armes, Armures
 - [x] Page Création : Munitions, Argent, Folies, Inventaire
 - [x] Page récap avec update possible
 - [x] Récupération des données du personnage selon l'utilisateur
 - [x] Choix du personnage à afficher selon l'utilisateur
+- [x] Design global
 - Page "mon compte" + changement email, pseudo, nom de personnages + récupération password
 - DELETE Personnage(s)
-- Design global

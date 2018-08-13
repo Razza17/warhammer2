@@ -12,16 +12,6 @@ class Logup extends Component {
   constructor(props) {
     super(props);
 
-    let config = {
-      apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
-      authDomain: "warhammer-81ced.firebaseapp.com",
-      databaseURL: "https://warhammer-81ced.firebaseio.com",
-      projectId: "warhammer-81ced",
-      storageBucket: "warhammer-81ced.appspot.com",
-      messagingSenderId: "1046515260577"
-    };
-    firebase.initializeApp(config);
-
     this.state = {
       redirect: false,
       activeKey: "0",
@@ -45,6 +35,16 @@ class Logup extends Component {
     };
 
     if(password === confirmPassword && password !== "" && confirmPassword !== "") {
+      let config = {
+        apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
+        authDomain: "warhammer-81ced.firebaseapp.com",
+        databaseURL: "https://warhammer-81ced.firebaseio.com",
+        projectId: "warhammer-81ced",
+        storageBucket: "warhammer-81ced.appspot.com",
+        messagingSenderId: "1046515260577"
+      };
+      firebase.initializeApp(config);
+
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         let errorCode = error.code;
         let errorMessage = error.message;
@@ -61,7 +61,7 @@ class Logup extends Component {
 
   render() {
     return (
-      <Grid id="logup" fluid>
+      <Grid id="logup" className="vertical-middle" fluid>
         <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
           <PanelGroup>
             <Panel>

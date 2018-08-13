@@ -145,6 +145,7 @@ class ProfilRecap extends Component {
                   {this.state.alertMessage}
                 </Alert>
               </Form>
+              <p className="danger">Tu pourra modifier le nom de ton personnage dans la rubrique 'Mon Compte' disponible dans la prochaine page.</p>
             </Panel.Body>
           </Panel>
         )}
