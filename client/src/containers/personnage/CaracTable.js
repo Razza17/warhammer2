@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button } from 'react-bootstrap';
+import { Table, Panel, Button, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -38,45 +38,13 @@ class CaracTable extends Component {
 
   render() {
     return (
-      <Panel header="Profil du personnage" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
-          {this.state.update ? "Retour aux Caractéristiques" : "Modifier"}
-        </Button>
-        <Table condensed bordered hover striped className="carac-table-desktop" fill>
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th colSpan="8">Profil Principal</th>
-              <th colSpan="8">Profil Secondaire</th>
-            </tr>
-            <tr>
-              <th>&nbsp;</th>
-              <th>CC</th>
-              <th>CT</th>
-              <th>F</th>
-              <th>E</th>
-              <th>Ag</th>
-              <th>Int</th>
-              <th>FM</th>
-              <th>Soc</th>
-              <th>A</th>
-              <th>B</th>
-              <th>BF</th>
-              <th>BE</th>
-              <th>M</th>
-              <th>Mag</th>
-              <th>PF</th>
-              <th>PD</th>
-              {this.state.update && <th>Update</th>}
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.carac.map((carac, i) => this.state.update ? <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/> : <Carac key={i} {...carac} />) }
-          </tbody>
-        </Table>
-        { this.state.update ?
-          this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) :
-          <Table condensed bordered hover striped className="carac-table-mobile" fill>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">{"Profil de " + this.state.perso}</Panel.Title>
+          <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>{this.state.update ? <Glyphicon glyph="minus" /> : <Glyphicon glyph="plus" />}</Button>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed bordered hover striped className="carac-table-desktop" fill>
             <thead>
               <tr>
                 <th>&nbsp;</th>
@@ -101,13 +69,48 @@ class CaracTable extends Component {
                 <th>Mag</th>
                 <th>PF</th>
                 <th>PD</th>
+                {this.state.update && <th>Update</th>}
               </tr>
             </thead>
             <tbody>
-              { this.props.carac.map((carac, i) => <Carac key={i} {...carac} />) }
+              { this.props.carac.map((carac, i) => this.state.update ? <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/> : <Carac key={i} {...carac} />) }
             </tbody>
           </Table>
-        }
+          { this.state.update ?
+            this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) :
+            <Table condensed bordered hover striped className="carac-table-mobile" fill>
+              <thead>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th colSpan="8">Profil Principal</th>
+                  <th colSpan="8">Profil Secondaire</th>
+                </tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>CC</th>
+                  <th>CT</th>
+                  <th>F</th>
+                  <th>E</th>
+                  <th>Ag</th>
+                  <th>Int</th>
+                  <th>FM</th>
+                  <th>Soc</th>
+                  <th>A</th>
+                  <th>B</th>
+                  <th>BF</th>
+                  <th>BE</th>
+                  <th>M</th>
+                  <th>Mag</th>
+                  <th>PF</th>
+                  <th>PD</th>
+                </tr>
+              </thead>
+              <tbody>
+                { this.props.carac.map((carac, i) => <Carac key={i} {...carac} />) }
+              </tbody>
+            </Table>
+          }
+        </Panel.Body>
       </Panel>
     )
   }

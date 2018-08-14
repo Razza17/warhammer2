@@ -1,37 +1,170 @@
-/*******************************************************************************
-                              SUMMARY
-1. HTML, BODY
-2. NAVBAR
-*******************************************************************************/
-
-/* 1. HTML, BODY */
 html, body, #root, .App, main {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   height: 100%;
-  background-color: #546e7a;
 }
-/* 2. NAVBAR */
+
 .navbar {
-  background-image: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #000000;
-  border-radius: 0;
-  background-color: #819ca9;
+  margin-bottom: 0;
 }
 
-.navbar-default .navbar-brand {
-  color: #ffffff;
+main > div {
+  padding-top: 20px;
 }
 
-.navbar .navbar-nav>li>a {
-  border: none;
-  color: #ffffff;
+.alert {
+  margin-top: 20px;
 }
 
-.navbar-collapse li:hover {
-  background-color: #819ca9;
+/* CLASS UNIQUE */
+.align-center {
+  text-align: center;
+}
+
+.hideNav {
+  display: none;
+}
+
+.showNav {
+  display: block;
+}
+/* END CLASS UNIQUE */
+
+/* HOME PAGE */
+#home {
+  background-image: url('../img/home.jpg');
+  height: 100%;
+  padding-top: 0;
+}
+
+#home h1 {
+  margin-bottom: 50px;
+}
+/* END HOME PAGE */
+
+/* LOGUP PAGE */
+.loginMsg p {
+  color: red;
+}
+
+#logup .panel-group {
+  margin-top: 50px;
+}
+/* END LOGUP PAGE */
+
+/* RECAP PAGE */
+#recap {
+  margin-bottom: 50px;
+}
+/* END RECAP PAGE */
+
+/* BOOTSTRAP SURCOUCHE */
+h2 {
+  color: #676767;
+}
+
+.home-panel .panel-heading {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* .panel, table {
+  background-color: rgba(46, 51, 56, 0.8);
+} */
+
+.panel-heading, .panel-title>a {
+  font-size: 20px;
+}
+
+.noPadding .panel-body {
+  padding: 0;
+}
+
+.glyphicon, .panel-title>a {
+  cursor: pointer;
+}
+/* END BOOTSTRAP SURCOUCHE */
+
+ul li {
+  list-style-type: none;
+}
+
+/* MANAGE TABLE */
+.table tbody tr td, .table thead tr th, .count {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.carac-table-desktop {
+  display: table;
+}
+
+.carac-table-mobile {
+  display: none;
+}
+
+.show-desktop {
+  display: block;
+}
+
+.show-mobile {
+  display: none;
+}
+
+.badge {
+  cursor: pointer;
+}
+
+.showUpdateButton {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+/* END MANAGE TABLE */
+
+/* MESSAGE SHOW/HIDE */
+.hideMsg {
+  position: fixed;
+  bottom: 10px;
+  right: -100%;
+  opacity: 0;
+  transition: right, opacity 1s;
+  z-index: 1000;
+}
+
+.hideMsg.showMsg {
+  right: 5px;
+  opacity: 1;
+}
+/* END MESSAGE SHOW/HIDE */
+
+/*------------------------------------- MEDIA QUERIES -------------------------------------*/
+
+@media screen and (max-width: 500px) {
+
+  .show-desktop {
+    display: none;
+  }
+
+  .show-mobile {
+    display: block;
+  }
+
+}
+
+@media screen and (max-width: 999px) {
+
+  .carac-table-desktop {
+    display: none;
+  }
+
+  .carac-table-mobile {
+    display: table;
+  }
+
 }

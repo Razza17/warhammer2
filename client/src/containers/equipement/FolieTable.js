@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button, FormControl, FormGroup } from 'react-bootstrap';
+import { Table, Panel, Button, FormControl, FormGroup, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
@@ -52,34 +52,37 @@ class FolieTable extends Component {
 
   render() {
     return (
-      <Panel header="Folies" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
-          {this.state.update ? "Retour aux Folies" : "Modifier / Ajouter"}
-        </Button>
-        <Table condensed bordered hover striped fill>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              {this.state.update && <th>Actions</th>}
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.folie.map((folie, i) => this.state.update ? <FolieUpdate key={folie._id} {...folie}  getFolie={this.props.getFolie} /> : <Folie key={i} {...folie}/>) }
-            {this.state.update &&
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">Folies</Panel.Title>
+          <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>{this.state.update ? <Glyphicon glyph="minus" /> : <Glyphicon glyph="plus" />}</Button>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed bordered hover striped fill>
+            <thead>
               <tr>
-                <td>
-                  <FormGroup controlId="nomPostFolie">
-                    <FormControl
-                      type='text'
-                      placeholder='Nom'
-                      ref='nomPostFolie' />
-                  </FormGroup>
-                </td>
-                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
+                <th>Nom</th>
+                {this.state.update && <th>Actions</th>}
               </tr>
-            }
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              { this.props.folie.map((folie, i) => this.state.update ? <FolieUpdate key={folie._id} {...folie}  getFolie={this.props.getFolie} /> : <Folie key={i} {...folie}/>) }
+              {this.state.update &&
+                <tr>
+                  <td>
+                    <FormGroup controlId="nomPostFolie">
+                      <FormControl
+                        type='text'
+                        placeholder='Nom'
+                        ref='nomPostFolie' />
+                    </FormGroup>
+                  </td>
+                  <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
+                </tr>
+              }
+            </tbody>
+          </Table>
+        </Panel.Body>
       </Panel>
     )
   }

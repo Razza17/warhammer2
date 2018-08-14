@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Panel, Button, FormGroup, FormControl } from 'react-bootstrap';
+import { Table, Panel, Button, FormGroup, FormControl, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
@@ -58,61 +58,64 @@ class TalentTable extends Component {
 
   render () {
     return (
-      <Panel header="Talents" className="noPadding">
-        <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>
-          {this.state.update ? "Retour aux Talents" : "Modifier / Ajouter"}
-        </Button>
-        <Table condensed hover striped fill>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th><span className="show-desktop">Description</span><span className="show-mobile">Desc</span></th>
-              <th><span className="show-desktop">Compétences</span><span className="show-mobile">Comp</span></th>
-              <th>Bonus</th>
-              {this.state.update && <th>Update</th>}
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.talent.map((talents, i) => this.state.update ? <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} updateTalent={this.props.updateTalent} /> : <Talent key={i} {...talents} />) }
-            {this.state.update &&
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">Talents</Panel.Title>
+          <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>{this.state.update ? <Glyphicon glyph="minus" /> : <Glyphicon glyph="plus" />}</Button>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed hover striped fill>
+            <thead>
               <tr>
-                <td>
-                  <FormGroup controlId="nomPostTalent">
-                    <FormControl
-                      type='text'
-                      placeholder='Nom'
-                      ref='nomPostTalent' />
-                  </FormGroup>
-                </td>
-                <td>
-                  <FormGroup controlId="descPostTalent">
-                    <FormControl
-                      type='text'
-                      placeholder='Description'
-                      ref='descPostTalent' />
-                  </FormGroup>
-                </td>
-                <td>
-                  <FormGroup controlId="compPostTalent">
-                    <FormControl
-                      type='text'
-                      placeholder='Compétence'
-                      ref='compPostTalent' />
-                  </FormGroup>
-                </td>
-                <td>
-                  <FormGroup controlId="bonusPostTalent">
-                    <FormControl
-                      type='text'
-                      placeholder='Bonus'
-                      ref='bonusPostTalent' />
-                  </FormGroup>
-                </td>
-                <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
+                <th>Nom</th>
+                <th><span className="show-desktop">Description</span><span className="show-mobile">Desc</span></th>
+                <th><span className="show-desktop">Compétences</span><span className="show-mobile">Comp</span></th>
+                <th>Bonus</th>
+                {this.state.update && <th>Update</th>}
               </tr>
-            }
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              { this.props.talent.map((talents, i) => this.state.update ? <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} updateTalent={this.props.updateTalent} /> : <Talent key={i} {...talents} />) }
+              {this.state.update &&
+                <tr>
+                  <td>
+                    <FormGroup controlId="nomPostTalent">
+                      <FormControl
+                        type='text'
+                        placeholder='Nom'
+                        ref='nomPostTalent' />
+                    </FormGroup>
+                  </td>
+                  <td>
+                    <FormGroup controlId="descPostTalent">
+                      <FormControl
+                        type='text'
+                        placeholder='Description'
+                        ref='descPostTalent' />
+                    </FormGroup>
+                  </td>
+                  <td>
+                    <FormGroup controlId="compPostTalent">
+                      <FormControl
+                        type='text'
+                        placeholder='Compétence'
+                        ref='compPostTalent' />
+                    </FormGroup>
+                  </td>
+                  <td>
+                    <FormGroup controlId="bonusPostTalent">
+                      <FormControl
+                        type='text'
+                        placeholder='Bonus'
+                        ref='bonusPostTalent' />
+                    </FormGroup>
+                  </td>
+                  <td><Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}>Ajouter</Button></td>
+                </tr>
+              }
+            </tbody>
+          </Table>
+        </Panel.Body>
       </Panel>
     )
   }

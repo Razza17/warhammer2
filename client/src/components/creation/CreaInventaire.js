@@ -30,13 +30,13 @@ class CreaInventaire extends Component {
   }
 
   componentWillMount() {
-    this.props.getCarac();
+    this.props.getCarac(this.state.user, this.state.perso);
   }
 
   handleSelect(activeKey) {
     this.setState({activeKey});
-    this.props.getProfile();
-    this.props.getCompAvance();
+    this.props.getProfile(this.state.user, this.state.perso);
+    this.props.getCompAvance(this.state.user, this.state.perso);
   }
 
   changePanel() {
@@ -119,7 +119,7 @@ class CreaInventaire extends Component {
       perso: this.state.perso
     };
     this.props.postInventaire(inventaire);
-    this.props.getInventaire();
+    this.props.getInventaire(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -132,122 +132,119 @@ class CreaInventaire extends Component {
   render() {
     return (
       <Col xs={12} md={6} mdOffset={3}>
-        <h2 className="text-center uppercase">
-          {this.state.activeKey === "1" ? "Monnaies" : this.state.activeKey === "2" ? "Munitions" : "Inventaire"}
-        </h2>
-        <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)}>
+        <PanelGroup id={this.state.activeKey} activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)}>
           <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1">
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th>Couronnes</th>
-                  <th>Pistoles</th>
-                  <th>Sous</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <FormGroup controlId="couronnes">
-                      <FormControl
-                        type='number'
-                        placeholder='couronnes'
-                        ref='couronnes' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="pistoles">
-                      <FormControl
-                        type='number'
-                        placeholder='pistoles'
-                        ref='pistoles' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="sous">
-                      <FormControl
-                        type='number'
-                        placeholder='sous'
-                        ref='sous' />
-                    </FormGroup>
-                  </td>
-                  <td><Button onClick={this.postMoney.bind(this)}>Enregistrer</Button></td>
-                </tr>
-              </tbody>
-            </Table>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Monnaie</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <Table condensed bordered hover striped fill>
+                <tbody>
+                  <tr>
+                    <td>
+                      <FormGroup controlId="couronnes">
+                        <FormControl
+                          type='number'
+                          placeholder='couronnes'
+                          ref='couronnes' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="pistoles">
+                        <FormControl
+                          type='number'
+                          placeholder='pistoles'
+                          ref='pistoles' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="sous">
+                        <FormControl
+                          type='number'
+                          placeholder='sous'
+                          ref='sous' />
+                      </FormGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button className="next-table" onClick={this.postMoney.bind(this)}>Passer aux Munitions</Button>
+            </Panel.Body>
           </Panel>
 
           <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2">
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th>Munitions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <FormGroup controlId="munitions">
-                      <FormControl
-                        type='number'
-                        placeholder='nombre de munitions'
-                        ref='munitions' />
-                    </FormGroup>
-                  </td>
-                  <td><Button onClick={this.postMunition.bind(this)}>Enregistrer</Button></td>
-                </tr>
-              </tbody>
-            </Table>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Munitions</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <Table condensed bordered hover striped fill>
+                <tbody>
+                  <tr>
+                    <td>
+                      <FormGroup controlId="munitions">
+                        <FormControl
+                          type='number'
+                          placeholder='nombre de munitions'
+                          ref='munitions' />
+                      </FormGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button className="next-table" onClick={this.postMunition.bind(this)}>Passer à l'inventaire</Button>
+            </Panel.Body>
           </Panel>
 
           <Panel className={this.state.activeKey === "3" ? "show" : "hide"} eventKey="3">
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th><span className="show-desktop">Quantité</span><span className="show-mobile">Qté</span></th>
-                  <th><span className="show-desktop">Encombrement</span><span className="show-mobile">Enc</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                { this.props.inventaire.map((inventaires, i) => <Inventaire key={i} {...inventaires}/>) }
-                <tr>
-                  <td>
-                    <FormGroup controlId="nomPostInventaire">
-                      <FormControl
-                        type='text'
-                        placeholder='Nom'
-                        ref='nomPostInventaire' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="quantitePostInventaire">
-                      <FormControl
-                        type='number'
-                        placeholder='Quantité'
-                        ref='quantitePostInventaire' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="encPostInventaire">
-                      <FormControl
-                        type='number'
-                        placeholder='Encombrement'
-                        ref='encPostInventaire' />
-                    </FormGroup>
-                  </td>
-                  <td><Button onClick={this.postInventaire.bind(this)}>Ajouter</Button></td>
-                </tr>
-              </tbody>
-            </Table>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Inventaire</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <Table condensed bordered hover striped fill>
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th><span className="show-desktop">Quantité</span><span className="show-mobile">Qté</span></th>
+                    <th><span className="show-desktop">Encombrement</span><span className="show-mobile">Enc</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { this.props.inventaire.map((inventaires, i) => <Inventaire key={i} {...inventaires}/>) }
+                  <tr>
+                    <td>
+                      <FormGroup controlId="nomPostInventaire">
+                        <FormControl
+                          type='text'
+                          placeholder='Nom'
+                          ref='nomPostInventaire' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="quantitePostInventaire">
+                        <FormControl
+                          type='number'
+                          placeholder='Quantité'
+                          ref='quantitePostInventaire' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="encPostInventaire">
+                        <FormControl
+                          type='number'
+                          placeholder='Encombrement'
+                          ref='encPostInventaire' />
+                      </FormGroup>
+                    </td>
+                    <td><Button onClick={this.postInventaire.bind(this)}>Ajouter</Button></td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button className='next-table'>
+                <Link to={this.state.nextPage}>Récapitulatif</Link>
+              </Button>
+            </Panel.Body>
           </Panel>
         </PanelGroup>
-
-        {this.state.activeKey === '3' &&
-          <Button className='next-table show'>
-            <Link to={this.state.nextPage}>Récapitulatif</Link>
-          </Button>
-        }
       </Col>
     )
   }

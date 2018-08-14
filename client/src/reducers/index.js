@@ -14,6 +14,7 @@ import { folieReducer } from "./FolieReducer";
 import { experienceReducer } from "./ExperienceReducer";
 import { userReducer } from "./UserReducer";
 import { logupReducer } from "./LogupReducer";
+import { persoReducer } from "./PersoReducer";
 
 export default combineReducers({
     profile: profilReducer,
@@ -30,5 +31,6 @@ export default combineReducers({
     folie: folieReducer,
     experience: experienceReducer,
     user: userReducer,
-    logup: logupReducer
+    logup: logupReducer,
+    perso: persoReducer
 })

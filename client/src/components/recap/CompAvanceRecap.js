@@ -35,23 +35,28 @@ class CompAvanceRecap extends Component {
 
   render() {
     return (
-      <Panel header="Compétences de Avance" className="noPadding">
-        <Table condensed hover striped fill>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Carac.</th>
-              <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
-              <th>+10%</th>
-              <th>+20%</th>
-              <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
-              <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.compAvance.map((competenceB, i) => <CompetenceAvanceUpdate key={i} {...competenceB} getCompAvance={this.props.getCompAvance} updateCompAvance={this.props.updateCompAvance} user={this.state.user} perso={this.state.perso}/>) }
-          </tbody>
-        </Table>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>Compétences Avancées</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed hover striped fill>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Carac.</th>
+                <th><span className="show-desktop">Acquis</span><span className="show-mobile">Acq.</span></th>
+                <th>+10%</th>
+                <th>+20%</th>
+                <th><span className="show-desktop">Bonus</span><span className="show-mobile">Bon.</span></th>
+                <th><span className="show-desktop">Total</span><span className="show-mobile">Tot.</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.props.compAvance.map((competenceB, i) => <CompetenceAvanceUpdate key={i} {...competenceB} getCompAvance={this.props.getCompAvance} updateCompAvance={this.props.updateCompAvance} user={this.state.user} perso={this.state.perso}/>) }
+            </tbody>
+          </Table>
+        </Panel.Body>
       </Panel>
     )
   }

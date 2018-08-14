@@ -30,22 +30,27 @@ class ArmeRecap extends Component {
 
   render() {
     return (
-      <Panel header="Armes" className="noPadding">
-        <Table condensed hover striped fill>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Enc</th>
-              <th><span className="show-desktop">Dégâts</span><span className="show-mobile">Dég</span></th>
-              <th>Portée</th>
-              <th><span className="show-desktop">Rechargement</span><span className="show-mobile">Recharg</span></th>
-              <th>Attributs</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.arme.map((armes, i) => <ArmesUpdate key={armes._id} {...armes} getArme={this.props.getArme} />)}
-          </tbody>
-        </Table>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>Armes</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed hover striped fill>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Enc</th>
+                <th><span className="show-desktop">Dégâts</span><span className="show-mobile">Dég</span></th>
+                <th>Portée</th>
+                <th><span className="show-desktop">Rechargement</span><span className="show-mobile">Recharg</span></th>
+                <th>Attributs</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.arme.map((armes, i) => <ArmesUpdate key={armes._id} {...armes} getArme={this.props.getArme} />)}
+            </tbody>
+          </Table>
+        </Panel.Body>
       </Panel>
     )
   }

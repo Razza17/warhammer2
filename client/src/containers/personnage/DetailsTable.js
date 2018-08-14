@@ -26,8 +26,13 @@ class DetailsTable extends Component {
 
   render() {
     return (
-      <Panel header="Détails du personnage">
-        { this.props.details.map((details, i) => <Details key={i} {...details} />) }
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">{"Détails de " + this.state.perso}</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          { this.props.details.map((details, i) => <Details key={i} {...details} />) }
+        </Panel.Body>
       </Panel>
     )
   }

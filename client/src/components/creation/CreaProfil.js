@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Col, Form, FormGroup, FormControl, InputGroup, Button, PanelGroup, Panel } from 'react-bootstrap';
+import { Col, FormGroup, FormControl, Button, PanelGroup, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
 import { postProfile, getProfile } from "../../actions/ProfilAction";
 import { postDetails } from "../../actions/DetailAction";
+import { postPerso } from "../../actions/PersoAction";
 
 class CreaProfil extends Component {
 
@@ -49,9 +50,14 @@ class CreaProfil extends Component {
       user:this.state.user,
       perso:profileNom
     };
+    let perso = {
+      nom:profileNom,
+      user:this.state.user
+    }
     if(this.state.profileNom === "success" && this.state.profileRace === "success" && this.state.profileCarriereA === "success"
     && this.state.profileAcarriere === "success") {
       this.props.postProfile(profile);
+      this.props.postPerso(perso);
       // Plier le Panel en cours et déplier le Panel suivant
       let stateActiveKey = parseInt(this.state.activeKey, 10);
       let newActiveKey = stateActiveKey + 1;
@@ -134,212 +140,163 @@ class CreaProfil extends Component {
   render() {
     return (
       <Col xs={12} md={4} mdOffset={4}>
-        <h2 className="text-center uppercase">{this.state.activeKey === "1" ? "Profil de ton personnage" : "Détails de ton personnage"}</h2>
-        <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)}>
+        <PanelGroup id={this.state.activeKey} activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)}>
           <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1">
-            <Form>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Profil de ton personnage</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
               <FormGroup controlId="profileNom" validationState={this.state.profileNom}>
-                <InputGroup>
-                  <InputGroup.Addon>Nom :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name="profileNom"
-                    placeholder="Entre le nom du personnage"
-                    ref='profileNom'
-                    onChange={this.onChange.bind(this)}
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
+                <FormControl
+                  type='text'
+                  name="profileNom"
+                  placeholder="Entre le nom de ton personnage"
+                  ref='profileNom'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
               </FormGroup>
               <FormGroup controlId="profileRace" validationState={this.state.profileRace}>
-                <InputGroup>
-                  <InputGroup.Addon>Race :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name="profileRace"
-                    placeholder="Entre la race de ton personnage"
-                    ref='profileRace'
-                    onChange={this.onChange.bind(this)}
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
+                <FormControl
+                  type='text'
+                  name="profileRace"
+                  placeholder="Entre la race de ton personnage"
+                  ref='profileRace'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
               </FormGroup>
               <FormGroup controlId="profileCarriereA" validationState={this.state.profileCarriereA}>
-                <InputGroup>
-                  <InputGroup.Addon>Carrière acrtuelle :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name="profileCarriereA"
-                    placeholder="Carrière acrtuelle de ton personnage"
-                    ref='profileCarriereA'
-                    onChange={this.onChange.bind(this)}
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
+                <FormControl
+                  type='text'
+                  name="profileCarriereA"
+                  placeholder="Carrière acrtuelle de ton personnage"
+                  ref='profileCarriereA'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
               </FormGroup>
               <FormGroup controlId="profileAcarriere" validationState={this.state.profileAcarriere}>
-                <InputGroup>
-                  <InputGroup.Addon>Ancienne carrière :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name="profileAcarriere"
-                    placeholder="Ancienne carrière de ton personnage"
-                    ref='profileAcarriere'
-                    onChange={this.onChange.bind(this)}
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
+                <FormControl
+                  type='text'
+                  name="profileAcarriere"
+                  placeholder="Ancienne carrière de ton personnage"
+                  ref='profileAcarriere'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
               </FormGroup>
               {this.state.profileFormValidate ? <Button disabled>Enregistrer</Button> : <Button onClick={this.postProfile.bind(this)}>Enregistrer</Button>}
-            </Form>
+            </Panel.Body>
           </Panel>
 
           <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2">
-            <Form>
-              <Col xs={12} md={6}>
-                <FormGroup controlId="detailAge" validationState={this.state.detailAge}>
-                  <InputGroup>
-                    <InputGroup.Addon>Age :</InputGroup.Addon>
-                    <FormControl
-                      type='number'
-                      name='detailAge'
-                      placeholder="Entre l'âge du personnage"
-                      ref='detailAge'
-                      onChange={this.onChange.bind(this)}
-                      />
-                    <FormControl.Feedback/>
-                  </InputGroup>
-                </FormGroup>
-              </Col>
-              <Col xs={12} md={6}>
-                <FormGroup controlId="detailSexe" validationState={this.state.detailSexe}>
-                  <InputGroup>
-                    <InputGroup.Addon>Sexe :</InputGroup.Addon>
-                    <FormControl
-                      componentClass='select'
-                      name='detailSexe'
-                      ref='detailSexe'>
-                      <option value="Masculin">Masculin</option>
-                      <option value="Féminin">Féminin</option>
-                    </FormControl>
-                    <FormControl.Feedback/>
-                  </InputGroup>
-                </FormGroup>
-              </Col>
-              <Col xs={12} md={6}>
-                <FormGroup controlId="detailYeux" validationState={this.state.detailYeux}>
-                  <InputGroup>
-                    <InputGroup.Addon>Yeux :</InputGroup.Addon>
-                    <FormControl
-                      type='text'
-                      name='detailYeux'
-                      placeholder="Couleur des yeux"
-                      ref='detailYeux'
-                      onChange={this.onChange.bind(this)}
-                      />
-                    <FormControl.Feedback/>
-                  </InputGroup>
-                </FormGroup>
-              </Col>
-              <Col xs={12} md={6}>
-                <FormGroup controlId="detailTaille" validationState={this.state.detailTaille}>
-                  <InputGroup>
-                    <InputGroup.Addon>Taille :</InputGroup.Addon>
-                    <FormControl
-                      type='text'
-                      name='detailTaille'
-                      placeholder="La taille (en cm)"
-                      ref='detailTaille'
-                      onChange={this.onChange.bind(this)}
-                      />
-                    <FormControl.Feedback/>
-                  </InputGroup>
-                </FormGroup>
-              </Col>
-              <Col xs={12} md={6}>
-                <FormGroup controlId="detailCheveux" validationState={this.state.detailCheveux}>
-                  <InputGroup>
-                    <InputGroup.Addon>Cheveux :</InputGroup.Addon>
-                    <FormControl
-                      type='text'
-                      name='detailCheveux'
-                      placeholder="Couleur des cheveux"
-                      ref='detailCheveux'
-                      onChange={this.onChange.bind(this)}
-                      />
-                    <FormControl.Feedback/>
-                  </InputGroup>
-                </FormGroup>
-              </Col>
-              <Col xs={12} md={6}>
-                <FormGroup controlId="detailPoids" validationState={this.state.detailPoids}>
-                  <InputGroup>
-                    <InputGroup.Addon>Poids :</InputGroup.Addon>
-                    <FormControl
-                      type='text'
-                      name='detailPoids'
-                      placeholder="Le poids (en kg)"
-                      ref='detailPoids'
-                      onChange={this.onChange.bind(this)}
-                      />
-                    <FormControl.Feedback/>
-                  </InputGroup>
-                </FormGroup>
-              </Col>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Détails de ton personnage</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <FormGroup controlId="detailAge" validationState={this.state.detailAge}>
+                <FormControl
+                  type='number'
+                  name='detailAge'
+                  placeholder="Entre l'âge du personnage"
+                  ref='detailAge'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
+              </FormGroup>
+              <FormGroup controlId="detailSexe" validationState={this.state.detailSexe}>
+                <FormControl
+                  componentClass='select'
+                  name='detailSexe'
+                  ref='detailSexe'>
+                  <option value="Masculin">Masculin</option>
+                  <option value="Féminin">Féminin</option>
+                </FormControl>
+                <FormControl.Feedback/>
+              </FormGroup>
+              <FormGroup controlId="detailYeux" validationState={this.state.detailYeux}>
+                <FormControl
+                  type='text'
+                  name='detailYeux'
+                  placeholder="Couleur des yeux"
+                  ref='detailYeux'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
+              </FormGroup>
+              <FormGroup controlId="detailTaille" validationState={this.state.detailTaille}>
+                <FormControl
+                  type='text'
+                  name='detailTaille'
+                  placeholder="La taille (en cm)"
+                  ref='detailTaille'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
+              </FormGroup>
+              <FormGroup controlId="detailCheveux" validationState={this.state.detailCheveux}>
+                <FormControl
+                  type='text'
+                  name='detailCheveux'
+                  placeholder="Couleur des cheveux"
+                  ref='detailCheveux'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
+              </FormGroup>
+              <FormGroup controlId="detailPoids" validationState={this.state.detailPoids}>
+                <FormControl
+                  type='text'
+                  name='detailPoids'
+                  placeholder="Le poids (en kg)"
+                  ref='detailPoids'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
+              </FormGroup>
               <FormGroup controlId="detailSigne" validationState={this.state.detailSigne}>
-                <InputGroup>
-                  <InputGroup.Addon>Signe astral :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name='detailSigne'
-                    placeholder="Le signe astral de ton personnage"
-                    ref='detailSigne'
-                    onChange={this.onChange.bind(this)}
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
+                <FormControl
+                  type='text'
+                  name='detailSigne'
+                  placeholder="Le signe astral de ton personnage"
+                  ref='detailSigne'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
               </FormGroup>
               <FormGroup controlId="detailFraterie" validationState={this.state.detailFraterie}>
-                <InputGroup>
-                  <InputGroup.Addon>Fraterie :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name='detailFraterie'
-                    placeholder="Combien de frère(s) et soeur(s) a ton personnage"
-                    ref='detailFraterie'
-                    onChange={this.onChange.bind(this)}
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
+                <FormControl
+                  type='text'
+                  name='detailFraterie'
+                  placeholder="Combien de frère(s) et soeur(s) a ton personnage"
+                  ref='detailFraterie'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
               </FormGroup>
               <FormGroup controlId="detailNaissance" validationState={this.state.detailNaissance}>
-                <InputGroup>
-                  <InputGroup.Addon>Naissance :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name='detailNaissance'
-                    placeholder="Le lieu de naissance de ton personnage"
-                    ref='detailNaissance'
-                    onChange={this.onChange.bind(this)}
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
+                <FormControl
+                  type='text'
+                  name='detailNaissance'
+                  placeholder="Le lieu de naissance de ton personnage"
+                  ref='detailNaissance'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
               </FormGroup>
               <FormGroup controlId="detailDistinction" validationState={this.state.detailDistinction}>
-                <InputGroup>
-                  <InputGroup.Addon>Distinction :</InputGroup.Addon>
-                  <FormControl
-                    type='text'
-                    name='detailDistinction'
-                    placeholder="La distinction de ton personnage"
-                    ref='detailDistinction'
-                    onChange={this.onChange.bind(this)}
-                    />
-                  <FormControl.Feedback/>
-                </InputGroup>
+                <FormControl
+                  type='text'
+                  name='detailDistinction'
+                  placeholder="La distinction de ton personnage"
+                  ref='detailDistinction'
+                  onChange={this.onChange.bind(this)}
+                  />
+                <FormControl.Feedback/>
               </FormGroup>
               {this.state.detailsFormValidate ? <Button disabled>Enregistrer</Button> : <Button onClick={this.postDetails.bind(this)}>Enregistrer</Button>}
-            </Form>
+            </Panel.Body>
           </Panel>
         </PanelGroup>
       </Col>
@@ -355,9 +312,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    postProfile,
-    getProfile,
-    postDetails
+    postProfile, getProfile,
+    postDetails,
+    postPerso
   }, dispatch)
 }
 
