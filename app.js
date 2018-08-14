@@ -93,16 +93,30 @@ app.get('/profil/:user/:perso', function(req, res) {
 app.put('/profil/:_id', function(req, res) {
   let newData = req.body;
   let query = req.params._id;
+  let update;
 
-  let update = {
-    '$set': {
-      nom: newData.nom,
-      race: newData.race,
-      carriereA: newData.carriereA,
-      Acarriere: newData.Acarriere,
-      perso: newData.nom
-    }
-  };
+  if (newData.page === "personnage") {
+    update = {
+      '$set': {
+        carriereA: newData.carriereA,
+        Acarriere: newData.Acarriere
+      }
+    };
+  } else if (newData.page === "recap") {
+    update = {
+      '$set': {
+        race: newData.race,
+        carriereA: newData.carriereA,
+        Acarriere: newData.Acarriere
+      }
+    };
+  } else {
+    update = {
+      '$set': {
+        user: newData.user,
+      }
+    };
+  }
 
   let options = {new: false};
 

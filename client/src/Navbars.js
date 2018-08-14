@@ -6,17 +6,32 @@ import { LinkContainer } from 'react-router-bootstrap';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-let user;
-let perso;
-
-if (window.location.pathname === "/personnage" || window.location.pathname === "/equipement" || window.location.pathname === "/combat" || window.location.pathname === "/moncompte") {
-  let urlParams = window.location.search.substring(1).split('=');
-  let recupUser = urlParams[1].split('&');
-  user = recupUser[0];
-  perso = urlParams[2];
-}
-
 export class Navbars extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: "undefined",
+      perso: "undefined",
+      showNav: false
+    }
+  }
+
+  componentDidMount() {
+    let user;
+    let perso;
+
+    if (window.location.pathname === "/personnage" || window.location.pathname === "/equipement" || window.location.pathname === "/combat" || window.location.pathname === "/moncompte") {
+      let urlParams = window.location.search.substring(1).split('=');
+      let recupUser = urlParams[1].split('&');
+      user = recupUser[0];
+      perso = urlParams[2];
+      this.setState({user: user, perso: perso});
+    }
+
+    user !== undefined && perso !== undefined ? this.setState({showNav: !this.state.showNav}) : this.setState({showNav: false})
+  }
 
   logout() {
     let config = {
@@ -28,7 +43,7 @@ export class Navbars extends Component {
       messagingSenderId: "1046515260577"
     };
     firebase.initializeApp(config);
-    
+
     firebase.auth().signOut().then(function() {
       window.location.assign("/")
     }).catch(function(error) {
@@ -41,23 +56,23 @@ export class Navbars extends Component {
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <NavLink to={"/?pseudo="+user+"&perso="+perso} className="navbar-brand">WARHAMMER 2.0</NavLink>
+            <NavLink to={"/?pseudo="+this.state.user+"&perso="+this.state.perso} className="navbar-brand">WARHAMMER 2.0</NavLink>
           </Navbar.Brand>
           <Navbar.Toggle id='collapseButton' />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav className={user !== undefined && perso !== undefined ? "show" : "hide"}>
-            <LinkContainer to={"/personnage?pseudo="+user+"&perso="+perso}>
-              <NavItem eventKey={0}>Personnage</NavItem>
+          <Nav className={this.state.showNav ? "show" : "hide"}>
+            <LinkContainer to={"/personnage?pseudo="+this.state.user+"&perso="+this.state.perso}>
+              <NavItem eventKey={0}>personnage</NavItem>
             </LinkContainer>
-            <LinkContainer to={"/equipement?pseudo="+user+"&perso="+perso}>
+            <LinkContainer to={"/equipement?pseudo="+this.state.user+"&perso="+this.state.perso}>
               <NavItem eventKey={1}>Equipement</NavItem>
             </LinkContainer>
-            <LinkContainer to={"/combat?pseudo="+user+"&perso="+perso}>
+            <LinkContainer to={"/combat?pseudo="+this.state.user+"&perso="+this.state.perso}>
               <NavItem eventKey={2}>Combat</NavItem>
             </LinkContainer>
           </Nav>
-          <Nav className={user !== undefined && perso !== undefined ? "show" : "hide"} pullRight>
+          <Nav className={this.state.showNav ? "show" : "hide"} pullRight>
             <NavItem eventKey={3} href="#">
               Mon Compte
             </NavItem>

@@ -30,24 +30,21 @@ class ProfilRecap extends Component {
 
   updateProfile() {
     let id = findDOMNode(this.refs.profileId).value;
-    let nomPerso = findDOMNode(this.refs.profileNom).value;
     let newData = {
-      nom: findDOMNode(this.refs.profileNom).value,
       race: findDOMNode(this.refs.profileRace).value,
       carriereA: findDOMNode(this.refs.profileCarriereA).value,
       Acarriere: findDOMNode(this.refs.profileAcarriere).value,
-      user: this.state.user,
-      perso: findDOMNode(this.refs.profileNom).value
+      page: "recap"
     };
 
-    if (findDOMNode(this.refs.profileNom).value !== "" && findDOMNode(this.refs.profileRace).value !== "" && findDOMNode(this.refs.profileCarriereA).value !== "" && findDOMNode(this.refs.profileAcarriere).value !== "") {
+    if (findDOMNode(this.refs.profileRace).value !== "" && findDOMNode(this.refs.profileCarriereA).value !== "" && findDOMNode(this.refs.profileAcarriere).value !== "") {
       this.props.updateProfile(id, newData);
-      this.props.getProfile(this.state.user, nomPerso);
+      this.props.getProfile(this.state.user, this.state.perso);
 
       this.setState({
         showAlert: true,
         alertStyle: "success",
-        alertMessage: "Your Profile has been successfully updated"
+        alertMessage: "Ton profil a été modifié avec success"
       })
 
       setTimeout(() => {
@@ -59,7 +56,7 @@ class ProfilRecap extends Component {
       this.setState({
         showAlert: true,
         alertStyle: "danger",
-        alertMessage: "Oups something went wrong ! Maybe try again ;-)"
+        alertMessage: "Oups quelque chose a mal tourné ! Essaie dans 2 minutes ;-)"
       })
 
       setTimeout(() => {
@@ -88,18 +85,6 @@ class ProfilRecap extends Component {
                       name="profileId"
                       defaultValue={perso._id}
                       ref='profileId'
-                      />
-                    <FormControl.Feedback/>
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup className="hide" controlId="profileNom">
-                  <InputGroup>
-                    <InputGroup.Addon>Nom :</InputGroup.Addon>
-                    <FormControl
-                      type='text'
-                      name="profileNom"
-                      defaultValue={perso.nom}
-                      ref='profileNom'
                       />
                     <FormControl.Feedback/>
                   </InputGroup>
