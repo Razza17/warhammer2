@@ -18,7 +18,7 @@ export class Navbars extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillReceiveProps (nextProps, nextState) {
     let user;
     let perso;
 
