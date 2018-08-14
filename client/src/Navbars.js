@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
 let user;
 let perso;
 
@@ -14,6 +17,25 @@ if (window.location.pathname === "/personnage" || window.location.pathname === "
 }
 
 export class Navbars extends Component {
+
+  logout() {
+    let config = {
+      apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
+      authDomain: "warhammer-81ced.firebaseapp.com",
+      databaseURL: "https://warhammer-81ced.firebaseio.com",
+      projectId: "warhammer-81ced",
+      storageBucket: "warhammer-81ced.appspot.com",
+      messagingSenderId: "1046515260577"
+    };
+    firebase.initializeApp(config);
+    
+    firebase.auth().signOut().then(function() {
+      window.location.assign("/")
+    }).catch(function(error) {
+      // An error happened.
+    });
+  }
+
   render() {
     return (
       <Navbar collapseOnSelect>
@@ -39,7 +61,7 @@ export class Navbars extends Component {
             <NavItem eventKey={3} href="#">
               Mon Compte
             </NavItem>
-            <NavItem eventKey={4} href="#">
+            <NavItem eventKey={4} onClick={this.logout.bind(this)}>
               Me déconnecter
             </NavItem>
           </Nav>

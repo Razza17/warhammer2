@@ -150,7 +150,7 @@ class CreaProfil extends Component {
                 <FormControl
                   type='text'
                   name="profileNom"
-                  placeholder="Entre le nom du personnage"
+                  placeholder="Entre le nom de ton personnage"
                   ref='profileNom'
                   onChange={this.onChange.bind(this)}
                   />
