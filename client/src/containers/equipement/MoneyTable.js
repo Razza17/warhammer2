@@ -27,10 +27,15 @@ class MoneyTable extends Component {
 
   render() {
     return (
-      <Panel header="Monnaies">
-        <Table fill>
-          { this.props.money.map((money, i) => <Money key={i} {...money} get={this.props.getMoney}  update={this.props.updateMoney} />) }
-        </Table>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">Monnaies</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table fill className="moneyTable">
+            { this.props.money.map((money, i) => <Money key={i} {...money} user={this.state.user} perso={this.state.perso} get={this.props.getMoney}  update={this.props.updateMoney} />) }
+          </Table>
+        </Panel.Body>
       </Panel>
     )
   }

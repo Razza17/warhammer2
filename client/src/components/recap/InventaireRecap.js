@@ -30,19 +30,24 @@ class InventaireRecap extends Component {
 
   render() {
     return (
-      <Panel header="Inventaire" className="noPadding">
-        <Table condensed hover striped fill>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th><span className="show-desktop">Quantité</span><span className="show-mobile">Qté</span></th>
-              <th><span className="show-desktop">Encombrement</span><span className="show-mobile">Enc</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.inventaire.map((inventaires, i) => <InventaireUpdate key={inventaires._id} {...inventaires} getInventaire={this.props.getInventaire} />) }
-          </tbody>
-        </Table>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>Inventaire</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed hover striped fill>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th><span className="show-desktop">Quantité</span><span className="show-mobile">Qté</span></th>
+                <th><span className="show-desktop">Encombrement</span><span className="show-mobile">Enc</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.props.inventaire.map((inventaires, i) => <InventaireUpdate key={inventaires._id} {...inventaires} getInventaire={this.props.getInventaire} />) }
+            </tbody>
+          </Table>
+        </Panel.Body>
       </Panel>
     )
   }

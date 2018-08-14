@@ -86,7 +86,11 @@ class EncContainer extends Component {
     let max = this.props.carac.length > 0 && this.props.carac[2].f * 10;
     let encombrement = "Encombrement : " + total + " sur " + max;
     return (
-      <Panel header={encombrement} bsStyle={total < max ? "default" : "danger"}></Panel>
+      <Panel className="enc" bsStyle={total < max ? "default" : "danger"}>
+        <Panel.Heading>
+          <Panel.Title componentClass="h2">{encombrement}</Panel.Title>
+        </Panel.Heading>
+      </Panel>
     )
   }
 }

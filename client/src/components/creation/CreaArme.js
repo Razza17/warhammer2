@@ -30,8 +30,8 @@ class CreaArme extends Component {
 
   handleSelect(activeKey) {
     this.setState({activeKey});
-    this.props.getProfile();
-    this.props.getCompAvance();
+    this.props.getProfile(this.state.user, this.state.perso);
+    this.props.getCompAvance(this.state.user, this.state.perso);
   }
 
   changePanel() {
@@ -60,7 +60,7 @@ class CreaArme extends Component {
       perso: this.state.perso
     }];
     this.props.postArme(arme);
-    this.props.getArme();
+    this.props.getArme(this.state.user, this.state.perso);
     this.resetForm("arme");
   }
 
@@ -74,7 +74,7 @@ class CreaArme extends Component {
       perso: this.state.perso
     };
     this.props.postArmure(armure);
-    this.props.getArmure();
+    this.props.getArmure(this.state.user, this.state.perso);
     this.resetForm("armure");
   }
 
@@ -97,143 +97,147 @@ class CreaArme extends Component {
   render() {
     return (
       <Col xs={12} md={6} mdOffset={3}>
-        <h2 className="text-center uppercase">
-          {this.state.activeKey === "1" ? "Armes de ton personnage" : "Armures de ton personnage"}
-        </h2>
-        <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)}>
+        <PanelGroup id={this.state.activeKey} activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)}>
           <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1">
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Enc</th>
-                  <th><span className="show-desktop">Dégâts</span><span className="show-mobile">Dég</span></th>
-                  <th>Portée</th>
-                  <th><span className="show-desktop">Rechargement</span><span className="show-mobile">Recharg</span></th>
-                  <th>Attributs</th>
-                </tr>
-              </thead>
-              <tbody>
-                { this.props.arme.map((armes, i) => <Armes key={i} {...armes} />) }
-                <tr>
-                  <td>
-                    <FormGroup controlId="nomArme">
-                      <FormControl
-                        type='text'
-                        placeholder='Nom'
-                        ref='nomArme' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="encArme">
-                      <FormControl
-                        type='number'
-                        placeholder='Encombrement'
-                        ref='encArme' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="degatsArme">
-                      <FormControl
-                        type='number'
-                        placeholder='Dégâts'
-                        ref='degatsArme' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="porteeArme">
-                      <FormControl
-                        type='text'
-                        placeholder='Portée'
-                        ref='porteeArme' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="rechargementArme">
-                      <FormControl
-                        type='number'
-                        placeholder='Rechargement'
-                        ref='rechargementArme' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="attributsArme">
-                      <FormControl
-                        type='text'
-                        placeholder='Attributs'
-                        ref='attributsArme' />
-                    </FormGroup>
-                  </td>
-                  <td><Button onClick={this.postArme.bind(this)}>Ajouter</Button></td>
-                </tr>
-              </tbody>
-            </Table>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Armes de ton personnage</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <Table condensed bordered hover striped fill>
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Enc</th>
+                    <th><span className="show-desktop">Dégâts</span><span className="show-mobile">Dég</span></th>
+                    <th>Portée</th>
+                    <th><span className="show-desktop">Rechargement</span><span className="show-mobile">Recharg</span></th>
+                    <th>Attributs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { this.props.arme.map((armes, i) => <Armes key={i} {...armes} />) }
+                  <tr>
+                    <td>
+                      <FormGroup controlId="nomArme">
+                        <FormControl
+                          type='text'
+                          placeholder='Nom'
+                          ref='nomArme' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="encArme">
+                        <FormControl
+                          type='number'
+                          placeholder='Encombrement'
+                          ref='encArme' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="degatsArme">
+                        <FormControl
+                          type='number'
+                          placeholder='Dégâts'
+                          ref='degatsArme' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="porteeArme">
+                        <FormControl
+                          type='text'
+                          placeholder='Portée'
+                          ref='porteeArme' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="rechargementArme">
+                        <FormControl
+                          type='number'
+                          placeholder='Rechargement'
+                          ref='rechargementArme' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="attributsArme">
+                        <FormControl
+                          type='text'
+                          placeholder='Attributs'
+                          ref='attributsArme' />
+                      </FormGroup>
+                    </td>
+                    <td><Button onClick={this.postArme.bind(this)}>Ajouter</Button></td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button className='next-table show' onClick={this.changePanel.bind(this)}>
+                Passer aux Armures
+              </Button>
+            </Panel.Body>
           </Panel>
 
           <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2">
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Enc</th>
-                  <th><span className="show-desktop">Couverture</span><span className="show-mobile">Couv</span></th>
-                  <th>Points</th>
-                </tr>
-              </thead>
-              <tbody>
-                { this.props.armure.map((armures, i) => <Armure key={i} {...armures} />) }
-                <tr>
-                  <td>
-                    <FormGroup controlId="nomArmure">
-                      <FormControl
-                        type='text'
-                        placeholder='Nom'
-                        ref='nomArmure' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="encArmure">
-                      <FormControl
-                        type='number'
-                        placeholder='Encombrement'
-                        ref='encArmure' />
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="formControlsSelect">
-                      <FormControl componentClass='select' placeholder='Couverture' ref='couvArmure'>
-                        <option value='select'>Couverture</option>
-                        <option value='Tête'>Tête</option>
-                        <option value='Bras'>Bras</option>
-                        <option value='Corps'>Corps</option>
-                        <option value='Corps + Bras'>Corps + Bras</option>
-                        <option value='Jambes'>Jambes</option>
-                      </FormControl>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="pointsArmure">
-                      <FormControl
-                        type='number'
-                        placeholder='Points'
-                        ref='pointsArmure' />
-                    </FormGroup>
-                  </td>
-                  <td><Button onClick={this.postArmure.bind(this)}>Ajouter</Button></td>
-                </tr>
-            </tbody>
-          </Table>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Armures de ton personnage</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <Table condensed bordered hover striped fill>
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Enc</th>
+                    <th><span className="show-desktop">Couverture</span><span className="show-mobile">Couv</span></th>
+                    <th>Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { this.props.armure.map((armures, i) => <Armure key={i} {...armures} />) }
+                  <tr>
+                    <td>
+                      <FormGroup controlId="nomArmure">
+                        <FormControl
+                          type='text'
+                          placeholder='Nom'
+                          ref='nomArmure' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="encArmure">
+                        <FormControl
+                          type='number'
+                          placeholder='Encombrement'
+                          ref='encArmure' />
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="formControlsSelect">
+                        <FormControl componentClass='select' placeholder='Couverture' ref='couvArmure'>
+                          <option value='select'>Couverture</option>
+                          <option value='Tête'>Tête</option>
+                          <option value='Bras'>Bras</option>
+                          <option value='Corps'>Corps</option>
+                          <option value='Corps + Bras'>Corps + Bras</option>
+                          <option value='Jambes'>Jambes</option>
+                        </FormControl>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="pointsArmure">
+                        <FormControl
+                          type='number'
+                          placeholder='Points'
+                          ref='pointsArmure' />
+                      </FormGroup>
+                    </td>
+                    <td><Button onClick={this.postArmure.bind(this)}>Ajouter</Button></td>
+                  </tr>
+              </tbody>
+            </Table>
+            <Button className='next-table show'>
+              <Link to={this.state.nextPage}>Passer à l'inventaire</Link>
+            </Button>
+          </Panel.Body>
         </Panel>
       </PanelGroup>
-
-      {this.state.activeKey === '1' ?
-        <Button className='next-table show' onClick={this.changePanel.bind(this)}>
-          Passer aux Armures
-        </Button> :
-        <Button className='next-table show'>
-          <Link to={this.state.nextPage}>Passer à l'inventaire</Link>
-        </Button>
-      }
     </Col>
   )
 }

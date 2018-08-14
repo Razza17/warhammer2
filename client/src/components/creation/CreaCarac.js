@@ -239,686 +239,692 @@ class CreaCarac extends Component {
 
   handleSelect(activeKey) {
     this.setState({ activeKey });
-    this.props.getProfile();
+    this.props.getProfile(this.state.user, this.state.perso);
   }
 
   render() {
     return (
       <Col xs={12} md={6} mdOffset={3}>
-        <h2 className="text-center uppercase">
-          {this.state.activeKey === "1" ? "Caractéristiques de base" : this.state.activeKey === "2" ? "Caractéristiques avancées" : "Caractéristiques actuelles"}
-        </h2>
-        <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)}>
+        <PanelGroup id="panel-carac" activeKey={this.state.activeKey} onSelect={this.handleSelect.bind(this)}>
           <Panel className={this.state.activeKey === "1" ? "show" : "hide"} eventKey="1">
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th colSpan="9" className="uppercase">Profil Principal</th>
-                </tr>
-                <tr>
-                  <th>CC</th>
-                  <th>CT</th>
-                  <th>F</th>
-                  <th>E</th>
-                  <th>Ag</th>
-                  <th>Int</th>
-                  <th>FM</th>
-                  <th>Soc</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <FormGroup controlId="basecc">
-                      <FormControl
-                        type='text'
-                        name='basecc'
-                        ref='basecc'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basect">
-                      <FormControl
-                        type='text'
-                        name='basect'
-                        ref='basect'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basef">
-                      <FormControl
-                        type='text'
-                        name='basef'
-                        ref='basef'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basee">
-                      <FormControl
-                        type='text'
-                        name='basee'
-                        ref='basee'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="baseag">
-                      <FormControl
-                        type='text'
-                        name='baseag'
-                        ref='baseag'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="baseint">
-                      <FormControl
-                        type='text'
-                        name='baseint'
-                        ref='baseint'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basefm">
-                      <FormControl
-                        type='text'
-                        name='basefm'
-                        ref='basefm'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basesoc">
-                      <FormControl
-                        type='text'
-                        name='basesoc'
-                        ref='basesoc'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th colSpan="9" className="uppercase">Profil Secondaire</th>
-                </tr>
-                <tr>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>BF</th>
-                  <th>BE</th>
-                  <th>M</th>
-                  <th>Mag</th>
-                  <th>PF</th>
-                  <th>PD</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <FormGroup controlId="basea">
-                      <FormControl
-                        type='text'
-                        name='basea'
-                        ref='basea'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="baseb">
-                      <FormControl
-                        type='text'
-                        name='baseb'
-                        ref='baseb'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basebf">
-                      <FormControl
-                        type='text'
-                        name='basebf'
-                        ref='basebf'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basebe">
-                      <FormControl
-                        type='text'
-                        name='basebe'
-                        ref='basebe'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basem">
-                      <FormControl
-                        type='text'
-                        name='basem'
-                        ref='basem'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basemag">
-                      <FormControl
-                        type='text'
-                        name='basemag'
-                        ref='basemag'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basepf">
-                      <FormControl
-                        type='text'
-                        name='basepf'
-                        ref='basepf'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="basepd">
-                      <FormControl
-                        type='text'
-                        name='basepd'
-                        ref='basepd'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan={8}><Button onClick={this.handleBase.bind(this)}>Enregistrer</Button></td>
-                </tr>
-              </tbody>
-            </Table>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Caractéristiques de base</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <Table condensed bordered hover striped fill>
+                <thead>
+                  <tr>
+                    <th colSpan="9" className="uppercase">Profil Principal</th>
+                  </tr>
+                  <tr>
+                    <th>CC</th>
+                    <th>CT</th>
+                    <th>F</th>
+                    <th>E</th>
+                    <th>Ag</th>
+                    <th>Int</th>
+                    <th>FM</th>
+                    <th>Soc</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <FormGroup controlId="basecc">
+                        <FormControl
+                          type='text'
+                          name='basecc'
+                          ref='basecc'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basect">
+                        <FormControl
+                          type='text'
+                          name='basect'
+                          ref='basect'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basef">
+                        <FormControl
+                          type='text'
+                          name='basef'
+                          ref='basef'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basee">
+                        <FormControl
+                          type='text'
+                          name='basee'
+                          ref='basee'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="baseag">
+                        <FormControl
+                          type='text'
+                          name='baseag'
+                          ref='baseag'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="baseint">
+                        <FormControl
+                          type='text'
+                          name='baseint'
+                          ref='baseint'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basefm">
+                        <FormControl
+                          type='text'
+                          name='basefm'
+                          ref='basefm'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basesoc">
+                        <FormControl
+                          type='text'
+                          name='basesoc'
+                          ref='basesoc'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Table condensed bordered hover striped fill>
+                <thead>
+                  <tr>
+                    <th colSpan="9" className="uppercase">Profil Secondaire</th>
+                  </tr>
+                  <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>BF</th>
+                    <th>BE</th>
+                    <th>M</th>
+                    <th>Mag</th>
+                    <th>PF</th>
+                    <th>PD</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <FormGroup controlId="basea">
+                        <FormControl
+                          type='text'
+                          name='basea'
+                          ref='basea'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="baseb">
+                        <FormControl
+                          type='text'
+                          name='baseb'
+                          ref='baseb'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basebf">
+                        <FormControl
+                          type='text'
+                          name='basebf'
+                          ref='basebf'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basebe">
+                        <FormControl
+                          type='text'
+                          name='basebe'
+                          ref='basebe'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basem">
+                        <FormControl
+                          type='text'
+                          name='basem'
+                          ref='basem'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basemag">
+                        <FormControl
+                          type='text'
+                          name='basemag'
+                          ref='basemag'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basepf">
+                        <FormControl
+                          type='text'
+                          name='basepf'
+                          ref='basepf'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="basepd">
+                        <FormControl
+                          type='text'
+                          name='basepd'
+                          ref='basepd'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button className="next-table" onClick={this.handleBase.bind(this)}>Passer aux Caractéristiques avancées</Button>
+            </Panel.Body>
           </Panel>
 
           <Panel className={this.state.activeKey === "2" ? "show" : "hide"} eventKey="2">
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th colSpan="9" className="uppercase">Profil Principal</th>
-                </tr>
-                <tr>
-                  <th>CC</th>
-                  <th>CT</th>
-                  <th>F</th>
-                  <th>E</th>
-                  <th>Ag</th>
-                  <th>Int</th>
-                  <th>FM</th>
-                  <th>Soc</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <FormGroup controlId="avcc">
-                      <FormControl
-                        type='text'
-                        name='avcc'
-                        ref='avcc'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avct">
-                      <FormControl
-                        type='text'
-                        name='avct'
-                        ref='avct'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avf">
-                      <FormControl
-                        type='text'
-                        name='avf'
-                        ref='avf'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="ave">
-                      <FormControl
-                        type='text'
-                        name='ave'
-                        ref='ave'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avag">
-                      <FormControl
-                        type='text'
-                        name='avag'
-                        ref='avag'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avint">
-                      <FormControl
-                        type='text'
-                        name='avint'
-                        ref='avint'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avfm">
-                      <FormControl
-                        type='text'
-                        name='avfm'
-                        ref='avfm'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avsoc">
-                      <FormControl
-                        type='text'
-                        name='avsoc'
-                        ref='avsoc'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th colSpan="9" className="uppercase">Profil Secondaire</th>
-                </tr>
-                <tr>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>BF</th>
-                  <th>BE</th>
-                  <th>M</th>
-                  <th>Mag</th>
-                  <th>PF</th>
-                  <th>PD</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <FormGroup controlId="ava">
-                      <FormControl
-                        type='text'
-                        name='ava'
-                        ref='ava'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avb">
-                      <FormControl
-                        type='text'
-                        name='avb'
-                        ref='avb'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avbf">
-                      <FormControl
-                        type='text'
-                        name='avbf'
-                        ref='avbf'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avbe">
-                      <FormControl
-                        type='text'
-                        name='avbe'
-                        ref='avbe'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avm">
-                      <FormControl
-                        type='text'
-                        name='avm'
-                        ref='avm'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avmag">
-                      <FormControl
-                        type='text'
-                        name='avmag'
-                        ref='avmag'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avpf">
-                      <FormControl
-                        type='text'
-                        name='avpf'
-                        ref='avpf'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="avpd">
-                      <FormControl
-                        type='text'
-                        name='avpd'
-                        ref='avpd'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan={8}><Button onClick={this.handleAvance.bind(this)}>Enregistrer</Button></td>
-                </tr>
-              </tbody>
-            </Table>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Caractéristiques avancées</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <Table condensed bordered hover striped fill>
+                <thead>
+                  <tr>
+                    <th colSpan="9" className="uppercase">Profil Principal</th>
+                  </tr>
+                  <tr>
+                    <th>CC</th>
+                    <th>CT</th>
+                    <th>F</th>
+                    <th>E</th>
+                    <th>Ag</th>
+                    <th>Int</th>
+                    <th>FM</th>
+                    <th>Soc</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <FormGroup controlId="avcc">
+                        <FormControl
+                          type='text'
+                          name='avcc'
+                          ref='avcc'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avct">
+                        <FormControl
+                          type='text'
+                          name='avct'
+                          ref='avct'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avf">
+                        <FormControl
+                          type='text'
+                          name='avf'
+                          ref='avf'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="ave">
+                        <FormControl
+                          type='text'
+                          name='ave'
+                          ref='ave'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avag">
+                        <FormControl
+                          type='text'
+                          name='avag'
+                          ref='avag'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avint">
+                        <FormControl
+                          type='text'
+                          name='avint'
+                          ref='avint'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avfm">
+                        <FormControl
+                          type='text'
+                          name='avfm'
+                          ref='avfm'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avsoc">
+                        <FormControl
+                          type='text'
+                          name='avsoc'
+                          ref='avsoc'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Table condensed bordered hover striped fill>
+                <thead>
+                  <tr>
+                    <th colSpan="9" className="uppercase">Profil Secondaire</th>
+                  </tr>
+                  <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>BF</th>
+                    <th>BE</th>
+                    <th>M</th>
+                    <th>Mag</th>
+                    <th>PF</th>
+                    <th>PD</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <FormGroup controlId="ava">
+                        <FormControl
+                          type='text'
+                          name='ava'
+                          ref='ava'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avb">
+                        <FormControl
+                          type='text'
+                          name='avb'
+                          ref='avb'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avbf">
+                        <FormControl
+                          type='text'
+                          name='avbf'
+                          ref='avbf'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avbe">
+                        <FormControl
+                          type='text'
+                          name='avbe'
+                          ref='avbe'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avm">
+                        <FormControl
+                          type='text'
+                          name='avm'
+                          ref='avm'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avmag">
+                        <FormControl
+                          type='text'
+                          name='avmag'
+                          ref='avmag'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avpf">
+                        <FormControl
+                          type='text'
+                          name='avpf'
+                          ref='avpf'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="avpd">
+                        <FormControl
+                          type='text'
+                          name='avpd'
+                          ref='avpd'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button className="next-table" onClick={this.handleAvance.bind(this)}>Passer aux caractéristiques actuelles</Button>
+            </Panel.Body>
           </Panel>
 
           <Panel className={this.state.activeKey === "3" ? "show" : "hide"} eventKey="3">
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th colSpan="9" className="uppercase">Profil Principal</th>
-                </tr>
-                <tr>
-                  <th>CC</th>
-                  <th>CT</th>
-                  <th>F</th>
-                  <th>E</th>
-                  <th>Ag</th>
-                  <th>Int</th>
-                  <th>FM</th>
-                  <th>Soc</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <FormGroup controlId="accc">
-                      <FormControl
-                        type='text'
-                        name='accc'
-                        ref='accc'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acct">
-                      <FormControl
-                        type='text'
-                        name='acct'
-                        ref='acct'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acf">
-                      <FormControl
-                        type='text'
-                        name='acf'
-                        ref='acf'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="ace">
-                      <FormControl
-                        type='text'
-                        name='ace'
-                        ref='ace'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acag">
-                      <FormControl
-                        type='text'
-                        name='acag'
-                        ref='acag'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acint">
-                      <FormControl
-                        type='text'
-                        name='acint'
-                        ref='acint'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acfm">
-                      <FormControl
-                        type='text'
-                        name='acfm'
-                        ref='acfm'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acsoc">
-                      <FormControl
-                        type='text'
-                        name='acsoc'
-                        ref='acsoc'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
-            <Table condensed bordered hover striped fill>
-              <thead>
-                <tr>
-                  <th colSpan="9" className="uppercase">Profil Secondaire</th>
-                </tr>
-                <tr>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>BF</th>
-                  <th>BE</th>
-                  <th>M</th>
-                  <th>Mag</th>
-                  <th>PF</th>
-                  <th>PD</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <FormGroup controlId="aca">
-                      <FormControl
-                        type='text'
-                        name='aca'
-                        ref='aca'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acb">
-                      <FormControl
-                        type='text'
-                        name='acb'
-                        ref='acb'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acbf">
-                      <FormControl
-                        type='text'
-                        name='acbf'
-                        ref='acbf'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acbe">
-                      <FormControl
-                        type='text'
-                        name='acbe'
-                        ref='acbe'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acm">
-                      <FormControl
-                        type='text'
-                        name='acm'
-                        ref='acm'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acmag">
-                      <FormControl
-                        type='text'
-                        name='acmag'
-                        ref='acmag'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acpf">
-                      <FormControl
-                        type='text'
-                        name='acpf'
-                        ref='acpf'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                  <td>
-                    <FormGroup controlId="acpd">
-                      <FormControl
-                        type='text'
-                        name='acpd'
-                        ref='acpd'
-                        onChange={this.onChange.bind(this)}
-                        />
-                      <FormControl.Feedback/>
-                    </FormGroup>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan={8}><Button onClick={this.handleActuel.bind(this)}>Enregistrer</Button></td>
-                </tr>
-              </tbody>
-            </Table>
+            <Panel.Heading>
+              <Panel.Title componentClass="h2">Caractéristiques actuelles</Panel.Title>
+            </Panel.Heading>
+            <Panel.Body>
+              <Table condensed bordered hover striped fill>
+                <thead>
+                  <tr>
+                    <th colSpan="9" className="uppercase">Profil Principal</th>
+                  </tr>
+                  <tr>
+                    <th>CC</th>
+                    <th>CT</th>
+                    <th>F</th>
+                    <th>E</th>
+                    <th>Ag</th>
+                    <th>Int</th>
+                    <th>FM</th>
+                    <th>Soc</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <FormGroup controlId="accc">
+                        <FormControl
+                          type='text'
+                          name='accc'
+                          ref='accc'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acct">
+                        <FormControl
+                          type='text'
+                          name='acct'
+                          ref='acct'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acf">
+                        <FormControl
+                          type='text'
+                          name='acf'
+                          ref='acf'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="ace">
+                        <FormControl
+                          type='text'
+                          name='ace'
+                          ref='ace'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acag">
+                        <FormControl
+                          type='text'
+                          name='acag'
+                          ref='acag'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acint">
+                        <FormControl
+                          type='text'
+                          name='acint'
+                          ref='acint'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acfm">
+                        <FormControl
+                          type='text'
+                          name='acfm'
+                          ref='acfm'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acsoc">
+                        <FormControl
+                          type='text'
+                          name='acsoc'
+                          ref='acsoc'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Table condensed bordered hover striped fill>
+                <thead>
+                  <tr>
+                    <th colSpan="9" className="uppercase">Profil Secondaire</th>
+                  </tr>
+                  <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>BF</th>
+                    <th>BE</th>
+                    <th>M</th>
+                    <th>Mag</th>
+                    <th>PF</th>
+                    <th>PD</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <FormGroup controlId="aca">
+                        <FormControl
+                          type='text'
+                          name='aca'
+                          ref='aca'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acb">
+                        <FormControl
+                          type='text'
+                          name='acb'
+                          ref='acb'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acbf">
+                        <FormControl
+                          type='text'
+                          name='acbf'
+                          ref='acbf'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acbe">
+                        <FormControl
+                          type='text'
+                          name='acbe'
+                          ref='acbe'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acm">
+                        <FormControl
+                          type='text'
+                          name='acm'
+                          ref='acm'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acmag">
+                        <FormControl
+                          type='text'
+                          name='acmag'
+                          ref='acmag'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acpf">
+                        <FormControl
+                          type='text'
+                          name='acpf'
+                          ref='acpf'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                    <td>
+                      <FormGroup controlId="acpd">
+                        <FormControl
+                          type='text'
+                          name='acpd'
+                          ref='acpd'
+                          onChange={this.onChange.bind(this)}
+                          />
+                        <FormControl.Feedback/>
+                      </FormGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button className="next-table" onClick={this.handleActuel.bind(this)}>Passer aux compétences</Button>
+            </Panel.Body>
           </Panel>
         </PanelGroup>
       </Col>

@@ -30,20 +30,25 @@ class TalentRecap extends Component {
 
   render() {
     return (
-      <Panel header="Talents" className="noPadding">
-        <Table condensed hover striped fill>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th><span className="show-desktop">Description</span><span className="show-mobile">Desc</span></th>
-              <th><span className="show-desktop">Compétences</span><span className="show-mobile">Comp</span></th>
-              <th>Bonus</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.props.talent.map((talents, i) => <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} updateTalent={this.props.updateTalent} />) }
-          </tbody>
-        </Table>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>Talents</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <Table condensed hover striped fill>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th><span className="show-desktop">Description</span><span className="show-mobile">Desc</span></th>
+                <th><span className="show-desktop">Compétences</span><span className="show-mobile">Comp</span></th>
+                <th>Bonus</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.props.talent.map((talents, i) => <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} updateTalent={this.props.updateTalent} />) }
+            </tbody>
+          </Table>
+        </Panel.Body>
       </Panel>
     )
   }
