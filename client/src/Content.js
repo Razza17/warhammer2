@@ -14,6 +14,7 @@ import { Equipement } from "./pages/Equipement";
 import { Combat } from "./pages/Combat";
 import { Recap } from "./pages/Recap";
 import { ChoosePerso } from "./pages/ChoosePerso";
+import MonCompte from "./pages/MonCompte";
 
 const Main = () => (
   <main>
@@ -30,7 +31,8 @@ const Main = () => (
       <Route path='/recap' component={Recap}/>
       <Route path='/personnage' component={Personnage}/>
       <Route path='/equipement' component={Equipement}/>
-      <Route  path='/combat' component={Combat}/>
+      <Route path='/combat' component={Combat}/>
+      <Route path='/monCompte' component={MonCompte}/>
     </Switch>
   </main>
 );

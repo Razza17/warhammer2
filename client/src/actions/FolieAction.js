@@ -52,3 +52,16 @@ export function updateFolie(id, newData) {
     })
   }
 }
+
+// RENAME PERSO
+export function renameFolie(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/folie/' + user + '/' + perso, newData)
+    .then(function(response) {
+      dispatch({type:"UPDATE_FOLIE", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_FOLIE_REJECTED", payload:err})
+    })
+  }
+}

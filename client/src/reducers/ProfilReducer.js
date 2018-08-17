@@ -18,6 +18,12 @@ export function profilReducer(state={profile:[]}, action) {
     case "UPDATE_PROFILE_REJECTED":
     return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
 
+    // RENAME
+    case "RENAME_PROFILE":
+    return {...state, ...action.payload, msg:'Your Profile has been successfully updated', style:'success'};
+    case "RENAME_PROFILE_REJECTED":
+    return {...state, ...action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
+
     // DEFAULT
     default:
     return state;

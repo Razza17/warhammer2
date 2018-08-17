@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET CHARACTER USER
-export function getUser(email) {
+export function getUser(pseudo) {
   return function(dispatch) {
-    axios.get('/user/' + email)
+    axios.get('/user/' + pseudo)
     .then(function(response) {
       dispatch({type:"GET_USER", payload:response.data})
     })

@@ -62,9 +62,11 @@ export class FullNavbars extends Component {
             </LinkContainer>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={3} href="#">
-              Mon Compte
-            </NavItem>
+            <LinkContainer to={"/monCompte?pseudo="+this.state.user+"&perso="+this.state.perso}>
+              <NavItem eventKey={3}>
+                Mon Compte
+              </NavItem>
+            </LinkContainer>
             <NavItem eventKey={4} onClick={this.logout.bind(this)}>
               Me déconnecter
             </NavItem>

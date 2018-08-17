@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import store from '../../index.js';
 
 import { getUser } from '../../actions/UserAction.js';
 
@@ -33,17 +32,14 @@ class Login extends Component {
   handleLogin() {
     let reactThis = this;
     let that = this.props;
-    let reduxStore = {store}.store;
-    let pseudo = "";
+    let email = findDOMNode(this.refs.email).value;
+    let password = findDOMNode(this.refs.password).value;
+    let pseudo = findDOMNode(this.refs.pseudo).value;
 
-    firebase.auth().signInWithEmailAndPassword(findDOMNode(this.refs.email).value,findDOMNode(this.refs.password).value,)
+    firebase.auth().signInWithEmailAndPassword(email,password)
     .then(function(onResolve) {
-      let response = [onResolve.user.email];
-      that.getUser(response[0]);
-      reduxStore.subscribe(() => {
-        pseudo = reduxStore.getState().user.user[0].pseudo;
-        window.location.assign('./choosePerso?pseudo='+pseudo);
-      });
+      that.getUser(pseudo);
+      window.location.assign('./choosePerso?pseudo='+pseudo);
     })
     .catch(function(err) {
       let errorMessage = err.message;
@@ -71,6 +67,12 @@ class Login extends Component {
                 <Panel.Title componentClass="h2">Connecte toi</Panel.Title>
               </Panel.Heading>
               <Panel.Body>
+                <FormGroup controlId="pseudo">
+                  <FormControl
+                    type='pseudo'
+                    placeholder="Entre ton pseudo"
+                    ref='pseudo' />
+                </FormGroup>
                 <FormGroup controlId="email">
                   <FormControl
                     type='email'
