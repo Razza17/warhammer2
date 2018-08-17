@@ -72,7 +72,7 @@ app.put('/perso/:pseudo/:perso', function(req, res) {
 
   let query = {
     user: user,
-    perso: perso
+    nom: perso
   }
 
   let update = {
@@ -343,7 +343,7 @@ app.put('/caracteristique/:pseudo/:perso', function(req, res) {
 
   let options = {new: false};
 
-  Caracteristique.findOneAndUpdate(query, update, options, function(err, data) {
+  Caracteristique.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -415,7 +415,7 @@ app.put('/count/:pseudo/:perso', function(req, res) {
 
   let options = {new: false};
 
-  Count.findOneAndUpdate(query, update, options, function(err, data) {
+  Count.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -490,7 +490,7 @@ app.put('/competencebase/:pseudo/:perso', function(req, res) {
 
   let options = {new: false};
 
-  CompetenceBase.findOneAndUpdate(query, update, options, function(err, data) {
+  CompetenceBase.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -567,7 +567,7 @@ app.put('/competenceavance/:pseudo/:perso', function(req, res) {
 
   let options = {new: false};
 
-  CompetenceAvance.findOneAndUpdate(query, update, options, function(err, data) {
+  CompetenceAvance.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -642,7 +642,7 @@ app.put('/talent/:pseudo/:perso', function(req, res) {
 
   let options = {new: false};
 
-  Talent.findOneAndUpdate(query, update, options, function(err, data) {
+  Talent.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -731,7 +731,7 @@ app.put('/arme/:pseudo/:perso', function(req, res) {
 
   let options = {new: false};
 
-  Arme.findOneAndUpdate(query, update, options, function(err, data) {
+  Arme.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -818,7 +818,7 @@ app.put('/armure/:pseudo/:perso', function(req, res) {
 
   let options = {new: false};
 
-  Armure.findOneAndUpdate(query, update, options, function(err, data) {
+  Armure.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -979,7 +979,7 @@ app.put('/inventaire/:pseudo/:perso', function(req, res) {
 
   let options = {new: false};
 
-  Inventaire.findOneAndUpdate(query, update, options, function(err, data) {
+  Inventaire.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -1065,7 +1065,7 @@ app.put('/folie/:pseudo/:perso', function(req, res) {
 
   let options = {new: false};
 
-  Folie.findOneAndUpdate(query, update, options, function(err, data) {
+  Folie.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
