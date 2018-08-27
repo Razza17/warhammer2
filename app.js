@@ -1171,14 +1171,14 @@ app.get('/user/:pseudo', function(req, res) {
 });
 
 //---->>>> UPDATE USER <<<<----
-app.put('/user/:_id', function(req, res) {
+app.put('/user/:pseudo', function(req, res) {
   let newData = req.body;
+  let pseudo = req.params.pseudo;
 
   let update = {
     '$set': {
       nom: newData.nom,
       prenom: newData.prenom,
-      password: newData.password,
       email: newData.email,
       pseudo: newData.pseudo
     }
@@ -1186,7 +1186,7 @@ app.put('/user/:_id', function(req, res) {
 
   let options = {new: false};
 
-  User.updateOne({_id: newData._id}, update, options, function(err, data) {
+  User.updateOne({pseudo: pseudo}, update, options, function(err, data) {
     if(err) {
       throw err;
     }

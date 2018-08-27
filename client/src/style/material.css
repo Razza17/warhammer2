@@ -409,6 +409,11 @@ a:hover {
   margin-bottom: 50px;
 }
 
+/************************ 9.5 MON COMPTE ************************/
+#mon-compte button {
+  margin: 20px 10px 20px 0;
+}
+
 /************************ 10. MEDIA QUERIES ************************/
 
 @media screen and (max-width: 500px) {

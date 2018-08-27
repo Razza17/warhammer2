@@ -13,6 +13,19 @@ export function getUser(pseudo) {
   }
 }
 
+// GET ALL USER
+export function getAllUser() {
+  return function(dispatch) {
+    axios.get('/user')
+    .then(function(response) {
+      dispatch({type:"GET_USER", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"GET_USER_REJECTED", payload:err})
+    })
+  }
+}
+
 
 // POST CHARACTER USER
 export function postUser() {
@@ -28,9 +41,9 @@ export function postUser() {
 }
 
 // UPDATE CHARACTER USER
-export function updateUser(id, newUser) {
+export function updateUser(pseudo, newUser) {
   return function(dispatch) {
-    axios.put('/user/' + id, newUser)
+    axios.put('/user/' + pseudo, newUser)
     .then(function(response) {
       dispatch({type:"UPDATE_USER", payload:response.data})
     })
