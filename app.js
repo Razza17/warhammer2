@@ -1170,6 +1170,17 @@ app.get('/user/:pseudo', function(req, res) {
   })
 });
 
+//---->>>> GET ALL USER <<<<----
+app.get('/user', function(req, res) {
+
+  User.find(function(err, user) {
+    if(err) {
+      throw err;
+    }
+    res.json(user);
+  })
+});
+
 //---->>>> UPDATE USER <<<<----
 app.put('/user/:pseudo', function(req, res) {
   let newData = req.body;

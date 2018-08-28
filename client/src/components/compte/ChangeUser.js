@@ -20,6 +20,8 @@ import { renamePerso } from '../../actions/PersoAction';
 import { renameTalent } from '../../actions/TalentAction';
 import { getUser, getAllUser, updateUser } from '../../actions/UserAction';
 
+import store from '../../index';
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
