@@ -21,7 +21,6 @@ class Count extends Component {
   onIncrement(){
     if(this.props.name === "Fortune" && this.props.value < this.props.caracActuel[2].pd) {
       let data = {
-        "name":this.props.name,
         "value":this.props.value + 1
       };
       this.props.update(this.props._id, data);
@@ -37,7 +36,6 @@ class Count extends Component {
     }
     else if(this.props.name === "Munitions") {
       let data = {
-        "name":this.props.name,
         "value":this.props.value + 1
       };
       this.props.update(this.props._id, data);
@@ -46,9 +44,9 @@ class Count extends Component {
   }
 
   onDecrement(){
+    console.log(this.props._id);
     if(this.props.name === "Fortune" && this.props.value > 0) {
       let data = {
-        "name":this.props.name,
         "value":this.props.value - 1
       };
       this.props.update(this.props._id, data);
@@ -56,7 +54,6 @@ class Count extends Component {
     }
     else if(this.props.name === "Blessure" && this.props.value > -10) {
       let data = {
-        "name":this.props.name,
         "value":this.props.value - 1
       };
       this.props.update(this.props._id, data);
@@ -64,7 +61,6 @@ class Count extends Component {
     }
     else if(this.props.name === "Munitions" && this.props.value > 0) {
       let data = {
-        "name":this.props.name,
         "value":this.props.value - 1
       };
       this.props.update(this.props._id, data);

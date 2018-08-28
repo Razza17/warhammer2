@@ -388,7 +388,7 @@ app.put('/count/:_id', function(req, res) {
 
   let options = {new: false};
 
-  Count.updateOne({name: newData.name}, update, options, function(err, data) {
+  Count.updateOne({_id: req.params._id}, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -866,7 +866,7 @@ app.put('/money/:_id', function(req, res) {
 
   let options = {new: false};
 
-  Money.findOneAndUpdate(query, update, options, function(err, data) {
+  Money.findOneAndUpdate({_id : query}, update, options, function(err, data) {
     if(err) {
       throw err;
     }
