@@ -44,7 +44,6 @@ class Count extends Component {
   }
 
   onDecrement(){
-    console.log(this.props._id);
     if(this.props.name === "Fortune" && this.props.value > 0) {
       let data = {
         "value":this.props.value - 1
@@ -80,8 +79,11 @@ class Count extends Component {
             <Panel.Title componentClass="h2">{this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? "Points de Fortune" : "Blessures") : "Munitions"}</Panel.Title>
           </Panel.Heading>
           <Panel.Body>
-            <span><strong>{this.props.value}
-              {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}</strong>
+            <span>
+              <strong>
+                {this.props.value}
+                {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}
+              </strong>
               {this.props.name === "Fortune" && "sur " + pointDestin}
               {this.props.name === "Blessure" && "sur " + blessure}
             </span>
@@ -96,10 +98,10 @@ class Count extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     caracActuel: state.carac.carac
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(Count);

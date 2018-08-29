@@ -188,6 +188,13 @@ a:hover {
 }
 
 /************************ 5. BUTTONS ************************/
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
 .btn {
   border-radius: 50px;
   -moz-box-shadow: 1px 1px 5px 0px #000000;
@@ -195,21 +202,27 @@ a:hover {
   -o-box-shadow: 1px 1px 5px 0px #000000;
   box-shadow: 1px 1px 5px 0px #000000;
   border: none;
+  border-color: transparent;
   transition: all 0.5s;
+  outline: none;
 }
 
 .btn:hover {
   background-image: none;
   border: none;
+  border-color: transparent;
   -moz-box-shadow: 3px 5px 5px 0px #000000;
   -webkit-box-shadow: 3px 5px 5px 0px #000000;
   -o-box-shadow: 3px 5px 5px 0px #000000;
   box-shadow: 3px 5px 5px 0px #000000;
+  outline: none;
 }
 
 .btn:focus {
   background-image: none;
   border: none;
+  border-color: transparent;
+  outline: none;
 }
 
 .btn-default {
@@ -217,7 +230,9 @@ a:hover {
   color: #ffffff;
   background-color: #819ca9;
   border: none;
+  border-color: transparent;
   transition: all 0.5s;
+  outline: none;
 }
 
 .btn-default:hover {
@@ -225,6 +240,8 @@ a:hover {
   color: #ffffff;
   background-color: #819ca9;
   border: none;
+  border-color: transparent;
+  outline: none;
 }
 
 .btn-default:focus {
@@ -232,27 +249,34 @@ a:hover {
   color: #ffffff;
   background-color: #819ca9;
   border: none;
+  border-color: transparent;
+  outline: none;
 }
 
 .btn-danger {
   margin: 0 9px;
   transition: all 0.5s;
+  outline: none;
 }
 
 .btn-danger:hover {
   background-image: none;
   border: none;
+  border-color: transparent;
   transition: all 0.5s;
+  outline: none;
 }
 
 .showUpdateButton {
   position: absolute;
   top: 25px;
   right: 20px;
+  outline: none;
 }
 
 .next-table {
   margin-top: 20px;
+  outline: none;
 }
 
 /************************ 6. TABLES ************************/
