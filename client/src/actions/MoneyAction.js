@@ -39,3 +39,16 @@ export function updateMoney(id, newData) {
     })
   }
 }
+
+// RENAME PERSO
+export function renameMoney(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/money/' + user + '/' + perso, newData)
+    .then(function(response) {
+      dispatch({type:"UPDATE_MONEY", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_MONEY_REJECTED", payload:err})
+    })
+  }
+}

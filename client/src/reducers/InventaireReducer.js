@@ -8,7 +8,7 @@ export function inventaireReducer(state={inventaire:[]}, action) {
 
         // POST
         case "POST_INVENTAIRE":
-            return {...state, inventaire:[...state.inventaire, ...action.payload]};
+            return {...state, inventaire:[...state.inventaire, action.payload]};
         case "POST_INVENTAIRE_REJECTED":
             return action.payload;
 

@@ -8,7 +8,7 @@ export function persoReducer(state={perso:[]}, action) {
 
     // POST
     case "POST_PERSO":
-    return {...state, perso:[...state.perso, ...action.payload]};
+    return {...state, perso:[...state.perso, action.payload]};
     case "POST_PERSO_REJECTED":
     return action.payload;
 

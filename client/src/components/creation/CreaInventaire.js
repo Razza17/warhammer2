@@ -21,16 +21,14 @@ class CreaInventaire extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCarac(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       activeKey: "1",
       nextPage: "/recap?pseudo="+user+"&perso="+perso
     }
-  }
-
-  componentWillMount() {
-    this.props.getCarac(this.state.user, this.state.perso);
   }
 
   handleSelect(activeKey) {

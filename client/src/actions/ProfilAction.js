@@ -39,3 +39,16 @@ export function updateProfile(id, newProfile) {
     })
   }
 }
+
+// UPDATE CHARACTER NAME
+export function renameProfile(user, name, newName) {
+  return function(dispatch) {
+    axios.put('/profil/' + user + '/' + name, newName)
+    .then(function(response) {
+      dispatch({type:"UPDATE_PROFILE", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_PROFILE_REJECTED", payload:err})
+    })
+  }
+}

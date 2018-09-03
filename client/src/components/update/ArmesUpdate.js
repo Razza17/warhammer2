@@ -53,7 +53,6 @@ class ArmesUpdate extends Component {
       attributs: findDOMNode(this.refs.attributsArme).value
     };
     this.props.updateArme(_id, arme);
-    this.props.getArme(this.props.user, this.props.perso);
   }
 
 
@@ -124,8 +123,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    deleteArme,
-    updateArme
+    deleteArme, updateArme
   }, dispatch)
 }
 

@@ -44,7 +44,6 @@ class InventaireUpdate extends Component {
       encombrement: findDOMNode(this.refs.encombrementInventaire).value
     };
     this.props.updateInventaire(_id, inventaire);
-    this.props.getInventaire(this.props.user, this.props.perso);
   }
 
 
@@ -83,16 +82,15 @@ class InventaireUpdate extends Component {
   }
 }
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return {
     inventaire: state.inventaire.inventaire
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    deleteInventaire,
-    updateInventaire
+    deleteInventaire, updateInventaire
   }, dispatch)
 }
 

@@ -18,15 +18,13 @@ class TalentTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getTalent(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       update: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getTalent(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -45,7 +43,6 @@ class TalentTable extends Component {
       perso: this.state.perso
     };
     this.props.postTalent(newTalent);
-    this.props.getTalent(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -121,7 +118,7 @@ class TalentTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     talent: state.talent.talent,
     modified: state.talent.payload,
@@ -130,7 +127,7 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators ({
     getTalent,
     updateTalent,

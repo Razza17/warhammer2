@@ -10,65 +10,65 @@ class Count extends Component {
     let recupUser = urlParams[1].split('&');
     let user = recupUser[0];
     let perso = urlParams[2];
+    let fortune = this.props.name === "Fortune" ? this.props.value : 0;
+    let blessure = this.props.name === "Blessure" ? this.props.value : 0;
+    let munitions = this.props.name === "Munitions" ? this.props.value : 0;
 
     this.state = {
       user: user,
       perso: perso,
-      update: false
+      update: false,
+      fortune: fortune,
+      blessure: blessure,
+      munitions: munitions
     }
   }
 
   onIncrement(){
-    if(this.props.name === "Fortune" && this.props.value < this.props.caracActuel[2].pd) {
+    if(this.props.name === "Fortune" && this.state.fortune < this.props.caracActuel[2].pd) {
       let data = {
-        "name":this.props.name,
-        "value":this.props.value + 1
+        "value":this.state.fortune + 1
       };
       this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.setState({fortune: this.state.fortune + 1});
     }
-    else if(this.props.name === "Blessure" && this.props.value < this.props.caracActuel[2].b) {
+    else if(this.props.name === "Blessure" && this.state.blessure < this.props.caracActuel[2].b) {
       let data = {
-        "name":this.props.name,
-        "value":this.props.value + 1
+        "value":this.state.blessure + 1
       };
       this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.setState({blessure: this.state.blessure + 1});
     }
     else if(this.props.name === "Munitions") {
       let data = {
-        "name":this.props.name,
-        "value":this.props.value + 1
+        "value":this.state.munitions + 1
       };
       this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.setState({munitions: this.state.munitions + 1});
     }
   }
 
   onDecrement(){
-    if(this.props.name === "Fortune" && this.props.value > 0) {
+    if(this.props.name === "Fortune" && this.state.fortune > 0) {
       let data = {
-        "name":this.props.name,
-        "value":this.props.value - 1
+        "value":this.state.fortune - 1
       };
       this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.setState({fortune: this.state.fortune - 1});
     }
-    else if(this.props.name === "Blessure" && this.props.value > -10) {
+    else if(this.props.name === "Blessure" && this.state.blessure > -10) {
       let data = {
-        "name":this.props.name,
-        "value":this.props.value - 1
+        "value":this.state.blessure - 1
       };
       this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.setState({blessure: this.state.blessure - 1});
     }
-    else if(this.props.name === "Munitions" && this.props.value > 0) {
+    else if(this.props.name === "Munitions" && this.state.munitions > 0) {
       let data = {
-        "name":this.props.name,
-        "value":this.props.value - 1
+        "value":this.state.munitions - 1
       };
       this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.setState({munitions: this.state.munitions - 1});
     }
   }
 
@@ -84,8 +84,11 @@ class Count extends Component {
             <Panel.Title componentClass="h2">{this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? "Points de Fortune" : "Blessures") : "Munitions"}</Panel.Title>
           </Panel.Heading>
           <Panel.Body>
-            <span><strong>{this.props.value}
-              {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}</strong>
+            <span>
+              <strong>
+                {this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? this.state.fortune : this.state.blessure) : this.state.munitions}
+                {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}
+              </strong>
               {this.props.name === "Fortune" && "sur " + pointDestin}
               {this.props.name === "Blessure" && "sur " + blessure}
             </span>
@@ -100,10 +103,10 @@ class Count extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     caracActuel: state.carac.carac
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(Count);

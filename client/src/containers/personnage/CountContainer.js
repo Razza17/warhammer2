@@ -15,14 +15,12 @@ class CountContainer extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCount(user, perso);
+
     this.state = {
       user: user,
       perso: perso
     }
-  }
-
-  componentWillMount() {
-    this.props.getCount(this.state.user,this.state.perso);
   }
 
   render() {
@@ -34,16 +32,15 @@ class CountContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     count: state.count.count
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getCount,
-    updateCount
+    getCount, updateCount
   }, dispatch)
 }
 

@@ -39,3 +39,16 @@ export function updateCarac(id, newData) {
     })
   }
 }
+
+// RENAME PERSO
+export function renameCarac(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/caracteristique/' + user + '/' + perso, newData)
+    .then(function(response) {
+      dispatch({type:"UPDATE_CARACTERISTIQUE", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_CARACTERISTIQUE_REJECTED", payload:err})
+    })
+  }
+}

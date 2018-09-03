@@ -39,3 +39,16 @@ export function updateDetails(id, newDetails) {
     })
   }
 }
+
+// RENAME PERSO
+export function renameDetails(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/details/' + user + '/' + perso, newData)
+    .then(function(response) {
+      dispatch({type:"UPDATE_DETAILS", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_DETAILS_REJECTED", payload:err})
+    })
+  }
+}

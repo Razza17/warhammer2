@@ -18,16 +18,14 @@ class ArmureTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getArmure(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       update: false
     }
   }
-
-    componentWillMount() {
-      this.props.getArmure(this.state.user, this.state.perso);
-    }
 
   showUpdate() {
     this.setState({
@@ -45,7 +43,6 @@ class ArmureTable extends Component {
       perso: this.state.perso
     };
     this.props.postArmure(armure);
-    this.props.getArmure(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -125,7 +122,7 @@ class ArmureTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     armure: state.armure.armure,
     modified: state.armure.payload,
@@ -134,10 +131,9 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getArmure,
-    postArmure
+    getArmure, postArmure
   }, dispatch)
 }
 

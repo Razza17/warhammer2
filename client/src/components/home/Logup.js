@@ -3,7 +3,7 @@ import { Grid, Col, FormGroup, FormControl, Button, PanelGroup, Panel } from 're
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 
 import { postLogup } from "../../actions/LogupAction";
 
@@ -13,7 +13,6 @@ class Logup extends Component {
     super(props);
 
     this.state = {
-      redirect: false,
       activeKey: "0",
       errorMsg: ""
     }
@@ -35,23 +34,22 @@ class Logup extends Component {
     };
 
     if(password === confirmPassword && password !== "" && confirmPassword !== "") {
-      let config = {
-        apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
-        authDomain: "warhammer-81ced.firebaseapp.com",
-        databaseURL: "https://warhammer-81ced.firebaseio.com",
-        projectId: "warhammer-81ced",
-        storageBucket: "warhammer-81ced.appspot.com",
-        messagingSenderId: "1046515260577"
-      };
-      firebase.initializeApp(config);
-
-      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        this.setState({ activeKey: "1", errorMsg: errorCode + " : " + errorMessage });
-      });
+      // let config = {
+      //   apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
+      //   authDomain: "warhammer-81ced.firebaseapp.com",
+      //   databaseURL: "https://warhammer-81ced.firebaseio.com",
+      //   projectId: "warhammer-81ced",
+      //   storageBucket: "warhammer-81ced.appspot.com",
+      //   messagingSenderId: "1046515260577"
+      // };
+      // firebase.initializeApp(config);
+      //
+      // firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      //   let errorCode = error.code;
+      //   let errorMessage = error.message;
+      //   this.setState({ activeKey: "1", errorMsg: errorCode + " : " + errorMessage });
+      // });
       this.props.postLogup(user);
-      this.setState({redirect:true});
       let redirect = "/creationProfile?pseudo=" + pseudo;
       this.props.history.push(redirect);
     } else {
@@ -63,7 +61,7 @@ class Logup extends Component {
     return (
       <Grid id="logup" className="vertical-middle" fluid>
         <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
-          <PanelGroup>
+          <PanelGroup id="logup-panel-group">
             <Panel>
               <Panel.Heading>
                 <Panel.Title componentClass="h2">Créer ton compte</Panel.Title>

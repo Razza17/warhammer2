@@ -14,13 +14,11 @@ class ChooseTable extends Component {
     let recupUser = urlParams[1].split('&');
     let user = recupUser[0];
 
+    this.props.getPerso(user);
+
     this.state = {
       user: user
     }
-  }
-
-  componentWillMount() {
-    this.props.getPerso(this.state.user);
   }
 
   handleSubmit() {
@@ -47,13 +45,13 @@ class ChooseTable extends Component {
   }
 }
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return {
     perso: state.perso.perso
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     getPerso
   }, dispatch);

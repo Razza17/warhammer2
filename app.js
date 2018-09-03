@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/warhammer', {
+mongoose.connect('mongodb://Razza:CaptainElan2696@warhammer-shard-00-00-e5vlk.mongodb.net:27017,warhammer-shard-00-01-e5vlk.mongodb.net:27017,warhammer-shard-00-02-e5vlk.mongodb.net:27017/warhammer?ssl=true&replicaSet=Warhammer-shard-0&authSource=admin&retryWrites=true', {
   useMongoClient: true
 });
 
@@ -64,6 +64,33 @@ app.post('/perso', function(req, res) {
   })
 });
 
+//---->>>> RENAME CHARACTER <<<<----
+app.put('/perso/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    nom: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  Perso.findOneAndUpdate(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
 //---->>>> POST PROFILE <<<<----
 app.post('/profil', function(req, res) {
   let profil = req.body;
@@ -93,14 +120,55 @@ app.get('/profil/:user/:perso', function(req, res) {
 app.put('/profil/:_id', function(req, res) {
   let newData = req.body;
   let query = req.params._id;
+  let update;
+
+  if (newData.page === "personnage") {
+    update = {
+      '$set': {
+        carriereA: newData.carriereA,
+        Acarriere: newData.Acarriere
+      }
+    };
+  } else if (newData.page === "recap") {
+    update = {
+      '$set': {
+        race: newData.race,
+        carriereA: newData.carriereA,
+        Acarriere: newData.Acarriere
+      }
+    };
+  } else {
+    update = {
+      '$set': {
+        user: newData.user,
+      }
+    };
+  }
+
+  let options = {new: false};
+
+  Profile.findOneAndUpdate(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
+//---->>>> RENAME PROFILE <<<<----
+app.put('/profil/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
 
   let update = {
     '$set': {
-      nom: newData.nom,
-      race: newData.race,
-      carriereA: newData.carriereA,
-      Acarriere: newData.Acarriere,
-      perso: newData.nom
+      perso: newData.perso
     }
   };
 
@@ -156,6 +224,33 @@ app.put('/details/:_id', function(req, res) {
       fraterie: newData.fraterie,
       naissance: newData.naissance,
       distinction: newData.distinction,
+    }
+  };
+
+  let options = {new: false};
+
+  Details.findOneAndUpdate(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
+//---->>>> RENAME DETAILS <<<<----
+app.put('/details/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
     }
   };
 
@@ -229,6 +324,33 @@ app.put('/caracteristique/:_id', function(req, res) {
   })
 });
 
+//---->>>> RENAME CARACTERISTIQUES <<<<----
+app.put('/caracteristique/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  Caracteristique.updateMany(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
 //---->>>> POST COUNT <<<<----
 app.post('/count', function(req, res) {
   let count = req.body;
@@ -266,7 +388,34 @@ app.put('/count/:_id', function(req, res) {
 
   let options = {new: false};
 
-  Count.updateOne({name: newData.name}, update, options, function(err, data) {
+  Count.updateOne({_id: req.params._id}, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
+//---->>>> RENAME COUNT <<<<----
+app.put('/count/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  Count.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -315,6 +464,33 @@ app.put('/competencebase/:_id', function(req, res) {
   let options = {new: false};
 
   CompetenceBase.updateOne({_id: newData._id}, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
+//---->>>> RENAME COMPETENCE BASE <<<<----
+app.put('/competencebase/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  CompetenceBase.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -372,6 +548,33 @@ app.put('/competenceavance/:_id', function(req, res) {
   })
 });
 
+//---->>>> RENAME COMPETENCE AVANCE <<<<----
+app.put('/competenceavance/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  CompetenceAvance.updateMany(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
 //---->>>> POST TALENT <<<<----
 app.post('/talent', function(req, res) {
   let talent = req.body;
@@ -413,6 +616,33 @@ app.put('/talent/:_id', function(req, res) {
   let options = {new: false};
 
   Talent.updateOne({_id: newData._id}, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
+//---->>>> RENAME TALENT <<<<----
+app.put('/talent/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  Talent.updateMany(query, update, options, function(err, data) {
     if(err) {
       throw err;
     }
@@ -482,6 +712,33 @@ app.put('/arme/:_id', function(req, res) {
   })
 });
 
+//---->>>> RENAME ARMES <<<<----
+app.put('/arme/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  Arme.updateMany(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
 //---->>>> POST ARMURES <<<<----
 app.post('/armure', function(req, res) {
   let armure = req.body;
@@ -542,6 +799,33 @@ app.put('/armure/:_id', function(req, res) {
   })
 });
 
+//---->>>> RENAME ARMURES <<<<----
+app.put('/armure/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  Armure.updateMany(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
 //---->>>> POST MONEY <<<<----
 app.post('/money', function(req, res) {
   let money = req.body;
@@ -577,6 +861,33 @@ app.put('/money/:_id', function(req, res) {
       couronnes: newData.couronnes,
       pistoles: newData.pistoles,
       sous: newData.sous
+    }
+  };
+
+  let options = {new: false};
+
+  Money.findOneAndUpdate({_id : query}, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
+//---->>>> RENAME MONEY <<<<----
+app.put('/money/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
     }
   };
 
@@ -649,6 +960,33 @@ app.put('/inventaire/:_id', function(req, res) {
   })
 });
 
+//---->>>> RENAME INVENTAIRE <<<<----
+app.put('/inventaire/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  Inventaire.updateMany(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
 //---->>>> POST FOLIE <<<<----
 app.post('/folie', function(req, res) {
   let inv = req.body;
@@ -708,6 +1046,33 @@ app.put('/folie/:_id', function(req, res) {
   })
 });
 
+//---->>>> RENAME FOLIE <<<<----
+app.put('/folie/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  Folie.updateMany(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
 //---->>>> POST EXPERIENCE <<<<----
 app.post('/experience', function(req, res) {
   let inv = req.body;
@@ -754,6 +1119,33 @@ app.put('/experience/:_id', function(req, res) {
   })
 });
 
+//---->>>> RENAME EXPERIENCE <<<<----
+app.put('/experience/:pseudo/:perso', function(req, res) {
+  let newData = req.body;
+  let user = req.params.pseudo;
+  let perso = req.params.perso;
+
+  let query = {
+    user: user,
+    perso: perso
+  }
+
+  let update = {
+    '$set': {
+      perso: newData.perso
+    }
+  };
+
+  let options = {new: false};
+
+  Experience.findOneAndUpdate(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
 //---->>>> POST USER <<<<----
 app.post('/user', function(req, res) {
   let data = req.body;
@@ -767,10 +1159,21 @@ app.post('/user', function(req, res) {
 });
 
 //---->>>> GET USER <<<<----
-app.get('/user/:email', function(req, res) {
-  let email = req.params.email;
+app.get('/user/:pseudo', function(req, res) {
+  let pseudo = req.params.pseudo;
 
-  User.find({email: email}, function(err, user) {
+  User.find({pseudo: pseudo}, function(err, user) {
+    if(err) {
+      throw err;
+    }
+    res.json(user);
+  })
+});
+
+//---->>>> GET ALL USER <<<<----
+app.get('/user', function(req, res) {
+
+  User.find(function(err, user) {
     if(err) {
       throw err;
     }
@@ -779,12 +1182,14 @@ app.get('/user/:email', function(req, res) {
 });
 
 //---->>>> UPDATE USER <<<<----
-app.put('/user/:_id', function(req, res) {
+app.put('/user/:pseudo', function(req, res) {
   let newData = req.body;
+  let pseudo = req.params.pseudo;
 
   let update = {
     '$set': {
-      password: newData.password,
+      nom: newData.nom,
+      prenom: newData.prenom,
       email: newData.email,
       pseudo: newData.pseudo
     }
@@ -792,7 +1197,7 @@ app.put('/user/:_id', function(req, res) {
 
   let options = {new: false};
 
-  User.updateOne({_id: newData._id}, update, options, function(err, data) {
+  User.updateOne({pseudo: pseudo}, update, options, function(err, data) {
     if(err) {
       throw err;
     }

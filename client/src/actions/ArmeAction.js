@@ -52,3 +52,16 @@ export function updateArme(id, newData) {
     })
   }
 }
+
+// RENAME PERSO
+export function renameArme(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/arme/' + user + '/' + perso, newData)
+    .then(function(response) {
+      dispatch({type:"UPDATE_ARME", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_ARME_REJECTED", payload:err})
+    })
+  }
+}

@@ -39,3 +39,16 @@ export function updateExperience(id, newData) {
     })
   }
 }
+
+// RENAME PERSO
+export function renameExperience(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/experience/' + user + '/' + perso, newData)
+    .then(function(response) {
+      dispatch({type:"UPDATE_EXPERIENCE", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_EXPERIENCE_REJECTED", payload:err})
+    })
+  }
+}

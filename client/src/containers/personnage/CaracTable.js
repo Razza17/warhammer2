@@ -19,15 +19,13 @@ class CaracTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCarac(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       update: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getCarac(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -116,7 +114,7 @@ class CaracTable extends Component {
   }
 }
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return {
     carac: state.carac.carac,
     modified: state.carac.payload,
@@ -125,7 +123,7 @@ function mapStateToProps(state){
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     getCarac,
     updateCarac

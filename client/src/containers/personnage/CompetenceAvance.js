@@ -18,6 +18,8 @@ class CompetenceAvance extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCompAvance(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
@@ -26,10 +28,6 @@ class CompetenceAvance extends Component {
       dixCheck: false,
       vingtCheck: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getCompAvance(this.state.user,this.state.perso);
   }
 
   showUpdate() {
@@ -159,7 +157,7 @@ class CompetenceAvance extends Component {
 }
 
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     compAvance: state.compAvance.compAvance,
     modified: state.compAvance.payload,
@@ -168,11 +166,9 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getCompAvance,
-    updateCompAvance,
-    postCompAvance
+    getCompAvance, updateCompAvance, postCompAvance
   }, dispatch)
 }
 

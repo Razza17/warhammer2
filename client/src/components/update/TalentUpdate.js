@@ -14,7 +14,6 @@ export class TalentUpdate extends Component {
       bonus: findDOMNode(this.refs.bonusTalent).value
     };
     this.props.updateTalent(_id, newTalent);
-    this.props.getTalent(this.props.user, this.props.perso);
   }
 
   render() {

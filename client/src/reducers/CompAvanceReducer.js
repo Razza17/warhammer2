@@ -8,7 +8,7 @@ export function compAvanceReducer(state={compAvance:[]}, action) {
 
         // POST
         case "POST_COMPAVANCE":
-            return {...state, compAvance:[...state.compAvance, ...action.payload]};
+            return {...state, compAvance:[...state.compAvance, action.payload]};
         case "POST_COMPAVANCE_REJECTED":
             return action.payload;
 

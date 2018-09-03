@@ -39,3 +39,16 @@ export function updateCompAvance(id, newData) {
     })
   }
 }
+
+// RENAME PERSO
+export function renameCompAvance(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/competenceavance/' + user + '/' + perso, newData)
+    .then(function(response) {
+      dispatch({type:"UPDATE_COMPAVANCE", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_COMPAVANCE_REJECTED", payload:err})
+    })
+  }
+}

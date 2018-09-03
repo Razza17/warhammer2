@@ -8,7 +8,7 @@ export function folieReducer(state={folie:[]}, action) {
 
         // POST
         case "POST_FOLIE":
-            return {...state, folie:[...state.folie, ...action.payload]};
+            return {...state, folie:[...state.folie, action.payload]};
         case "POST_FOLIE_REJECTED":
             return action.payload;
 

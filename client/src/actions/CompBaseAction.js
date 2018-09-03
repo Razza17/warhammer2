@@ -38,3 +38,16 @@ export function updateCompBase(id, newData) {
     })
   }
 }
+
+// RENAME PERSO
+export function renameCompBase(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/competencebase/' + user + '/' + perso, newData)
+    .then(function(response) {
+      dispatch({type:"UPDATE_COMPBASE", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_COMPBASE_REJECTED", payload:err})
+    })
+  }
+}

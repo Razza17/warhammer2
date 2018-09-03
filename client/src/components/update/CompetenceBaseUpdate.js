@@ -46,7 +46,6 @@ class CompetenceBaseUpdate extends Component {
       bonus: findDOMNode(this.refs.bonusCompBase).value
     };
     this.props.updateCompBase(_id, compBase);
-    this.props.getCompBase(this.props.user, this.props.perso);
   }
 
   render() {

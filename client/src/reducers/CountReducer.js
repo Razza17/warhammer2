@@ -8,7 +8,7 @@ export function countReducer(state={count:[]}, action) {
 
     // POST
     case "POST_COUNT":
-    return {count:[...state.count, ...action.payload]};
+    return {...state, count:[...state.count, action.payload]};
     case "POST_COUNT_REJECTED":
     return action.payload;
 

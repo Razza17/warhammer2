@@ -8,7 +8,7 @@ export function talentReducer(state={talent:[]}, action) {
 
         // POST
         case "POST_TALENT":
-            return {...state, talent:[...state.talent, ...action.payload]};
+            return {...state, talent:[...state.talent, action.payload]};
         case "POST_TALENT_REJECTED":
             return action.payload;
 

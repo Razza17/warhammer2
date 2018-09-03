@@ -36,5 +36,5 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] Récupération des données du personnage selon l'utilisateur
 - [x] Choix du personnage à afficher selon l'utilisateur
 - [x] Design global
-- Page "mon compte" + changement email, pseudo, nom de personnages + récupération password
+- Page "mon compte" + changement email, nom de personnages + récupération password
 - DELETE Personnage(s)
