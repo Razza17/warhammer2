@@ -14,14 +14,12 @@ class PointArmureTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCarac(user, perso);
+
     this.state = {
       user: user,
       perso: perso
     }
-  }
-
-  componentWillMount() {
-    this.props.getCarac(this.state.user, this.state.perso);
   }
 
   ptsTete() {
@@ -184,14 +182,14 @@ class PointArmureTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     armure: state.armure.armure,
     carac: state.carac.carac
   }
 }
 
-function mapDispatchtoProps(dispatch) {
+const mapDispatchtoProps = dispatch => {
   return bindActionCreators({
     getCarac
   }, dispatch)

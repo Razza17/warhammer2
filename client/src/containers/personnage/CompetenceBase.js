@@ -17,15 +17,13 @@ class CompetenceBase extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCompBase(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       update: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getCompBase(this.state.user,this.state.perso);
   }
 
   showUpdate() {
@@ -65,7 +63,7 @@ class CompetenceBase extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     compBase: state.compBase.compBase,
     modified: state.compBase.payload,
@@ -74,7 +72,7 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     getCompBase, updateCompBase
   }, dispatch)

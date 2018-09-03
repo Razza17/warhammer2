@@ -17,15 +17,13 @@ class ProfilTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getProfile(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       update: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getProfile(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -49,13 +47,13 @@ class ProfilTable extends Component {
   }
 }
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return {
     profile: state.profile.profile
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     getProfile, updateProfile
   }, dispatch);

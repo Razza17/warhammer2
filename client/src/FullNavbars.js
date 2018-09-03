@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import firebase from 'firebase/app';
-import 'firebase/auth';
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
 
 export class FullNavbars extends Component {
 
@@ -23,21 +23,23 @@ export class FullNavbars extends Component {
   }
 
   logout() {
-    let config = {
-      apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
-      authDomain: "warhammer-81ced.firebaseapp.com",
-      databaseURL: "https://warhammer-81ced.firebaseio.com",
-      projectId: "warhammer-81ced",
-      storageBucket: "warhammer-81ced.appspot.com",
-      messagingSenderId: "1046515260577"
-    };
-    firebase.initializeApp(config);
+    // let config = {
+    //   apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
+    //   authDomain: "warhammer-81ced.firebaseapp.com",
+    //   databaseURL: "https://warhammer-81ced.firebaseio.com",
+    //   projectId: "warhammer-81ced",
+    //   storageBucket: "warhammer-81ced.appspot.com",
+    //   messagingSenderId: "1046515260577"
+    // };
+    // firebase.initializeApp(config);
+    //
+    // firebase.auth().signOut().then(function() {
+    //   window.location.assign("/")
+    // }).catch(function(error) {
+    //   // An error happened.
+    // });
 
-    firebase.auth().signOut().then(function() {
-      window.location.assign("/")
-    }).catch(function(error) {
-      // An error happened.
-    });
+    window.location.assign("/")
   }
 
   render() {

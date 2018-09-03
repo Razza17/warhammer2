@@ -26,7 +26,6 @@ export class CaracUpdateMobile extends Component {
       pd: findDOMNode(this.refs.pd).value
     };
     this.props.updateCarac(id, newCarac);
-    this.props.getCarac(this.props.user, this.props.perso);
   }
 
   render() {

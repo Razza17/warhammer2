@@ -8,15 +8,15 @@ export function armureReducer(state={armure:[]}, action) {
 
         // POST
         case "POST_ARMURE":
-            return {...state, armure:[...state.armure, ...action.payload]};
+            return {...state, armure:[...state.armure, action.payload]};
         case "POST_ARMURE_REJECTED":
             return action.payload;
 
         // DELETE
         case "DELETE_ARMURE":
-            
+
             const currentArmureToDelete = [...state.armure];
-            
+
             const indexToDelete =
                 currentArmureToDelete.findIndex(
                     function(armure){

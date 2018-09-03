@@ -15,14 +15,12 @@ class MoneyTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getMoney(user, perso);
+
     this.state = {
       user: user,
       perso: perso
     }
-  }
-
-  componentWillMount() {
-    this.props.getMoney(this.state.user, this.state.perso);
   }
 
   render() {
@@ -41,16 +39,15 @@ class MoneyTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     money: state.money.money
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getMoney,
-    updateMoney
+    getMoney, updateMoney
   }, dispatch)
 }
 

@@ -18,15 +18,13 @@ class ArmesTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getArme(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       update: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getArme(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -47,7 +45,6 @@ class ArmesTable extends Component {
       perso: this.state.perso
     };
     this.props.postArme(arme);
-    this.props.getArme(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -112,7 +109,7 @@ class ArmesTable extends Component {
                     <FormGroup controlId="porteeArme">
                       <FormControl
                         type='text'
-                        placeholder='Potée'
+                        placeholder='Portée'
                         ref='porteeArme' />
                     </FormGroup>
                   </td>
@@ -143,7 +140,7 @@ class ArmesTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     arme: state.arme.arme,
     modified: state.arme.payload,
@@ -152,7 +149,7 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     getArme,
     postArme

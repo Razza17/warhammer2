@@ -14,14 +14,12 @@ class DetailsTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getDetails(user, perso);
+
     this.state = {
       user: user,
       perso: perso
     }
-  }
-
-  componentWillMount() {
-    this.props.getDetails(this.state.user, this.state.perso);
   }
 
   render() {
@@ -38,13 +36,13 @@ class DetailsTable extends Component {
   }
 }
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return {
     details: state.details.details
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({getDetails}, dispatch);
 }
 

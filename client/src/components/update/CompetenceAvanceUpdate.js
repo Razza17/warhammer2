@@ -45,7 +45,6 @@ class CompetenceAvanceUpdate extends Component {
       bonus: findDOMNode(this.refs.bonusCompAvance).value
     };
     this.props.updateCompAvance(_id, compAvance);
-    this.props.getCompAvance(this.props.user, this.props.perso);
   }
 
   render() {

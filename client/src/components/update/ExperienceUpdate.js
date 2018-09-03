@@ -12,7 +12,6 @@ export class ExperienceUpdate extends Component {
       total: findDOMNode(this.refs.totalExperience).value
     };
     this.props.updateExperience(_id, experience);
-    this.props.getExperience(this.props.user, this.props.perso);
   }
 
   render() {

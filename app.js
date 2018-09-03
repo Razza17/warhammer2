@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/warhammer', {
+mongoose.connect('mongodb://Razza:CaptainElan2696@warhammer-shard-00-00-e5vlk.mongodb.net:27017,warhammer-shard-00-01-e5vlk.mongodb.net:27017,warhammer-shard-00-02-e5vlk.mongodb.net:27017/warhammer?ssl=true&replicaSet=Warhammer-shard-0&authSource=admin&retryWrites=true', {
   useMongoClient: true
 });
 

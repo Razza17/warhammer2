@@ -47,7 +47,6 @@ class ArmureUpdate extends Component {
       points: findDOMNode(this.refs.pointsArmure).value,
     };
     this.props.updateArmure(_id, armure);
-    this.props.getArmure(this.props.user, this.props.perso);
   }
 
   render() {

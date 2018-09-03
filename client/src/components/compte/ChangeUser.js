@@ -20,10 +20,8 @@ import { renamePerso } from '../../actions/PersoAction';
 import { renameTalent } from '../../actions/TalentAction';
 import { getUser, getAllUser, updateUser } from '../../actions/UserAction';
 
-import store from '../../index';
-
-import firebase from 'firebase/app';
-import 'firebase/auth';
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
 
 export class ChangeUser extends Component {
 
@@ -76,21 +74,23 @@ export class ChangeUser extends Component {
   }
 
   deconnection() {
-    let config = {
-      apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
-      authDomain: "warhammer-81ced.firebaseapp.com",
-      databaseURL: "https://warhammer-81ced.firebaseio.com",
-      projectId: "warhammer-81ced",
-      storageBucket: "warhammer-81ced.appspot.com",
-      messagingSenderId: "1046515260577"
-    };
-    firebase.initializeApp(config);
+    // let config = {
+    //   apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
+    //   authDomain: "warhammer-81ced.firebaseapp.com",
+    //   databaseURL: "https://warhammer-81ced.firebaseio.com",
+    //   projectId: "warhammer-81ced",
+    //   storageBucket: "warhammer-81ced.appspot.com",
+    //   messagingSenderId: "1046515260577"
+    // };
+    // firebase.initializeApp(config);
+    //
+    // firebase.auth().signOut().then(function() {
+    //   window.location.assign("/")
+    // }).catch(function(error) {
+    //   // An error happened.
+    // });
 
-    firebase.auth().signOut().then(function() {
-      window.location.assign("/")
-    }).catch(function(error) {
-      // An error happened.
-    });
+    window.location.assign("/")
   }
 
   render() {

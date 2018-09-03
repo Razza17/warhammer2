@@ -38,7 +38,6 @@ class FolieUpdate extends Component {
       nom: findDOMNode(this.refs.nomFolie).value
     };
     this.props.updateFolie(_id, folie);
-    this.props.getFolie(this.props.user, this.props.perso);
   }
 
 

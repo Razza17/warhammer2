@@ -8,7 +8,7 @@ export function detailReducer(state={details:[]}, action) {
 
     // POST
     case "POST_DETAILS":
-    return {...state, details:[...state.details, ...action.payload]};
+    return {...state, details:[...state.details, action.payload]};
     case "POST_DETAILS_REJECTED":
     return action.payload;
 

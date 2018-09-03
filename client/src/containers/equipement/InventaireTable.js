@@ -18,15 +18,13 @@ class InventaireTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getInventaire(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       update: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getInventaire(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -44,7 +42,6 @@ class InventaireTable extends Component {
       perso: this.state.perso
     };
     this.props.postInventaire(inventaire);
-    this.props.getInventaire(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -72,7 +69,7 @@ class InventaireTable extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.inventaire.map((inventaire, i) => this.state.update ? <InventaireUpdate key={inventaire._id} {...inventaire} getInventaire={this.props.getInventaire} /> : <Inventaire key={i} {...inventaire}/>) }
+              { this.props.inventaire.map((inventaire, i) => this.state.update ? <InventaireUpdate key={inventaire._id} {...inventaire} /> : <Inventaire key={i} {...inventaire}/>) }
               {this.state.update &&
                 <tr>
                   <td>
@@ -110,7 +107,7 @@ class InventaireTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     inventaire: state.inventaire.inventaire,
     modified: state.inventaire.payload,
@@ -119,10 +116,9 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchtoProps(dispatch) {
+const mapDispatchtoProps = dispatch => {
   return bindActionCreators({
-    getInventaire,
-    postInventaire
+    getInventaire, postInventaire
   }, dispatch)
 }
 

@@ -53,7 +53,6 @@ class ArmesUpdate extends Component {
       attributs: findDOMNode(this.refs.attributsArme).value
     };
     this.props.updateArme(_id, arme);
-    this.props.getArme(this.props.user, this.props.perso);
   }
 
 

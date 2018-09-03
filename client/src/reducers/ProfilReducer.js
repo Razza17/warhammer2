@@ -8,7 +8,7 @@ export function profilReducer(state={profile:[]}, action) {
 
     // POST
     case "POST_PROFILE":
-    return {...state, profile:[...state.profile, ...action.payload]};
+    return {...state, profile:[...state.profile, action.payload]};
     case "POST_PROFILE_REJECTED":
     return action.payload;
 

@@ -8,7 +8,7 @@ export function armeReducer(state={arme:[]}, action) {
 
         // POST
         case "POST_ARME":
-            return {...state, arme:[...state.arme, ...action.payload]};
+            return {...state, arme:[...state.arme, action.payload]};
         case "POST_ARME_REJECTED":
             return action.payload;
 

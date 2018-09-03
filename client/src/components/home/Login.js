@@ -3,8 +3,8 @@ import { Grid, Col, FormGroup, FormControl, Button, Alert, PanelGroup, Panel } f
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
 
 import { getUser } from '../../actions/UserAction.js';
 
@@ -13,15 +13,15 @@ class Login extends Component {
   constructor(props) {
     super(props);
 
-    let config = {
-      apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
-      authDomain: "warhammer-81ced.firebaseapp.com",
-      databaseURL: "https://warhammer-81ced.firebaseio.com",
-      projectId: "warhammer-81ced",
-      storageBucket: "warhammer-81ced.appspot.com",
-      messagingSenderId: "1046515260577"
-    };
-    firebase.initializeApp(config);
+    // let config = {
+    //   apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
+    //   authDomain: "warhammer-81ced.firebaseapp.com",
+    //   databaseURL: "https://warhammer-81ced.firebaseio.com",
+    //   projectId: "warhammer-81ced",
+    //   storageBucket: "warhammer-81ced.appspot.com",
+    //   messagingSenderId: "1046515260577"
+    // };
+    // firebase.initializeApp(config);
 
     this.state = {
       visible: false,
@@ -30,31 +30,32 @@ class Login extends Component {
   }
 
   handleLogin() {
-    let reactThis = this;
-    let that = this.props;
-    let email = findDOMNode(this.refs.email).value;
-    let password = findDOMNode(this.refs.password).value;
+    // let reactThis = this;
+    // let that = this.props;
+    // let email = findDOMNode(this.refs.email).value;
+    // let password = findDOMNode(this.refs.password).value;
     let pseudo = findDOMNode(this.refs.pseudo).value;
+    this.props.getUser(pseudo);
 
-    firebase.auth().signInWithEmailAndPassword(email,password)
-    .then(function(onResolve) {
-      that.getUser(pseudo);
-      window.location.assign('./choosePerso?pseudo='+pseudo);
-    })
-    .catch(function(err) {
-      let errorMessage = err.message;
-
-      reactThis.setState({
-        visible: !reactThis.state.visible,
-        msg: errorMessage
-      })
-
-      setTimeout(function() {
-        reactThis.setState({
-          visible: !reactThis.state.visible
-        })
-      }, 3000)
-    });
+    // firebase.auth().signInWithEmailAndPassword(email,password)
+    // .then(function(onResolve) {
+    //   that.getUser(pseudo);
+    //   window.location.assign('./choosePerso?pseudo='+pseudo);
+    // })
+    // .catch(function(err) {
+    //   let errorMessage = err.message;
+    //
+    //   reactThis.setState({
+    //     visible: !reactThis.state.visible,
+    //     msg: errorMessage
+    //   })
+    //
+    //   setTimeout(function() {
+    //     reactThis.setState({
+    //       visible: !reactThis.state.visible
+    //     })
+    //   }, 3000)
+    // });
   }
 
   render() {

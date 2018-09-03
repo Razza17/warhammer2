@@ -14,7 +14,7 @@ export function userReducer(state={user:[]}, action) {
 
     // POST
     case "POST_USER":
-      return {user:[...state.user, ...action.payload]};
+      return {...state, user:[...state.user, action.payload]};
     case "POST_USER_REJECTED":
       return action.payload;
 
