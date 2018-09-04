@@ -13,8 +13,7 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 * dans le dossier warhammer2/client : npm start
 
 # Chemin de la BDD MongoDB
-* ATTENTION : la bdd MongoDB est en local sur mon ordinateur pour le moment.
-* ./bin/mongod --dbpath path/to/mongodb/database/warhammer2/dbs
+* la BDD est hébergée sur le Cloud de MongoDB.
 
 # Reste à faire
 - [x] Architecture de l'app
@@ -36,5 +35,5 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] Récupération des données du personnage selon l'utilisateur
 - [x] Choix du personnage à afficher selon l'utilisateur
 - [x] Design global
-- Page "mon compte" + changement email, nom de personnages + récupération password
+- [x] Page "mon compte" + changement email, nom de personnages + récupération password
 - DELETE Personnage(s)

@@ -18,7 +18,43 @@ export class FullNavbars extends Component {
 
     this.state = {
       user: user,
-      perso: perso
+      perso: perso,
+      personnage: true,
+      equipement: false,
+      combat: false,
+      monCompte: false
+    }
+  }
+
+  active(onglet) {
+    if(onglet === "personnage") {
+      this.setState({
+        personnage: true,
+        equipement: false,
+        combat: false,
+        monCompte: false
+      })
+    } else if (onglet === "equipement") {
+      this.setState({
+        personnage: false,
+        equipement: true,
+        combat: false,
+        monCompte: false
+      })
+    } else if (onglet === "combat") {
+      this.setState({
+        personnage: false,
+        equipement: false,
+        combat: true,
+        monCompte: false
+      })
+    } else if (onglet === "monCompte") {
+      this.setState({
+        personnage: false,
+        equipement: false,
+        combat: false,
+        monCompte: true
+      })
     }
   }
 
@@ -54,24 +90,20 @@ export class FullNavbars extends Component {
         <Navbar.Collapse>
           <Nav>
             <LinkContainer to={"/personnage?pseudo="+this.state.user+"&perso="+this.state.perso}>
-              <NavItem eventKey={0}>Personnage</NavItem>
+              <NavItem onClick={this.active.bind(this, "personnage")} className={this.state.personnage ? "active" : "noActive"} eventKey={0}>Personnage</NavItem>
             </LinkContainer>
             <LinkContainer to={"/equipement?pseudo="+this.state.user+"&perso="+this.state.perso}>
-              <NavItem eventKey={1}>Equipement</NavItem>
+              <NavItem onClick={this.active.bind(this, "equipement")} className={this.state.equipement ? "active" : "noActive"} eventKey={1}>Equipement</NavItem>
             </LinkContainer>
             <LinkContainer to={"/combat?pseudo="+this.state.user+"&perso="+this.state.perso}>
-              <NavItem eventKey={2}>Combat</NavItem>
+              <NavItem onClick={this.active.bind(this, "combat")} className={this.state.combat ? "active" : "noActive"} eventKey={2}>Combat</NavItem>
             </LinkContainer>
           </Nav>
           <Nav pullRight>
             <LinkContainer to={"/monCompte?pseudo="+this.state.user+"&perso="+this.state.perso}>
-              <NavItem eventKey={3}>
-                Mon Compte
-              </NavItem>
+              <NavItem onClick={this.active.bind(this, "monCompte")} className={this.state.monCompte ? "active" : "noActive"} eventKey={3}>Mon Compte</NavItem>
             </LinkContainer>
-            <NavItem eventKey={4} onClick={this.logout.bind(this)}>
-              Me déconnecter
-            </NavItem>
+            <NavItem eventKey={4} onClick={this.logout.bind(this)}>Me déconnecter</NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
