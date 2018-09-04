@@ -85,6 +85,13 @@ a:hover {
   transition: all 0.5s;
 }
 
+.navbar-default .navbar-nav > li.active > a, .navbar-default .navbar-nav > li.active > a:focus {
+  background-color: #819ca9;
+  background-image: none;
+  text-shadow: 4px 4px 3px rgba(0, 0, 0, 1);
+  transition: all 0.5s;
+}
+
 /************************ 3. PANELS ************************/
 .panel {
   position: relative;
