@@ -36,6 +36,7 @@ class Login extends Component {
     // let password = findDOMNode(this.refs.password).value;
     let pseudo = findDOMNode(this.refs.pseudo).value;
     this.props.getUser(pseudo);
+    window.location.assign('./choosePerso?pseudo='+pseudo);
 
     // firebase.auth().signInWithEmailAndPassword(email,password)
     // .then(function(onResolve) {
@@ -62,7 +63,7 @@ class Login extends Component {
     return (
       <Grid id="login" className="vertical-middle" fluid>
         <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
-          <PanelGroup>
+          <PanelGroup id="signinPanel">
             <Panel>
               <Panel.Heading>
                 <Panel.Title componentClass="h2">Connecte toi</Panel.Title>

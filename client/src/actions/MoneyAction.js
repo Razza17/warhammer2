@@ -32,7 +32,7 @@ export function updateMoney(id, newData) {
   return function(dispatch) {
     axios.put('/money/' + id, newData)
     .then(function(response) {
-      dispatch({type:"UPDATE_MONEY", payload:response.data})
+      dispatch({type:"UPDATE_MONEY", payload:response.data, id:id, datas:newData})
     })
     .catch(function(err) {
       dispatch({type:"UPDATE_MONEY_REJECTED", payload:err})

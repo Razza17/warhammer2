@@ -8,51 +8,23 @@ import { deleteArme, updateArme } from "../../actions/ArmeAction";
 
 class ArmesUpdate extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      nom: this.props.nom,
-      encombrement: this.props.encombrement,
-      degats: this.props.degats,
-      portee: this.props.portee,
-      rechargement: this.props.rechargement,
-      attributs: this.props.attributs
-    }
-  }
-
   handleDelete(){
     let _id = this.props._id;
     this.props.deleteArme(_id);
-    this.handleChangeArme();
-  }
-
-  handleChangeArme() {
-    const armeData = this.props.arme.map((newArmes) => {return {...newArmes}});
-    for(let j = 0; j < armeData.length; j++) {
-      this.setState({
-        nom: armeData[j].nom,
-        encombrement: armeData[j].encombrement,
-        degats: armeData[j].degats,
-        portee: armeData[j].portee,
-        rechargement: armeData[j].rechargement,
-        attributs: armeData[j].attributs
-      })
-    }
   }
 
   handleUpdate() {
     let _id = this.props._id;
-    let arme = {
+    let armeToUpdate = {
       _id:_id,
       nom: findDOMNode(this.refs.nomArme).value,
-      encombrement: findDOMNode(this.refs.encombrementArme).value,
-      degats: findDOMNode(this.refs.degatsArme).value,
+      encombrement: parseFloat(findDOMNode(this.refs.encombrementArme).value),
+      degats: parseFloat(findDOMNode(this.refs.degatsArme).value),
       portee: findDOMNode(this.refs.porteeArme).value,
-      rechargement: findDOMNode(this.refs.rechargementArme).value,
+      rechargement: parseFloat(findDOMNode(this.refs.rechargementArme).value),
       attributs: findDOMNode(this.refs.attributsArme).value
     };
-    this.props.updateArme(_id, arme);
+    this.props.updateArme(_id, armeToUpdate);
   }
 
 
@@ -63,23 +35,23 @@ class ArmesUpdate extends Component {
           <FormGroup controlId="nomArme">
             <FormControl
               type='text'
-              defaultValue={this.state.nom}
+              defaultValue={this.props.nom}
               ref='nomArme' />
           </FormGroup>
         </td>
         <td>
           <FormGroup controlId="encombrementArme">
             <FormControl
-              type='text'
-              defaultValue={this.state.encombrement}
+              type='number'
+              defaultValue={this.props.encombrement}
               ref='encombrementArme' />
           </FormGroup>
         </td>
         <td>
           <FormGroup controlId="degatsArme">
             <FormControl
-              type='text'
-              defaultValue={this.state.degats}
+              type='number'
+              defaultValue={this.props.degats}
               ref='degatsArme' />
           </FormGroup>
         </td>
@@ -87,15 +59,15 @@ class ArmesUpdate extends Component {
           <FormGroup controlId="porteeArme">
             <FormControl
               type='text'
-              defaultValue={this.state.portee}
+              defaultValue={this.props.portee}
               ref='porteeArme' />
           </FormGroup>
         </td>
         <td>
           <FormGroup controlId="rechargementArme">
             <FormControl
-              type='text'
-              defaultValue={this.state.rechargement !== undefined ? this.state.rechargement : 0}
+              type='number'
+              defaultValue={this.props.rechargement !== undefined ? this.props.rechargement : 0}
               ref='rechargementArme' />
           </FormGroup>
         </td>
@@ -103,7 +75,7 @@ class ArmesUpdate extends Component {
           <FormGroup controlId="attributsArme">
             <FormControl
               type='text'
-              defaultValue={this.state.attributs}
+              defaultValue={this.props.attributs}
               ref='attributsArme' />
           </FormGroup>
         </td>
@@ -115,16 +87,10 @@ class ArmesUpdate extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    arme: state.arme.arme
-  }
-}
-
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     deleteArme, updateArme
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArmesUpdate);
+export default connect(null, mapDispatchToProps)(ArmesUpdate);

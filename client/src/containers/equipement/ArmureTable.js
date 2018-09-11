@@ -22,7 +22,7 @@ class ArmureTable extends Component {
 
     this.state = {
       user: user,
-      perso: perso,
+      perso : perso,
       update: false
     }
   }
@@ -72,7 +72,7 @@ class ArmureTable extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.armure.map((armure, i) => this.state.update ? <ArmureUpdate key={armure._id} {...armure} getArmure={this.props.getArmure} /> : <Armure key={i} {...armure} />) }
+              { this.props.armure.map((armure, i) => this.state.update ? <ArmureUpdate key={armure._id} {...armure} /> : <Armure key={i} {...armure} />) }
               {this.state.update &&
                 <tr>
                   <td>

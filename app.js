@@ -855,9 +855,10 @@ app.get('/money/:user/:perso', function(req, res) {
 app.put('/money/:_id', function(req, res) {
   let newData = req.body;
   let query = req.params._id;
-
+  
   let update = {
     '$set': {
+      _id: query,
       couronnes: newData.couronnes,
       pistoles: newData.pistoles,
       sous: newData.sous

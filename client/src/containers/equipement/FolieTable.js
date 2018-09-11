@@ -63,7 +63,7 @@ class FolieTable extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.folie.map((folie, i) => this.state.update ? <FolieUpdate key={folie._id} {...folie}  getFolie={this.props.getFolie} /> : <Folie key={i} {...folie}/>) }
+              { this.props.folie.map((folie, i) => this.state.update ? <FolieUpdate key={folie._id} {...folie} /> : <Folie key={i} {...folie}/>) }
               {this.state.update &&
                 <tr>
                   <td>

@@ -15,11 +15,6 @@ class EncContainer extends Component {
     let perso = urlParams[2];
 
     this.props.getCarac(user, perso);
-
-    this.state = {
-      user: user,
-      perso: perso
-    }
   }
 
   encArme() {

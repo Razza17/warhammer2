@@ -1,120 +1,113 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Badge, Glyphicon } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { updateMoney } from "../../actions/MoneyAction";
 
-export class Money extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      couronnes: this.props.couronnes,
-      pistoles: this.props.pistoles,
-      sous: this.props.sous
-    }
-  }
+class Money extends Component {
 
   onIncrement(type) {
     if (type === 'Couronnes') {
-      this.setState({couronnes: this.state.couronnes + 1});
       let data = {
-        couronnes: this.state.couronnes + 1,
-        pistoles: this.state.pistoles,
-        sous: this.state.sous
+        _id: this.props._id,
+        couronnes: this.props.couronnes + 1,
+        pistoles: this.props.pistoles,
+        sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
+      this.props.updateMoney(this.props._id, data);
     } else if (type === 'Pistoles') {
-      this.setState({pistoles: this.state.pistoles + 1});
       let data = {
-        couronnes: this.state.couronnes,
-        pistoles: this.state.pistoles + 1,
-        sous: this.state.sous
+        _id: this.props._id,
+        couronnes: this.props.couronnes,
+        pistoles: this.props.pistoles + 1,
+        sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
+      this.props.updateMoney(this.props._id, data);
     } else {
-      this.setState({sous: this.state.sous + 1});
       let data = {
-        couronnes: this.state.couronnes,
-        pistoles: this.state.pistoles,
-        sous: this.state.sous + 1
+        _id: this.props._id,
+        couronnes: this.props.couronnes,
+        pistoles: this.props.pistoles,
+        sous: this.props.sous + 1
       };
-      this.props.update(this.props._id, data);
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
   onDecrement(type) {
     if (type === 'Couronnes') {
-      this.setState({couronnes: this.state.couronnes - 1});
       let data = {
-        couronnes: this.state.couronnes - 1,
-        pistoles: this.state.pistoles,
-        sous: this.state.sous
+        _id: this.props._id,
+        couronnes: this.props.couronnes - 1,
+        pistoles: this.props.pistoles,
+        sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
+      this.props.updateMoney(this.props._id, data);
     } else if (type === 'Pistoles') {
-      this.setState({pistoles: this.state.pistoles - 1});
       let data = {
-        couronnes: this.state.couronnes,
-        pistoles: this.state.pistoles - 1,
-        sous: this.state.sous
+        _id: this.props._id,
+        couronnes: this.props.couronnes,
+        pistoles: this.props.pistoles - 1,
+        sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
+      this.props.updateMoney(this.props._id, data);
     } else {
-      this.setState({sous: this.state.sous - 1});
       let data = {
-        couronnes: this.state.couronnes,
-        pistoles: this.state.pistoles,
-        sous: this.state.sous - 1
+        _id: this.props._id,
+        couronnes: this.props.couronnes,
+        pistoles: this.props.pistoles,
+        sous: this.props.sous - 1
       };
-      this.props.update(this.props._id, data);
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
   handlePistolesToCouronnes() {
-    if(this.state.pistoles > 20) {
+    if(this.props.pistoles > 20) {
       let data = {
-        couronnes: this.state.couronnes + 1,
-        pistoles: this.state.pistoles - 20,
-        sous: this.state.sous
+        _id: this.props._id,
+        couronnes: this.props.couronnes + 1,
+        pistoles: this.props.pistoles - 20,
+        sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
-      this.setState({couronnes: this.state.couronnes + 1, pistoles: this.state.pistoles - 20});
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
   handleCouronnesToPistoles() {
-    if(this.state.couronnes > 1) {
+    if(this.props.couronnes > 1) {
       let data = {
-        couronnes: this.state.couronnes - 1,
-        pistoles: this.state.pistoles + 20,
-        sous: this.state.sous
+        _id: this.props._id,
+        couronnes: this.props.couronnes - 1,
+        pistoles: this.props.pistoles + 20,
+        sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
-      this.setState({couronnes: this.state.couronnes - 1, pistoles: this.state.pistoles + 20});
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
   handleSousToPistoles() {
-    if(this.state.sous > 12) {
+    if(this.props.sous > 12) {
       let data = {
-        couronnes: this.state.couronnes,
-        pistoles: this.state.pistoles + 1,
-        sous: this.state.sous - 12
+        _id: this.props._id,
+        couronnes: this.props.couronnes,
+        pistoles: this.props.pistoles + 1,
+        sous: this.props.sous - 12
       };
-      this.props.update(this.props._id, data);
-      this.setState({pistoles: this.state.pistoles + 1, sous: this.state.sous - 12});
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
   handlePistolesToSous() {
-    if(this.state.pistoles > 1) {
+    if(this.props.pistoles > 1) {
       let data = {
-        couronnes: this.state.couronnes,
-        pistoles: this.state.pistoles - 1,
-        sous: this.state.sous + 12
+        _id: this.props._id,
+        couronnes: this.props.couronnes,
+        pistoles: this.props.pistoles - 1,
+        sous: this.props.sous + 12
       };
-      this.props.update(this.props._id, data);
-      this.setState({pistoles: this.state.pistoles - 1, sous: this.state.sous + 12});
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
@@ -124,32 +117,32 @@ export class Money extends Component {
         <tr>
           <td>
             <strong>
-              {this.state.couronnes > 1 ? "Couronnes d'or" : "Couronne d'or"}
+              {this.props.couronnes > 1 ? "Couronnes d'or" : "Couronne d'or"}
             </strong>
           </td>
           <td>&nbsp;</td>
           <td>
             <strong>
-              {this.state.pistoles > 1 ? "Pistoles d'argent" : "Pistole d'argent"}
+              {this.props.pistoles > 1 ? "Pistoles d'argent" : "Pistole d'argent"}
             </strong>
           </td>
           <td>&nbsp;</td>
           <td><strong>Sous de cuivre</strong></td>
         </tr>
         <tr>
-          <td>{this.state.couronnes}</td>
+          <td>{this.props.couronnes}</td>
           <td>
             <Badge onClick={this.handlePistolesToCouronnes.bind(this)}><Glyphicon glyph="menu-left" /></Badge>
             <span> 20 </span>
             <Badge onClick={this.handleCouronnesToPistoles.bind(this)}><Glyphicon glyph="menu-right" /></Badge>
           </td>
-          <td>{this.state.pistoles}</td>
+          <td>{this.props.pistoles}</td>
           <td>
             <Badge onClick={this.handleSousToPistoles.bind(this)}><Glyphicon glyph="menu-left" /></Badge>
             <span> 12 </span>
             <Badge onClick={this.handlePistolesToSous.bind(this)}><Glyphicon glyph="menu-right" /></Badge>
           </td>
-          <td>{this.state.sous}</td>
+          <td>{this.props.sous}</td>
         </tr>
         <tr>
           <td>
@@ -177,3 +170,11 @@ export class Money extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    updateMoney
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(Money)

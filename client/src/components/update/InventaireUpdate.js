@@ -8,31 +8,9 @@ import { deleteInventaire, updateInventaire } from "../../actions/InventaireActi
 
 class InventaireUpdate extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      nom: this.props.nom,
-      quantite: this.props.quantite,
-      encombrement: this.props.encombrement
-    }
-  }
-
   handleDelete(){
     let _id = this.props._id;
     this.props.deleteInventaire(_id);
-    this.handleChangeValue();
-  }
-
-  handleChangeValue() {
-    let invData = this.props.inventaire.map((inv) => {return {...inv}});
-    for (let i = 0; i < invData.length; i++) {
-      this.setState({
-        nom: invData[i].nom,
-        quantite: invData[i].quantite,
-        encombrement: invData[i].encombrement
-      })
-    }
   }
 
   handleUpdate() {
@@ -40,8 +18,8 @@ class InventaireUpdate extends Component {
     let inventaire = {
       _id:_id,
       nom: findDOMNode(this.refs.nomInventaire).value,
-      quantite: findDOMNode(this.refs.quantiteInventaire).value,
-      encombrement: findDOMNode(this.refs.encombrementInventaire).value
+      quantite: parseFloat(findDOMNode(this.refs.quantiteInventaire).value),
+      encombrement: parseFloat(findDOMNode(this.refs.encombrementInventaire).value)
     };
     this.props.updateInventaire(_id, inventaire);
   }
@@ -54,23 +32,23 @@ class InventaireUpdate extends Component {
           <FormGroup controlId="nomInventaire">
             <FormControl
               type='text'
-              defaultValue={this.state.nom}
+              defaultValue={this.props.nom}
               ref='nomInventaire' />
           </FormGroup>
         </td>
         <td>
           <FormGroup controlId="quantiteInventaire">
             <FormControl
-              type='text'
-              defaultValue={this.state.quantite}
+              type='number'
+              defaultValue={this.props.quantite}
               ref='quantiteInventaire' />
           </FormGroup>
         </td>
         <td>
           <FormGroup controlId="encombrementInventaire">
             <FormControl
-              type='text'
-              defaultValue={this.state.encombrement}
+              type='number'
+              defaultValue={this.props.encombrement}
               ref='encombrementInventaire' />
           </FormGroup>
         </td>
@@ -82,16 +60,10 @@ class InventaireUpdate extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    inventaire: state.inventaire.inventaire
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     deleteInventaire, updateInventaire
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InventaireUpdate);
+export default connect(null, mapDispatchToProps)(InventaireUpdate);

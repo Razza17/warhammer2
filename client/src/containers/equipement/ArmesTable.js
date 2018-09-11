@@ -22,7 +22,7 @@ class ArmesTable extends Component {
 
     this.state = {
       user: user,
-      perso: perso,
+      perso : perso,
       update: false
     }
   }
@@ -78,7 +78,7 @@ class ArmesTable extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.arme.map((armes, i) => this.state.update ? <ArmesUpdate key={armes._id} {...armes} getArme={this.props.getArme} /> : <Armes key={i} {...armes} />)}
+              {this.props.arme.map((armes, i) => this.state.update ? <ArmesUpdate key={armes._id} {...armes} /> : <Armes key={i} {...armes} />)}
               {this.state.update &&
                 <tr>
                   <td>
