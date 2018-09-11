@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Glyphicon, FormGroup, FormControl, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
+
+import { updateCompAvance } from "../../actions/CompAvanceAction";
 
 class CompetenceAvanceUpdate extends Component {
 
@@ -42,7 +45,7 @@ class CompetenceAvanceUpdate extends Component {
       acquis: this.state.acquisCheck,
       dix: this.state.dixCheck,
       vingt: this.state.vingtCheck,
-      bonus: findDOMNode(this.refs.bonusCompAvance).value
+      bonus: parseFloat(findDOMNode(this.refs.bonusCompAvance).value)
     };
     this.props.updateCompAvance(_id, compAvance);
   }
@@ -78,7 +81,7 @@ class CompetenceAvanceUpdate extends Component {
         <td>
           <FormGroup controlId="bonusCompAvance">
             <FormControl
-              type='text'
+              type='number'
               defaultValue={this.props.bonus === null ? 0 : this.props.bonus}
               ref='bonusCompAvance' />
           </FormGroup>
@@ -98,10 +101,16 @@ class CompetenceAvanceUpdate extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     caracActuel: state.carac.carac
   }
 }
 
-export default connect(mapStateToProps)(CompetenceAvanceUpdate);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    updateCompAvance
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompetenceAvanceUpdate);

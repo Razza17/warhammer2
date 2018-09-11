@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Carac } from "../../components/personnage/Carac";
-import { CaracUpdate } from "../../components/update/CaracUpdate";
-import { CaracUpdateMobile } from "../../components/update/CaracUpdateMobile";
-import { getCarac, updateCarac } from "../../actions/CaracAction";
+import CaracUpdate from "../../components/update/CaracUpdate";
+import CaracUpdateMobile from "../../components/update/CaracUpdateMobile";
+import { getCarac } from "../../actions/CaracAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
 
@@ -71,11 +71,11 @@ class CaracTable extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.carac.map((carac, i) => this.state.update ? <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/> : <Carac key={i} {...carac} />) }
+              { this.props.carac.map((carac, i) => this.state.update ? <CaracUpdate key={i} {...carac} /> : <Carac key={i} {...carac} />) }
             </tbody>
           </Table>
           { this.state.update ?
-            this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) :
+            this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} />) :
             <Table condensed bordered hover striped className="carac-table-mobile" fill>
               <thead>
                 <tr>
@@ -125,8 +125,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getCarac,
-    updateCarac
+    getCarac
   }, dispatch);
 }
 

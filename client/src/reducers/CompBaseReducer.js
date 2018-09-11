@@ -1,25 +1,42 @@
 export function compBaseReducer(state={compBase:[]}, action) {
-    switch(action.type) {
-        // GET
-        case "GET_COMPBASE":
-            return {...state, compBase:[...action.payload]};
-        case "GET_COMPBASE_REJECTED":
-            return action.payload;
+  switch(action.type) {
+    // GET
+    case "GET_COMPBASE":
+      return {...state, compBase:[...action.payload]};
 
-        // POST
-        case "POST_COMPBASE":
-            return {...state, compBase:[...state.compBase, action.payload]};
-        case "POST_COMPBASE_REJECTED":
-            return action.payload;
+    case "GET_COMPBASE_REJECTED":
+      return action.payload;
 
-        // UPDATE
-        case "UPDATE_COMPBASE":
-            return {...state, payload:action.payload, msg:'Your based skills has been successfully updated', style:'success'};
-        case "UPDATE_COMPBASE_REJECTED":
-            return {...state, payload:action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
+    // POST
+    case "POST_COMPBASE":
+      return {...state, compBase:[...state.compBase, action.payload]};
 
-        // DEFAULT
-        default:
-            return state;
-    }
+    case "POST_COMPBASE_REJECTED":
+      return action.payload;
+
+    // UPDATE
+    case "UPDATE_COMPBASE":
+      const newArray = [...state.compBase]
+      const newItem = action.datas
+      newArray[newArray.findIndex(item => item._id === action.id)] = newItem
+      return {
+        ...state,
+        payload:action.payload,
+        compBase:newArray,
+        msg:'Your based skills has been successfully updated',
+        style:'success'
+      };
+
+    case "UPDATE_COMPBASE_REJECTED":
+      return {
+        ...state,
+        payload:action.payload,
+        msg:'Oups something went wrong ! Maybe try again ;-)',
+        style:'danger'
+      };
+
+    // DEFAULT
+    default:
+      return state;
+  }
 };

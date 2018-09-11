@@ -3,8 +3,9 @@ import { Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { getCount } from "../../actions/CountAction";
+
 import Count from "../../components/personnage/Count";
-import { getCount, updateCount } from "../../actions/CountAction";
 
 class CountContainer extends Component {
 
@@ -16,17 +17,12 @@ class CountContainer extends Component {
     let perso = urlParams[2];
 
     this.props.getCount(user, perso);
-
-    this.state = {
-      user: user,
-      perso: perso
-    }
   }
 
   render() {
     return (
       <Col xs={12}>
-        { this.props.count.map((count, i) => <Count key={i} {...count} get={this.props.getCount} update={this.props.updateCount} />) }
+        { this.props.count.map((count, i) => <Count key={i} {...count} />) }
       </Col>
     )
   }
@@ -40,7 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getCount, updateCount
+    getCount
   }, dispatch)
 }
 

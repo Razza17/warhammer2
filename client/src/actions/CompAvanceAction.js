@@ -32,7 +32,7 @@ export function updateCompAvance(id, newData) {
   return function(dispatch) {
     axios.put('/competenceavance/' + id, newData)
     .then(function(response) {
-      dispatch({type:"UPDATE_COMPAVANCE", payload:response.data})
+      dispatch({type:"UPDATE_COMPAVANCE", payload:response.data, id:id, datas:newData})
     })
     .catch(function(err) {
       dispatch({type:"UPDATE_COMPAVANCE_REJECTED", payload:err})

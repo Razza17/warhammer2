@@ -1,74 +1,63 @@
 import React, { Component } from 'react';
 import { Col, Button, ButtonGroup, Panel, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { updateCount } from "../../actions/CountAction";
 
 class Count extends Component {
 
-  constructor(props) {
-    super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
-    let fortune = this.props.name === "Fortune" ? this.props.value : 0;
-    let blessure = this.props.name === "Blessure" ? this.props.value : 0;
-    let munitions = this.props.name === "Munitions" ? this.props.value : 0;
-
-    this.state = {
-      user: user,
-      perso: perso,
-      update: false,
-      fortune: fortune,
-      blessure: blessure,
-      munitions: munitions
-    }
-  }
-
   onIncrement(){
-    if(this.props.name === "Fortune" && this.state.fortune < this.props.caracActuel[2].pd) {
+    if(this.props.name === "Fortune" && this.props.value < this.props.caracActuel[2].pd) {
       let data = {
-        "value":this.state.fortune + 1
+        "_id":this.props._id,
+        "name":this.props.name,
+        "value":this.props.value + 1
       };
-      this.props.update(this.props._id, data);
-      this.setState({fortune: this.state.fortune + 1});
+      this.props.updateCount(this.props._id, data);
     }
-    else if(this.props.name === "Blessure" && this.state.blessure < this.props.caracActuel[2].b) {
+    else if(this.props.name === "Blessure" && this.props.value < this.props.caracActuel[2].b) {
       let data = {
-        "value":this.state.blessure + 1
+        "_id":this.props._id,
+        "name":this.props.name,
+        "value":this.props.value + 1
       };
-      this.props.update(this.props._id, data);
-      this.setState({blessure: this.state.blessure + 1});
+      this.props.updateCount(this.props._id, data);
     }
     else if(this.props.name === "Munitions") {
       let data = {
-        "value":this.state.munitions + 1
+        "_id":this.props._id,
+        "name":this.props.name,
+        "value":this.props.value + 1
       };
-      this.props.update(this.props._id, data);
-      this.setState({munitions: this.state.munitions + 1});
+      this.props.updateCount(this.props._id, data);
     }
   }
 
   onDecrement(){
-    if(this.props.name === "Fortune" && this.state.fortune > 0) {
+    if(this.props.name === "Fortune" && this.props.value > 0) {
       let data = {
-        "value":this.state.fortune - 1
+        "_id":this.props._id,
+        "name":this.props.name,
+        "value":this.props.value - 1
       };
-      this.props.update(this.props._id, data);
-      this.setState({fortune: this.state.fortune - 1});
+      this.props.updateCount(this.props._id, data);
     }
-    else if(this.props.name === "Blessure" && this.state.blessure > -10) {
+    else if(this.props.name === "Blessure" && this.props.value > -10) {
       let data = {
-        "value":this.state.blessure - 1
+        "_id":this.props._id,
+        "name":this.props.name,
+        "value":this.props.value - 1
       };
-      this.props.update(this.props._id, data);
-      this.setState({blessure: this.state.blessure - 1});
+      this.props.updateCount(this.props._id, data);
     }
-    else if(this.props.name === "Munitions" && this.state.munitions > 0) {
+    else if(this.props.name === "Munitions" && this.props.value > 0) {
       let data = {
-        "value":this.state.munitions - 1
+        "_id":this.props._id,
+        "name":this.props.name,
+        "value":this.props.value - 1
       };
-      this.props.update(this.props._id, data);
-      this.setState({munitions: this.state.munitions - 1});
+      this.props.updateCount(this.props._id, data);
     }
   }
 
@@ -86,7 +75,7 @@ class Count extends Component {
           <Panel.Body>
             <span>
               <strong>
-                {this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? this.state.fortune : this.state.blessure) : this.state.munitions}
+                {this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? this.props.value : this.props.value) : this.props.value}
                 {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}
               </strong>
               {this.props.name === "Fortune" && "sur " + pointDestin}
@@ -109,4 +98,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Count);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    updateCount
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Count);

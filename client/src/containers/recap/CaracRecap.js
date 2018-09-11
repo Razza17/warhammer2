@@ -3,8 +3,8 @@ import { Panel, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { CaracUpdate } from "../../components/update/CaracUpdate";
-import { CaracUpdateMobile } from "../../components/update/CaracUpdateMobile";
+import CaracUpdate from "../../components/update/CaracUpdate";
+import CaracUpdateMobile from "../../components/update/CaracUpdateMobile";
 
 import { updateMessage } from "../../hocs/updateMessage";
 

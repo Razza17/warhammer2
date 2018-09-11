@@ -3,7 +3,7 @@ import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { TalentUpdate } from '../../components/update/TalentUpdate';
+import TalentUpdate from '../../components/update/TalentUpdate';
 
 import { updateTalent, getTalent } from "../../actions/TalentAction";
 

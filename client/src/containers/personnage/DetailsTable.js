@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Panel } from 'react-bootstrap';
-import {Details} from "../../components/personnage/Details";
+
 import { getDetails } from '../../actions/DetailAction';
+
+import {Details} from "../../components/personnage/Details";
 
 class DetailsTable extends Component {
 
@@ -17,7 +19,6 @@ class DetailsTable extends Component {
     this.props.getDetails(user, perso);
 
     this.state = {
-      user: user,
       perso: perso
     }
   }

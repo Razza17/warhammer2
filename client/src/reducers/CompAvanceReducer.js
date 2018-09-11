@@ -1,25 +1,42 @@
 export function compAvanceReducer(state={compAvance:[]}, action) {
-    switch(action.type) {
-        // GET
-        case "GET_COMPAVANCE":
-            return {...state, compAvance:[...action.payload]};
-        case "GET_COMPAVANCE_REJECTED":
-            return action.payload;
+  switch(action.type) {
+    // GET
+    case "GET_COMPAVANCE":
+      return {...state, compAvance:[...action.payload]};
 
-        // POST
-        case "POST_COMPAVANCE":
-            return {...state, compAvance:[...state.compAvance, action.payload]};
-        case "POST_COMPAVANCE_REJECTED":
-            return action.payload;
+    case "GET_COMPAVANCE_REJECTED":
+      return action.payload;
 
-        // UPDATE
-        case "UPDATE_COMPAVANCE":
-            return {...state, payload:action.payload, msg:'Your advanced skills has been successfully updated', style:'success'};
-        case "UPDATE_COMPAVANCE_REJECTED":
-            return {...state, payload:action.payload, msg:'Oups something went wrong ! Maybe try again ;-)', style:'danger'};
+    // POST
+    case "POST_COMPAVANCE":
+      return {...state, compAvance:[...state.compAvance, action.payload]};
 
-        // DEFAULT
-        default:
-            return state;
-    }
+    case "POST_COMPAVANCE_REJECTED":
+      return action.payload;
+
+    // UPDATE
+    case "UPDATE_COMPAVANCE":
+      const newArray = [...state.compAvance]
+      const newItem = action.datas
+      newArray[newArray.findIndex(item => item._id === action.id)] = newItem
+      return {
+        ...state,
+        payload:action.payload,
+        compAvance:newArray,
+        msg:'Your advanced skills has been successfully updated',
+        style:'success'
+      };
+
+    case "UPDATE_COMPAVANCE_REJECTED":
+      return {
+        ...state,
+        payload:action.payload,
+        msg:'Oups something went wrong ! Maybe try again ;-)',
+        style:'danger'
+      };
+
+    // DEFAULT
+    default:
+      return state;
+  }
 };

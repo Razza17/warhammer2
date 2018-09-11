@@ -32,7 +32,7 @@ export function updateTalent(id, newData) {
   return function(dispatch) {
     axios.put('/talent/' + id, newData)
     .then(function(response) {
-      dispatch({type:"UPDATE_TALENT", payload:response.data})
+      dispatch({type:"UPDATE_TALENT", payload:response.data, id:id, datas:newData})
     })
     .catch(function(err) {
       dispatch({type:"UPDATE_TALENT_REJECTED", payload:err})

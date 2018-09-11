@@ -7,11 +7,13 @@ export class ProfilUpdate extends Component {
   handleUpdate() {
     let id = this.props._id;
     let newData = {
+      _id: id,
+      nom: this.props.nom,
+      race: this.props.race,
       carriereA: findDOMNode(this.refs.carriereA).value,
       Acarriere: findDOMNode(this.refs.Acarriere).value,
       page: "personnage"
     };
-
     this.props.updateProfile(id, newData);
   }
 

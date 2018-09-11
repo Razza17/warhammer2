@@ -20,7 +20,6 @@ class ProfilTable extends Component {
     this.props.getProfile(user, perso);
 
     this.state = {
-      user: user,
       perso: perso,
       update: false
     }
@@ -36,7 +35,7 @@ class ProfilTable extends Component {
     return (
       <Panel>
         <Panel.Heading>
-          <Panel.Title componentClass="h2">{this.state.perso}</Panel.Title>
+          <Panel.Title componentClass="h2">Profil de {this.state.perso}</Panel.Title>
           <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>{this.state.update ? <Glyphicon glyph="minus" /> : <Glyphicon glyph="plus" />}</Button>
         </Panel.Heading>
         <Panel.Body>
