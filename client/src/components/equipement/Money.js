@@ -1,120 +1,113 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Badge, Glyphicon } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { updateMoney } from "../../actions/MoneyAction";
 
-export class Money extends Component {
+class Money extends Component {
 
-  onIncrementCouronnes(){
-    let data = {
-      couronnes: this.props.couronnes + 1,
-      pistoles: this.props.pistoles,
-      sous: this.props.sous
-    };
-    this.props.update(this.props._id, data);
-    this.props.get(this.props.user, this.props.perso);
+  onIncrement(type) {
+    if (type === 'Couronnes') {
+      let data = {
+        _id: this.props._id,
+        couronnes: this.props.couronnes + 1,
+        pistoles: this.props.pistoles,
+        sous: this.props.sous
+      };
+      this.props.updateMoney(this.props._id, data);
+    } else if (type === 'Pistoles') {
+      let data = {
+        _id: this.props._id,
+        couronnes: this.props.couronnes,
+        pistoles: this.props.pistoles + 1,
+        sous: this.props.sous
+      };
+      this.props.updateMoney(this.props._id, data);
+    } else {
+      let data = {
+        _id: this.props._id,
+        couronnes: this.props.couronnes,
+        pistoles: this.props.pistoles,
+        sous: this.props.sous + 1
+      };
+      this.props.updateMoney(this.props._id, data);
+    }
   }
 
-  onDecrementCouronnes(){
-    if(this.props.couronnes > 0) {
+  onDecrement(type) {
+    if (type === 'Couronnes') {
       let data = {
+        _id: this.props._id,
         couronnes: this.props.couronnes - 1,
         pistoles: this.props.pistoles,
         sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.props.user, this.props.perso);
-    }
-  }
-
-  onIncrementPistoles(){
-    let data = {
-      couronnes: this.props.couronnes,
-      pistoles: this.props.pistoles + 1,
-      sous: this.props.sous
-    };
-    this.props.update(this.props._id, data);
-    this.props.get(this.props.user, this.props.perso);
-  }
-
-  onDecrementPistoles(){
-    if(this.props.pistoles > 0) {
+      this.props.updateMoney(this.props._id, data);
+    } else if (type === 'Pistoles') {
       let data = {
+        _id: this.props._id,
         couronnes: this.props.couronnes,
         pistoles: this.props.pistoles - 1,
         sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.props.user, this.props.perso);
-    }
-  }
-
-  onIncrementSous(){
-    let data = {
-      couronnes: this.props.couronnes,
-      pistoles: this.props.pistoles,
-      sous: this.props.sous + 1
-    };
-    this.props.update(this.props._id, data);
-    this.props.get(this.props.user, this.props.perso);
-  }
-
-  onDecrementSous(){
-    if(this.props.sous > 0) {
+      this.props.updateMoney(this.props._id, data);
+    } else {
       let data = {
+        _id: this.props._id,
         couronnes: this.props.couronnes,
         pistoles: this.props.pistoles,
         sous: this.props.sous - 1
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.props.user, this.props.perso);
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
   handlePistolesToCouronnes() {
     if(this.props.pistoles > 20) {
       let data = {
+        _id: this.props._id,
         couronnes: this.props.couronnes + 1,
         pistoles: this.props.pistoles - 20,
         sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.props.user, this.props.perso);
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
   handleCouronnesToPistoles() {
     if(this.props.couronnes > 1) {
       let data = {
+        _id: this.props._id,
         couronnes: this.props.couronnes - 1,
         pistoles: this.props.pistoles + 20,
         sous: this.props.sous
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.props.user, this.props.perso);
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
   handleSousToPistoles() {
     if(this.props.sous > 12) {
       let data = {
+        _id: this.props._id,
         couronnes: this.props.couronnes,
         pistoles: this.props.pistoles + 1,
         sous: this.props.sous - 12
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.props.user, this.props.perso);
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
   handlePistolesToSous() {
     if(this.props.pistoles > 1) {
       let data = {
+        _id: this.props._id,
         couronnes: this.props.couronnes,
         pistoles: this.props.pistoles - 1,
         sous: this.props.sous + 12
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.props.user, this.props.perso);
+      this.props.updateMoney(this.props._id, data);
     }
   }
 
@@ -154,22 +147,22 @@ export class Money extends Component {
         <tr>
           <td>
             <ButtonGroup>
-              <Button onClick={this.onDecrementCouronnes.bind(this)} bsStyle="danger"><Glyphicon glyph="minus" /></Button>
-              <Button onClick={this.onIncrementCouronnes.bind(this)} bsStyle="success"><Glyphicon glyph="plus" /></Button>
+              <Button onClick={this.onDecrement.bind(this, "Couronnes")} bsStyle="danger"><Glyphicon glyph="minus" /></Button>
+              <Button onClick={this.onIncrement.bind(this, "Couronnes")} bsStyle="success"><Glyphicon glyph="plus" /></Button>
             </ButtonGroup>
           </td>
           <td>&nbsp;</td>
           <td>
             <ButtonGroup>
-              <Button onClick={this.onDecrementPistoles.bind(this)} bsStyle="danger"><Glyphicon glyph="minus" /></Button>
-              <Button onClick={this.onIncrementPistoles.bind(this)} bsStyle="success"><Glyphicon glyph="plus" /></Button>
+              <Button onClick={this.onDecrement.bind(this, "Pistoles")} bsStyle="danger"><Glyphicon glyph="minus" /></Button>
+              <Button onClick={this.onIncrement.bind(this, "Pistoles")} bsStyle="success"><Glyphicon glyph="plus" /></Button>
             </ButtonGroup>
           </td>
           <td>&nbsp;</td>
           <td>
             <ButtonGroup>
-              <Button onClick={this.onDecrementSous.bind(this)} bsStyle="danger"><Glyphicon glyph="minus" /></Button>
-              <Button onClick={this.onIncrementSous.bind(this)} bsStyle="success"><Glyphicon glyph="plus" /></Button>
+              <Button onClick={this.onDecrement.bind(this, "Sous")} bsStyle="danger"><Glyphicon glyph="minus" /></Button>
+              <Button onClick={this.onIncrement.bind(this, "Sous")} bsStyle="success"><Glyphicon glyph="plus" /></Button>
             </ButtonGroup>
           </td>
         </tr>
@@ -177,3 +170,11 @@ export class Money extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    updateMoney
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(Money)

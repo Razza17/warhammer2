@@ -32,6 +32,19 @@ export function updateTalent(id, newData) {
   return function(dispatch) {
     axios.put('/talent/' + id, newData)
     .then(function(response) {
+      dispatch({type:"UPDATE_TALENT", payload:response.data, id:id, datas:newData})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_TALENT_REJECTED", payload:err})
+    })
+  }
+}
+
+// RENAME PERSO
+export function renameTalent(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/talent/' + user + '/' + perso, newData)
+    .then(function(response) {
       dispatch({type:"UPDATE_TALENT", payload:response.data})
     })
     .catch(function(err) {

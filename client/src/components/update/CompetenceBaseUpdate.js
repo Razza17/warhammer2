@@ -40,13 +40,14 @@ class CompetenceBaseUpdate extends Component {
     let _id = this.props._id;
     let compBase = {
       _id:_id,
+      nom: this.props.nom,
+      carac: this.props.carac,
       acquis: this.state.acquisCheck,
       dix: this.state.dixCheck,
       vingt: this.state.vingtCheck,
-      bonus: findDOMNode(this.refs.bonusCompBase).value
+      bonus: parseFloat(findDOMNode(this.refs.bonusCompBase).value)
     };
     this.props.updateCompBase(_id, compBase);
-    this.props.getCompBase(this.props.user, this.props.perso);
   }
 
   render() {

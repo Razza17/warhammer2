@@ -8,27 +8,9 @@ import { deleteFolie, updateFolie } from "../../actions/FolieAction";
 
 class FolieUpdate extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      nom: this.props.nom
-    }
-  }
-
   handleDelete(){
     let _id = this.props._id;
     this.props.deleteFolie(_id);
-    this.handleChangeValue();
-  }
-
-  handleChangeValue() {
-    let folieData = this.props.folie.map((newFolie) => {return {...newFolie}});
-    for (let i = 0; i < folieData.length; i++) {
-      this.setState({
-        nom: folieData[i].nom
-      })
-    }
   }
 
   handleUpdate() {
@@ -38,7 +20,6 @@ class FolieUpdate extends Component {
       nom: findDOMNode(this.refs.nomFolie).value
     };
     this.props.updateFolie(_id, folie);
-    this.props.getFolie(this.props.user, this.props.perso);
   }
 
 
@@ -49,7 +30,7 @@ class FolieUpdate extends Component {
           <FormGroup controlId="nomFolie">
             <FormControl
               type='text'
-              defaultValue={this.state.nom}
+              defaultValue={this.props.nom}
               ref='nomFolie' />
           </FormGroup>
         </td>
@@ -61,12 +42,6 @@ class FolieUpdate extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return {
-    folie: state.folie.folie
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     deleteFolie,
@@ -74,4 +49,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FolieUpdate);
+export default connect(null, mapDispatchToProps)(FolieUpdate);

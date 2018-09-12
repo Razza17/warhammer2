@@ -8,7 +8,7 @@ export function experienceReducer(state={experience:[]}, action) {
 
         // POST
         case "POST_EXPERIENCE":
-            return {experience:[...state.experience, ...action.payload]};
+            return {...state, experience:[...state.experience, action.payload]};
         case "POST_EXPERIENCE_REJECTED":
             return action.payload;
 

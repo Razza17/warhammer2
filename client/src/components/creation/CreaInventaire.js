@@ -21,16 +21,14 @@ class CreaInventaire extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCarac(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
-      activeKey: "1",
+      activeKey: "3",
       nextPage: "/recap?pseudo="+user+"&perso="+perso
     }
-  }
-
-  componentWillMount() {
-    this.props.getCarac(this.state.user, this.state.perso);
   }
 
   handleSelect(activeKey) {
@@ -55,9 +53,9 @@ class CreaInventaire extends Component {
 
   postMoney() {
     const money = {
-      couronnes: findDOMNode(this.refs.couronnes).value === "" ? "0" : findDOMNode(this.refs.couronnes).value,
-      pistoles: findDOMNode(this.refs.pistoles).value === "" ? "0" : findDOMNode(this.refs.pistoles).value,
-      sous: findDOMNode(this.refs.sous).value === "" ? "0" : findDOMNode(this.refs.sous).value,
+      couronnes: findDOMNode(this.refs.couronnes).value === "" ? 0 : findDOMNode(this.refs.couronnes).value,
+      pistoles: findDOMNode(this.refs.pistoles).value === "" ? 0 : findDOMNode(this.refs.pistoles).value,
+      sous: findDOMNode(this.refs.sous).value === "" ? 0 : findDOMNode(this.refs.sous).value,
       user: this.state.user,
       perso: this.state.perso
     };
@@ -113,8 +111,8 @@ class CreaInventaire extends Component {
   postInventaire() {
     const inventaire = {
       nom: findDOMNode(this.refs.nomPostInventaire).value,
-      quantite: findDOMNode(this.refs.quantitePostInventaire).value,
-      encombrement: findDOMNode(this.refs.encPostInventaire).value,
+      quantite: findDOMNode(this.refs.quantitePostInventaire).value !== "" ? findDOMNode(this.refs.quantitePostInventaire).value : 0,
+      encombrement: findDOMNode(this.refs.encPostInventaire).value !== "" ? findDOMNode(this.refs.encPostInventaire).value : 0,
       user: this.state.user,
       perso: this.state.perso
     };

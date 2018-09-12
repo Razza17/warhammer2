@@ -1,74 +1,63 @@
 import React, { Component } from 'react';
 import { Col, Button, ButtonGroup, Panel, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { updateCount } from "../../actions/CountAction";
 
 class Count extends Component {
-
-  constructor(props) {
-    super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
-
-    this.state = {
-      user: user,
-      perso: perso,
-      update: false
-    }
-  }
 
   onIncrement(){
     if(this.props.name === "Fortune" && this.props.value < this.props.caracActuel[2].pd) {
       let data = {
+        "_id":this.props._id,
         "name":this.props.name,
         "value":this.props.value + 1
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.props.updateCount(this.props._id, data);
     }
     else if(this.props.name === "Blessure" && this.props.value < this.props.caracActuel[2].b) {
       let data = {
+        "_id":this.props._id,
         "name":this.props.name,
         "value":this.props.value + 1
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.props.updateCount(this.props._id, data);
     }
     else if(this.props.name === "Munitions") {
       let data = {
+        "_id":this.props._id,
         "name":this.props.name,
         "value":this.props.value + 1
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.props.updateCount(this.props._id, data);
     }
   }
 
   onDecrement(){
     if(this.props.name === "Fortune" && this.props.value > 0) {
       let data = {
+        "_id":this.props._id,
         "name":this.props.name,
         "value":this.props.value - 1
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.props.updateCount(this.props._id, data);
     }
     else if(this.props.name === "Blessure" && this.props.value > -10) {
       let data = {
+        "_id":this.props._id,
         "name":this.props.name,
         "value":this.props.value - 1
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.props.updateCount(this.props._id, data);
     }
     else if(this.props.name === "Munitions" && this.props.value > 0) {
       let data = {
+        "_id":this.props._id,
         "name":this.props.name,
         "value":this.props.value - 1
       };
-      this.props.update(this.props._id, data);
-      this.props.get(this.state.user, this.state.perso);
+      this.props.updateCount(this.props._id, data);
     }
   }
 
@@ -84,8 +73,11 @@ class Count extends Component {
             <Panel.Title componentClass="h2">{this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? "Points de Fortune" : "Blessures") : "Munitions"}</Panel.Title>
           </Panel.Heading>
           <Panel.Body>
-            <span><strong>{this.props.value}
-              {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}</strong>
+            <span>
+              <strong>
+                {this.props.name !== "Munitions" ? (this.props.name === "Fortune" ? this.props.value : this.props.value) : this.props.value}
+                {this.props.name !== "Munitions" ? (this.props.value > 1 ? ' points ' : ' point ') : (this.props.value > 1 ? ' munitions ' : ' munition ')}
+              </strong>
               {this.props.name === "Fortune" && "sur " + pointDestin}
               {this.props.name === "Blessure" && "sur " + blessure}
             </span>
@@ -100,10 +92,16 @@ class Count extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     caracActuel: state.carac.carac
-  }
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    updateCount
+  }, dispatch)
 }
 
-export default connect(mapStateToProps)(Count);
+export default connect(mapStateToProps, mapDispatchToProps)(Count);

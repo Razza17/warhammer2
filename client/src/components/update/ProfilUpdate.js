@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl, OverlayTrigger, Glyphicon, Tooltip } from 'react-bootstrap';
+import { FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
 import { findDOMNode } from 'react-dom';
 
 export class ProfilUpdate extends Component {
@@ -7,40 +7,41 @@ export class ProfilUpdate extends Component {
   handleUpdate() {
     let id = this.props._id;
     let newData = {
+      _id: id,
+      nom: this.props.nom,
+      race: this.props.race,
       carriereA: findDOMNode(this.refs.carriereA).value,
-      Acarriere: findDOMNode(this.refs.Acarriere).value
+      Acarriere: findDOMNode(this.refs.Acarriere).value,
+      page: "personnage"
     };
-
     this.props.updateProfile(id, newData);
-    this.props.getProfile(this.props.user, this.props.perso);
   }
 
   render() {
-    let tooltip = <Tooltip id={this.props._id}>Click here to update</Tooltip>;
-      return (
-        <tr>
-          <td>
-            <FormGroup controlId="carriereA">
-              <FormControl
-                type='text'
-                defaultValue={this.props.carriereA}
-                ref='carriereA' />
-            </FormGroup>
-          </td>
-          <td>
-            <FormGroup controlId="Acarriere">
-              <FormControl
-                type='text'
-                defaultValue={this.props.Acarriere}
-                ref='Acarriere' />
-            </FormGroup>
-          </td>
-          <td>
-            <OverlayTrigger placement="bottom" overlay={tooltip} delayShow={300} delayHide={150}>
-              <Glyphicon glyph="pencil" onClick={this.handleUpdate.bind(this)} />
-            </OverlayTrigger>
-          </td>
-        </tr>
-      )
-    }
+    return (
+      <ul>
+        <li>
+          <FormGroup controlId="carriereA">
+            <InputGroup>Carrière actuelle :</InputGroup>
+            <FormControl
+              type='text'
+              defaultValue={this.props.carriereA}
+              ref='carriereA' />
+          </FormGroup>
+        </li>
+        <li>
+          <FormGroup controlId="Acarriere">
+            <InputGroup>Ancienne Carrière :</InputGroup>
+            <FormControl
+              type='text'
+              defaultValue={this.props.Acarriere}
+              ref='Acarriere' />
+          </FormGroup>
+        </li>
+        <li>
+          <Button onClick={this.handleUpdate.bind(this)}>Modifier</Button>
+        </li>
+      </ul>
+    )
   }
+}

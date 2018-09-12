@@ -3,8 +3,8 @@ import { Panel, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getMoney, updateMoney } from "../../actions/MoneyAction";
-import { Money } from "../../components/equipement/Money";
+import { getMoney } from "../../actions/MoneyAction";
+import Money from "../../components/equipement/Money";
 
 class MoneyTable extends Component {
 
@@ -15,14 +15,7 @@ class MoneyTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
-    this.state = {
-      user: user,
-      perso: perso
-    }
-  }
-
-  componentWillMount() {
-    this.props.getMoney(this.state.user, this.state.perso);
+    this.props.getMoney(user, perso);
   }
 
   render() {
@@ -33,7 +26,7 @@ class MoneyTable extends Component {
         </Panel.Heading>
         <Panel.Body>
           <Table fill className="moneyTable">
-            { this.props.money.map((money, i) => <Money key={i} {...money} user={this.state.user} perso={this.state.perso} get={this.props.getMoney}  update={this.props.updateMoney} />) }
+            { this.props.money.map((money, i) => <Money key={i} {...money} />) }
           </Table>
         </Panel.Body>
       </Panel>
@@ -41,16 +34,15 @@ class MoneyTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     money: state.money.money
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getMoney,
-    updateMoney
+    getMoney
   }, dispatch)
 }
 

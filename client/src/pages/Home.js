@@ -15,7 +15,7 @@ export class Home extends Component {
               </Panel.Heading>
               <Panel.Body>
                 <h3 className="align-center">
-                  <Link to="/login">Pour te connecter c'est ici</Link>
+                  <Link to="/signin">Pour te connecter c'est ici</Link>
                 </h3>
               </Panel.Body>
             </Panel>
@@ -27,7 +27,7 @@ export class Home extends Component {
               </Panel.Heading>
               <Panel.Body>
                 <h3 className="align-center">
-                  <Link to="/logup">Pour créer un compte c'est ici</Link>
+                  <Link to="/signup">Pour créer un compte c'est ici</Link>
                 </h3>
               </Panel.Body>
             </Panel>

@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import ProfilRecap from "../components/recap/ProfilRecap";
-import DetailsRecap from "../components/recap/DetailsRecap";
-import CountRecap from "../components/recap/CountRecap";
-import CaracRecap from "../components/recap/CaracRecap";
-import CompBaseRecap from "../components/recap/CompBaseRecap";
-import CompAvanceRecap from "../components/recap/CompAvanceRecap";
-import TalentRecap from "../components/recap/TalentRecap";
-import ArmeRecap from "../components/recap/ArmeRecap";
-import ArmureRecap from "../components/recap/ArmureRecap";
-import InventaireRecap from "../components/recap/InventaireRecap";
+import ProfilRecap from "../containers/recap/ProfilRecap";
+import DetailsRecap from "../containers/recap/DetailsRecap";
+import CountRecap from "../containers/recap/CountRecap";
+import CaracRecap from "../containers/recap/CaracRecap";
+import CompBaseRecap from "../containers/recap/CompBaseRecap";
+import CompAvanceRecap from "../containers/recap/CompAvanceRecap";
+import TalentRecap from "../containers/recap/TalentRecap";
+import ArmeRecap from "../containers/recap/ArmeRecap";
+import ArmureRecap from "../containers/recap/ArmureRecap";
+import InventaireRecap from "../containers/recap/InventaireRecap";
 
 export class Recap extends Component {
 

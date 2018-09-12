@@ -18,15 +18,13 @@ class FolieTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getFolie(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       update: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getFolie(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -42,7 +40,6 @@ class FolieTable extends Component {
       perso: this.state.perso
     };
     this.props.postFolie(folie);
-    this.props.getFolie(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -66,7 +63,7 @@ class FolieTable extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.folie.map((folie, i) => this.state.update ? <FolieUpdate key={folie._id} {...folie}  getFolie={this.props.getFolie} /> : <Folie key={i} {...folie}/>) }
+              { this.props.folie.map((folie, i) => this.state.update ? <FolieUpdate key={folie._id} {...folie} /> : <Folie key={i} {...folie}/>) }
               {this.state.update &&
                 <tr>
                   <td>
@@ -88,7 +85,7 @@ class FolieTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     folie: state.folie.folie,
     modified: state.folie.payload,
@@ -97,10 +94,9 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchtoProps(dispatch) {
+const mapDispatchtoProps = dispatch => {
   return bindActionCreators({
-    getFolie,
-    postFolie
+    getFolie, postFolie
   }, dispatch)
 }
 

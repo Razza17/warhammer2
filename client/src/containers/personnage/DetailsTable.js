@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Panel } from 'react-bootstrap';
-import {Details} from "../../components/personnage/Details";
+
 import { getDetails } from '../../actions/DetailAction';
+
+import {Details} from "../../components/personnage/Details";
 
 class DetailsTable extends Component {
 
@@ -14,14 +16,11 @@ class DetailsTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getDetails(user, perso);
+
     this.state = {
-      user: user,
       perso: perso
     }
-  }
-
-  componentWillMount() {
-    this.props.getDetails(this.state.user, this.state.perso);
   }
 
   render() {
@@ -38,13 +37,13 @@ class DetailsTable extends Component {
   }
 }
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return {
     details: state.details.details
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({getDetails}, dispatch);
 }
 

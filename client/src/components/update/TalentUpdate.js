@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, Glyphicon } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-export class TalentUpdate extends Component {
+import { updateTalent } from "../../actions/TalentAction";
+
+class TalentUpdate extends Component {
 
   handleUpdate() {
     let _id = this.props._id;
@@ -11,10 +15,9 @@ export class TalentUpdate extends Component {
       nom: findDOMNode(this.refs.nomTalent).value,
       desc: findDOMNode(this.refs.descTalent).value,
       competence: findDOMNode(this.refs.competenceTalent).value,
-      bonus: findDOMNode(this.refs.bonusTalent).value
+      bonus: parseFloat(findDOMNode(this.refs.bonusTalent).value)
     };
     this.props.updateTalent(_id, newTalent);
-    this.props.getTalent(this.props.user, this.props.perso);
   }
 
   render() {
@@ -59,3 +62,11 @@ export class TalentUpdate extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    updateTalent
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(TalentUpdate)

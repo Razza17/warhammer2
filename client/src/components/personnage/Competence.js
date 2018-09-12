@@ -16,7 +16,7 @@ class Competence extends Component {
         <td>{this.props.acquis && <Glyphicon glyph="ok" />}</td>
         <td>{this.props.dix && <Glyphicon glyph="ok" />}</td>
         <td>{this.props.vingt && <Glyphicon glyph="ok" />}</td>
-        <td>{this.props.bonus === null ? 0 : this.props.bonus}</td>
+        <td>{this.props.bonus}</td>
         <td>
           {this.props.carac === '(F)' && (this.props.acquis ? force : Math.round(force / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}
           {this.props.carac === '(Soc)' && (this.props.acquis ? sociabilite : Math.round(sociabilite / 2)) + (this.props.dix ? 10 : 0) + (this.props.vingt ? 20 : 0) + this.props.bonus}

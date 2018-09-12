@@ -14,14 +14,7 @@ class EncContainer extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
-    this.state = {
-      user: user,
-      perso: perso
-    }
-  }
-
-  componentWillMount() {
-    this.props.getCarac(this.state.user, this.state.perso);
+    this.props.getCarac(user, perso);
   }
 
   encArme() {
@@ -95,7 +88,7 @@ class EncContainer extends Component {
   }
 }
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return {
     carac: state.carac.carac,
     arme: state.arme.arme,
@@ -104,7 +97,7 @@ function mapStateToProps(state){
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     getCarac
   }, dispatch);

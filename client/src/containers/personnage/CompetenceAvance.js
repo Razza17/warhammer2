@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { getCompAvance, updateCompAvance, postCompAvance } from "../../actions/CompAvanceAction";
+import { getCompAvance, postCompAvance } from "../../actions/CompAvanceAction";
 import Competence from "../../components/personnage/Competence";
 import CompetenceAvanceUpdate from '../../components/update/CompetenceAvanceUpdate';
 import { updateMessage } from "../../hocs/updateMessage";
@@ -18,6 +18,8 @@ class CompetenceAvance extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCompAvance(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
@@ -26,10 +28,6 @@ class CompetenceAvance extends Component {
       dixCheck: false,
       vingtCheck: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getCompAvance(this.state.user,this.state.perso);
   }
 
   showUpdate() {
@@ -68,7 +66,6 @@ class CompetenceAvance extends Component {
       perso: this.state.perso
     }];
     this.props.postCompAvance(postCompAvance);
-    this.props.getCompAvance(this.state.user,this.state.perso);
     this.resetForm();
   }
 
@@ -105,7 +102,7 @@ class CompetenceAvance extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.compAvance.map((competenceA, i) => this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} getCompAvance={this.props.getCompAvance}  updateCompAvance={this.props.updateCompAvance}/> : <Competence key={i} {...competenceA}/>) }
+              { this.props.compAvance.map((competenceA, i) => this.state.update ? <CompetenceAvanceUpdate key={i} {...competenceA} /> : <Competence key={i} {...competenceA} />) }
           {this.state.update &&
             <tr>
               <td>
@@ -159,7 +156,7 @@ class CompetenceAvance extends Component {
 }
 
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     compAvance: state.compAvance.compAvance,
     modified: state.compAvance.payload,
@@ -168,11 +165,9 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getCompAvance,
-    updateCompAvance,
-    postCompAvance
+    getCompAvance, postCompAvance
   }, dispatch)
 }
 

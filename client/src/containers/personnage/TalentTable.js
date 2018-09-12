@@ -5,8 +5,9 @@ import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
 import { Talent } from "../../components/personnage/Talent";
-import { TalentUpdate } from '../../components/update/TalentUpdate';
-import { getTalent, updateTalent, postTalent } from "../../actions/TalentAction";
+import TalentUpdate from '../../components/update/TalentUpdate';
+
+import { getTalent, postTalent } from "../../actions/TalentAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
 class TalentTable extends Component {
@@ -18,15 +19,13 @@ class TalentTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getTalent(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
       update: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getTalent(this.state.user, this.state.perso);
   }
 
   showUpdate() {
@@ -40,12 +39,11 @@ class TalentTable extends Component {
       nom: findDOMNode(this.refs.nomPostTalent).value,
       desc: findDOMNode(this.refs.descPostTalent).value,
       competence: findDOMNode(this.refs.compPostTalent).value,
-      bonus: findDOMNode(this.refs.bonusPostTalent).value,
+      bonus: parseFloat(findDOMNode(this.refs.bonusPostTalent).value),
       user: this.state.user,
       perso: this.state.perso
     };
     this.props.postTalent(newTalent);
-    this.props.getTalent(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -105,7 +103,7 @@ class TalentTable extends Component {
                   <td>
                     <FormGroup controlId="bonusPostTalent">
                       <FormControl
-                        type='text'
+                        type='number'
                         placeholder='Bonus'
                         ref='bonusPostTalent' />
                     </FormGroup>
@@ -121,7 +119,7 @@ class TalentTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     talent: state.talent.talent,
     modified: state.talent.payload,
@@ -130,11 +128,9 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators ({
-    getTalent,
-    updateTalent,
-    postTalent
+    getTalent, postTalent
   }, dispatch)
 }
 

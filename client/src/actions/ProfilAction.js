@@ -32,6 +32,19 @@ export function updateProfile(id, newProfile) {
   return function(dispatch) {
     axios.put('/profil/' + id, newProfile)
     .then(function(response) {
+      dispatch({type:"UPDATE_PROFILE", payload:response.data, id:id, datas:newProfile})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_PROFILE_REJECTED", payload:err})
+    })
+  }
+}
+
+// UPDATE CHARACTER NAME
+export function renameProfile(user, name, newName) {
+  return function(dispatch) {
+    axios.put('/profil/' + user + '/' + name, newName)
+    .then(function(response) {
       dispatch({type:"UPDATE_PROFILE", payload:response.data})
     })
     .catch(function(err) {

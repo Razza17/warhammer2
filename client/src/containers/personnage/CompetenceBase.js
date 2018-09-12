@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import Competence from "../../components/personnage/Competence";
 import CompetenceBaseUpdate from '../../components/update/CompetenceBaseUpdate';
-import { getCompBase, updateCompBase } from "../../actions/CompBaseAction";
+import { getCompBase } from "../../actions/CompBaseAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
 class CompetenceBase extends Component {
@@ -17,15 +17,11 @@ class CompetenceBase extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCompBase(user, perso);
+
     this.state = {
-      user: user,
-      perso: perso,
       update: false
     }
-  }
-
-  componentWillMount() {
-    this.props.getCompBase(this.state.user,this.state.perso);
   }
 
   showUpdate() {
@@ -56,7 +52,7 @@ class CompetenceBase extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.compBase.map((competenceB, i) => this.state.update ? <CompetenceBaseUpdate key={i} {...competenceB} getCompBase={this.props.getCompBase} updateCompBase={this.props.updateCompBase}/> : <Competence key={i} {...competenceB}/>) }
+              { this.props.compBase.map((competenceB, i) => this.state.update ? <CompetenceBaseUpdate key={i} {...competenceB} /> : <Competence key={i} {...competenceB} />) }
             </tbody>
           </Table>
         </Panel.Body>
@@ -65,7 +61,7 @@ class CompetenceBase extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     compBase: state.compBase.compBase,
     modified: state.compBase.payload,
@@ -74,9 +70,9 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getCompBase, updateCompBase
+    getCompBase
   }, dispatch)
 }
 

@@ -1,28 +1,8 @@
 import React, { Component } from 'react';
 import { Table, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import { getCarac } from "../../actions/CaracAction";
 
 class PointArmureTable extends Component {
-
-  constructor(props) {
-    super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
-
-    this.state = {
-      user: user,
-      perso: perso
-    }
-  }
-
-  componentWillMount() {
-    this.props.getCarac(this.state.user, this.state.perso);
-  }
 
   ptsTete() {
     const tete = this.props.armure;
@@ -118,62 +98,38 @@ class PointArmureTable extends Component {
             <tbody>
               <tr>
                 <td>Tête</td>
-                <td>{typeof this.ptsTete() !== "number" ? be : this.ptsTete() + be}</td>
+                <td>{this.ptsTete() + be}</td>
                 <td>01 - 15</td>
               </tr>
               <tr>
                 <td>Bras droit</td>
                 <td>
-                  {
-                    typeof this.ptsBras() !== "number"
-                    ? (typeof this.ptsTorse() !== "number"
-                    ? be
-                    : this.ptsTorse() + be)
-                    : (typeof this.ptsTorse() !== "number"
-                    ? this.ptsBras() + be
-                    : this.ptsTorse() + this.ptsBras() + be)
-                  }
+                  {this.ptsTorse() + this.ptsBras() + be}
                 </td>
                 <td>16 - 35</td>
               </tr>
               <tr>
                 <td>Bras gauche</td>
                 <td>
-                  {
-                    typeof this.ptsBras() !== "number"
-                    ? (typeof this.ptsTorse() !== "number"
-                    ? be
-                    : this.ptsTorse() + be)
-                    : (typeof this.ptsTorse() !== "number"
-                    ? this.ptsBras() + be
-                    : this.ptsTorse() + this.ptsBras() + be)
-                  }
+                  {this.ptsTorse() + this.ptsBras() + be}
                 </td>
                 <td>35 - 55</td>
               </tr>
               <tr>
                 <td>Corps</td>
                 <td>
-                  {
-                    typeof this.ptsCorps() !== "number"
-                    ? (typeof this.ptsTorse() !== "number"
-                    ? be
-                    : this.ptsTorse() + be)
-                    : (typeof this.ptsTorse() !== "number"
-                    ? this.ptsCorps() + be
-                    : this.ptsTorse() + this.ptsCorps() + be)
-                  }
+                  {this.ptsTorse() + this.ptsCorps() + be}
                 </td>
                 <td>56 - 80</td>
               </tr>
               <tr>
                 <td>Jambe droite</td>
-                <td>{typeof this.ptsJambes() !== "number" ? be : this.ptsJambes() + be}</td>
+                <td>{this.ptsJambes() + be}</td>
                 <td>81 - 90</td>
               </tr>
               <tr>
                 <td>Jambe gauche</td>
-                <td>{typeof this.ptsJambes() !== "number" ? be : this.ptsJambes() + be}</td>
+                <td>{this.ptsJambes() + be}</td>
                 <td>91 - 00</td>
               </tr>
             </tbody>
@@ -184,17 +140,11 @@ class PointArmureTable extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     armure: state.armure.armure,
     carac: state.carac.carac
   }
 }
 
-function mapDispatchtoProps(dispatch) {
-  return bindActionCreators({
-    getCarac
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchtoProps)(PointArmureTable);
+export default connect(mapStateToProps, null)(PointArmureTable);

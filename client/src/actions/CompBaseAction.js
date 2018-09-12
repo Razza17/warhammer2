@@ -31,6 +31,19 @@ export function updateCompBase(id, newData) {
   return function(dispatch) {
     axios.put('/competencebase/' + id, newData)
     .then(function(response) {
+      dispatch({type:"UPDATE_COMPBASE", payload:response.data, id:id, datas:newData})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_COMPBASE_REJECTED", payload:err})
+    })
+  }
+}
+
+// RENAME PERSO
+export function renameCompBase(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/competencebase/' + user + '/' + perso, newData)
+    .then(function(response) {
       dispatch({type:"UPDATE_COMPBASE", payload:response.data})
     })
     .catch(function(err) {

@@ -8,7 +8,7 @@ export class Armes extends Component {
         <td>{this.props.encombrement}</td>
         <td>{this.props.degats}</td>
         <td>{this.props.portee}</td>
-        <td>{this.props.rechargement !== undefined ? this.props.rechargement : 0}</td>
+        <td>{this.props.rechargement}</td>
         <td>{this.props.attributs}</td>
       </tr>
     )

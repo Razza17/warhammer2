@@ -45,6 +45,19 @@ export function updateInventaire(id, newData) {
   return function(dispatch) {
     axios.put('/inventaire/' + id, newData)
     .then(function(response) {
+      dispatch({type:"UPDATE_INVENTAIRE", payload:response.data, id:id, datas:newData})
+    })
+    .catch(function(err) {
+      dispatch({type:"UPDATE_INVENTAIRE_REJECTED", payload:err})
+    })
+  }
+}
+
+// RENAME PERSO
+export function renameInventaire(user, perso, newData) {
+  return function(dispatch) {
+    axios.put('/inventaire/' + user + '/' + perso, newData)
+    .then(function(response) {
       dispatch({type:"UPDATE_INVENTAIRE", payload:response.data})
     })
     .catch(function(err) {

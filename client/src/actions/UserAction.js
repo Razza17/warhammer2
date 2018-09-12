@@ -1,14 +1,27 @@
 import axios from 'axios';
 
 // GET CHARACTER USER
-export function getUser(email) {
+export function getUser(pseudo) {
   return function(dispatch) {
-    axios.get('/user/' + email)
+    axios.get('/user/' + pseudo)
     .then(function(response) {
       dispatch({type:"GET_USER", payload:response.data})
     })
     .catch(function(err) {
       dispatch({type:"GET_USER_REJECTED", payload:err})
+    })
+  }
+}
+
+// GET ALL USER
+export function getAllUser() {
+  return function(dispatch) {
+    axios.get('/user')
+    .then(function(response) {
+      dispatch({type:"GET_ALL_USER", payload:response.data})
+    })
+    .catch(function(err) {
+      dispatch({type:"GET_ALL_USER_REJECTED", payload:err})
     })
   }
 }
@@ -28,9 +41,9 @@ export function postUser() {
 }
 
 // UPDATE CHARACTER USER
-export function updateUser(id, newUser) {
+export function updateUser(pseudo, newUser) {
   return function(dispatch) {
-    axios.put('/user/' + id, newUser)
+    axios.put('/user/' + pseudo, newUser)
     .then(function(response) {
       dispatch({type:"UPDATE_USER", payload:response.data})
     })
