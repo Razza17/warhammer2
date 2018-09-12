@@ -16,10 +16,12 @@ export class FullNavbars extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    console.log(recupUser)
+
     this.state = {
       user: user,
       perso: perso,
-      personnage: true,
+      personnage: false,
       equipement: false,
       combat: false,
       monCompte: false

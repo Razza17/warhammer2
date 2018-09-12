@@ -7,7 +7,7 @@ import { findDOMNode } from 'react-dom';
 
 import { postLogup } from "../../actions/LogupAction";
 
-class Logup extends Component {
+class Signup extends Component {
 
   constructor(props) {
     super(props);
@@ -122,4 +122,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch)
 }
 
-export default connect("", mapDispatchToProps)(Logup);
+export default connect(null, mapDispatchToProps)(Signup);

@@ -8,7 +8,7 @@ import { findDOMNode } from 'react-dom';
 
 import { getUser } from '../../actions/UserAction.js';
 
-class Login extends Component {
+class Signin extends Component {
 
   constructor(props) {
     super(props);
@@ -112,4 +112,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);
