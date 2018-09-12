@@ -23,6 +23,11 @@ class CreaCompTable extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getCompBase(user, perso);
+    this.props.getCompAvance(user, perso);
+    this.props.getTalent(user, perso);
+    this.props.getFolie(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
@@ -64,12 +69,11 @@ class CreaCompTable extends Component {
       acquis: this.state.acquisCheck,
       dix: this.state.dixCheck,
       vingt: this.state.vingtCheck,
-      bonus: findDOMNode(this.refs.bonusPostCompBase).value,
+      bonus: findDOMNode(this.refs.bonusPostCompBase).value !== "" ? findDOMNode(this.refs.bonusPostCompBase).value : 0,
       user: this.state.user,
       perso: this.state.perso
     };
     this.props.postCompBase(compBase);
-    this.props.getCompBase(this.state.user, this.state.perso);
     this.resetForm("base");
   }
 
@@ -80,12 +84,11 @@ class CreaCompTable extends Component {
       acquis: this.state.acquisCheck,
       dix: this.state.dixCheck,
       vingt: this.state.vingtCheck,
-      bonus: findDOMNode(this.refs.bonusPostCompAvance).value,
+      bonus: findDOMNode(this.refs.bonusPostCompAvance).value !== "" ? findDOMNode(this.refs.bonusPostCompAvance).value : 0,
       user: this.state.user,
       perso: this.state.perso
     };
     this.props.postCompAvance(postCompAvance);
-    this.props.getCompAvance(this.state.user, this.state.perso);
     this.resetForm("avance");
   }
 
@@ -94,12 +97,11 @@ class CreaCompTable extends Component {
       nom: findDOMNode(this.refs.nomPostTalent).value,
       desc: findDOMNode(this.refs.descPostTalent).value,
       competence: findDOMNode(this.refs.compPostTalent).value,
-      bonus: findDOMNode(this.refs.bonusPostTalent).value,
+      bonus: findDOMNode(this.refs.bonusPostTalent).value !== "" ? findDOMNode(this.refs.bonusPostTalent).value : 0,
       user: this.state.user,
       perso: this.state.perso
     };
     this.props.postTalent(newTalent);
-    this.props.getTalent(this.state.user, this.state.perso);
     this.resetForm("talents");
   }
 
@@ -110,7 +112,6 @@ class CreaCompTable extends Component {
       perso: this.state.perso
     };
     this.props.postFolie(folie);
-    this.props.getFolie();
     this.resetForm("folies");
   }
 
@@ -213,7 +214,7 @@ class CreaCompTable extends Component {
                     <td>
                       <FormGroup controlId="bonusPostCompBase">
                         <FormControl
-                          type='text'
+                          type='number'
                           placeholder='Bonus'
                           ref='bonusPostCompBase'/>
                       </FormGroup>
@@ -265,6 +266,7 @@ class CreaCompTable extends Component {
                           ref='caracPostCompAvance'>
                           <option value='select'>Caractéristiques</option>
                           <option value='(F)'>Force (F)</option>
+                          <option value='(F)'>Force Mentale (FM)</option>
                           <option value='(Soc)'>Sociabilité (Soc)</option>
                           <option value='(Ag)'>Agilité (Ag)</option>
                           <option value='(Int)'>Intélligence (Int)</option>
@@ -284,7 +286,7 @@ class CreaCompTable extends Component {
                     <td>
                       <FormGroup controlId="bonusPostCompAvance">
                         <FormControl
-                          type='text'
+                          type='number'
                           placeholder='Bonus'
                           ref='bonusPostCompAvance'/>
                       </FormGroup>
@@ -346,7 +348,7 @@ class CreaCompTable extends Component {
                     <td>
                       <FormGroup controlId="bonusPostTalent">
                         <FormControl
-                          type='text'
+                          type='number'
                           placeholder='Bonus'
                           ref='bonusPostTalent' />
                       </FormGroup>

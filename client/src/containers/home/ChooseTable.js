@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Panel, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { findDOMNode } from 'react-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import { getPerso } from '../../actions/PersoAction';
 
@@ -39,6 +40,9 @@ class ChooseTable extends Component {
             </FormControl>
           </FormGroup>
           <Button onClick={this.handleSubmit.bind(this)}>Aller au combat</Button>
+          <LinkContainer to={"/creationProfile?pseudo="+this.state.user} className="btn-right">
+            <Button>Créer un autre personnage</Button>
+          </LinkContainer>
         </Panel.Body>
       </Panel>
     )

@@ -20,6 +20,9 @@ class CreaArme extends Component {
     let user = recupUser[0];
     let perso = urlParams[2];
 
+    this.props.getArme(user, perso);
+    this.props.getArmure(user, perso);
+
     this.state = {
       user: user,
       perso: perso,
@@ -30,8 +33,6 @@ class CreaArme extends Component {
 
   handleSelect(activeKey) {
     this.setState({activeKey});
-    this.props.getProfile(this.state.user, this.state.perso);
-    this.props.getCompAvance(this.state.user, this.state.perso);
   }
 
   changePanel() {
@@ -49,18 +50,17 @@ class CreaArme extends Component {
   }
 
   postArme() {
-    const arme = [{
+    const arme = {
       nom: findDOMNode(this.refs.nomArme).value,
       encombrement: findDOMNode(this.refs.encArme).value,
       degats: findDOMNode(this.refs.degatsArme).value,
       portee: findDOMNode(this.refs.porteeArme).value,
-      rechargement: findDOMNode(this.refs.rechargementArme).value,
+      rechargement: findDOMNode(this.refs.rechargementArme).value !== "" ? findDOMNode(this.refs.rechargementArme).value : 0,
       attributs: findDOMNode(this.refs.attributsArme).value,
       user: this.state.user,
       perso: this.state.perso
-    }];
+    };
     this.props.postArme(arme);
-    this.props.getArme(this.state.user, this.state.perso);
     this.resetForm("arme");
   }
 
@@ -74,7 +74,6 @@ class CreaArme extends Component {
       perso: this.state.perso
     };
     this.props.postArmure(armure);
-    this.props.getArmure(this.state.user, this.state.perso);
     this.resetForm("armure");
   }
 

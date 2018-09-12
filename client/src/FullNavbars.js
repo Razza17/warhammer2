@@ -38,6 +38,7 @@ export class FullNavbars extends Component {
       combat: combat,
       monCompte: monCompte
     }
+    console.log(personnage);
   }
 
   active(onglet) {

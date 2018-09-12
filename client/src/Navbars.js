@@ -6,7 +6,7 @@ export class Navbars extends Component {
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
-          <Navbar.Brand className="navbar-brand">
+          <Navbar.Brand className="navbar-brand active">
             WARHAMMER 2.0
           </Navbar.Brand>
           <Navbar.Toggle id='collapseButton' />

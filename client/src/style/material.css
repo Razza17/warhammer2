@@ -12,6 +12,7 @@
   9.2 PERSONNAGE
   9.3 EQUIPEMENTS
   9.4 RÉCAPITULATIF
+  9.5 CHOOSE CHARACTER
 10. MEDIA QUERIES
 ***********************************SUMMARY*************************************/
 
@@ -445,6 +446,16 @@ a:hover {
   color: #ffffff;
   text-shadow: 2px 3px 3px rgba(0, 0, 0, 1);
   margin-bottom: 50px;
+}
+
+/************************ 9.5 CHOOSE CHARACTER ************************/
+#choose .panel-body {
+  position: static;
+}
+
+#choose .panel-body .btn-right {
+  position: absolute;
+  right: 16px;
 }
 
 /************************ 9.5 MON COMPTE ************************/
