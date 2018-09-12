@@ -1,5 +1,4 @@
 import React, { Component }  from 'react';
-import { NavLink } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -15,16 +14,29 @@ export class FullNavbars extends Component {
     let recupUser = urlParams[1].split('&');
     let user = recupUser[0];
     let perso = urlParams[2];
+    let pathname = window.location.pathname;
+    let personnage = false;
+    let equipement = false;
+    let combat = false;
+    let monCompte = false;
 
-    console.log(recupUser)
+    if(pathname === "/personnage") {
+      personnage = true;
+    } else if (pathname === "/equipement") {
+      equipement = true;
+    } else if (pathname === "/combat") {
+      combat = true;
+    } else if (pathname === "/monCompte") {
+      monCompte = true
+    }
 
     this.state = {
       user: user,
       perso: perso,
-      personnage: false,
-      equipement: false,
-      combat: false,
-      monCompte: false
+      personnage: personnage,
+      equipement: equipement,
+      combat: combat,
+      monCompte: monCompte
     }
   }
 
@@ -85,7 +97,7 @@ export class FullNavbars extends Component {
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <NavLink to={"/?pseudo="+this.state.user+"&perso="+this.state.perso} className="navbar-brand">WARHAMMER 2.0</NavLink>
+            <div className="navbar-brand">WARHAMMER 2.0</div>
           </Navbar.Brand>
           <Navbar.Toggle id='collapseButton' />
         </Navbar.Header>
