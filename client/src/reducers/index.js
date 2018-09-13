@@ -12,9 +12,9 @@ import { armureReducer } from "./ArmureReducer";
 import { inventaireReducer } from "./InventaireReducer";
 import { folieReducer } from "./FolieReducer";
 import { experienceReducer } from "./ExperienceReducer";
-import { userReducer } from "./UserReducer";
-import { logupReducer } from "./LogupReducer";
 import { persoReducer } from "./PersoReducer";
+import { errorReducer } from './ErrorReducer';
+import { authReducer } from './AuthReducer';
 
 export default combineReducers({
     profile: profilReducer,
@@ -30,7 +30,7 @@ export default combineReducers({
     inventaire: inventaireReducer,
     folie: folieReducer,
     experience: experienceReducer,
-    user: userReducer,
-    logup: logupReducer,
-    perso: persoReducer
+    perso: persoReducer,
+    errors: errorReducer,
+    auth: authReducer
 })

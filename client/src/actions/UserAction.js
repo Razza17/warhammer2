@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // GET CHARACTER USER
-export function getUser(pseudo) {
+export function getUser(user) {
   return function(dispatch) {
-    axios.get('/user/' + pseudo)
+    axios.get('/user', user)
     .then(function(response) {
       dispatch({type:"GET_USER", payload:response.data})
     })
@@ -28,11 +28,12 @@ export function getAllUser() {
 
 
 // POST CHARACTER USER
-export function postUser() {
+export function postUser(user, history) {
   return function(dispatch) {
-    axios.post('/user')
+    axios.post('/user', user)
     .then(function(response) {
       dispatch({type:"POST_USER", payload:response.data})
+      history.push('/signin')
     })
     .catch(function(err) {
       dispatch({type:"POST_USER_REJECTED", payload:err})
