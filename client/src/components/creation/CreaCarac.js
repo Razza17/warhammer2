@@ -251,7 +251,7 @@ class CreaCarac extends Component {
               <Panel.Title componentClass="h2">Caractéristiques de base</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th colSpan="9" className="uppercase">Profil Principal</th>
@@ -360,7 +360,7 @@ class CreaCarac extends Component {
                   </tr>
                 </tbody>
               </Table>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th colSpan="9" className="uppercase">Profil Secondaire</th>
@@ -478,7 +478,7 @@ class CreaCarac extends Component {
               <Panel.Title componentClass="h2">Caractéristiques avancées</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th colSpan="9" className="uppercase">Profil Principal</th>
@@ -587,7 +587,7 @@ class CreaCarac extends Component {
                   </tr>
                 </tbody>
               </Table>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th colSpan="9" className="uppercase">Profil Secondaire</th>
@@ -705,7 +705,7 @@ class CreaCarac extends Component {
               <Panel.Title componentClass="h2">Caractéristiques actuelles</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th colSpan="9" className="uppercase">Profil Principal</th>
@@ -814,7 +814,7 @@ class CreaCarac extends Component {
                   </tr>
                 </tbody>
               </Table>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th colSpan="9" className="uppercase">Profil Secondaire</th>

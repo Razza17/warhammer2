@@ -15,7 +15,8 @@ class FullNavbars extends Component {
       let urlParams = window.location.search.substring(1).split('=');
       let recupUser = urlParams[1].split('&');
       let user = recupUser[0];
-      let perso = urlParams[2];let pathname = window.location.pathname;
+      let perso = urlParams[2];
+      let pathname = window.location.pathname;
       let personnage = false;
       let equipement = false;
       let combat = false;

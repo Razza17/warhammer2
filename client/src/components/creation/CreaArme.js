@@ -102,7 +102,7 @@ class CreaArme extends Component {
               <Panel.Title componentClass="h2">Armes de ton personnage</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th>Nom</th>
@@ -179,7 +179,7 @@ class CreaArme extends Component {
               <Panel.Title componentClass="h2">Armures de ton personnage</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th>Nom</th>
