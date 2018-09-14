@@ -11,6 +11,14 @@ class FullNavbars extends Component {
   constructor(props) {
     super(props);
 
+    let token = false
+
+    for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+      if(localStorage.getItem(localStorage.key(i)) !== "") {
+        token = true
+      }
+    }
+
     if(window.location.search !== "") {
       let urlParams = window.location.search.substring(1).split('=');
       let recupUser = urlParams[1].split('&');
@@ -38,12 +46,14 @@ class FullNavbars extends Component {
         personnage: personnage,
         equipement: equipement,
         combat: combat,
-        monCompte: monCompte
+        monCompte: monCompte,
+        isAuthenticated: token
       }
     } else {
       this.state = {
         user: "",
         perso: "",
+        isAuthenticated: token
       }
     }
   }
@@ -81,11 +91,10 @@ class FullNavbars extends Component {
   }
 
   onLogout() {
-    this.props.logoutUser(this.props.history);
+    this.props.logoutUser();
   }
 
   render() {
-    const {isAuthenticated} = this.props.auth;
     const authNav = (
       <Navbar.Collapse>
         <Nav>
@@ -115,7 +124,7 @@ class FullNavbars extends Component {
           </Navbar.Brand>
           <Navbar.Toggle id='collapseButton' />
         </Navbar.Header>
-        {isAuthenticated && authNav}
+        {this.state.isAuthenticated && authNav}
       </Navbar>
     )
   }

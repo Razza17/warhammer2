@@ -12,7 +12,7 @@ export function authReducer(state = initialState, action ) {
     return {
       ...state,
       isAuthenticated: !isEmpty(action.payload),
-      user: [...action.payload]
+      user: [action.payload]
     }
     default:
     return state;

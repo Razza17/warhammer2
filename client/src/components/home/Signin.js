@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Col, FormGroup, FormControl, Button, PanelGroup, Panel } from 'react-bootstrap';
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
 import classnames from 'classnames';
 
 import { loginUser } from '../../actions/Authentication';
@@ -93,4 +94,10 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 })
 
-export  default connect(mapStateToProps, { loginUser })(Signin)
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators ({
+    loginUser
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin)
