@@ -27,6 +27,12 @@ class ChooseTable extends Component {
     window.location.assign("./personnage?pseudo=" + this.state.user + "&perso=" + perso);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.perso.length === 0) {
+      window.location.assign("/creationProfile?pseudo="+this.state.user)
+    }
+  }
+
   render() {
     return (
       <Panel>

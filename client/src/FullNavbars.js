@@ -29,15 +29,20 @@ class FullNavbars extends Component {
       let equipement = false;
       let combat = false;
       let monCompte = false;
+      let inGame = false
 
       if(pathname === "/personnage") {
         personnage = true;
+        inGame = true;
       } else if (pathname === "/equipement") {
         equipement = true;
+        inGame = true;
       } else if (pathname === "/combat") {
         combat = true;
+        inGame = true;
       } else if (pathname === "/monCompte") {
-        monCompte = true
+        monCompte = true;
+        inGame = true;
       }
 
       this.state = {
@@ -47,13 +52,15 @@ class FullNavbars extends Component {
         equipement: equipement,
         combat: combat,
         monCompte: monCompte,
-        isAuthenticated: token
+        isAuthenticated: token,
+        isInGame: inGame
       }
     } else {
       this.state = {
         user: "",
         perso: "",
-        isAuthenticated: token
+        isAuthenticated: token,
+        isInGame: false
       }
     }
   }
@@ -124,7 +131,7 @@ class FullNavbars extends Component {
           </Navbar.Brand>
           <Navbar.Toggle id='collapseButton' />
         </Navbar.Header>
-        {this.state.isAuthenticated && authNav}
+        {this.state.isAuthenticated && this.state.isInGame ? authNav : null}
       </Navbar>
     )
   }
