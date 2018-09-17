@@ -1,65 +1,48 @@
 import React, { Component } from 'react';
-import { Grid, Col, FormGroup, FormControl, Button, Alert, PanelGroup, Panel } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Grid, Col, FormGroup, FormControl, Button, PanelGroup, Panel } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { findDOMNode } from 'react-dom';
-// import firebase from 'firebase/app';
-// import 'firebase/auth';
+import classnames from 'classnames';
 
-import { getUser } from '../../actions/UserAction.js';
+import { loginUser } from '../../actions/Authentication';
 
 class Signin extends Component {
-
-  constructor(props) {
-    super(props);
-
-    // let config = {
-    //   apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
-    //   authDomain: "warhammer-81ced.firebaseapp.com",
-    //   databaseURL: "https://warhammer-81ced.firebaseio.com",
-    //   projectId: "warhammer-81ced",
-    //   storageBucket: "warhammer-81ced.appspot.com",
-    //   messagingSenderId: "1046515260577"
-    // };
-    // firebase.initializeApp(config);
-
+  constructor() {
+    super();
     this.state = {
-      visible: false,
-      msg: ""
+      email: '',
+      password: '',
+      errors: {}
+    }
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  handleSubmit() {
+    const user = {
+      email: this.state.email,
+      password: this.state.password,
+    }
+    this.props.loginUser(user, this.props.history);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors.response.data
+      });
     }
   }
 
-  handleLogin() {
-    // let reactThis = this;
-    // let that = this.props;
-    // let email = findDOMNode(this.refs.email).value;
-    // let password = findDOMNode(this.refs.password).value;
-    let pseudo = findDOMNode(this.refs.pseudo).value;
-    this.props.getUser(pseudo);
-    window.location.assign('./choosePerso?pseudo='+pseudo);
-
-    // firebase.auth().signInWithEmailAndPassword(email,password)
-    // .then(function(onResolve) {
-    //   that.getUser(pseudo);
-    //   window.location.assign('./choosePerso?pseudo='+pseudo);
-    // })
-    // .catch(function(err) {
-    //   let errorMessage = err.message;
-    //
-    //   reactThis.setState({
-    //     visible: !reactThis.state.visible,
-    //     msg: errorMessage
-    //   })
-    //
-    //   setTimeout(function() {
-    //     reactThis.setState({
-    //       visible: !reactThis.state.visible
-    //     })
-    //   }, 3000)
-    // });
-  }
-
   render() {
+    const {errors} = this.state;
     return (
       <Grid id="login" className="vertical-middle" fluid>
         <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
@@ -69,28 +52,31 @@ class Signin extends Component {
                 <Panel.Title componentClass="h2">Connecte toi</Panel.Title>
               </Panel.Heading>
               <Panel.Body>
-                <FormGroup controlId="pseudo">
-                  <FormControl
-                    type='pseudo'
-                    placeholder="Entre ton pseudo"
-                    ref='pseudo' />
-                </FormGroup>
                 <FormGroup controlId="email">
                   <FormControl
                     type='email'
                     placeholder="Entre ton email"
-                    ref='email' />
+                    className={classnames('form-control form-control-lg', {
+                      'is-invalid': errors.email
+                    })}
+                    name="email"
+                    onChange={ this.handleInputChange }
+                    value={ this.state.email } />
+                  {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                 </FormGroup>
                 <FormGroup controlId="password">
                   <FormControl
                     type='password'
                     placeholder="Entre ton mot de passe"
-                    ref='password' />
+                    className={classnames('form-control form-control-lg', {
+                      'is-invalid': errors.password
+                    })}
+                    name="password"
+                    onChange={ this.handleInputChange }
+                    value={ this.state.password } />
+                  {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                 </FormGroup>
-                <Button onClick={this.handleLogin.bind(this)}>Envoyer</Button>
-                <Alert className={this.state.visible ? "show" : "hide"} bsStyle="danger">
-                  {this.state.msg}
-                </Alert>
+                <Button onClick={this.handleSubmit}>Envoyer</Button>
               </Panel.Body>
             </Panel>
           </PanelGroup>
@@ -100,16 +86,18 @@ class Signin extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return {
-    user: state.user.user
-  }
+Signin.propTypes = {
+  errors: PropTypes.object.isRequired
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    getUser
+const mapStateToProps = (state) => ({
+  errors: state.errors
+})
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators ({
+    loginUser
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signin);
+export default connect(mapStateToProps, mapDispatchToProps)(Signin)

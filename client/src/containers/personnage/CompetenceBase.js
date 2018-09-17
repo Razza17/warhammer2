@@ -38,7 +38,7 @@ class CompetenceBase extends Component {
           <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>{this.state.update ? <Glyphicon glyph="minus" /> : <Glyphicon glyph="plus" />}</Button>
         </Panel.Heading>
         <Panel.Body>
-          <Table condensed hover striped fill>
+          <Table condensed hover striped >
             <thead>
               <tr>
                 <th>Nom</th>

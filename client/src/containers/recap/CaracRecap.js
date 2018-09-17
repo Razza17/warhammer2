@@ -36,7 +36,7 @@ class CaracRecap extends Component {
           <Panel.Title>Caractéristiques</Panel.Title>
         </Panel.Heading>
         <Panel.Body>
-          <Table condensed bordered hover striped className="carac-table-desktop" fill>
+          <Table condensed bordered hover striped className="carac-table-desktop" >
             <thead>
               <tr>
                 <th>&nbsp;</th>

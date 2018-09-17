@@ -1,63 +1,55 @@
 import React, { Component } from 'react';
 import { Grid, Col, FormGroup, FormControl, Button, PanelGroup, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { findDOMNode } from 'react-dom';
-// import firebase from 'firebase/app';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-import { postLogup } from "../../actions/LogupAction";
+import { registerUser } from "../../actions/Authentication";
 
 class Signup extends Component {
-
-  constructor(props) {
-    super(props);
-
+  constructor() {
+    super();
     this.state = {
-      activeKey: "0",
-      errorMsg: ""
+      nom: '',
+      prenom: '',
+      pseudo: '',
+      email: '',
+      password: '',
+      password_confirm: '',
+      errors: {}
     }
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleLogup() {
-    let password = findDOMNode(this.refs.password).value;
-    let confirmPassword = findDOMNode(this.refs.confirmPassword).value;
-    let pseudo = findDOMNode(this.refs.pseudo).value;
-    let email = findDOMNode(this.refs.email).value;
-    let prenom  = findDOMNode(this.refs.prenom).value;
-    let nom = findDOMNode(this.refs.nom).value;
-    let user = {
-      nom:nom,
-      prenom:prenom,
-      pseudo:pseudo,
-      email:email,
-      password:password,
-    };
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
-    if(password === confirmPassword && password !== "" && confirmPassword !== "") {
-      // let config = {
-      //   apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
-      //   authDomain: "warhammer-81ced.firebaseapp.com",
-      //   databaseURL: "https://warhammer-81ced.firebaseio.com",
-      //   projectId: "warhammer-81ced",
-      //   storageBucket: "warhammer-81ced.appspot.com",
-      //   messagingSenderId: "1046515260577"
-      // };
-      // firebase.initializeApp(config);
-      //
-      // firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-      //   let errorCode = error.code;
-      //   let errorMessage = error.message;
-      //   this.setState({ activeKey: "1", errorMsg: errorCode + " : " + errorMessage });
-      // });
-      this.props.postLogup(user);
-      let redirect = "/creationProfile?pseudo=" + pseudo;
-      this.props.history.push(redirect);
-    } else {
-      this.setState({ activeKey: "1", errorMsg: "Tes deux mots de passe ne correspondent pas ou sont vides !" });
+  handleSubmit() {
+    const user = {
+      nom: this.state.nom,
+      prenom: this.state.prenom,
+      pseudo: this.state.pseudo,
+      email: this.state.email,
+      password: this.state.password,
+      password_confirm: this.state.password_confirm
+    }
+    this.props.registerUser(user, this.props.history);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
     }
   }
 
   render() {
+    const { errors } = this.state;
     return (
       <Grid id="logup" className="vertical-middle" fluid>
         <Col xs={6} xsOffset={3} md={4} mdOffset={4}>
@@ -68,46 +60,79 @@ class Signup extends Component {
               </Panel.Heading>
               <Panel.Body>
                 <FormGroup controlId="nom">
-                    <FormControl
-                      type='text'
-                      placeholder="Entre ton nom"
-                      ref='nom' />
+                  <FormControl
+                    type='text'
+                    className={classnames('form-control form-control-lg', {
+                        'is-invalid': errors.nom
+                    })}
+                    placeholder="Entre ton nom"
+                    name="nom"
+                    onChange={ this.handleInputChange }
+                    value={ this.state.nom } />
+                  {errors.nom && (<div className="invalid-feedback">{errors.nom}</div>)}
                 </FormGroup>
                 <FormGroup controlId="prenom">
-                    <FormControl
-                      type='text'
-                      placeholder="Entre ton prénom"
-                      ref='prenom' />
+                  <FormControl
+                    type='text'
+                    className={classnames('form-control form-control-lg', {
+                        'is-invalid': errors.prenom
+                    })}
+                    placeholder="Entre ton prénom"
+                    name="prenom"
+                    onChange={ this.handleInputChange }
+                    value={ this.state.prenom } />
+                  {errors.prenom && (<div className="invalid-feedback">{errors.prenom}</div>)}
                 </FormGroup>
                 <FormGroup controlId="pseudo">
-                    <FormControl
-                      type='text'
-                      placeholder="Entre ton pseudo"
-                      ref='pseudo' />
+                  <FormControl
+                    type='text'
+                    className={classnames('form-control form-control-lg', {
+                        'is-invalid': errors.pseudo
+                    })}
+                    placeholder="Entre ton pseudo"
+                    name="pseudo"
+                    onChange={ this.handleInputChange }
+                    value={ this.state.pseudo } />
+                  {errors.pseudo && (<div className="invalid-feedback">{errors.pseudo}</div>)}
                 </FormGroup>
                 <FormGroup controlId="email">
-                    <FormControl
-                      type='email'
-                      placeholder="Entre ton email"
-                      ref='email' />
+                  <FormControl
+                    type='email'
+                    className={classnames('form-control form-control-lg', {
+                        'is-invalid': errors.email
+                    })}
+                    placeholder="Entre ton email"
+                    name="email"
+                    onChange={ this.handleInputChange }
+                    value={ this.state.email } />
+                  {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                 </FormGroup>
                 <FormGroup controlId="password">
-                    <FormControl
-                      type='password'
-                      placeholder="Entre ton mot de passe"
-                      ref='password' />
+                  <FormControl
+                    type='password'
+                    className={classnames('form-control form-control-lg', {
+                        'is-invalid': errors.password
+                    })}
+                    placeholder="Entre ton mot de passe"
+                    name="password"
+                    onChange={ this.handleInputChange }
+                    value={ this.state.password } />
+                  {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                 </FormGroup>
-                <FormGroup controlId="confirmPassword">
-                    <FormControl
-                      type='password'
-                      placeholder="Confirmation de ton mot de passe"
-                      ref='confirmPassword' />
+                <FormGroup controlId="password_confirm">
+                  <FormControl
+                    type='password'
+                    className={classnames('form-control form-control-lg', {
+                        'is-invalid': errors.password_confirm
+                    })}
+                    placeholder="Confirme ton mot de passe"
+                    name="password_confirm"
+                    onChange={ this.handleInputChange }
+                    value={ this.state.password_confirm } />
+                  {errors.password_confirm && (<div className="invalid-feedback">{errors.password_confirm}</div>)}
                 </FormGroup>
-                <Button onClick={this.handleLogup.bind(this)}>Envoyer</Button>
+                <Button onClick={this.handleSubmit}>Enregistrer</Button>
               </Panel.Body>
-            </Panel>
-            <Panel className={this.state.activeKey === "1" ? "loginMsg show" : "loginMsg hide"}>
-              <p>{this.state.errorMsg}</p>
             </Panel>
           </PanelGroup>
         </Col>
@@ -116,10 +141,12 @@ class Signup extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    postLogup
-  }, dispatch)
-}
+Signup.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+};
 
-export default connect(null, mapDispatchToProps)(Signup);
+const mapStateToProps = state => ({
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { registerUser })(Signup);

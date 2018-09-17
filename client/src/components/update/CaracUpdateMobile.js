@@ -35,7 +35,7 @@ class CaracUpdateMobile extends Component {
   render() {
     let tooltip = <Tooltip id={this.props._id}>Click here to update</Tooltip>;
     return (
-      <Table condensed bordered hover striped className="carac-table-mobile" fill>
+      <Table condensed bordered hover striped className="carac-table-mobile" >
         <thead>
           <tr>
             <th colSpan="8" className="uppercase">{this.props.type !== "base" ? "Profil " + this.props.type : "Profil de " + this.props.type}</th>
