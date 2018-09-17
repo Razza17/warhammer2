@@ -136,7 +136,7 @@ class CreaInventaire extends Component {
               <Panel.Title componentClass="h2">Monnaie</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <tbody>
                   <tr>
                     <td>
@@ -175,7 +175,7 @@ class CreaInventaire extends Component {
               <Panel.Title componentClass="h2">Munitions</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <tbody>
                   <tr>
                     <td>
@@ -198,7 +198,7 @@ class CreaInventaire extends Component {
               <Panel.Title componentClass="h2">Inventaire</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th>Nom</th>

@@ -40,7 +40,7 @@ class CompAvanceRecap extends Component {
           <Panel.Title>Compétences Avancées</Panel.Title>
         </Panel.Heading>
         <Panel.Body>
-          <Table condensed hover striped fill>
+          <Table condensed hover striped >
             <thead>
               <tr>
                 <th>Nom</th>

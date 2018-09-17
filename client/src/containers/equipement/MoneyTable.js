@@ -25,7 +25,7 @@ class MoneyTable extends Component {
           <Panel.Title componentClass="h2">Monnaies</Panel.Title>
         </Panel.Heading>
         <Panel.Body>
-          <Table fill className="moneyTable">
+          <Table  className="moneyTable">
             { this.props.money.map((money, i) => <Money key={i} {...money} />) }
           </Table>
         </Panel.Body>

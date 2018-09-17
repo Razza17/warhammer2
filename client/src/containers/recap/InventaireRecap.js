@@ -35,7 +35,7 @@ class InventaireRecap extends Component {
           <Panel.Title>Inventaire</Panel.Title>
         </Panel.Heading>
         <Panel.Body>
-          <Table condensed hover striped fill>
+          <Table condensed hover striped >
             <thead>
               <tr>
                 <th>Nom</th>

@@ -1,11 +1,30 @@
-let express = require('express');
-let path = require('path');
-let favicon = require('serve-favicon');
-let logger = require('morgan');
-let cookieParser = require('cookie-parser');
-let bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
-let app = express();
+const app = express();
+
+const Perso = require('./models/perso');
+const Profile = require('./models/profile');
+const Details = require('./models/details');
+const Caracteristique = require('./models/Caracteristique');
+const Count = require('./models/count');
+const CompetenceBase = require('./models/competenceBase');
+const CompetenceAvance = require('./models/competenceAvance');
+const Talent = require('./models/talent');
+const Arme = require('./models/arme');
+const Armure = require('./models/armure');
+const Money = require('./models/money');
+const Inventaire = require('./models/inventaire');
+const Folie = require('./models/folie');
+const Experience = require('./models/experience');
+const users = require('./routes/user');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,26 +38,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // API
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://Razza:CaptainElan2696@warhammer-shard-00-00-e5vlk.mongodb.net:27017,warhammer-shard-00-01-e5vlk.mongodb.net:27017,warhammer-shard-00-02-e5vlk.mongodb.net:27017/warhammer?ssl=true&replicaSet=Warhammer-shard-0&authSource=admin&retryWrites=true', {
   useMongoClient: true
 });
 
-let Perso = require('./models/perso');
-let Profile = require('./models/profile');
-let Details = require('./models/details');
-let Caracteristique = require('./models/Caracteristique');
-let Count = require('./models/count');
-let CompetenceBase = require('./models/competenceBase');
-let CompetenceAvance = require('./models/competenceAvance');
-let Talent = require('./models/talent');
-let Arme = require('./models/arme');
-let Armure = require('./models/armure');
-let Money = require('./models/money');
-let Inventaire = require('./models/inventaire');
-let Folie = require('./models/folie');
-let Experience = require('./models/experience');
-let User = require('./models/user');
+app.use(passport.initialize());
+require('./passport')(passport);
+app.use('/', users);
 
 //---->>>> GET CHARACTER <<<<----
 app.get('/perso/:user', function(req, res) {
@@ -855,7 +862,7 @@ app.get('/money/:user/:perso', function(req, res) {
 app.put('/money/:_id', function(req, res) {
   let newData = req.body;
   let query = req.params._id;
-  
+
   let update = {
     '$set': {
       _id: query,
@@ -1140,65 +1147,6 @@ app.put('/experience/:pseudo/:perso', function(req, res) {
   let options = {new: false};
 
   Experience.findOneAndUpdate(query, update, options, function(err, data) {
-    if(err) {
-      throw err;
-    }
-    res.json(data);
-  })
-});
-
-//---->>>> POST USER <<<<----
-app.post('/user', function(req, res) {
-  let data = req.body;
-
-  User.create(data, function(err, user) {
-    if(err) {
-      throw err;
-    }
-    res.json(user);
-  })
-});
-
-//---->>>> GET USER <<<<----
-app.get('/user/:pseudo', function(req, res) {
-  let pseudo = req.params.pseudo;
-
-  User.find({pseudo: pseudo}, function(err, user) {
-    if(err) {
-      throw err;
-    }
-    res.json(user);
-  })
-});
-
-//---->>>> GET ALL USER <<<<----
-app.get('/user', function(req, res) {
-
-  User.find(function(err, user) {
-    if(err) {
-      throw err;
-    }
-    res.json(user);
-  })
-});
-
-//---->>>> UPDATE USER <<<<----
-app.put('/user/:pseudo', function(req, res) {
-  let newData = req.body;
-  let pseudo = req.params.pseudo;
-
-  let update = {
-    '$set': {
-      nom: newData.nom,
-      prenom: newData.prenom,
-      email: newData.email,
-      pseudo: newData.pseudo
-    }
-  };
-
-  let options = {new: false};
-
-  User.updateOne({pseudo: pseudo}, update, options, function(err, data) {
     if(err) {
       throw err;
     }

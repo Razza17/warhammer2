@@ -59,7 +59,7 @@ class InventaireTable extends Component {
           <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>{this.state.update ? <Glyphicon glyph="minus" /> : <Glyphicon glyph="plus" />}</Button>
         </Panel.Heading>
         <Panel.Body>
-          <Table condensed bordered hover striped fill>
+          <Table condensed bordered hover striped >
             <thead>
               <tr>
                 <th>Nom</th>

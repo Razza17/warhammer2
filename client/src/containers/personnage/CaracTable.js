@@ -42,7 +42,7 @@ class CaracTable extends Component {
           <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>{this.state.update ? <Glyphicon glyph="minus" /> : <Glyphicon glyph="plus" />}</Button>
         </Panel.Heading>
         <Panel.Body>
-          <Table condensed bordered hover striped className="carac-table-desktop" fill>
+          <Table condensed bordered hover striped className="carac-table-desktop" >
             <thead>
               <tr>
                 <th>&nbsp;</th>
@@ -76,7 +76,7 @@ class CaracTable extends Component {
           </Table>
           { this.state.update ?
             this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} />) :
-            <Table condensed bordered hover striped className="carac-table-mobile" fill>
+            <Table condensed bordered hover striped className="carac-table-mobile" >
               <thead>
                 <tr>
                   <th>&nbsp;</th>

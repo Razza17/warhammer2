@@ -167,7 +167,7 @@ class CreaCompTable extends Component {
               <Panel.Title componentClass="h2">Compétences de base</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed hover striped className="border" fill>
+              <Table condensed hover striped className="border" >
                 <thead>
                   <tr>
                     <th>Nom</th>
@@ -236,7 +236,7 @@ class CreaCompTable extends Component {
               <Panel.Title componentClass="h2">Compétences avancées</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed hover striped fill>
+              <Table condensed hover striped >
                 <thead>
                   <tr>
                     <th>Nom</th>
@@ -308,7 +308,7 @@ class CreaCompTable extends Component {
               <Panel.Title componentClass="h2">Talents</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed hover striped fill>
+              <Table condensed hover striped >
                 <thead>
                   <tr>
                     <th>Nom</th>
@@ -368,7 +368,7 @@ class CreaCompTable extends Component {
               <Panel.Title componentClass="h2">Folies</Panel.Title>
             </Panel.Heading>
             <Panel.Body>
-              <Table condensed bordered hover striped fill>
+              <Table condensed bordered hover striped >
                 <thead>
                   <tr>
                     <th>Nom</th>
