@@ -19,10 +19,11 @@ export const loginUser = (user, history) => dispatch => {
     setAuthToken(token);
     const decoded = jwt_decode(token);
     dispatch(setCurrentUser(decoded));
+    localStorage.setItem('userPseudo', decoded.pseudo);
     history.push('/choosePerso?pseudo=' + decoded.pseudo)
   })
   .catch(err => {
-    dispatch({type: GET_ERRORS,payload: err});
+    dispatch({type: GET_ERRORS, payload: err});
   });
 }
 
@@ -35,6 +36,8 @@ export const setCurrentUser = decoded => {
 
 export const logoutUser = () => dispatch => {
   localStorage.removeItem('jwtToken');
+  localStorage.removeItem('userPseudo');
+  localStorage.removeItem('userPerso');
   setAuthToken(false);
   dispatch(setCurrentUser({}));
   window.location.assign("/");

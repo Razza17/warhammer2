@@ -14,7 +14,8 @@ class FullNavbars extends Component {
     let token = false
 
     for ( var i = 0, len = localStorage.length; i < len; ++i ) {
-      if(localStorage.getItem(localStorage.key(i)) !== "") {
+      console.log(localStorage.getItem('jwtToken'))
+      if(localStorage.getItem('jwtToken') !== "") {
         token = true
       }
     }

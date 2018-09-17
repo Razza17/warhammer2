@@ -24,6 +24,7 @@ class ChooseTable extends Component {
 
   handleSubmit() {
     let perso = findDOMNode(this.refs.perso).value;
+    localStorage.setItem('userPerso', perso);
     window.location.assign("./personnage?pseudo=" + this.state.user + "&perso=" + perso);
   }
 
