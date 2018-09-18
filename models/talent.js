@@ -7,7 +7,6 @@ var talentSchema = mongoose.Schema({
     bonus : Number,
     user : String,
     perso : String
-
 });
 
 var Talent = mongoose.model('Talent', talentSchema);

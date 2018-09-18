@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
+const getUserInput = require('../validation/getUser');
 
 const User = require('../models/user');
 
@@ -53,25 +54,64 @@ router.post('/user', function(req, res) {
 });
 
 router.post('/login', (req, res) => {
+  if(req.body.email !== undefined) {
+    const { errors, isValid } = validateLoginInput(req.body);
 
-  const { errors, isValid } = validateLoginInput(req.body);
-
-  if(!isValid) {
-    return res.status(400).json(errors);
-  }
-
-  const email = req.body.email;
-  const password = req.body.password;
-
-  User.findOne({email})
-  .then(user => {
-    if(!user) {
-      errors.email = 'User not found or wrong email'
-      return res.status(404).json(errors);
+    if(!isValid) {
+      return res.status(400).json(errors);
     }
-    bcrypt.compare(password, user.password)
-    .then(isMatch => {
-      if(isMatch) {
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    User.findOne({email})
+    .then(user => {
+      if(!user) {
+        errors.email = 'User not found or wrong email'
+        return res.status(404).json(errors);
+      }
+      bcrypt.compare(password, user.password)
+      .then(isMatch => {
+        if(isMatch) {
+          const payload = {
+            id: user.id,
+            nom: user.nom,
+            prenom: user.prenom,
+            pseudo: user.pseudo,
+            email: user.email
+          }
+          jwt.sign(payload, 'secret', {
+            expiresIn: 3600
+          }, (err, token) => {
+            if(err) console.error('There is some error in token', err);
+            else {
+              res.json({
+                success: true,
+                token: `Bearer ${token}`
+              });
+            }
+          });
+        }
+        else {
+          errors.password = 'Incorrect Password';
+          return res.status(400).json(errors);
+        }
+      });
+    });
+  } else {
+    const { errors, isValid } = getUserInput(req.body);
+
+    if(!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    const pseudo = req.body.pseudo;
+    User.findOne({pseudo})
+    .then(user => {
+      if(!user) {
+        errors.pseudo = 'User not found or wrong pseudo'
+        return res.status(404).json(errors);
+      } else if(pseudo === user.pseudo) {
         const payload = {
           id: user.id,
           nom: user.nom,
@@ -90,13 +130,17 @@ router.post('/login', (req, res) => {
             });
           }
         });
-      }
-      else {
+      } else {
         errors.password = 'Incorrect Password';
         return res.status(400).json(errors);
       }
     });
-  });
+  }
+});
+
+router.get('/user', function(req, res) {
+  console.log(req.params)
+
 });
 
 //---->>>> GET USER <<<<----
@@ -109,40 +153,5 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
     email: req.user.email
   });
 });
-
-//---->>>> GET ALL USER <<<<----
-// router.get('/user', function(req, res) {
-//
-//   User.find(function(err, user) {
-//     if(err) {
-//       throw err;
-//     }
-//     res.json(user);
-//   })
-// });
-
-//---->>>> UPDATE USER <<<<----
-// router.put('/user/:pseudo', function(req, res) {
-//   let newData = req.body;
-//   let pseudo = req.params.pseudo;
-//
-//   let update = {
-//     '$set': {
-//       nom: newData.nom,
-//       prenom: newData.prenom,
-//       email: newData.email,
-//       pseudo: newData.pseudo
-//     }
-//   };
-//
-//   let options = {new: false};
-//
-//   User.updateOne({pseudo: pseudo}, update, options, function(err, data) {
-//     if(err) {
-//       throw err;
-//     }
-//     res.json(data);
-//   })
-// });
 
 module.exports = router;

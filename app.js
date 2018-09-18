@@ -24,6 +24,7 @@ const Money = require('./models/money');
 const Inventaire = require('./models/inventaire');
 const Folie = require('./models/folie');
 const Experience = require('./models/experience');
+const UserMongo = require('./models/userMongo');
 const users = require('./routes/user');
 
 // view engine setup

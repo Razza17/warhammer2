@@ -27,6 +27,19 @@ export const loginUser = (user, history) => dispatch => {
   });
 }
 
+export const getUser = (pseudo) => dispatch => {
+  axios.post('/login', pseudo)
+  .then(res => {
+    let token = localStorage.getItem('jwtToken');
+    setAuthToken(token);
+    const decoded = jwt_decode(token);
+    dispatch(setCurrentUser(decoded));
+  })
+  .catch(err => {
+    dispatch({type: GET_ERRORS, payload: err});
+  });
+}
+
 export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,
