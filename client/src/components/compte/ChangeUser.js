@@ -18,19 +18,13 @@ import { renameInventaire } from '../../actions/InventaireAction';
 import { renameMoney } from '../../actions/MoneyAction';
 import { renamePerso } from '../../actions/PersoAction';
 import { renameTalent } from '../../actions/TalentAction';
-import { getUser, getAllUser, updateUser } from '../../actions/UserAction';
-
-// import firebase from 'firebase/app';
-// import 'firebase/auth';
 
 export class ChangeUser extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let user = localStorage.getItem("userPseudo");
+    let perso = localStorage.getItem("userPerso");
 
     this.state = {
       user: user,
@@ -74,22 +68,6 @@ export class ChangeUser extends Component {
   }
 
   deconnection() {
-    // let config = {
-    //   apiKey: "AIzaSyCXSmiyYCqx8LWXeC16RoBFo-j0Kvlnx-Q",
-    //   authDomain: "warhammer-81ced.firebaseapp.com",
-    //   databaseURL: "https://warhammer-81ced.firebaseio.com",
-    //   projectId: "warhammer-81ced",
-    //   storageBucket: "warhammer-81ced.appspot.com",
-    //   messagingSenderId: "1046515260577"
-    // };
-    // firebase.initializeApp(config);
-    //
-    // firebase.auth().signOut().then(function() {
-    //   window.location.assign("/")
-    // }).catch(function(error) {
-    //   // An error happened.
-    // });
-
     window.location.assign("/")
   }
 
@@ -162,15 +140,13 @@ export class ChangeUser extends Component {
 
 function mapStateToProps(state){
   return {
-    profile: state.profile.profile,
-    user: state.user.user
+    profile: state.profile.profile
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getProfile, renameProfile,
-    getUser, updateUser, getAllUser,
     renameDetails,
     renameArme,
     renameArmure,

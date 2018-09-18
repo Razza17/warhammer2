@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Grid, Col } from 'react-bootstrap';
 
 import { getProfile } from '../actions/ProfilAction';
-import { getUser } from '../actions/UserAction';
+import { getUser } from '../actions/Authentication';
 
 import RenamePerso from '../components/compte/RenamePerso';
 import ChangeUser from '../components/compte/ChangeUser';
@@ -13,10 +13,8 @@ export class MonCompte extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let user = localStorage.getItem("userPseudo");
+    let perso = localStorage.getItem("userPerso");
 
     this.state = {
       user: user,
@@ -26,8 +24,9 @@ export class MonCompte extends Component {
   }
 
   componentDidMount() {
+    const pseudo = {pseudo: this.state.user}
     this.props.getProfile(this.state.user, this.state.perso);
-    this.props.getUser(this.state.user);
+    this.props.getUser(pseudo);
   }
 
   render() {
@@ -36,7 +35,7 @@ export class MonCompte extends Component {
         <Col xs={12}>
           <h1 className="align-center">Voici ton compte {this.state.user}</h1>
           {this.props.profile.map((perso, i) => <RenamePerso key={i} {...perso} />)}
-          {this.props.user.map((users, i) => <ChangeUser key={i} {...users} />)}
+          {this.props.userData.map((user, i) => <ChangeUser key={i} {...user} />)}
         </Col>
       </Grid>
     )
@@ -46,7 +45,7 @@ export class MonCompte extends Component {
 function mapStateToProps(state){
   return {
     profile: state.profile.profile,
-    user: state.user.user
+    userData: state.auth.user
   }
 }
 
