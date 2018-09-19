@@ -13,16 +13,14 @@ class CompetenceAvance extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
-    this.props.getCompAvance(user, perso);
+    this.props.getCompAvance(userID, userPerso);
 
     this.state = {
-      user: user,
-      perso: perso,
+      userID: userID,
+      userPerso: userPerso,
       update: false,
       acquisCheck: false,
       dixCheck: false,
@@ -62,8 +60,8 @@ class CompetenceAvance extends Component {
       dix: this.state.dixCheck,
       vingt: this.state.vingtCheck,
       bonus: findDOMNode(this.refs.bonusPostCompAvance).value,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     }];
     this.props.postCompAvance(postCompAvance);
     this.resetForm();

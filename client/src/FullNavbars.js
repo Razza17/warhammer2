@@ -12,56 +12,40 @@ class FullNavbars extends Component {
     super(props);
 
     let token = false
+    let pathname = window.location.pathname
+    let personnage = false
+    let equipement = false
+    let combat = false
+    let monCompte = false
+    let inGame = false
 
     for ( var i = 0, len = localStorage.length; i < len; ++i ) {
-      if(localStorage.getItem('jwtToken') !== "") {
+      if(localStorage.getItem('jwtToken') !== "" && localStorage.getItem('jwtToken') !== null) {
         token = true
       }
     }
 
-    if(window.location.search !== "") {
-      let urlParams = window.location.search.substring(1).split('=');
-      let recupUser = urlParams[1].split('&');
-      let user = recupUser[0];
-      let perso = urlParams[2];
-      let pathname = window.location.pathname;
-      let personnage = false;
-      let equipement = false;
-      let combat = false;
-      let monCompte = false;
-      let inGame = false
+    if(pathname === "/personnage") {
+      personnage = true;
+      inGame = true;
+    } else if (pathname === "/equipement") {
+      equipement = true;
+      inGame = true;
+    } else if (pathname === "/combat") {
+      combat = true;
+      inGame = true;
+    } else if (pathname === "/monCompte") {
+      monCompte = true;
+      inGame = true;
+    }
 
-      if(pathname === "/personnage") {
-        personnage = true;
-        inGame = true;
-      } else if (pathname === "/equipement") {
-        equipement = true;
-        inGame = true;
-      } else if (pathname === "/combat") {
-        combat = true;
-        inGame = true;
-      } else if (pathname === "/monCompte") {
-        monCompte = true;
-        inGame = true;
-      }
-
-      this.state = {
-        user: user,
-        perso: perso,
-        personnage: personnage,
-        equipement: equipement,
-        combat: combat,
-        monCompte: monCompte,
-        isAuthenticated: token,
-        isInGame: inGame
-      }
-    } else {
-      this.state = {
-        user: "",
-        perso: "",
-        isAuthenticated: token,
-        isInGame: false
-      }
+    this.state = {
+      personnage: personnage,
+      equipement: equipement,
+      combat: combat,
+      monCompte: monCompte,
+      isAuthenticated: token,
+      isInGame: inGame
     }
   }
 
@@ -105,19 +89,19 @@ class FullNavbars extends Component {
     const authNav = (
       <Navbar.Collapse>
         <Nav>
-          <LinkContainer to={"/personnage?pseudo="+this.state.user+"&perso="+this.state.perso}>
-            <NavItem onClick={this.active.bind(this, "personnage")} className={this.state.personnage ? "active" : "noActive"} eventKey={0}>Personnage</NavItem>
+          <LinkContainer to={"/personnage"}>
+            <NavItem onClick={this.active.bind(this, "personnage")} className={this.state.personnage ? "activated" : "noActive"} eventKey={0}>Personnage</NavItem>
           </LinkContainer>
-          <LinkContainer to={"/equipement?pseudo="+this.state.user+"&perso="+this.state.perso}>
-            <NavItem onClick={this.active.bind(this, "equipement")} className={this.state.equipement ? "active" : "noActive"} eventKey={1}>Equipement</NavItem>
+          <LinkContainer to={"/equipement"}>
+            <NavItem onClick={this.active.bind(this, "equipement")} className={this.state.equipement ? "activated" : "noActive"} eventKey={1}>Equipement</NavItem>
           </LinkContainer>
-          <LinkContainer to={"/combat?pseudo="+this.state.user+"&perso="+this.state.perso}>
-            <NavItem onClick={this.active.bind(this, "combat")} className={this.state.combat ? "active" : "noActive"} eventKey={2}>Combat</NavItem>
+          <LinkContainer to={"/combat"}>
+            <NavItem onClick={this.active.bind(this, "combat")} className={this.state.combat ? "activated" : "noActive"} eventKey={2}>Combat</NavItem>
           </LinkContainer>
         </Nav>
         <Nav pullRight>
-          <LinkContainer to={"/monCompte?pseudo="+this.state.user+"&perso="+this.state.perso}>
-            <NavItem onClick={this.active.bind(this, "monCompte")} className={this.state.monCompte ? "active" : "noActive"} eventKey={3}>Mon Compte</NavItem>
+          <LinkContainer to={"/monCompte"}>
+            <NavItem onClick={this.active.bind(this, "monCompte")} className={this.state.monCompte ? "activated" : "noActive"} eventKey={3}>Mon Compte</NavItem>
           </LinkContainer>
           <NavItem eventKey={4} onClick={this.onLogout.bind(this)}>Me déconnecter</NavItem>
         </Nav>

@@ -11,26 +11,25 @@ class ChooseTable extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
+    let userPseudo = localStorage.getItem('userPseudo');
+    let userID = localStorage.getItem('userID');
 
-    this.props.getPerso(user);
+    this.props.getPerso(userID);
 
     this.state = {
-      user: user
+      userPseudo: userPseudo
     }
   }
 
   handleSubmit() {
     let perso = findDOMNode(this.refs.perso).value;
     localStorage.setItem('userPerso', perso);
-    window.location.assign("./personnage?pseudo=" + this.state.user + "&perso=" + perso);
+    window.location.assign("/personnage")
   }
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.perso.length === 0) {
-      window.location.assign("/creationProfile?pseudo="+this.state.user)
+      window.location.assign("/creationProfile")
     }
   }
 
@@ -38,7 +37,7 @@ class ChooseTable extends Component {
     return (
       <Panel>
         <Panel.Heading>
-          <Panel.Title componentClass="h2">{"Choisis ton personnage " + this.state.user}</Panel.Title>
+          <Panel.Title componentClass="h2">{"Choisis ton personnage " + this.state.userPseudo}</Panel.Title>
         </Panel.Heading>
         <Panel.Body>
           <FormGroup controlId="formControlsSelect">
@@ -47,7 +46,7 @@ class ChooseTable extends Component {
             </FormControl>
           </FormGroup>
           <Button onClick={this.handleSubmit.bind(this)}>Aller au combat</Button>
-          <LinkContainer to={"/creationProfile?pseudo="+this.state.user} className="btn-right">
+          <LinkContainer to={"/creationProfile"} className="btn-right">
             <Button>Créer un autre personnage</Button>
           </LinkContainer>
         </Panel.Body>

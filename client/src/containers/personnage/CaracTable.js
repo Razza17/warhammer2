@@ -14,16 +14,13 @@ class CaracTable extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
-    this.props.getCarac(user, perso);
+    this.props.getCarac(userID, userPerso);
 
     this.state = {
-      user: user,
-      perso: perso,
+      userPerso: userPerso,
       update: false
     }
   }
@@ -38,7 +35,7 @@ class CaracTable extends Component {
     return (
       <Panel>
         <Panel.Heading>
-          <Panel.Title componentClass="h2">{"Profil de " + this.state.perso}</Panel.Title>
+          <Panel.Title componentClass="h2">{"Profil de " + this.state.userPerso}</Panel.Title>
           <Button className="showUpdateButton" onClick={this.showUpdate.bind(this)}>{this.state.update ? <Glyphicon glyph="minus" /> : <Glyphicon glyph="plus" />}</Button>
         </Panel.Heading>
         <Panel.Body>
