@@ -15,19 +15,16 @@ class CreaArme extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
-    this.props.getArme(user, perso);
-    this.props.getArmure(user, perso);
+    this.props.getArme(userID, userPerso);
+    this.props.getArmure(userID, userPerso);
 
     this.state = {
-      user: user,
-      perso: perso,
-      activeKey: "1",
-      nextPage: "/creationInventaire?pseudo="+user+"&perso="+perso
+      userID: userID,
+      userPerso: userPerso,
+      activeKey: "1"
     }
   }
 
@@ -57,8 +54,8 @@ class CreaArme extends Component {
       portee: findDOMNode(this.refs.porteeArme).value,
       rechargement: findDOMNode(this.refs.rechargementArme).value !== "" ? findDOMNode(this.refs.rechargementArme).value : 0,
       attributs: findDOMNode(this.refs.attributsArme).value,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
     this.props.postArme(arme);
     this.resetForm("arme");
@@ -70,8 +67,8 @@ class CreaArme extends Component {
       encombrement: findDOMNode(this.refs.encArmure).value,
       couverture: findDOMNode(this.refs.couvArmure).value,
       points: findDOMNode(this.refs.pointsArmure).value,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
     this.props.postArmure(armure);
     this.resetForm("armure");
@@ -232,7 +229,7 @@ class CreaArme extends Component {
               </tbody>
             </Table>
             <Button className='next-table show'>
-              <Link to={this.state.nextPage}>Passer à l'inventaire</Link>
+              <Link to="/creationInventaire">Passer à l'inventaire</Link>
             </Button>
           </Panel.Body>
         </Panel>

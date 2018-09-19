@@ -13,27 +13,29 @@ export class MonCompte extends Component {
 
   constructor(props) {
     super(props);
-    let user = localStorage.getItem("userPseudo");
-    let perso = localStorage.getItem("userPerso");
+    let userPseudo = localStorage.getItem("userPseudo");
+    let userPerso = localStorage.getItem("userPerso");
+    let userID = localStorage.getItem("userID");
 
     this.state = {
-      user: user,
-      perso: perso,
+      userPseudo: userPseudo,
+      userPerso: userPerso,
+      userID: userID,
       modifyName: false
     }
   }
 
   componentDidMount() {
-    const pseudo = {pseudo: this.state.user}
-    this.props.getProfile(this.state.user, this.state.perso);
-    this.props.getUser(pseudo);
+    const userID = { id: this.state.userID }
+    this.props.getProfile(this.state.userID, this.state.userPerso);
+    this.props.getUser(userID);
   }
 
   render() {
     return (
       <Grid id="mon-compte" className="vertical-middle" fluid>
         <Col xs={12}>
-          <h1 className="align-center">Voici ton compte {this.state.user}</h1>
+          <h1 className="align-center">Voici ton compte {this.state.userPseudo}</h1>
           {this.props.profile.map((perso, i) => <RenamePerso key={i} {...perso} />)}
           {this.props.userData.map((user, i) => <ChangeUser key={i} {...user} />)}
         </Col>

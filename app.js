@@ -1084,9 +1084,9 @@ app.put('/folie/:pseudo/:perso', function(req, res) {
 
 //---->>>> POST EXPERIENCE <<<<----
 app.post('/experience', function(req, res) {
-  let inv = req.body;
+  let xp = req.body;
 
-  Experience.create(inv, function(err, experience) {
+  Experience.create(xp, function(err, experience) {
     if(err) {
       throw err;
     }

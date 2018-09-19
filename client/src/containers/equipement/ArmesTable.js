@@ -13,16 +13,14 @@ class ArmesTable extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
-    this.props.getArme(user, perso);
+    this.props.getArme(userID, userPerso);
 
     this.state = {
-      user: user,
-      perso : perso,
+      userID: userID,
+      userPerso : userPerso,
       update: false
     }
   }
@@ -41,8 +39,8 @@ class ArmesTable extends Component {
       portee: findDOMNode(this.refs.porteeArme).value,
       rechargement: findDOMNode(this.refs.rechargementArme).value,
       attributs: findDOMNode(this.refs.attributsArme).value,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
     this.props.postArme(arme);
     this.resetForm();
