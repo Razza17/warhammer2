@@ -16,25 +16,22 @@ class CreaInventaire extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
-    this.props.getCarac(user, perso);
+    this.props.getCarac(userID, userPerso);
 
     this.state = {
-      user: user,
-      perso: perso,
-      activeKey: "3",
-      nextPage: "/recap?pseudo="+user+"&perso="+perso
+      userID: userID,
+      userPerso: userPerso,
+      activeKey: "1"
     }
   }
 
   handleSelect(activeKey) {
     this.setState({activeKey});
-    this.props.getProfile(this.state.user, this.state.perso);
-    this.props.getCompAvance(this.state.user, this.state.perso);
+    this.props.getProfile(this.state.userID, this.state.userPerso);
+    this.props.getCompAvance(this.state.userID, this.state.userPerso);
   }
 
   changePanel() {
@@ -56,8 +53,8 @@ class CreaInventaire extends Component {
       couronnes: findDOMNode(this.refs.couronnes).value === "" ? 0 : findDOMNode(this.refs.couronnes).value,
       pistoles: findDOMNode(this.refs.pistoles).value === "" ? 0 : findDOMNode(this.refs.pistoles).value,
       sous: findDOMNode(this.refs.sous).value === "" ? 0 : findDOMNode(this.refs.sous).value,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
     this.props.postMoney(money);
     this.changePanel();
@@ -68,7 +65,7 @@ class CreaInventaire extends Component {
     let blessures = "";
 
     for (let i = 0; i < this.props.caracActuel.length; i++) {
-      if (this.props.caracActuel[i].user === this.state.user && this.props.caracActuel[i].perso === this.state.perso && this.props.caracActuel[i].type === "actuel") {
+      if (this.props.caracActuel[i].user === this.state.userID && this.props.caracActuel[i].perso === this.state.userPerso && this.props.caracActuel[i].type === "actuel") {
         fortune = this.props.caracActuel[i].pd;
         blessures = this.props.caracActuel[i].b;
       }
@@ -78,20 +75,20 @@ class CreaInventaire extends Component {
       {
         name: "Fortune",
         value: fortune,
-        user: this.state.user,
-        perso: this.state.perso
+        user: this.state.userID,
+        perso: this.state.userPerso
       },
       {
         name: "Blessure",
         value: blessures,
-        user: this.state.user,
-        perso: this.state.perso
+        user: this.state.userID,
+        perso: this.state.userPerso
       },
       {
         name: "Munitions",
         value: findDOMNode(this.refs.munitions).value === "" ? 0 : findDOMNode(this.refs.munitions).value,
-        user: this.state.user,
-        perso: this.state.perso
+        user: this.state.userID,
+        perso: this.state.userPerso
       }
     ]
 
@@ -113,11 +110,10 @@ class CreaInventaire extends Component {
       nom: findDOMNode(this.refs.nomPostInventaire).value,
       quantite: findDOMNode(this.refs.quantitePostInventaire).value !== "" ? findDOMNode(this.refs.quantitePostInventaire).value : 0,
       encombrement: findDOMNode(this.refs.encPostInventaire).value !== "" ? findDOMNode(this.refs.encPostInventaire).value : 0,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
     this.props.postInventaire(inventaire);
-    this.props.getInventaire(this.state.user, this.state.perso);
     this.resetForm();
   }
 
@@ -238,7 +234,7 @@ class CreaInventaire extends Component {
                 </tbody>
               </Table>
               <Button className='next-table'>
-                <Link to={this.state.nextPage}>Récapitulatif</Link>
+                <Link to="/recap">Récapitulatif</Link>
               </Button>
             </Panel.Body>
           </Panel>

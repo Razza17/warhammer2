@@ -11,14 +11,12 @@ class CreaCarac extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
     this.state = {
-      user: user,
-      perso: perso,
+      userID: userID,
+      userPerso: userPerso,
       activeKey: "1",
       basecc: null, basect: null, basef: null, basee: null, baseag: null, baseint: null, basefm: null, basesoc: null,
       basea: null, baseb: null, basebf: null, basebe: null, basem: null, basemag: null, basepf: null, basepd: null,
@@ -51,8 +49,8 @@ class CreaCarac extends Component {
       mag: findDOMNode(this.refs.basemag).value,
       pf: findDOMNode(this.refs.basepf).value,
       pd: findDOMNode(this.refs.basepd).value,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
 
     if(this.state.basecc === "success"
@@ -117,8 +115,8 @@ class CreaCarac extends Component {
       mag: findDOMNode(this.refs.avmag).value,
       pf: findDOMNode(this.refs.avpf).value,
       pd: findDOMNode(this.refs.avpd).value,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
 
     if(this.state.avcc === "success"
@@ -183,8 +181,8 @@ class CreaCarac extends Component {
       mag: findDOMNode(this.refs.acmag).value,
       pf: findDOMNode(this.refs.acpf).value,
       pd: findDOMNode(this.refs.acpd).value,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
 
     if(this.state.accc === "success"
@@ -209,7 +207,7 @@ class CreaCarac extends Component {
       let newActiveKey = stateActiveKey + 1;
       let string = newActiveKey.toString();
       this.setState({ activeKey: string, caracActuelValidate: true });
-      window.location.assign(window.location.origin + "/creationComp" + window.location.search);
+      window.location.assign("/creationComp");
     } else {
       this.state.accc === null && this.setState({ accc: "error"});
       this.state.acct === null && this.setState({ acct: "error"});
@@ -239,7 +237,7 @@ class CreaCarac extends Component {
 
   handleSelect(activeKey) {
     this.setState({ activeKey });
-    this.props.getProfile(this.state.user, this.state.perso);
+    this.props.getProfile(this.state.userID, this.state.userPerso);
   }
 
   render() {

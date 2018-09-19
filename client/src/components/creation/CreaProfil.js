@@ -4,20 +4,19 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
-import { postProfile, getProfile } from "../../actions/ProfilAction";
+import { postProfile } from "../../actions/ProfilAction";
 import { postDetails } from "../../actions/DetailAction";
 import { postPerso } from "../../actions/PersoAction";
+import { postExperience } from "../../actions/ExperienceAction";
 
 class CreaProfil extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
+    let userID = localStorage.getItem("userID");
 
     this.state = {
-      user: user,
+      userID: userID,
       activeKey: "1",
       profileNom: null,
       profileRace: null,
@@ -47,24 +46,30 @@ class CreaProfil extends Component {
       race:profileRace,
       carriereA:profileCarriereA,
       Acarriere:profileAcarriere,
-      user:this.state.user,
+      user:this.state.userID,
       perso:profileNom
     };
     let perso = {
       nom:profileNom,
-      user:this.state.user
+      user:this.state.userID
+    }
+    let experience = {
+      actuel: 0,
+      total: 0,
+      user: this.state.userID,
+      perso: profileNom
     }
     if(this.state.profileNom === "success" && this.state.profileRace === "success" && this.state.profileCarriereA === "success"
     && this.state.profileAcarriere === "success") {
       this.props.postProfile(profile);
       this.props.postPerso(perso);
+      this.props.postExperience(experience);
       // Plier le Panel en cours et déplier le Panel suivant
       let stateActiveKey = parseInt(this.state.activeKey, 10);
       let newActiveKey = stateActiveKey + 1;
       let string = newActiveKey.toString();
       this.setState({ activeKey: string, profileFormValidate: true });
-      let urlParams = window.location.search;
-      window.history.pushState(null, null, urlParams + "&perso=" + profileNom);
+      localStorage.setItem('userPerso', profileNom);
     } else {
       this.state.profileNom === null && this.setState({ profileNom: "error" });
       this.state.profileRace === null && this.setState({ profileRace: "error" });
@@ -75,8 +80,7 @@ class CreaProfil extends Component {
   }
 
   postDetails() {
-    let splitUrl = window.location.search.substring(1).split('=');
-    let perso = splitUrl[2];
+    let perso = localStorage.getItem('userPerso');
     let detailAge = findDOMNode(this.refs.detailAge).value;
     let detailSexe = findDOMNode(this.refs.detailSexe).value;
     let detailYeux = findDOMNode(this.refs.detailYeux).value;
@@ -98,7 +102,7 @@ class CreaProfil extends Component {
       fraterie: detailFraterie,
       naissance: detailNaissance,
       distinction: detailDistinction,
-      user:this.state.user,
+      user: this.state.userID,
       perso: perso
     };
 
@@ -112,7 +116,7 @@ class CreaProfil extends Component {
       let newActiveKey = stateActiveKey + 1;
       let string = newActiveKey.toString();
       this.setState({ activeKey: string, detailsFormValidate: true });
-      window.location.assign(window.location.origin + "/creationCarac" + window.location.search);
+      window.location.assign("/creationCarac");
     } else {
       this.state.detailAge === null && this.setState({ detailAge: "error" });
       this.state.detailYeux === null && this.setState({ detailYeux: "error" });
@@ -312,9 +316,10 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    postProfile, getProfile,
+    postProfile,
     postDetails,
-    postPerso
+    postPerso,
+    postExperience
   }, dispatch)
 }
 
