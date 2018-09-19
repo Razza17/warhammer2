@@ -10,14 +10,12 @@ class ProfilRecap extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
     this.state = {
-      user: user,
-      perso: perso,
+      userID: userID,
+      userPerso: userPerso,
       showAlert: false,
       alertStyle: "success",
       alertMessage: ""
@@ -25,7 +23,7 @@ class ProfilRecap extends Component {
   }
 
   componentWillMount() {
-    this.props.getProfile(this.state.user, this.state.perso);
+    this.props.getProfile(this.state.userID, this.state.userPerso);
   }
 
   updateProfile() {
