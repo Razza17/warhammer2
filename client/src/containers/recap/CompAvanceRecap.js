@@ -11,20 +11,18 @@ class CompAvanceRecap extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
     this.state = {
-      user: user,
-      perso: perso,
+      userID: userID,
+      userPerso: userPerso,
       update: false
     }
   }
 
   componentWillMount() {
-    this.props.getCompAvance(this.state.user, this.state.perso);
+    this.props.getCompAvance(this.state.userID, this.state.userPerso);
   }
 
   showUpdate() {
@@ -53,7 +51,7 @@ class CompAvanceRecap extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.compAvance.map((competenceB, i) => <CompetenceAvanceUpdate key={i} {...competenceB} getCompAvance={this.props.getCompAvance} updateCompAvance={this.props.updateCompAvance} user={this.state.user} perso={this.state.perso}/>) }
+              { this.props.compAvance.map((competenceB, i) => <CompetenceAvanceUpdate key={i} {...competenceB} getCompAvance={this.props.getCompAvance} updateCompAvance={this.props.updateCompAvance} user={this.state.userID} perso={this.state.userPerso}/>) }
             </tbody>
           </Table>
         </Panel.Body>

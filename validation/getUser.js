@@ -3,7 +3,7 @@ const isEmpty = require('./is-empty');
 
 module.exports = function getUserInput(data) {
   let errors = {};
-  data.pseudo = !isEmpty(data.pseudo) ? data.pseudo : '';
+  data.id = !isEmpty(data.id) ? data.id : '';
 
   return {
     errors,

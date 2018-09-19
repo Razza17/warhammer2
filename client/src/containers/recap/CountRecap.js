@@ -10,14 +10,12 @@ class CountRecap extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
     this.state = {
-      user: user,
-      perso: perso,
+      userID: userID,
+      userPerso: userPerso,
       showAlert: false,
       alertStyle: "success",
       alertMessage: ""
@@ -25,7 +23,7 @@ class CountRecap extends Component {
   }
 
   componentWillMount() {
-    this.props.getCount(this.state.user, this.state.perso);
+    this.props.getCount(this.state.userID, this.state.userPerso);
   }
 
   updateCount() {

@@ -11,15 +11,13 @@ class DetailsTable extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
-    this.props.getDetails(user, perso);
+    this.props.getDetails(userID, userPerso);
 
     this.state = {
-      perso: perso
+      userPerso: userPerso
     }
   }
 
@@ -27,7 +25,7 @@ class DetailsTable extends Component {
     return (
       <Panel>
         <Panel.Heading>
-          <Panel.Title componentClass="h2">{"Détails de " + this.state.perso}</Panel.Title>
+          <Panel.Title componentClass="h2">{"Détails de " + this.state.userPerso}</Panel.Title>
         </Panel.Heading>
         <Panel.Body>
           { this.props.details.map((details, i) => <Details key={i} {...details} />) }

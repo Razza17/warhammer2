@@ -9,12 +9,10 @@ class EncContainer extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
-    this.props.getCarac(user, perso);
+    this.props.getCarac(userID, userPerso);
   }
 
   encArme() {

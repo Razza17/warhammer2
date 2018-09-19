@@ -104,14 +104,13 @@ router.post('/login', (req, res) => {
     if(!isValid) {
       return res.status(400).json(errors);
     }
-
-    const pseudo = req.body.pseudo;
-    User.findOne({pseudo})
+    const id = req.body.id;
+    User.findOne({ _id: id })
     .then(user => {
       if(!user) {
-        errors.pseudo = 'User not found or wrong pseudo'
+        errors.id = 'User not found or wrong id'
         return res.status(404).json(errors);
-      } else if(pseudo === user.pseudo) {
+      } else if(id === user.id) {
         const payload = {
           id: user.id,
           nom: user.nom,
@@ -136,11 +135,6 @@ router.post('/login', (req, res) => {
       }
     });
   }
-});
-
-router.get('/user', function(req, res) {
-  console.log(req.params)
-
 });
 
 //---->>>> GET USER <<<<----

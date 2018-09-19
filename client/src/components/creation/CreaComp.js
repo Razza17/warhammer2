@@ -18,25 +18,22 @@ class CreaCompTable extends Component {
 
   constructor(props) {
     super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
+    let userID = localStorage.getItem('userID');
+    let userPerso = localStorage.getItem('userPerso');
 
-    this.props.getCompBase(user, perso);
-    this.props.getCompAvance(user, perso);
-    this.props.getTalent(user, perso);
-    this.props.getFolie(user, perso);
+    this.props.getCompBase(userID, userPerso);
+    this.props.getCompAvance(userID, userPerso);
+    this.props.getTalent(userID, userPerso);
+    this.props.getFolie(userID, userPerso);
 
     this.state = {
-      user: user,
-      perso: perso,
+      userID: userID,
+      userPerso: userPerso,
       acquisCheck: false,
       dixCheck: false,
       vingtCheck: false,
       creaBonusCompBase: 0,
-      activeKey: "1",
-      nextPage: "/creationArme?pseudo="+user+"&perso="+perso
+      activeKey: "1"
     }
   }
 
@@ -70,8 +67,8 @@ class CreaCompTable extends Component {
       dix: this.state.dixCheck,
       vingt: this.state.vingtCheck,
       bonus: findDOMNode(this.refs.bonusPostCompBase).value !== "" ? findDOMNode(this.refs.bonusPostCompBase).value : 0,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
     this.props.postCompBase(compBase);
     this.resetForm("base");
@@ -85,8 +82,8 @@ class CreaCompTable extends Component {
       dix: this.state.dixCheck,
       vingt: this.state.vingtCheck,
       bonus: findDOMNode(this.refs.bonusPostCompAvance).value !== "" ? findDOMNode(this.refs.bonusPostCompAvance).value : 0,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
     this.props.postCompAvance(postCompAvance);
     this.resetForm("avance");
@@ -98,8 +95,8 @@ class CreaCompTable extends Component {
       desc: findDOMNode(this.refs.descPostTalent).value,
       competence: findDOMNode(this.refs.compPostTalent).value,
       bonus: findDOMNode(this.refs.bonusPostTalent).value !== "" ? findDOMNode(this.refs.bonusPostTalent).value : 0,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
     this.props.postTalent(newTalent);
     this.resetForm("talents");
@@ -108,8 +105,8 @@ class CreaCompTable extends Component {
   postFolies() {
     const folie = {
       nom: findDOMNode(this.refs.nomPostFolie).value,
-      user: this.state.user,
-      perso: this.state.perso
+      user: this.state.userID,
+      perso: this.state.userPerso
     };
     this.props.postFolie(folie);
     this.resetForm("folies");
@@ -391,7 +388,7 @@ class CreaCompTable extends Component {
                 </tbody>
               </Table>
               <Button className='next-table'>
-                <Link to={this.state.nextPage}>Passer aux armes</Link>
+                <Link to="/creationArme">Passer aux armes</Link>
               </Button>
             </Panel.Body>
           </Panel>

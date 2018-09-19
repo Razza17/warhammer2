@@ -19,16 +19,17 @@ export const loginUser = (user, history) => dispatch => {
     setAuthToken(token);
     const decoded = jwt_decode(token);
     dispatch(setCurrentUser(decoded));
+    localStorage.setItem('userID', decoded.id);
     localStorage.setItem('userPseudo', decoded.pseudo);
-    history.push('/choosePerso?pseudo=' + decoded.pseudo)
+    history.push('/choosePerso')
   })
   .catch(err => {
     dispatch({type: GET_ERRORS, payload: err});
   });
 }
 
-export const getUser = (pseudo) => dispatch => {
-  axios.post('/login', pseudo)
+export const getUser = (userID) => dispatch => {
+  axios.post('/login', userID)
   .then(res => {
     let token = localStorage.getItem('jwtToken');
     setAuthToken(token);
@@ -51,6 +52,7 @@ export const logoutUser = () => dispatch => {
   localStorage.removeItem('jwtToken');
   localStorage.removeItem('userPseudo');
   localStorage.removeItem('userPerso');
+  localStorage.removeItem('userID');
   setAuthToken(false);
   dispatch(setCurrentUser({}));
   window.location.assign("/");
