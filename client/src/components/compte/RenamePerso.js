@@ -1,30 +1,19 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Col, Panel, Button, FormGroup, InputGroup, FormControl } from 'react-bootstrap';
-import { findDOMNode } from 'react-dom';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Col, Panel, Button, FormGroup, InputGroup, FormControl } from 'react-bootstrap'
+import { findDOMNode } from 'react-dom'
 
-import { getProfile, renameProfile } from '../../actions/ProfilAction';
-import { renameDetails } from '../../actions/DetailAction';
-import { renameArme } from '../../actions/ArmeAction';
-import { renameArmure } from '../../actions/ArmureAction';
-import { renameCarac } from '../../actions/CaracAction';
-import { renameCompAvance } from '../../actions/CompAvanceAction';
-import { renameCompBase } from '../../actions/CompBaseAction';
-import { renameCount } from '../../actions/CountAction';
-import { renameExperience } from '../../actions/ExperienceAction';
-import { renameFolie } from '../../actions/FolieAction';
-import { renameInventaire } from '../../actions/InventaireAction';
-import { renameMoney } from '../../actions/MoneyAction';
-import { renamePerso } from '../../actions/PersoAction';
-import { renameTalent } from '../../actions/TalentAction';
+import { renameProfile } from '../../actions/ProfilAction'
+import { renamePerso } from '../../actions/PersoAction'
+import { logoutUser } from '../../actions/Authentication'
 
 export class RenamePerso extends Component {
 
   constructor(props) {
     super(props);
-    let user = localStorage.getItem("userPseudo");
-    let perso = localStorage.getItem("userPerso");
+    let user = localStorage.getItem("userID")
+    let perso = localStorage.getItem("userPerso")
 
     this.state = {
       user: user,
@@ -34,33 +23,16 @@ export class RenamePerso extends Component {
   }
 
   modifyName() {
-    this.setState({modifyName: !this.state.modifyName});
+    this.setState({modifyName: !this.state.modifyName})
   }
 
   renamePerso() {
     let newName = {
       perso: findDOMNode(this.refs.newName).value
     }
-    this.props.renameProfile(this.state.user, this.state.perso, newName);
-    this.props.renameDetails(this.state.user, this.state.perso, newName);
-    this.props.renameArme(this.state.user, this.state.perso, newName);
-    this.props.renameArmure(this.state.user, this.state.perso, newName);
-    this.props.renameCarac(this.state.user, this.state.perso, newName);
-    this.props.renameCompAvance(this.state.user, this.state.perso, newName);
-    this.props.renameCompBase(this.state.user, this.state.perso, newName);
-    this.props.renameCount(this.state.user, this.state.perso, newName);
-    this.props.renameExperience(this.state.user, this.state.perso, newName);
-    this.props.renameFolie(this.state.user, this.state.perso, newName);
-    this.props.renameInventaire(this.state.user, this.state.perso, newName);
-    this.props.renameMoney(this.state.user, this.state.perso, newName);
-    this.props.renamePerso(this.state.user, this.state.perso, newName);
-    this.props.renameTalent(this.state.user, this.state.perso, newName);
-
-    this.deconnection();
-  }
-
-  deconnection() {
-    window.location.assign("/")
+    this.props.renameProfile(this.state.user, this.state.perso, newName)
+    this.props.renamePerso(this.state.user, this.state.perso, newName)
+    this.props.logoutUser()
   }
 
   render() {
@@ -100,29 +72,12 @@ export class RenamePerso extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return {
-    profile: state.profile.profile
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getProfile, renameProfile,
-    renameDetails,
-    renameArme,
-    renameArmure,
-    renameCarac,
-    renameCompAvance,
-    renameCompBase,
-    renameCount,
-    renameExperience,
-    renameFolie,
-    renameInventaire,
-    renameMoney,
+    renameProfile,
     renamePerso,
-    renameTalent
+    logoutUser
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RenamePerso);
+export default connect(null, mapDispatchToProps)(RenamePerso);

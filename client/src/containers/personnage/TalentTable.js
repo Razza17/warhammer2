@@ -15,13 +15,13 @@ class TalentTable extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getTalent(userID, userPerso);
+    this.props.getTalent(userID, userPersoID);
 
     this.state = {
       userID: userID,
-      userPerso: userPerso,
+      userPersoID: userPersoID,
       update: false
     }
   }
@@ -39,7 +39,7 @@ class TalentTable extends Component {
       competence: findDOMNode(this.refs.compPostTalent).value,
       bonus: parseFloat(findDOMNode(this.refs.bonusPostTalent).value),
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postTalent(newTalent);
     this.resetForm();

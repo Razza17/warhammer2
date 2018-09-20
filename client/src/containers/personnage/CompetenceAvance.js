@@ -14,13 +14,13 @@ class CompetenceAvance extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getCompAvance(userID, userPerso);
+    this.props.getCompAvance(userID, userPersoID);
 
     this.state = {
       userID: userID,
-      userPerso: userPerso,
+      userPersoID: userPersoID,
       update: false,
       acquisCheck: false,
       dixCheck: false,
@@ -61,7 +61,7 @@ class CompetenceAvance extends Component {
       vingt: this.state.vingtCheck,
       bonus: findDOMNode(this.refs.bonusPostCompAvance).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     }];
     this.props.postCompAvance(postCompAvance);
     this.resetForm();

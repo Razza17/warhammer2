@@ -17,21 +17,21 @@ class CreaInventaire extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getCarac(userID, userPerso);
+    this.props.getCarac(userID, userPersoID);
 
     this.state = {
       userID: userID,
-      userPerso: userPerso,
+      userPersoID: userPersoID,
       activeKey: "1"
     }
   }
 
   handleSelect(activeKey) {
     this.setState({activeKey});
-    this.props.getProfile(this.state.userID, this.state.userPerso);
-    this.props.getCompAvance(this.state.userID, this.state.userPerso);
+    this.props.getProfile(this.state.userID, this.state.userPersoID);
+    this.props.getCompAvance(this.state.userID, this.state.userPersoID);
   }
 
   changePanel() {
@@ -54,7 +54,7 @@ class CreaInventaire extends Component {
       pistoles: findDOMNode(this.refs.pistoles).value === "" ? 0 : findDOMNode(this.refs.pistoles).value,
       sous: findDOMNode(this.refs.sous).value === "" ? 0 : findDOMNode(this.refs.sous).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postMoney(money);
     this.changePanel();
@@ -65,7 +65,7 @@ class CreaInventaire extends Component {
     let blessures = "";
 
     for (let i = 0; i < this.props.caracActuel.length; i++) {
-      if (this.props.caracActuel[i].user === this.state.userID && this.props.caracActuel[i].perso === this.state.userPerso && this.props.caracActuel[i].type === "actuel") {
+      if (this.props.caracActuel[i].user === this.state.userID && this.props.caracActuel[i].perso === this.state.userPersoID && this.props.caracActuel[i].type === "actuel") {
         fortune = this.props.caracActuel[i].pd;
         blessures = this.props.caracActuel[i].b;
       }
@@ -76,19 +76,19 @@ class CreaInventaire extends Component {
         name: "Fortune",
         value: fortune,
         user: this.state.userID,
-        perso: this.state.userPerso
+        perso: this.state.userPersoID
       },
       {
         name: "Blessure",
         value: blessures,
         user: this.state.userID,
-        perso: this.state.userPerso
+        perso: this.state.userPersoID
       },
       {
         name: "Munitions",
         value: findDOMNode(this.refs.munitions).value === "" ? 0 : findDOMNode(this.refs.munitions).value,
         user: this.state.userID,
-        perso: this.state.userPerso
+        perso: this.state.userPersoID
       }
     ]
 
@@ -111,7 +111,7 @@ class CreaInventaire extends Component {
       quantite: findDOMNode(this.refs.quantitePostInventaire).value !== "" ? findDOMNode(this.refs.quantitePostInventaire).value : 0,
       encombrement: findDOMNode(this.refs.encPostInventaire).value !== "" ? findDOMNode(this.refs.encPostInventaire).value : 0,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postInventaire(inventaire);
     this.resetForm();

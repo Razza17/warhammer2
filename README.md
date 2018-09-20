@@ -37,8 +37,8 @@ Les joueurs pourront aussi gérer dynamiquement leur personnage pendant le jeu.
 - [x] Design global
 - [x] Page "mon compte" GET user datas
 - [x] Changer les appels à la BDD l'id de l'user en localStorage
-- Modifier les datas de l'utilisateur + le nom du personnage (page "Mon Compte")
-- Refacto du code de la page recap
-- Ajouter l'expérience en BDD lors de la création du personnage
+- [x] Modifier les datas de l'utilisateur + le nom du personnage (page "Mon Compte")
+- [x] Refacto du code de la page recap
+- [x] Ajouter l'expérience en BDD lors de la création du personnage
 - Ajouter le tableau de l'expérience
 - DELETE Personnage(s)

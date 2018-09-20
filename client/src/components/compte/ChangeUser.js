@@ -1,74 +1,37 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Col, Panel, Button, FormGroup, InputGroup, FormControl } from 'react-bootstrap';
-import { findDOMNode } from 'react-dom';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Col, Panel, Button, FormGroup, InputGroup, FormControl } from 'react-bootstrap'
+import { findDOMNode } from 'react-dom'
 
-import { getProfile, renameProfile } from '../../actions/ProfilAction';
-import { renameDetails } from '../../actions/DetailAction';
-import { renameArme } from '../../actions/ArmeAction';
-import { renameArmure } from '../../actions/ArmureAction';
-import { renameCarac } from '../../actions/CaracAction';
-import { renameCompAvance } from '../../actions/CompAvanceAction';
-import { renameCompBase } from '../../actions/CompBaseAction';
-import { renameCount } from '../../actions/CountAction';
-import { renameExperience } from '../../actions/ExperienceAction';
-import { renameFolie } from '../../actions/FolieAction';
-import { renameInventaire } from '../../actions/InventaireAction';
-import { renameMoney } from '../../actions/MoneyAction';
-import { renamePerso } from '../../actions/PersoAction';
-import { renameTalent } from '../../actions/TalentAction';
+import { updateUser, logoutUser } from '../../actions/Authentication'
 
 export class ChangeUser extends Component {
 
   constructor(props) {
     super(props);
-    let user = localStorage.getItem("userPseudo");
-    let perso = localStorage.getItem("userPerso");
+
+    let userID = this.props.id
 
     this.state = {
-      user: user,
-      perso: perso,
+      userID: userID,
       modifyUser: false
     }
   }
 
   modifyUser() {
-    this.setState({modifyUser: !this.state.modifyUser});
+    this.setState({modifyUser: !this.state.modifyUser})
   }
 
   changeUser() {
-    let newUserName = {
-      user: findDOMNode(this.refs.newPseudo).value
-    }
-    this.props.renameProfile(this.state.user, this.state.perso, newUserName);
-    this.props.renameDetails(this.state.user, this.state.perso, newUserName);
-    this.props.renameArme(this.state.user, this.state.perso, newUserName);
-    this.props.renameArmure(this.state.user, this.state.perso, newUserName);
-    this.props.renameCarac(this.state.user, this.state.perso, newUserName);
-    this.props.renameCompAvance(this.state.user, this.state.perso, newUserName);
-    this.props.renameCompBase(this.state.user, this.state.perso, newUserName);
-    this.props.renameCount(this.state.user, this.state.perso, newUserName);
-    this.props.renameExperience(this.state.user, this.state.perso, newUserName);
-    this.props.renameFolie(this.state.user, this.state.perso, newUserName);
-    this.props.renameInventaire(this.state.user, this.state.perso, newUserName);
-    this.props.renameMoney(this.state.user, this.state.perso, newUserName);
-    this.props.renamePerso(this.state.user, this.state.perso, newUserName);
-    this.props.renameTalent(this.state.user, this.state.perso, newUserName);
-
     let newUserInfos = {
       nom: findDOMNode(this.refs.newNom).value,
       prenom: findDOMNode(this.refs.newPrenom).value,
       pseudo: findDOMNode(this.refs.newPseudo).value,
       email: findDOMNode(this.refs.newEmail).value
     }
-    this.props.updateUser(this.state.user, newUserInfos);
-
-    this.deconnection();
-  }
-
-  deconnection() {
-    window.location.assign("/")
+    this.props.updateUser(this.state.userID, newUserInfos)
+    this.props.logoutUser()
   }
 
   render() {
@@ -138,29 +101,10 @@ export class ChangeUser extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return {
-    profile: state.profile.profile
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getProfile, renameProfile,
-    renameDetails,
-    renameArme,
-    renameArmure,
-    renameCarac,
-    renameCompAvance,
-    renameCompBase,
-    renameCount,
-    renameExperience,
-    renameFolie,
-    renameInventaire,
-    renameMoney,
-    renamePerso,
-    renameTalent
+    updateUser, logoutUser
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangeUser);
+export default connect(null, mapDispatchToProps)(ChangeUser);

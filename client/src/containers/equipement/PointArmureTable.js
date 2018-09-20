@@ -12,23 +12,30 @@ class PointArmureTable extends Component {
     let torsePoints = 0
     let jambesPoints = 0
 
-    for (let i = 0; i < armureData.length; i++) {
-      if (armureData[i].couverture === "Tête") {
-        tetePoints += armureData[i].points + be
+    armureData.map((armures) => {
+      if (armures.couverture === "Tête") {
+        tetePoints += armures.points + be
+        return tetePoints
       }
-      if (armureData[i].couverture === "Bras") {
-        brasPoints += armureData[i].points + be;
+      if (armures.couverture === "Bras") {
+        brasPoints += armures.points + be;
+        return brasPoints
       }
-      if (armureData[i].couverture === "Corps + Bras") {
-        corpsPoints += armureData[i].points + be;
+      if (armures.couverture === "Corps + Bras") {
+        corpsPoints += armures.points + be;
+        return corpsPoints
       }
-      if (armureData[i].couverture === "Corps") {
-        torsePoints += armureData[i].points + be;
+      if (armures.couverture === "Corps") {
+        torsePoints += armures.points + be;
+        return torsePoints
       }
-      if (armureData[i].couverture === "Jambes") {
-        jambesPoints += armureData[i].points + be;
+      if (armures.couverture === "Jambes") {
+        jambesPoints += armures.points + be;
+        return jambesPoints
       }
-    }
+      return true
+    })
+
     return (
       <Panel>
         <Panel.Heading>

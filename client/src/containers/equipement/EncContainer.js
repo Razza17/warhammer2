@@ -10,66 +10,45 @@ class EncContainer extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getCarac(userID, userPerso);
+    this.props.getCarac(userID, userPersoID);
   }
 
   encArme() {
     const arme = this.props.arme;
     let total = 0;
 
-    for (let i = 0; i < arme.length; i++) {
-      total += arme[i].encombrement;
+    arme.map((armes) => {
+      total += armes.encombrement
+      return total !== 0 ? total : 0
+    })
 
-      if (i === arme.length - 1) {
-        return total;
-      }
-    }
-
-    if (total === "unfedfined") {
-      return 0;
-    } else {
-      return total;
-    }
+    return total
   }
 
   encArmure() {
     const armure = this.props.armure;
     let total = 0;
 
-    for (let i = 0; i < armure.length; i++) {
-      total += armure[i].encombrement;
+    armure.map((armures) => {
+      total += armures.encombrement
+      return total !== 0 ? total : 0
+    })
 
-      if (i === armure.length - 1) {
-        return total;
-      }
-    }
-
-    if (total === "unfedfined") {
-      return 0;
-    } else {
-      return total;
-    }
+    return total
   }
 
   encInventaire() {
     const inventaire = this.props.inventaire;
     let total = 0;
 
-    for (let i = 0; i < inventaire.length; i++) {
-      total += inventaire[i].encombrement;
+    inventaire.map((inventaires) => {
+      total += inventaires.encombrement
+      return total !== 0 ? total : 0
+    })
 
-      if (i === inventaire.length - 1) {
-        return total;
-      }
-    }
-
-    if (total === "unfedfined") {
-      return 0;
-    } else {
-      return total;
-    }
+    return total
   }
 
   render() {
