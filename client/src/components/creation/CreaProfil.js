@@ -46,8 +46,7 @@ class CreaProfil extends Component {
       race:profileRace,
       carriereA:profileCarriereA,
       Acarriere:profileAcarriere,
-      user:this.state.userID,
-      perso:profileNom
+      user:this.state.userID
     };
     let perso = {
       nom:profileNom,

@@ -53,6 +53,32 @@ router.post('/user', function(req, res) {
   });
 });
 
+router.put('/user/:_id', function(req, res) {
+  let newData = req.body;
+  let query = req.params._id;
+
+  console.log('query : ', query)
+  console.log('newData : ', newData)
+
+  let update = {
+    '$set': {
+      nom: newData.nom,
+      prenom: newData.prenom,
+      pseudo: newData.pseudo,
+      email: newData.email
+    }
+  };
+
+  let options = {new: false};
+
+  User.findOneAndUpdate(query, update, options, function(err, data) {
+    if(err) {
+      throw err;
+    }
+    res.json(data);
+  })
+});
+
 router.post('/login', (req, res) => {
   if(req.body.email !== undefined) {
     const { errors, isValid } = validateLoginInput(req.body);

@@ -23,7 +23,15 @@ class ChooseTable extends Component {
 
   handleSubmit() {
     let perso = findDOMNode(this.refs.perso).value;
+    let persoID = ''
+    this.props.perso.map((persos) => {
+      if(persos.nom === perso) {
+        return persoID = persos._id
+      }
+      return true
+    })
     localStorage.setItem('userPerso', perso);
+    localStorage.setItem('userPersoID', persoID);
     window.location.assign("/personnage")
   }
 
