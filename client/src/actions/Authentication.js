@@ -11,6 +11,13 @@ export const registerUser = (user, history) => dispatch => {
   });
 }
 
+export const updateUser = (userID, newDatas) => dispatch => {
+  axios.put('/user/' + userID, newDatas)
+  .catch(err => {
+    dispatch({type: GET_ERRORS, payload: err});
+  });
+}
+
 export const loginUser = (user, history) => dispatch => {
   axios.post('/login', user)
   .then(res => {
@@ -50,9 +57,10 @@ export const setCurrentUser = decoded => {
 
 export const logoutUser = () => dispatch => {
   localStorage.removeItem('jwtToken');
+  localStorage.removeItem('userID');
   localStorage.removeItem('userPseudo');
   localStorage.removeItem('userPerso');
-  localStorage.removeItem('userID');
+  localStorage.removeItem('userPersoID');
   setAuthToken(false);
   dispatch(setCurrentUser({}));
   window.location.assign("/");

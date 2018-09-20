@@ -12,9 +12,9 @@ class CountContainer extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getCount(userID, userPerso);
+    this.props.getCount(userID, userPersoID);
   }
 
   render() {

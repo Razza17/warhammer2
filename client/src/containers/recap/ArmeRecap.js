@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import ArmesUpdate from '../../components/update/ArmesUpdate';
 
-import { updateArme, getArme } from "../../actions/ArmeAction";
+import { getArme } from "../../actions/ArmeAction";
 
 import { updateMessage } from "../../hocs/updateMessage";
 
@@ -14,16 +14,9 @@ class ArmeRecap extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.state = {
-      userID: userID,
-      userPerso: userPerso
-    }
-  }
-
-  componentWillMount() {
-    this.props.getArme(this.state.userID, this.state.userPerso);
+    this.props.getArme(userID, userPersoID);
   }
 
   render() {
@@ -45,7 +38,7 @@ class ArmeRecap extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.arme.map((armes, i) => <ArmesUpdate key={armes._id} {...armes} getArme={this.props.getArme} />)}
+              {this.props.arme.map((armes, i) => <ArmesUpdate key={armes._id} {...armes} />)}
             </tbody>
           </Table>
         </Panel.Body>
@@ -65,7 +58,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators ({
-    getArme, updateArme
+    getArme
   }, dispatch)
 }
 

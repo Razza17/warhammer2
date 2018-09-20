@@ -41,35 +41,33 @@ class CreaProfil extends Component {
     let profileRace = findDOMNode(this.refs.profileRace).value;
     let profileCarriereA = findDOMNode(this.refs.profileCarriereA).value;
     let profileAcarriere = findDOMNode(this.refs.profileAcarriere).value;
+
     let profile = {
       nom:profileNom,
       race:profileRace,
       carriereA:profileCarriereA,
       Acarriere:profileAcarriere,
-      user:this.state.userID,
-      perso:profileNom
+      user:this.state.userID
     };
+
     let perso = {
       nom:profileNom,
       user:this.state.userID
     }
-    let experience = {
-      actuel: 0,
-      total: 0,
-      user: this.state.userID,
-      perso: profileNom
-    }
+
     if(this.state.profileNom === "success" && this.state.profileRace === "success" && this.state.profileCarriereA === "success"
     && this.state.profileAcarriere === "success") {
       this.props.postProfile(profile);
       this.props.postPerso(perso);
-      this.props.postExperience(experience);
+
       // Plier le Panel en cours et déplier le Panel suivant
       let stateActiveKey = parseInt(this.state.activeKey, 10);
       let newActiveKey = stateActiveKey + 1;
       let string = newActiveKey.toString();
       this.setState({ activeKey: string, profileFormValidate: true });
+
       localStorage.setItem('userPerso', profileNom);
+
     } else {
       this.state.profileNom === null && this.setState({ profileNom: "error" });
       this.state.profileRace === null && this.setState({ profileRace: "error" });
@@ -80,7 +78,6 @@ class CreaProfil extends Component {
   }
 
   postDetails() {
-    let perso = localStorage.getItem('userPerso');
     let detailAge = findDOMNode(this.refs.detailAge).value;
     let detailSexe = findDOMNode(this.refs.detailSexe).value;
     let detailYeux = findDOMNode(this.refs.detailYeux).value;
@@ -91,6 +88,7 @@ class CreaProfil extends Component {
     let detailFraterie = findDOMNode(this.refs.detailFraterie).value;
     let detailNaissance = findDOMNode(this.refs.detailNaissance).value;
     let detailDistinction = findDOMNode(this.refs.detailDistinction).value;
+
     let details = {
       age: detailAge,
       sexe: detailSexe,
@@ -103,19 +101,29 @@ class CreaProfil extends Component {
       naissance: detailNaissance,
       distinction: detailDistinction,
       user: this.state.userID,
-      perso: perso
+      perso: localStorage.getItem("userPersoID")
     };
+
+    let experience = {
+      actuel: 0,
+      total: 0,
+      user: this.state.userID,
+      perso: localStorage.getItem("userPersoID")
+    }
 
     if(this.state.detailAge === "success" && this.state.detailYeux === "success"
     && this.state.detailTaille === "success" && this.state.detailCheveux === "success" && this.state.detailPoids === "success"
     && this.state.detailSigne === "success" && this.state.detailFraterie === "success" && this.state.detailNaissance === "success"
     && this.state.detailDistinction === "success") {
       this.props.postDetails(details);
+      this.props.postExperience(experience);
+
       // Plier le Panel en court et déplier le Panel suivant
       let stateActiveKey = parseInt(this.state.activeKey, 10);
       let newActiveKey = stateActiveKey + 1;
       let string = newActiveKey.toString();
       this.setState({ activeKey: string, detailsFormValidate: true });
+
       window.location.assign("/creationCarac");
     } else {
       this.state.detailAge === null && this.setState({ detailAge: "error" });

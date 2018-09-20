@@ -5,18 +5,17 @@ import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
 import { postCarac } from "../../actions/CaracAction";
-import { getProfile } from "../../actions/ProfilAction";
 
 class CreaCarac extends Component {
 
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
     this.state = {
       userID: userID,
-      userPerso: userPerso,
+      userPersoID: userPersoID,
       activeKey: "1",
       basecc: null, basect: null, basef: null, basee: null, baseag: null, baseint: null, basefm: null, basesoc: null,
       basea: null, baseb: null, basebf: null, basebe: null, basem: null, basemag: null, basepf: null, basepd: null,
@@ -50,7 +49,7 @@ class CreaCarac extends Component {
       pf: findDOMNode(this.refs.basepf).value,
       pd: findDOMNode(this.refs.basepd).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
 
     if(this.state.basecc === "success"
@@ -116,7 +115,7 @@ class CreaCarac extends Component {
       pf: findDOMNode(this.refs.avpf).value,
       pd: findDOMNode(this.refs.avpd).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
 
     if(this.state.avcc === "success"
@@ -182,7 +181,7 @@ class CreaCarac extends Component {
       pf: findDOMNode(this.refs.acpf).value,
       pd: findDOMNode(this.refs.acpd).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
 
     if(this.state.accc === "success"
@@ -237,7 +236,6 @@ class CreaCarac extends Component {
 
   handleSelect(activeKey) {
     this.setState({ activeKey });
-    this.props.getProfile(this.state.userID, this.state.userPerso);
   }
 
   render() {
@@ -930,17 +928,10 @@ class CreaCarac extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return {
-    profile: state.profile.profile
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    postCarac,
-    getProfile
+    postCarac
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreaCarac);
+export default connect(null, mapDispatchToProps)(CreaCarac);

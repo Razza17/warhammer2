@@ -16,8 +16,9 @@ class CaracTable extends Component {
     super(props);
     let userID = localStorage.getItem('userID');
     let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getCarac(userID, userPerso);
+    this.props.getCarac(userID, userPersoID);
 
     this.state = {
       userPerso: userPerso,

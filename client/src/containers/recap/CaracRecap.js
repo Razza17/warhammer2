@@ -8,23 +8,16 @@ import CaracUpdateMobile from "../../components/update/CaracUpdateMobile";
 
 import { updateMessage } from "../../hocs/updateMessage";
 
-import { updateCarac, getCarac } from "../../actions/CaracAction";
+import { getCarac } from "../../actions/CaracAction";
 
 class CaracRecap extends Component {
 
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.state = {
-      userID: userID,
-      userPerso: userPerso
-    }
-  }
-
-  componentWillMount() {
-    this.props.getCarac(this.state.userID, this.state.userPerso);
+    this.props.getCarac(userID, userPersoID);
   }
 
   render() {
@@ -63,10 +56,10 @@ class CaracRecap extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.carac.map((carac, i) => <CaracUpdate key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) }
+              { this.props.carac.map((carac, i) => <CaracUpdate key={i} {...carac} />) }
             </tbody>
           </Table>
-          { this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} getCarac={this.props.getCarac} updateCarac={this.props.updateCarac}/>) }
+          { this.props.carac.map((carac, i) => <CaracUpdateMobile key={i} {...carac} />) }
         </Panel.Body>
       </Panel>
     )
@@ -84,7 +77,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getCarac, updateCarac
+    getCarac
   }, dispatch);
 }
 

@@ -20,6 +20,7 @@ export function postPerso(perso) {
     axios.post('/perso', perso)
     .then(function(response) {
       dispatch({type:"POST_PERSO", payload:response.data})
+      localStorage.setItem('userPersoID', response.data._id)
     })
     .catch(function(err) {
       dispatch({type:"POST_PERSO_REJECTED", payload:err})

@@ -13,8 +13,9 @@ class DetailsTable extends Component {
     super(props);
     let userID = localStorage.getItem('userID');
     let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getDetails(userID, userPerso);
+    this.props.getDetails(userID, userPersoID);
 
     this.state = {
       userPerso: userPerso

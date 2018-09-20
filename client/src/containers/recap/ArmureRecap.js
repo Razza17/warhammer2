@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import ArmureUpdate from '../../components/update/ArmureUpdate';
 
-import { updateArmure, getArmure } from "../../actions/ArmureAction";
+import { getArmure } from "../../actions/ArmureAction";
 
 import { updateMessage } from "../../hocs/updateMessage";
 
@@ -14,16 +14,9 @@ class ArmureRecap extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.state = {
-      userID: userID,
-      userPerso: userPerso
-    }
-  }
-
-  componentWillMount() {
-    this.props.getArmure(this.state.userID, this.state.userPerso);
+    this.props.getArmure(userID, userPersoID);
   }
 
   render() {
@@ -43,7 +36,7 @@ class ArmureRecap extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.armure.map((armures, i) => <ArmureUpdate key={armures._id} {...armures} getArmure={this.props.getArmure} />) }
+              { this.props.armure.map((armures, i) => <ArmureUpdate key={armures._id} {...armures} />) }
             </tbody>
           </Table>
         </Panel.Body>
@@ -63,7 +56,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators ({
-    getArmure, updateArmure
+    getArmure
   }, dispatch)
 }
 

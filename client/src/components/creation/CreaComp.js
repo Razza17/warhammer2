@@ -9,26 +9,26 @@ import Competence from '../../components/personnage/Competence';
 import {Talent} from "../../components/personnage/Talent";
 import { Folie } from "../../components/equipement/Folie";
 
-import {getCompBase, postCompBase} from "../../actions/CompBaseAction";
-import {getCompAvance, postCompAvance} from "../../actions/CompAvanceAction";
-import {getTalent, postTalent} from "../../actions/TalentAction";
-import {getFolie, postFolie} from "../../actions/FolieAction";
+import { getCompBase, postCompBase } from "../../actions/CompBaseAction";
+import { getCompAvance, postCompAvance } from "../../actions/CompAvanceAction";
+import { getTalent, postTalent } from "../../actions/TalentAction";
+import { getFolie, postFolie } from "../../actions/FolieAction";
 
 class CreaCompTable extends Component {
 
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getCompBase(userID, userPerso);
-    this.props.getCompAvance(userID, userPerso);
-    this.props.getTalent(userID, userPerso);
-    this.props.getFolie(userID, userPerso);
+    this.props.getCompBase(userID, userPersoID)
+    this.props.getCompAvance(userID, userPersoID)
+    this.props.getTalent(userID, userPersoID)
+    this.props.getFolie(userID, userPersoID)
 
     this.state = {
       userID: userID,
-      userPerso: userPerso,
+      userPersoID: userPersoID,
       acquisCheck: false,
       dixCheck: false,
       vingtCheck: false,
@@ -68,7 +68,7 @@ class CreaCompTable extends Component {
       vingt: this.state.vingtCheck,
       bonus: findDOMNode(this.refs.bonusPostCompBase).value !== "" ? findDOMNode(this.refs.bonusPostCompBase).value : 0,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postCompBase(compBase);
     this.resetForm("base");
@@ -83,7 +83,7 @@ class CreaCompTable extends Component {
       vingt: this.state.vingtCheck,
       bonus: findDOMNode(this.refs.bonusPostCompAvance).value !== "" ? findDOMNode(this.refs.bonusPostCompAvance).value : 0,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postCompAvance(postCompAvance);
     this.resetForm("avance");
@@ -96,7 +96,7 @@ class CreaCompTable extends Component {
       competence: findDOMNode(this.refs.compPostTalent).value,
       bonus: findDOMNode(this.refs.bonusPostTalent).value !== "" ? findDOMNode(this.refs.bonusPostTalent).value : 0,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postTalent(newTalent);
     this.resetForm("talents");
@@ -106,7 +106,7 @@ class CreaCompTable extends Component {
     const folie = {
       nom: findDOMNode(this.refs.nomPostFolie).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postFolie(folie);
     this.resetForm("folies");
@@ -410,14 +410,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getCompBase,
-    postCompBase,
-    getCompAvance,
-    postCompAvance,
-    getTalent,
-    postTalent,
-    getFolie,
-    postFolie
+    getCompBase, postCompBase,
+    getCompAvance, postCompAvance,
+    getTalent, postTalent,
+    getFolie, postFolie
   }, dispatch)
 }
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import CompetenceAvanceUpdate from '../../components/update/CompetenceAvanceUpdate';
-import { getCompAvance, updateCompAvance } from "../../actions/CompAvanceAction";
+import { getCompAvance } from "../../actions/CompAvanceAction";
 import { updateMessage } from "../../hocs/updateMessage";
 
 class CompAvanceRecap extends Component {
@@ -12,17 +12,9 @@ class CompAvanceRecap extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.state = {
-      userID: userID,
-      userPerso: userPerso,
-      update: false
-    }
-  }
-
-  componentWillMount() {
-    this.props.getCompAvance(this.state.userID, this.state.userPerso);
+    this.props.getCompAvance(userID, userPersoID);
   }
 
   showUpdate() {
@@ -51,7 +43,7 @@ class CompAvanceRecap extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.compAvance.map((competenceB, i) => <CompetenceAvanceUpdate key={i} {...competenceB} getCompAvance={this.props.getCompAvance} updateCompAvance={this.props.updateCompAvance} user={this.state.userID} perso={this.state.userPerso}/>) }
+              { this.props.compAvance.map((competenceB, i) => <CompetenceAvanceUpdate key={i} {...competenceB} />) }
             </tbody>
           </Table>
         </Panel.Body>
@@ -71,7 +63,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    getCompAvance, updateCompAvance
+    getCompAvance
   }, dispatch)
 }
 

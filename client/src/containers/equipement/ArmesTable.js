@@ -14,13 +14,13 @@ class ArmesTable extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getArme(userID, userPerso);
+    this.props.getArme(userID, userPersoID);
 
     this.state = {
       userID: userID,
-      userPerso : userPerso,
+      userPersoID : userPersoID,
       update: false
     }
   }
@@ -40,7 +40,7 @@ class ArmesTable extends Component {
       rechargement: findDOMNode(this.refs.rechargementArme).value,
       attributs: findDOMNode(this.refs.attributsArme).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postArme(arme);
     this.resetForm();

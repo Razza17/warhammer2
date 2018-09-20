@@ -14,13 +14,13 @@ class ArmureTable extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getArmure(userID, userPerso);
+    this.props.getArmure(userID, userPersoID);
 
     this.state = {
       userID: userID,
-      userPerso : userPerso,
+      userPersoID : userPersoID,
       update: false
     }
   }
@@ -38,7 +38,7 @@ class ArmureTable extends Component {
       couverture: findDOMNode(this.refs.couvArmure).value,
       points: findDOMNode(this.refs.pointsArmure).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postArmure(armure);
     this.resetForm();
