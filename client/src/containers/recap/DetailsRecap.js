@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
-import { Col, Form, FormGroup, FormControl, InputGroup, Button, Panel, Alert } from 'react-bootstrap';
+import { Col, Form, FormGroup, FormControl, InputGroup, Button, Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 
 import { updateDetails, getDetails } from "../../actions/DetailAction";
+import { updateMessage } from "../../hocs/updateMessage";
 
 class DetailsRecap extends Component {
 
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.state = {
-      userID: userID,
-      userPerso: userPerso,
-      showAlert: false,
-      alertStyle: "success",
-      alertMessage: ""
-    }
-  }
-
-  componentWillMount() {
-    this.props.getDetails(this.state.userID, this.state.userPerso);
+    this.props.getDetails(userID, userPersoID)
   }
 
   updateDetails() {
@@ -52,30 +43,6 @@ class DetailsRecap extends Component {
         findDOMNode(this.refs.detailNaissance).value !== "" &&
         findDOMNode(this.refs.detailDistinction).value !== "") {
       this.props.updateDetails(id, newData);
-
-      this.setState({
-        showAlert: true,
-        alertStyle: "success",
-        alertMessage: "Your Profile has been successfully updated"
-      })
-
-      setTimeout(() => {
-        this.setState({
-          showAlert: false
-        })
-      }, 2500);
-    } else {
-      this.setState({
-        showAlert: true,
-        alertStyle: "danger",
-        alertMessage: "Oups something went wrong ! Maybe try again ;-)"
-      })
-
-      setTimeout(() => {
-        this.setState({
-          showAlert: false
-        })
-      }, 2500);
     }
   }
 
@@ -235,9 +202,6 @@ class DetailsRecap extends Component {
                 </InputGroup>
               </FormGroup>
               <Button onClick={this.updateDetails.bind(this)}>Modifier</Button>
-              <Alert className={this.state.showAlert === true ? "show" : "hide"} bsStyle={this.state.alertStyle}>
-                {this.state.alertMessage}
-              </Alert>
             </Form>
           )}
         </Panel.Body>
@@ -258,4 +222,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailsRecap);
+export default connect(mapStateToProps, mapDispatchToProps)(updateMessage(DetailsRecap));

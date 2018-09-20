@@ -8,22 +8,19 @@ import {Link} from 'react-router-dom';
 import { Armes } from '../../components/equipement/Armes';
 import { Armure } from '../../components/equipement/Armure';
 
-import { getArme, postArme } from "../../actions/ArmeAction";
-import { getArmure, postArmure } from "../../actions/ArmureAction";
+import { postArme } from "../../actions/ArmeAction";
+import { postArmure } from "../../actions/ArmureAction";
 
 class CreaArme extends Component {
 
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
-
-    this.props.getArme(userID, userPerso);
-    this.props.getArmure(userID, userPerso);
+    let userPersoID = localStorage.getItem('userPersoID');
 
     this.state = {
       userID: userID,
-      userPerso: userPerso,
+      userPersoID: userPersoID,
       activeKey: "1"
     }
   }
@@ -55,7 +52,7 @@ class CreaArme extends Component {
       rechargement: findDOMNode(this.refs.rechargementArme).value !== "" ? findDOMNode(this.refs.rechargementArme).value : 0,
       attributs: findDOMNode(this.refs.attributsArme).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postArme(arme);
     this.resetForm("arme");
@@ -68,7 +65,7 @@ class CreaArme extends Component {
       couverture: findDOMNode(this.refs.couvArmure).value,
       points: findDOMNode(this.refs.pointsArmure).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postArmure(armure);
     this.resetForm("armure");
@@ -226,31 +223,24 @@ class CreaArme extends Component {
                     </td>
                     <td><Button onClick={this.postArmure.bind(this)}>Ajouter</Button></td>
                   </tr>
-              </tbody>
-            </Table>
-            <Button className='next-table show'>
-              <Link to="/creationInventaire">Passer à l'inventaire</Link>
-            </Button>
-          </Panel.Body>
-        </Panel>
-      </PanelGroup>
-    </Col>
-  )
-}
-}
-
-function mapStateToProps(state) {
-  return {
-    arme: state.arme.arme,
-    armure: state.armure.armure
+                </tbody>
+              </Table>
+              <Button className='next-table show'>
+                <Link to="/creationInventaire">Passer à l'inventaire</Link>
+              </Button>
+            </Panel.Body>
+          </Panel>
+        </PanelGroup>
+      </Col>
+    )
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getArme, postArme,
-    getArmure, postArmure
+    postArme,
+    postArmure
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreaArme);
+export default connect(null, mapDispatchToProps)(CreaArme);

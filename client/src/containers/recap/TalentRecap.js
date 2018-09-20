@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import TalentUpdate from '../../components/update/TalentUpdate';
 
-import { updateTalent, getTalent } from "../../actions/TalentAction";
+import { getTalent } from "../../actions/TalentAction";
 
 import { updateMessage } from "../../hocs/updateMessage";
 
@@ -14,16 +14,9 @@ class TalentRecap extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.state = {
-      userID: userID,
-      userPerso: userPerso
-    }
-  }
-
-  componentWillMount() {
-    this.props.getTalent(this.state.userID, this.state.userPerso);
+    this.props.getTalent(userID, userPersoID);
   }
 
   render() {
@@ -43,7 +36,7 @@ class TalentRecap extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.talent.map((talents, i) => <TalentUpdate key={i} {...talents} getTalent={this.props.getTalent} updateTalent={this.props.updateTalent} />) }
+              { this.props.talent.map((talents, i) => <TalentUpdate key={i} {...talents} />) }
             </tbody>
           </Table>
         </Panel.Body>
@@ -63,7 +56,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators ({
-    getTalent, updateTalent
+    getTalent
   }, dispatch)
 }
 

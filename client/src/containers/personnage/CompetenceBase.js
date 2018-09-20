@@ -13,9 +13,9 @@ class CompetenceBase extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getCompBase(userID, userPerso);
+    this.props.getCompBase(userID, userPersoID);
 
     this.state = {
       update: false

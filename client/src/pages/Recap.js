@@ -14,20 +14,6 @@ import ArmureRecap from "../containers/recap/ArmureRecap";
 import InventaireRecap from "../containers/recap/InventaireRecap";
 
 export class Recap extends Component {
-
-  constructor(props) {
-    super(props);
-    let urlParams = window.location.search.substring(1).split('=');
-    let recupUser = urlParams[1].split('&');
-    let user = recupUser[0];
-    let perso = urlParams[2];
-
-    this.state = {
-      user: user,
-      perso: perso
-    }
-  }
-
   render() {
     return (
       <Grid id="recap" fluid>
@@ -68,7 +54,7 @@ export class Recap extends Component {
         </Row>
         <Row>
           <Col xs={12} md={6} mdOffset={3} className="text-center">
-            <Button><Link to={"/personnage?pseudo="+this.state.user+"&perso="+this.state.perso}>Aller au combat</Link></Button>
+            <Button><Link to={"/personnage"}>Aller au combat</Link></Button>
           </Col>
         </Row>
       </Grid>

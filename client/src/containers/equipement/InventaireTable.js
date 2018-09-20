@@ -14,13 +14,13 @@ class InventaireTable extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.props.getInventaire(userID, userPerso);
+    this.props.getInventaire(userID, userPersoID);
 
     this.state = {
       userID: userID,
-      userPerso: userPerso,
+      userPersoID: userPersoID,
       update: false
     }
   }
@@ -37,7 +37,7 @@ class InventaireTable extends Component {
       quantite: findDOMNode(this.refs.quantitePostInventaire).value,
       encombrement: findDOMNode(this.refs.encPostInventaire).value,
       user: this.state.userID,
-      perso: this.state.userPerso
+      perso: this.state.userPersoID
     };
     this.props.postInventaire(inventaire);
     this.resetForm();

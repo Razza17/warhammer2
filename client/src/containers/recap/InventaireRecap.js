@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import InventaireUpdate from '../../components/update/InventaireUpdate';
 
-import { updateInventaire, getInventaire } from "../../actions/InventaireAction";
+import { getInventaire } from "../../actions/InventaireAction";
 
 import { updateMessage } from "../../hocs/updateMessage";
 
@@ -14,16 +14,9 @@ class InventaireRecap extends Component {
   constructor(props) {
     super(props);
     let userID = localStorage.getItem('userID');
-    let userPerso = localStorage.getItem('userPerso');
+    let userPersoID = localStorage.getItem('userPersoID');
 
-    this.state = {
-      userID: userID,
-      userPerso: userPerso
-    }
-  }
-
-  componentWillMount() {
-    this.props.getInventaire(this.state.userID, this.state.userPerso);
+    this.props.getInventaire(userID, userPersoID);
   }
 
   render() {
@@ -42,7 +35,7 @@ class InventaireRecap extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.props.inventaire.map((inventaires, i) => <InventaireUpdate key={inventaires._id} {...inventaires} getInventaire={this.props.getInventaire} />) }
+              { this.props.inventaire.map((inventaires, i) => <InventaireUpdate key={inventaires._id} {...inventaires} />) }
             </tbody>
           </Table>
         </Panel.Body>
@@ -62,7 +55,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators ({
-    getInventaire, updateInventaire
+    getInventaire
   }, dispatch)
 }
 
